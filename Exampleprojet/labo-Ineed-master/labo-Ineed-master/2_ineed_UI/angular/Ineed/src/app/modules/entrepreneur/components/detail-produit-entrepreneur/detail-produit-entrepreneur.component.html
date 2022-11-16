@@ -1,0 +1,57 @@
+<div class="h-100">
+    <div class="container p-3 mt-5 mb-5  bg-one rounded-3">
+        <div class="container bg-two rounded-3">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="d-flex flex-column align-items-center text-center mt-4 py-5">
+                        <div *ngFor="let image of tabImages">
+                            <img [src]="apiUrl + image" alt="" width="70" height="70" class="p-1" (change)="loadMain($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column align-items-center text-center mt-4 py-5">
+                        <img [src]="apiUrl + img" alt="" width="350" height="350" class="p-1">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label class="labels fs-5 mt-2 mb-3 text-one fw-bold">Nom :</label>
+                                <p class="fw-bold mb-0 text-secondary">{{produit.nom}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels fs-5 mt-2 mb-3 text-one fw-bold">Prix :</label>
+                                <p class="fw-bold mb-0 text-secondary">{{produit.prix}} €</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label class="labels fs-5 mt-2 mb-3 text-one fw-bold">Quantité :</label>
+                                <p class="fw-bold mb-0 text-secondary">{{produit.quantite}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels fs-5 mt-2 mb-3 text-one fw-bold">catégorie :</label>
+                                <p class="fw-bold mb-0 text-secondary">{{produit.categorieId}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <label class="labels fs-5 mt-2 mb-3 text-one fw-bold">Description :</label>
+                            <p class="fw-bold mb-0 text-secondary">{{produit.description}}</p>
+                        </div>
+                    </div>
+                </div>                  
+            </div>
+            <div class="row m-0 p-0">
+                <div class="col-md-12">
+                    <div class="mb-3 col-6 mx-auto ">
+                        <button class="btn w-100 btn-warning mb-1 mt-md-4" type="button" (click)="chargerRouteUpdate()">Modifier</button></div>
+                        <div class="mb-3 col-6 mx-auto">
+                            <button class="btn w-100 btn-danger mb-1" type="button" (click)="chargerRouteDelete()">Suprimer</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

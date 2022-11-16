@@ -1,0 +1,61 @@
+<form [formGroup]="registerEntrepreneur" (ngSubmit)="onSubmit()">
+    <div class="container p-3 mt-5 mb-5  bg-one rounded-3">
+        <div class="container bg-two rounded-3">
+            <div class="bg-two p-4 rounded">
+                <div class="d-flex justify-content-center">
+                    <div class="image-preview position-relative">
+                        <img [src]="img" alt="" width="300" height="300" class="rounded-circle">
+                        
+                        <span class="position-absolute top-50 start-100 translate-middle p-2">
+                            <span class="d-flex align-items-center justify-content-center">
+                                <label for="img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id="img" placeholder="Select Image" formControlName="image" enctype="multipart/form-data" (change)="changeImage($event)" style="visibility:hidden" style="display:none"/>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="d-flex justify-content-center text-secondary fw-bold">Mon entreprise</h2>
+                        <div>
+                            <label class="labels text-one fw-bold ">Nom entreprise:</label>
+                            <input type="text " formControlName="nom" class="form-control">
+                        </div>
+                        <div>
+                            <label class="labels text-one fw-bold ">Rue :</label>
+                            <input type="text" formControlName="rue" class="form-control">
+                        </div>
+                        <div>
+                            <label class="labels text-one fw-bold ">Numéro :</label>
+                            <input type="number" formControlName="numeroRue" class="form-control">
+                        </div>
+                        <div>
+                            <label class="labels text-one fw-bold ">Ville :</label>
+                            <input type="text" formControlName="ville" class="form-control">
+                        </div>
+                        <div>
+                            <label class="labels text-one fw-bold ">Code Postal :</label>
+                            <input type="number" formControlName="codePostal" class="form-control">
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="mb-3 text-center d-grid col-6 mx-auto">
+                                    <input class="w-100 btn btn-success" type="submit"value="Enregistrer">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3 text-center d-grid col-6 mx-auto">
+                                    <input class="w-100 btn btn-danger" type="submit"value="Annuler" (click)="retourArriere()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
