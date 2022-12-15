@@ -1,6 +1,4 @@
-th:first-child{
-text-align: left;
-}
-th:last-child{
-  text-align: right;
+.footer {
+  display: flex;
+  justify-content: space-between;
 }

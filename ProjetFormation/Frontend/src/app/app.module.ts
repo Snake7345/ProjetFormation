@@ -9,7 +9,8 @@ import { FooterComponent } from './shared/compos/footer/footer.component';
 import { MenubarModule } from 'primeng/menubar';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PanelModule } from 'primeng/panel';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,14 @@ import {TableModule} from 'primeng/table';
     FooterComponent,
     HomepageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MenubarModule, PanelModule, TableModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MenubarModule,
+    PanelModule,
+    TableModule,
+    ButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

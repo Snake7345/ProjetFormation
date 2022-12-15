@@ -1,3 +1,17 @@
-<p-header>
-  <p-menubar [model]="items"></p-menubar>
-</p-header>
+<p-menubar [model]="items" styleClass="navbar">
+  <ng-template pTemplate="end">
+    <div class="navbar-end p-d-none p-d-lg-block">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Deconnexion"
+        class="p-button-raised p-button-danger"
+        icon="pi pi-fw pi-sign-out"
+      ></button>
+      <!--TODO: Quand connecté le boutton doit afficher Déconnexion
+      et si l'utilisateur n'est pas connecté, ne pas afficher le menu, afficher le
+    formulaire de connexion et mettre le bouton avec le label login-->
+    </div>
+  </ng-template>
+</p-menubar>
