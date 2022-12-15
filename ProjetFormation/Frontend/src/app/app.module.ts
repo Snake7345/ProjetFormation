@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/compos/navbar/navbar.component';
 import { FourofourComponent } from './shared/compos/fourofour/fourofour.component';
 import { FooterComponent } from './shared/compos/footer/footer.component';
+import { MenubarModule } from 'primeng/menubar';
+import { HomepageComponent } from './homepage/homepage.component';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -13,8 +16,9 @@ import { FooterComponent } from './shared/compos/footer/footer.component';
     NavbarComponent,
     FourofourComponent,
     FooterComponent,
+    HomepageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, MenubarModule, PanelModule],
   providers: [],
   bootstrap: [AppComponent],
 })
