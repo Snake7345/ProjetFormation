@@ -8,119 +8,77 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent {
   items: MenuItem[] = [
     {
-      label: 'File',
+      label: 'Categories',
       icon: 'pi pi-fw pi-file',
       items: [
         {
-          label: 'New',
+          label: 'Table des Catégories',
           icon: 'pi pi-fw pi-plus',
-          items: [
-            {
-              label: 'Bookmark',
-              icon: 'pi pi-fw pi-bookmark',
-            },
-            {
-              label: 'Video',
-              icon: 'pi pi-fw pi-video',
-            },
-          ],
+          //routerLink : ''
         },
         {
-          label: 'Delete',
+          label: 'Ajouter une catégorie',
           icon: 'pi pi-fw pi-trash',
-        },
-        {
-          separator: true,
-        },
-        {
-          label: 'Export',
-          icon: 'pi pi-fw pi-external-link',
         },
       ],
     },
     {
-      label: 'Edit',
+      label: 'Formations',
       icon: 'pi pi-fw pi-pencil',
       items: [
         {
-          label: 'Left',
+          label: 'Table des formations',
           icon: 'pi pi-fw pi-align-left',
         },
         {
-          label: 'Right',
+          label: 'Ajouter une formation',
           icon: 'pi pi-fw pi-align-right',
-        },
-        {
-          label: 'Center',
-          icon: 'pi pi-fw pi-align-center',
-        },
-        {
-          label: 'Justify',
-          icon: 'pi pi-fw pi-align-justify',
         },
       ],
     },
     {
-      label: 'Users',
+      label: 'Questions',
       icon: 'pi pi-fw pi-user',
       items: [
         {
-          label: 'New',
+          label: 'Table des questions',
           icon: 'pi pi-fw pi-user-plus',
         },
         {
-          label: 'Delete',
+          label: 'Ajouter une question',
           icon: 'pi pi-fw pi-user-minus',
-        },
-        {
-          label: 'Search',
-          icon: 'pi pi-fw pi-users',
-          items: [
-            {
-              label: 'Filter',
-              icon: 'pi pi-fw pi-filter',
-              items: [
-                {
-                  label: 'Print',
-                  icon: 'pi pi-fw pi-print',
-                },
-              ],
-            },
-            {
-              icon: 'pi pi-fw pi-bars',
-              label: 'List',
-            },
-          ],
         },
       ],
     },
     {
-      label: 'Events',
+      label: 'Utilisateurs',
       icon: 'pi pi-fw pi-calendar',
       items: [
         {
-          label: 'Edit',
+          label: 'Table des utilisateurs',
           icon: 'pi pi-fw pi-pencil',
-          items: [
-            {
-              label: 'Save',
-              icon: 'pi pi-fw pi-calendar-plus',
-            },
-            {
-              label: 'Delete',
-              icon: 'pi pi-fw pi-calendar-minus',
-            },
-          ],
         },
         {
-          label: 'Archieve',
-          icon: 'pi pi-fw pi-calendar-times',
-          items: [
-            {
-              label: 'Remove',
-              icon: 'pi pi-fw pi-calendar-minus',
-            },
-          ],
+          label: 'Ajouter un utilisateur',
+          icon: 'pi pi-fw pi-pencil',
+        },
+        {
+          label: 'Modifier votre profil',
+          icon: 'pi pi-fw pi-pencil',
+        },
+      ],
+    },
+    {
+      label: 'Syllabus',
+      icon: 'pi pi-fw pi-calendar',
+      items: [
+        {
+          label: 'Table des Syllabus',
+          icon: 'pi pi-fw pi-pencil',
+        },
+        {
+          label: 'Ajouter un syllabus',
+          icon: 'pi pi-fw pi-pencil',
         },
       ],
     },
