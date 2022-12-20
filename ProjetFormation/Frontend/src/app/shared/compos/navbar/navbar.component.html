@@ -9,9 +9,15 @@
         class="p-button-raised p-button-danger"
         icon="pi pi-fw pi-power-off"
       ></button>
-      <!--TODO: Quand connecté le boutton doit afficher Déconnexion
+      <!--TODO: 1. Quand connecté le boutton doit afficher Déconnexion
       et si l'utilisateur n'est pas connecté, ne pas afficher le menu, afficher le
-    formulaire de connexion et mettre le bouton avec le label login-->
+    formulaire de connexion et mettre le bouton avec le label login
+      2. ATTENTION : le menu est le même pour tout le monde sauf que(a modifier avec les permissions) :
+    - les admins ont accès a tout MAIS NE PEUT PAS S'INSCRIRE A UNE FORMATION
+    - le directeur ont accès a tout mais ne peut pas modifier ces collègues ni les désactiver mais ne peut pas s'inscrire a une formation
+    - Le professeur voit l'ensemble des formations modifie uniquement ces formations, mon profil mais ne peut pas s'inscrire a une formation
+  - L'étudiant peut voir les formations pour lesquelles il peut s'inscrire,
+    a accès a l'inscription aux formations selon sa catégorie d'utilisateur (basket, sports,...) vià la page mon profil-->
     </div>
   </ng-template>
 </p-menubar>

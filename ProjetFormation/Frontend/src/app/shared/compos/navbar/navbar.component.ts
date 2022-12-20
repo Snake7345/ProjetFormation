@@ -8,17 +8,23 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent {
   items: MenuItem[] = [
     {
-      label: 'Categories',
+      label: 'Accueil',
+      icon: 'pi pi-fw pi-home',
+      routerLink:'/'
+    },
+    {
+      label: 'Catégories',
       icon: 'pi pi-fw pi-sliders-h',
       items: [
         {
-          label: 'Table des Catégories',
+          label: 'Table des catégories',
           icon: 'pi pi-fw pi-bars ',
-          //routerLink : ''
+          routerLink:'tableCategories'
         },
         {
           label: 'Ajouter une catégorie',
           icon: 'pi pi-fw pi-plus',
+          routerLink:'addCategories',
         },
       ],
     },
@@ -27,12 +33,33 @@ export class NavbarComponent {
       icon: 'pi pi-fw pi-book',
       items: [
         {
-          label: 'Table des formations',
+          label: 'Table de l\'ensemble des formations',
           icon: 'pi pi-fw pi-bars',
+          routerLink:'tableFormations',
         },
         {
           label: 'Ajouter une formation',
           icon: 'pi pi-fw pi-plus',
+          routerLink:'addFormations',
+        },
+      ],
+    },
+    {
+      label: 'Mon profil',
+      icon: 'pi pi-fw pi-users',
+      items: [
+        {
+          label: 'Modifier mon profil',
+          icon: 'pi pi-fw pi-pencil',
+          routerLink:'updateUtilisateurs',
+        },
+        {
+          label: 'Mes formations(Non fonctionnel)',
+          icon: 'pi pi-fw pi-file',
+        },
+        {
+          label: 'Mes diplômes(Non fonctionnel)',
+          icon: 'pi pi-fw pi-book',
         },
       ],
     },
@@ -43,14 +70,12 @@ export class NavbarComponent {
         {
           label: 'Table des utilisateurs',
           icon: 'pi pi-fw pi-bars',
+          routerLink:'tableUtilisateurs',
         },
         {
           label: 'Ajouter un utilisateur',
           icon: 'pi pi-fw pi-user-plus',
-        },
-        {
-          label: 'Modifier votre profil',
-          icon: 'pi pi-fw pi-pencil',
+          routerLink:'addUtilisateurs',
         },
       ],
     },
