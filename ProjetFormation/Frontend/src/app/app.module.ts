@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import {InputTextModule} from 'primeng/inputtext';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/compos/navbar/navbar.component';
@@ -56,6 +57,9 @@ import { TableUtilisateursComponent } from './table/table-utilisateurs/table-uti
     PanelModule,
     TableModule,
     ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

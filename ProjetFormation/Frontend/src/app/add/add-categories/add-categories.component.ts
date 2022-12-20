@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-categories',
   templateUrl: './add-categories.component.html',
   styleUrls: ['./add-categories.component.scss']
 })
-export class AddCategoriesComponent {
+export class AddCategoriesComponent implements OnInit {
+
+  denomination!: string;
+  constructor() { }
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+
+  }
 
 }

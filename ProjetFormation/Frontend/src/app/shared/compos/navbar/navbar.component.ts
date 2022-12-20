@@ -46,11 +46,11 @@ export class NavbarComponent {
     },
     {
       label: 'Mon profil',
-      icon: 'pi pi-fw pi-users',
+      icon: 'pi pi-fw pi-user',
       items: [
         {
           label: 'Modifier mon profil',
-          icon: 'pi pi-fw pi-pencil',
+          icon: 'pi pi-fw pi-user-edit',
           routerLink:'updateUtilisateurs',
         },
         {

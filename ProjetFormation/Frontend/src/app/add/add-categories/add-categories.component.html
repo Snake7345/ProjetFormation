@@ -1,3 +1,10 @@
 <p>add-categories works!</p>
 <!--TODO: Questionnaire à faire
   !-->
+  <form ngNativeValidate>
+    <h5>Invalid with Float Label</h5>
+    <span class="p-float-label">
+        <input id="float-input-invalid" type="text" pInputText required [(ngModel)]="denomination" >
+        <label for="float-input-invalid">denomination</label>
+    </span>
+  </form>
