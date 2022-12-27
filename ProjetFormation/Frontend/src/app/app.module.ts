@@ -1,5 +1,5 @@
+/*----------------Modules principaux-------------------------------------------------------------------*/
 import { NgModule } from '@angular/core';
-import {InputTextModule} from 'primeng/inputtext';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,11 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/compos/navbar/navbar.component';
 import { FourofourComponent } from './shared/compos/fourofour/fourofour.component';
 import { FooterComponent } from './shared/compos/footer/footer.component';
-import { MenubarModule } from 'primeng/menubar';
 import { HomepageComponent } from './homepage/homepage.component';
-import { PanelModule } from 'primeng/panel';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
 import { AddCategoriesComponent } from './add/add-categories/add-categories.component';
 import { AddFormationsComponent } from './add/add-formations/add-formations.component';
 import { AddUtilisateursComponent } from './add/add-utilisateurs/add-utilisateurs.component';
@@ -27,6 +23,12 @@ import { TableFormationsComponent } from './table/table-formations/table-formati
 import { TableQuestionsComponent } from './table/table-questions/table-questions.component';
 import { TableSyllabusComponent } from './table/table-syllabus/table-syllabus.component';
 import { TableUtilisateursComponent } from './table/table-utilisateurs/table-utilisateurs.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+/*-------------------------------------Module Angular Material------------------------------------------*/
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,15 +53,17 @@ import { TableUtilisateursComponent } from './table/table-utilisateurs/table-uti
     TableUtilisateursComponent,
   ],
   imports: [
+    /*Modules principaux*/
     BrowserModule,
     AppRoutingModule,
-    MenubarModule,
-    PanelModule,
-    TableModule,
-    ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
+    BrowserAnimationsModule,
+    /*Module Angular Material*/
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

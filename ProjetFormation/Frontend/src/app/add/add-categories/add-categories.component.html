@@ -1,10 +1,13 @@
 <p>add-categories works!</p>
 <!--TODO: Questionnaire à faire
   !-->
-  <form ngNativeValidate>
-    <h5>Invalid with Float Label</h5>
-    <span class="p-float-label">
-        <input id="float-input-invalid" type="text" pInputText required [(ngModel)]="denomination" >
-        <label for="float-input-invalid">denomination</label>
-    </span>
-  </form>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nouvelle catégorie</mat-label>
+    <input type="text" matInput [formControl]="denominationFormControl" />
+    <mat-error *ngIf="denominationFormControl.hasError('required')">
+      La dénomination de la catégorie est <strong>requise.</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
