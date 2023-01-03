@@ -1,7 +1,7 @@
 <p>Veuillez remplir le questionnaire suivant pour ajouter une formation</p>
 <!--TODO: Questionnaire à faire
   !-->
-<form class="example-form">
+<form class="example-form" (ngSubmit)="Submit()" >
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle formation</mat-label>
     <input type="text" matInput [formControl]="nomFormControl" />

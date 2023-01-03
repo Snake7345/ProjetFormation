@@ -2,7 +2,7 @@
 <!--TODO: Questionnaire à faire
   !-->
 
-<form class="example-form">
+<form class="example-form" (ngSubmit)="Submit()">
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle catégorie</mat-label>
     <input type="text" matInput [formControl]="denominationFormControl" />

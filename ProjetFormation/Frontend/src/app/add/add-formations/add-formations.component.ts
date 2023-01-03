@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-formations',
@@ -7,6 +8,12 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./add-formations.component.scss'],
 })
 export class AddFormationsComponent implements OnInit {
+
+  constructor(
+    private _formBuilder : FormBuilder,
+    private _router : Router
+  ) { }
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -14,4 +21,8 @@ export class AddFormationsComponent implements OnInit {
   infosFormControl = new FormControl('');
   dateLimiteInscriptionFormControl = new FormControl('', [Validators.required]);
   dateQuestionnaireFormControl = new FormControl('', [Validators.required]);
+
+  Submit() {
+    this._router.navigate(["tableFormations"])
+  }
 }
