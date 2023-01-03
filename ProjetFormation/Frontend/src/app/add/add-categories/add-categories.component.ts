@@ -20,7 +20,7 @@ export class AddCategoriesComponent implements OnInit {
   denominationFormControl = new FormControl('', [Validators.required]);
 
   Submit() {
-    console.log("Denomination :")
+    console.log("Denomination :" )
     this._router.navigate(["tableCategories"])
   }
 }
