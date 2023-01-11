@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCategoriesComponent } from './add/add-categories/add-categories.component';
-import { AddFormationsComponent } from './add/add-formations/add-formations.component';
-import { AddQuestionsComponent } from './add/add-questions/add-questions.component';
-import { AddSyllabusComponent } from './add/add-syllabus/add-syllabus.component';
-import { AddUtilisateursComponent } from './add/add-utilisateurs/add-utilisateurs.component';
+import { AddCategoriesComponent } from './categories/add-categories/add-categories.component';
+import { AddFormationsComponent } from './formations/add-formations/add-formations.component';
+import { AddQuestionsComponent } from './questions/add-questions/add-questions.component';
+import { AddSyllabusComponent } from './syllabus/add-syllabus/add-syllabus.component';
+import { AddUtilisateursComponent } from './utilisateurs/add-utilisateurs/add-utilisateurs.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FourofourComponent } from './shared/compos/fourofour/fourofour.component';
-import { TableCategoriesComponent } from './table/table-categories/table-categories.component';
-import { TableFormationsComponent } from './table/table-formations/table-formations.component';
-import { TableQuestionsComponent } from './table/table-questions/table-questions.component';
-import { TableSyllabusComponent } from './table/table-syllabus/table-syllabus.component';
-import { TableUtilisateursComponent } from './table/table-utilisateurs/table-utilisateurs.component';
-import { UpdateCategoriesComponent } from './update/update-categories/update-categories.component';
-import { UpdateFormationsComponent } from './update/update-formations/update-formations.component';
-import { UpdateQuestionsComponent } from './update/update-questions/update-questions.component';
-import { UpdateSyllabusComponent } from './update/update-syllabus/update-syllabus.component';
-import { UpdateUtilisateursComponent } from './update/update-utilisateurs/update-utilisateurs.component';
+import { TableCategoriesComponent } from './categories/table-categories/table-categories.component';
+import { TableFormationsComponent } from './formations/table-formations/table-formations.component';
+import { TableQuestionsComponent } from './questions/table-questions/table-questions.component';
+import { TableSyllabusComponent } from './syllabus/table-syllabus/table-syllabus.component';
+import { TableUtilisateursComponent } from './utilisateurs/table-utilisateurs/table-utilisateurs.component';
+import { UpdateCategoriesComponent } from './categories/update-categories/update-categories.component';
+import { UpdateFormationsComponent } from './formations/update-formations/update-formations.component';
+import { UpdateQuestionsComponent } from './questions/update-questions/update-questions.component';
+import { UpdateSyllabusComponent } from './syllabus/update-syllabus/update-syllabus.component';
+import { UpdateUtilisateursComponent } from './utilisateurs/update-utilisateurs/update-utilisateurs.component';
+import {LaboComponent} from "./labo/labo.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
@@ -39,6 +40,9 @@ const routes: Routes = [
   { path: 'updateQuestions', component: UpdateQuestionsComponent},
   { path: 'updateSyllabus', component: UpdateSyllabusComponent},
   { path: 'updateUtilisateurs', component: UpdateUtilisateursComponent},
+
+  /*Routes pour le labo*/
+  { path: 'labo', component: LaboComponent},
 
   /*Quand une route n'existe pas, la page redirige sur une erreur 404*/
   { path: '**', component: FourofourComponent },
