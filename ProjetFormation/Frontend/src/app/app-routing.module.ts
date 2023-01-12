@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'addSyllabus', component: AddSyllabusComponent},
   { path: 'addUtilisateurs', component: AddUtilisateursComponent},
   /*Route tables*/
-  { path: 'tableCategories', component: TableCategoriesComponent},
+  { path: 'categories', component: TableCategoriesComponent},
   { path: 'tableFormations', component: TableFormationsComponent},
   { path: 'tableQuestions', component: TableQuestionsComponent},
   { path: 'tableSyllabus', component: TableSyllabusComponent},

@@ -1,5 +1,5 @@
 export interface Categories{
-  id : number
-  denomination : string
+  idCategories : number
+  nom : string
   actif : number
 }

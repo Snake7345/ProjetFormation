@@ -31,6 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from "ngx-toastr";
 import { LaboComponent } from './labo/labo.component';
+import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +70,9 @@ import { LaboComponent } from './labo/labo.component';
     MatIconModule,
     MatInputModule,
     /*Autres modules*/
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
