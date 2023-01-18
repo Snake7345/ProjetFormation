@@ -31,7 +31,7 @@ import { CategoriesModule } from './categories/categories.module';
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
         //mettre un true pour generer le sql et ensuite false
-        logging: false,
+        logging: true,
       }),
       inject: [ConfigService],
     }),

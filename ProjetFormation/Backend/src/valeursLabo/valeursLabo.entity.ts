@@ -1,6 +1,7 @@
 /*Description de l'entité, à faire a la main*/
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProjetsLaboEntity } from "../projetsLabo/projetsLabo.entity";
 
 @Entity({ name: 'valeurslabo' })
 export class ValeursLaboEntity {
@@ -9,4 +10,6 @@ export class ValeursLaboEntity {
 
   @Column("decimal", { precision: 5, scale: 2, nullable:false })
   valeur: number;
+  @OneToMany(() => ProjetsLaboEntity, (projet) => projet.idProjetsLabo)
+  projetLabos: ProjetsLaboEntity[]
 }
