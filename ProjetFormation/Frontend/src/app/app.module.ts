@@ -30,9 +30,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from "ngx-toastr";
-import { LaboComponent } from './labo/labo.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import { PresentationLaboComponent } from './presentation-labo/presentation-labo.component';
+import { WhereIsMoneyComponent } from './where-is-money/where-is-money.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import {HttpClientModule} from "@angular/common/http";
     TableQuestionsComponent,
     TableSyllabusComponent,
     TableUtilisateursComponent,
-    LaboComponent,
+    PresentationLaboComponent,
+    WhereIsMoneyComponent,
   ],
   imports: [
     /*Modules principaux*/
@@ -73,6 +76,7 @@ import {HttpClientModule} from "@angular/common/http";
     ToastrModule.forRoot(),
     RouterModule,
     HttpClientModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

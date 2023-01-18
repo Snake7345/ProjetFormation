@@ -59,4 +59,20 @@
     <mat-icon>playlist_add</mat-icon>Ajouter un utilisateur
   </button>
 </mat-menu>
-<button mat-button routerLink="labo"><mat-icon> bar_chart</mat-icon>Labo Graph ONG</button>
+
+<button mat-button [matMenuTriggerFor]="after3Menu"><mat-icon> bar_chart</mat-icon>ONG</button>
+<mat-menu #after3Menu="matMenu" xPosition="after">
+  <button routerLink="presentation-labo" mat-menu-item><mat-icon>assignment</mat-icon>présentation</button>
+  <button routerLink="where-is-money" mat-menu-item>
+    <mat-icon> money</mat-icon>où va votre argent ?
+  </button>
+  <button mat-menu-item>
+    <mat-icon> language icon</mat-icon>Géographie
+  </button>
+  <button mat-menu-item>
+    <mat-icon> format_list_bulleted</mat-icon>Nos chiffres
+  </button>
+  <button mat-menu-item>
+    <mat-icon> format_list_bulleted</mat-icon>Nos missions
+  </button>
+</mat-menu>

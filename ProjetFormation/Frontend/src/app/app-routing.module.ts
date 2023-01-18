@@ -17,7 +17,8 @@ import { UpdateFormationsComponent } from './formations/update-formations/update
 import { UpdateQuestionsComponent } from './questions/update-questions/update-questions.component';
 import { UpdateSyllabusComponent } from './syllabus/update-syllabus/update-syllabus.component';
 import { UpdateUtilisateursComponent } from './utilisateurs/update-utilisateurs/update-utilisateurs.component';
-import {LaboComponent} from "./labo/labo.component";
+import {PresentationLaboComponent} from "./presentation-labo/presentation-labo.component";
+import {WhereIsMoneyComponent} from "./where-is-money/where-is-money.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
@@ -41,8 +42,9 @@ const routes: Routes = [
   { path: 'updateSyllabus', component: UpdateSyllabusComponent},
   { path: 'updateUtilisateurs', component: UpdateUtilisateursComponent},
 
-  /*Routes pour le labo*/
-  { path: 'labo', component: LaboComponent},
+  /*Routes pour le presentation-labo*/
+  { path: 'presentation-labo', component: PresentationLaboComponent},
+  { path: 'where-is-money', component: WhereIsMoneyComponent},
 
   /*Quand une route n'existe pas, la page redirige sur une erreur 404*/
   { path: '**', component: FourofourComponent },
