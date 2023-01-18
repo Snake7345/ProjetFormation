@@ -1,11 +1,9 @@
 import {
-  BadRequestException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MessageDto } from "../common/message.dto";
-import { CategoriesEntity } from "../categories/categories.entity";
 import { ProjetsLaboDto } from "./dto/projetsLabo.dto";
 import { ProjetsLaboRepository } from "./projetsLabo.repository";
 import { ProjetsLaboEntity } from "./projetsLabo.entity";
