@@ -5,18 +5,18 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MessageDto } from "../common/message.dto";
-import { ValeursLaboRepository } from "./valeursLabo.repository";
-import { ValeursLaboEntity } from "./valeursLabo.entity";
-import { ValeursLaboDto } from "./dto/valeursLabo.dto";
+import { ValeurslaboRepository } from "./valeurslabo.repository";
+import { ValeurslaboEntity} from "./valeursLabo.entity";
+import { ValeurslaboDto} from "./dto/valeurslabo.dto";
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
-export class ValeursLaboService {
+export class ValeurslaboService {
   constructor(
-    @InjectRepository(ValeursLaboDto)
-    private valeurslaboRepository: ValeursLaboRepository,
+    @InjectRepository(ValeurslaboDto)
+    private valeurslaboRepository: ValeurslaboRepository,
   ) {}
 
-  async getAll(): Promise<ValeursLaboEntity[]> {
+  async getAll(): Promise<ValeurslaboEntity[]> {
     const list = await this.valeurslaboRepository.find();
     if (!list.length) {
       throw new NotFoundException(
@@ -26,7 +26,7 @@ export class ValeursLaboService {
     return list;
   }
 
-  async findById(idValeursLabo: number): Promise<ValeursLaboEntity> {
+  async findById(idValeursLabo: number): Promise<ValeurslaboEntity> {
     const valeurs = await this.valeurslaboRepository.findOneBy({
       idValeursLabo,
     });
@@ -38,7 +38,7 @@ export class ValeursLaboService {
     return valeurs;
   }
 
-  async findByNom(valeur: number): Promise<ValeursLaboEntity> {
+  async findByNom(valeur: number): Promise<ValeurslaboEntity> {
     const valeurs = await this.valeurslaboRepository.findOneBy({ valeur: valeur });
     return valeurs ? valeurs: null;
   }

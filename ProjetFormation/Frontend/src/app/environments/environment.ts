@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  categoriesUrl: 'http://localhost:8080/categories/',
+  categoriesUrl: 'http://localhost:8080/categories',
+  projetsUrl : 'http://localhost:8080/projetslabo',
+  valeursUrl : 'http://localhost:8080/valeurslabo',
+  anneesUrl : 'http://localhost:8080/anneeslabo',
+
 };
 
 /*

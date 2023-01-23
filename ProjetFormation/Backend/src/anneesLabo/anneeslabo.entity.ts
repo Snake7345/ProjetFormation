@@ -1,7 +1,7 @@
 /*Description de l'entité, à faire a la main*/
 
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ProjetsLaboEntity } from "../projetsLabo/projetsLabo.entity";
+import { ProjetslaboEntity } from "../projetsLabo/projetslabo.entity";
 
 @Entity({ name: 'anneeslabo' })
 export class AnneeslaboEntity {
@@ -11,6 +11,6 @@ export class AnneeslaboEntity {
   @Column({ type: 'integer', nullable: false })
   annee: number;
 
-  @OneToMany(() => ProjetsLaboEntity, (projet) => projet.idProjetsLabo)
-  projetLabos: ProjetsLaboEntity[]
+  @OneToMany(() => ProjetslaboEntity, (projet) => projet.idProjetsLabo)
+  projetLabos: ProjetslaboEntity[]
 }

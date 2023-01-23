@@ -36,6 +36,9 @@ import { CategoriesModule } from './categories/categories.module';
       inject: [ConfigService],
     }),
     CategoriesModule,
+    /*ProjetslaboModule,
+    ValeurslaboModule,
+    AnneeslaboModule,*/
   ],
   controllers: [AppController],
   providers: [AppService],

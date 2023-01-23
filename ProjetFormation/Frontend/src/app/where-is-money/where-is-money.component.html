@@ -12,3 +12,25 @@
 style="fill: chartreuse;"
 ></ngx-charts-line-chart>
 -->
+<h1>Table : Where is my money ? </h1>
+<div class="container">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">IdProjetlabo</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Valeur</th>
+      <th scope="col">Année</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let projetsLabo of projetsLabos">
+      <td>{{ projetsLabo.idprojetsLabo }}</td>
+      <td>{{ projetsLabo.nom }}</td>
+      <td>{{ projetsLabo.FK_ValeursLabo.valeur }}</td>
+      <td>{{ projetsLabo.FK_AnneesLabo.annee }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

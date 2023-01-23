@@ -4,18 +4,18 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MessageDto } from "../common/message.dto";
-import { ProjetsLaboDto } from "./dto/projetsLabo.dto";
-import { ProjetsLaboRepository } from "./projetsLabo.repository";
-import { ProjetsLaboEntity } from "./projetsLabo.entity";
+import { ProjetslaboDto } from "./dto/projetslabo.dto";
+import { ProjetslaboRepository} from "./projetsLabo.repository";
+import { ProjetslaboEntity } from "./projetslabo.entity";
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
-export class ProjetsLaboService {
+export class ProjetslaboService {
   constructor(
-    @InjectRepository(ProjetsLaboDto)
-    private projetslaboRepository: ProjetsLaboRepository,
+    @InjectRepository(ProjetslaboDto)
+    private projetslaboRepository: ProjetslaboRepository,
   ) {}
 
-  async getAll(): Promise<ProjetsLaboEntity[]> {
+  async getAll(): Promise<ProjetslaboEntity[]> {
     const list = await this.projetslaboRepository.find();
     if (!list.length) {
       throw new NotFoundException(
@@ -25,7 +25,7 @@ export class ProjetsLaboService {
     return list;
   }
 
-  async findById(idProjetsLabo: number): Promise<ProjetsLaboEntity> {
+  async findById(idProjetsLabo: number): Promise<ProjetslaboEntity> {
     const annees = await this.projetslaboRepository.findOneBy({
       idProjetsLabo,
     });
@@ -37,7 +37,7 @@ export class ProjetsLaboService {
     return annees;
   }
 
-  async findByNom(nom: string): Promise<ProjetsLaboEntity> {
+  async findByNom(nom: string): Promise<ProjetslaboEntity> {
     const projet = await this.projetslaboRepository.findOneBy({ nom: nom });
     return projet ? projet: null;
   }
