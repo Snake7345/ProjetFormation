@@ -85,16 +85,16 @@ CREATE TABLE IF NOT EXISTS `projetslabo` (
 -- Déchargement des données de la table `projetslabo`
 --
 
-INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `fKIdValeursLaboIdValeursLabo`, `fKIdAnneesLaboIdAnneesLabo`) VALUES
+INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `valeur_id`, `annee_id`) VALUES
 (1, 'Conséquences des conflits', 1, 1),
 (2, 'Conséquences des conflits', 8, 2),
 (3, 'Conséquences des conflits', 15, 3),
 (4, 'Catastrophes médicales', 2, 1),
 (5, 'Catastrophes médicales', 9, 2),
 (6, 'Catastrophes médicales', 16, 3),
-(7, 'Victimes d\'exclusion des soins ou de vio', 6, 1),
-(8, 'Victimes d\'exclusion des soins ou de vio', 13, 2),
-(9, 'Victimes d\'exclusion des soins ou de vio', 20, 3),
+(7, 'Victimes d\'exclusion des soins ou de violences', 6, 1),
+(8, 'Victimes d\'exclusion des soins ou de violences', 13, 2),
+(9, 'Victimes d\'exclusion des soins ou de violences', 20, 3),
 (10, 'Catastrophes naturelles et humaines', 7, 1),
 (11, 'Catastrophes naturelles et humaines', 14, 2),
 (12, 'Catastrophes naturelles et humaines', 21, 3);

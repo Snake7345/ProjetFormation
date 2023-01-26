@@ -19,6 +19,7 @@ import { UpdateSyllabusComponent } from './syllabus/update-syllabus/update-sylla
 import { UpdateUtilisateursComponent } from './utilisateurs/update-utilisateurs/update-utilisateurs.component';
 import {PresentationLaboComponent} from "./presentation-labo/presentation-labo.component";
 import {WhereIsMoneyComponent} from "./where-is-money/where-is-money.component";
+import {WhereIsMoneyGraphiqueComponent} from "./where-is-money-graphique/where-is-money-graphique.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
@@ -45,7 +46,7 @@ const routes: Routes = [
   /*Routes pour le presentation-labo*/
   { path: 'presentation-labo', component: PresentationLaboComponent},
   { path: 'where-is-money', component: WhereIsMoneyComponent},
-
+  { path: 'where-is-money-graphique', component: WhereIsMoneyGraphiqueComponent},
   /*Quand une route n'existe pas, la page redirige sur une erreur 404*/
   { path: '**', component: FourofourComponent },
 ];

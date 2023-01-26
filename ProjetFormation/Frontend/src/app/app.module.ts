@@ -35,6 +35,10 @@ import {HttpClientModule} from "@angular/common/http";
 import { PresentationLaboComponent } from './presentation-labo/presentation-labo.component';
 import { WhereIsMoneyComponent } from './where-is-money/where-is-money.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { WhereIsMoneyGraphiqueComponent } from './where-is-money-graphique/where-is-money-graphique.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +63,7 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
     TableUtilisateursComponent,
     PresentationLaboComponent,
     WhereIsMoneyComponent,
+    WhereIsMoneyGraphiqueComponent,
   ],
   imports: [
     /*Modules principaux*/
@@ -77,6 +82,9 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
     RouterModule,
     HttpClientModule,
     NgxChartsModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],
