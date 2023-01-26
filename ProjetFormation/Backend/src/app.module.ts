@@ -11,6 +11,13 @@ import {
   DB_USER,
 } from './config/constants';
 import { CategoriesModule } from './categories/categories.module';
+import { ProjetslaboModule } from "./projetsLabo/projetslabo.module";
+import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
+import { AnneeslaboModule } from "./anneesLabo/anneeslabo.module";
+import { CategoriesEntity } from "./categories/categories.entity";
+import { AnneeslaboEntity } from "./anneesLabo/anneeslabo.entity";
+import { ProjetslaboEntity } from "./projetsLabo/projetslabo.entity";
+import { ValeurslaboEntity } from "./valeursLabo/valeurslabo.entity";
 
 /*Au démarrage du programme, celui-ci démarrera toujours en lisant le fichier constants dans le dossier config*/
 @Module({
@@ -28,17 +35,18 @@ import { CategoriesModule } from './categories/categories.module';
         username: configService.get<string>(DB_USER),
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        entities: [CategoriesEntity, AnneeslaboEntity, ProjetslaboEntity, ValeurslaboEntity],
         synchronize: true,
+        autoLoadEntities: true,
         //mettre un true pour generer le sql et ensuite false
         logging: true,
       }),
       inject: [ConfigService],
     }),
     CategoriesModule,
-    /*ProjetslaboModule,
+    ProjetslaboModule,
     ValeurslaboModule,
-    AnneeslaboModule,*/
+    AnneeslaboModule,
   ],
   controllers: [AppController],
   providers: [AppService],

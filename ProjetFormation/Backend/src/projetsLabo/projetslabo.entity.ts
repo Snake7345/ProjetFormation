@@ -1,6 +1,6 @@
 /*Description de l'entité, à faire a la main*/
 
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AnneeslaboEntity } from "../anneesLabo/anneeslabo.entity";
 import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
 
@@ -12,9 +12,13 @@ export class ProjetslaboEntity {
   @Column({ type: 'varchar', length: 40, nullable: false })
   nom: string;
 
-  @ManyToOne(() => ValeurslaboEntity, (ValeurslaboEntity) => ValeurslaboEntity.idValeursLabo , {nullable : false})
+  @ManyToOne(type => ValeurslaboEntity, FK_idValeursLabo => FK_idValeursLabo.projetLabos, {
+    nullable: false
+  })
+  @JoinColumn({name : 'valeur_id', referencedColumnName: 'idValeursLabo'})
   FK_idValeursLabo: ValeurslaboEntity
 
-  @ManyToOne(() => AnneeslaboEntity, (AnneeslaboEntity) => AnneeslaboEntity.idAnneesLabo, {nullable : false})
+  @ManyToOne(() => AnneeslaboEntity, (FK_idAnneesLabo) => FK_idAnneesLabo.projetLabos, {nullable : false})
+  @JoinColumn({name : 'annee_id', referencedColumnName: 'idAnneesLabo'})
   FK_idAnneesLabo: AnneeslaboEntity
 }

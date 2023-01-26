@@ -12,7 +12,7 @@ import { ValeurslaboDto} from "./dto/valeurslabo.dto";
 @Injectable()
 export class ValeurslaboService {
   constructor(
-    @InjectRepository(ValeurslaboDto)
+    @InjectRepository(ValeurslaboEntity)
     private valeurslaboRepository: ValeurslaboRepository,
   ) {}
 

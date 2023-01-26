@@ -8,11 +8,12 @@ import { AnneeslaboDto } from "./dto/anneeslabo.dto";
 import { AnneeslaboRepository } from "./anneeslabo.repository";
 import { AnneeslaboEntity } from "./anneeslabo.entity";
 import { MessageDto } from "../common/message.dto";
+import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
 export class AnneeslaboService {
   constructor(
-    @InjectRepository(AnneeslaboDto)
+    @InjectRepository(AnneeslaboEntity)
     private anneeslaboRepository: AnneeslaboRepository,
   ) {}
 

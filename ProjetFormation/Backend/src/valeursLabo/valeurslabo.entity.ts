@@ -10,6 +10,7 @@ export class ValeurslaboEntity {
 
   @Column("decimal", { precision: 5, scale: 2, nullable:false })
   valeur: number;
-  @OneToMany(() => ProjetslaboEntity, (projet) => projet.idProjetsLabo)
+
+  @OneToMany(type => ProjetslaboEntity, projetLabos => projetLabos.FK_idValeursLabo)
   projetLabos: ProjetslaboEntity[]
 }

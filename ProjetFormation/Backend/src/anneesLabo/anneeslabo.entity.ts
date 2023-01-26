@@ -11,6 +11,6 @@ export class AnneeslaboEntity {
   @Column({ type: 'integer', nullable: false })
   annee: number;
 
-  @OneToMany(() => ProjetslaboEntity, (projet) => projet.idProjetsLabo)
+  @OneToMany(type => ProjetslaboEntity, projetLabos => projetLabos.FK_idAnneesLabo)
   projetLabos: ProjetslaboEntity[]
 }

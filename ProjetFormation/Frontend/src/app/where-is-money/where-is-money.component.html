@@ -14,7 +14,7 @@ style="fill: chartreuse;"
 -->
 <h1>Table : Where is my money ? </h1>
 <div class="container">
-  <table class="table table-dark">
+  <table *ngIf="projetsLabos != []" class="table table-dark">
     <thead>
     <tr>
       <th scope="col">IdProjetlabo</th>
@@ -24,11 +24,11 @@ style="fill: chartreuse;"
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let projetsLabo of projetsLabos">
-      <td>{{ projetsLabo.idprojetsLabo }}</td>
-      <td>{{ projetsLabo.nom }}</td>
-      <td>{{ projetsLabo.FK_ValeursLabo.valeur }}</td>
-      <td>{{ projetsLabo.FK_AnneesLabo.annee }}</td>
+    <tr *ngFor="let projetslabo of projetsLabos">
+      <td>{{ projetslabo.idProjetsLabo}}</td>
+      <td>{{ projetslabo.nom }}</td>
+      <td>{{ projetslabo.FK_idValeursLabo.valeur}}</td>
+      <td>{{ projetslabo.FK_idAnneesLabo.annee}}</td>
     </tr>
     </tbody>
   </table>
