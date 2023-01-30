@@ -7,10 +7,39 @@
         {{annee.FK_idAnneesLabo.annee}}
       </mat-option>
     </mat-select>-->
-    <mat-select [(ngModel)]="selectedValue" name="annee">
+    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="afficherProjets()" name="annee">
       <mat-option *ngFor="let annee of anneeLabos" [value]="annee.annee">
         {{annee.annee}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
+<div class="container" *ngIf="!isloading">
+  <ngx-charts-line-chart
+    [results]="projetData"
+    [xAxis]="true"
+    [yAxis]="true"
+    [showYAxisLabel]="true"
+    [yAxisLabel]=yLabel
+    [showXAxisLabel]="true"
+    [xAxisLabel]="'Projet'"
+    [legend]="true"
+    [scheme]="'neons'"
+    style="fill: chartreuse;"
+  ></ngx-charts-line-chart>
+  <br/>
+</div>
+<!--<h3> Vertical Bar Chart</h3>
+  <ngx-charts-bar-vertical
+    [view]="[1000,400]"
+    [results]="surveyData"
+    [xAxisLabel]="'Count'"
+    [legendTitle]="'Vehical Survey'"
+    [yAxisLabel]="'Type of Vehicle'"
+    [legend]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+  </ngx-charts-bar-vertical>-->

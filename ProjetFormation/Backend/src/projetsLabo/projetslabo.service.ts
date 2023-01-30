@@ -27,6 +27,7 @@ export class ProjetslaboService {
     return list;
   }
 
+
   async findById(idProjetsLabo: number): Promise<ProjetslaboEntity> {
     const projet = await this.projetslaboRepository.findOneBy({
       idProjetsLabo,
@@ -43,5 +44,6 @@ export class ProjetslaboService {
     const projet = await this.projetslaboRepository.findOneBy({ nom: nom });
     return projet ? projet: null;
   }
+
 
 }

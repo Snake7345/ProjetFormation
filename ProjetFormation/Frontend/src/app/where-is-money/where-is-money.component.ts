@@ -8,8 +8,9 @@ import {ProjetslaboService} from "../services/projetslabo/projetslabo";
   styleUrls: ['./where-is-money.component.scss']
 })
 export class WhereIsMoneyComponent implements OnInit{
-  projetsLabos: Projetslabo[] = [];
 
+
+  projetsLabos: Projetslabo[] = [];
   listeVide = undefined;
   constructor(private projetsLaboService: ProjetslaboService) {}
 

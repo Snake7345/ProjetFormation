@@ -2,8 +2,8 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
-} from '@nestjs/common';
+  ParseIntPipe, Query
+} from "@nestjs/common";
 import { AnneeslaboService } from "./anneeslabo.service";
 // On appelle les méthodes à partir du service
 @Controller('anneeslabo')
@@ -20,4 +20,5 @@ export class AnneeslaboController {
   async GetOne(@Param('id', ParseIntPipe) id: number) {
     return await this.anneeslaboService.findById(id);
   }
+
 }
