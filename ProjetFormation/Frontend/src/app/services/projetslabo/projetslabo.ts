@@ -21,6 +21,11 @@ export class ProjetslaboService {
     return this.httpClient.get<Projetslabo>(`${this.projetsURL}${id}`);
   }
 
+  /*public findbyAnnee(id: number): Observable<Projetslabo[]>
+  {
+    return this.httpClient.get<Projetslabo[]>(`${this.projetanneeUrl}${id}`);
+  }*/
+
   public save(projets: Projetslabo): Observable<any> {
     return this.httpClient.post<any>(`${this.projetsURL}`, projets);
   }
@@ -30,7 +35,7 @@ export class ProjetslaboService {
   }
 
   public delete(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.projetsURL}${id}`);;
+    return this.httpClient.delete<any>(`${this.projetsURL}${id}`);
   }
 
 
