@@ -12,6 +12,11 @@ import {IProjet} from "./IProjet";
 })
 export class WhereIsMoneyGraphiqueComponent implements OnInit {
 
+  ngOnInit(): void {
+    this.afficherAnnees();
+
+  }
+
   projetData: IProjet[] = []
 
   projetsLabos: Projetslabo[] = [];
@@ -23,14 +28,11 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
 
   isloading: boolean = true;
 
-  yLabel = "Millions d\'euros"
 
   constructor(private projetsLaboService: ProjetslaboService, private anneesLaboService: AnneeslaboService) {
   }
 
-  ngOnInit(): void {
-    this.afficherAnnees();
-  }
+
 
   afficherAnnees(): void {
     this.anneesLaboService.liste().subscribe(
@@ -46,7 +48,10 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
   }
 
   afficherProjets() {
-    this.isloading
+    //On vide notre tableau
+    this.projetData = []
+    // On charge les valeurs a partir du moment où l'utilisateur a selectionné sa donnée
+    this.isloading = true;
     this.projetsLaboService.liste().subscribe(
       {
         next: (data) => {
@@ -54,15 +59,13 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
           this.projetsLabos = data;
           //Affichage des valeurs
           //this.projetsLabos.forEach(element => console.log(element));
-          /*Parcours du tableau et suppression des éléments dont l'année n'estp as égale à selectedValue*/
+          /*Parcours du tableau de base et quand l'année est égale à selectedValue, on le met dans le tableau projetdata*/
           this.projetsLabos.forEach((element, index) => {
             if (element.FK_idAnneesLabo.annee.toString() == this.selectedValue) {
-              //this.projetsLabos.splice(index,1);
               this.projetData.push({
                 name: element.nom,
                 value: element.FK_idValeursLabo.valeur
               });
-              //console.log(this.projetsLabos)
               this.listeVide = undefined;
               console.log(this.projetData)
             }
