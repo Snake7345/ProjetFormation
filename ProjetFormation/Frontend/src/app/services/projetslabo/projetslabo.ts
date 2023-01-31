@@ -13,6 +13,7 @@ export class ProjetslaboService {
 
   projetsURL = environment.projetsUrl;
 
+
   public liste(): Observable<Projetslabo[]> {
     return this.httpClient.get<Projetslabo[]>(`${this.projetsURL}`);
   }
@@ -21,10 +22,10 @@ export class ProjetslaboService {
     return this.httpClient.get<Projetslabo>(`${this.projetsURL}${id}`);
   }
 
-  /*public findbyAnnee(id: number): Observable<Projetslabo[]>
+  public findbyAnnee(id: number): Observable<Projetslabo[]>
   {
-    return this.httpClient.get<Projetslabo[]>(`${this.projetanneeUrl}${id}`);
-  }*/
+    return this.httpClient.get<Projetslabo[]>(`${this.projetsURL}${id}`);
+  }
 
   public save(projets: Projetslabo): Observable<any> {
     return this.httpClient.post<any>(`${this.projetsURL}`, projets);

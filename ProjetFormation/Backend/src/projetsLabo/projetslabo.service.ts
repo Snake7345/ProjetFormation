@@ -25,6 +25,14 @@ export class ProjetslaboService {
     return list;
   }
 
+  //Méthode pour la récupération :
+  async findAllByAnnee(annee : number): Promise<ProjetslaboEntity[]> {
+   return await this.projetslaboRepository.manager
+     .createQueryBuilder(ProjetslaboEntity, "projets")
+     .where("projets.FK_idAnneesLabo = :annee", { annee:annee })
+     .getMany();
+ }
+
 
   async findById(idProjetsLabo: number): Promise<ProjetslaboEntity> {
     const projet = await this.projetslaboRepository.findOneBy({
@@ -43,11 +51,6 @@ export class ProjetslaboService {
     return projet ? projet: null;
   }
 
- /*async findAllByAnnee(annee : number): Promise<ProjetslaboEntity[]> {
-    return await this.projetslaboRepository.manager
-      .createQueryBuilder(ProjetslaboEntity, "projets")
-      .where("projets.FK_idAnneesLabo = :annee", { annee:annee })
-      .getMany();
-  }*/
+
 
   }

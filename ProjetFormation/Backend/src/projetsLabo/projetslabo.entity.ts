@@ -16,12 +16,10 @@ export class ProjetslaboEntity {
       FK_idValeursLabo => FK_idValeursLabo.projetLabos,
     {
     nullable: false })
-  @JoinColumn({name : 'valeur_id', referencedColumnName: 'idValeursLabo'})
   FK_idValeursLabo: ValeurslaboEntity
 
   @ManyToOne(() => AnneeslaboEntity,
     (FK_idAnneesLabo) => FK_idAnneesLabo.projetLabos,
     {nullable : false})
-  @JoinColumn({name : 'annee_id', referencedColumnName: 'idAnneesLabo'})
   FK_idAnneesLabo: AnneeslaboEntity
 }

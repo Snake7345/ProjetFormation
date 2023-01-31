@@ -21,10 +21,10 @@ export class ProjetslaboController {
     return await this.projetslaboService.findById(id);
   }
 
-  /*@Get(':id')
+  @Get('annee/:id')
   async GetAllByAnnee(@Param('id', ParseIntPipe)id : number)
   {
     return await this.projetslaboService.findAllByAnnee(id)
-  }*/
+  }
 
 }
