@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { MessageDto } from "../common/message.dto";
 import { ProjetslaboRepository } from "./projetsLabo.repository";
 import { ProjetslaboEntity } from "./projetslabo.entity";
+import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
 
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
@@ -25,12 +26,10 @@ export class ProjetslaboService {
     return list;
   }
 
-  //Méthode pour la récupération :
   async findAllByAnnee(annee : number): Promise<ProjetslaboEntity[]> {
-   return await this.projetslaboRepository.manager
-     .createQueryBuilder(ProjetslaboEntity, "projets")
-     .where("projets.FK_idAnneesLabo = :annee", { annee:annee })
-     .getMany();
+    /*La requete en dur fonctionne
+   return await this.projetslaboRepository.query('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =1')*/
+    return await this.projetslaboRepository.query('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =?', [annee])
  }
 
 

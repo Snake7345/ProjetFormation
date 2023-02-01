@@ -86,12 +86,12 @@ CREATE TABLE IF NOT EXISTS `projetslabo` (
 --
 
 INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `valeur_id`, `annee_id`) VALUES
-(1, 'ConsÃ©quences des conflits', 1, 1),
-(2, 'ConsÃ©quences des conflits', 8, 2),
-(3, 'ConsÃ©quences des conflits', 15, 3),
-(4, 'Catastrophes mÃ©dicales', 2, 1),
-(5, 'Catastrophes mÃ©dicales', 9, 2),
-(6, 'Catastrophes mÃ©dicales', 16, 3),
+(1, 'Conséquences des conflits', 1, 1),
+(2, 'Conséquences des conflits', 8, 2),
+(3, 'Conséquences des conflits', 15, 3),
+(4, 'Catastrophes médicales', 2, 1),
+(5, 'Catastrophes médicales', 9, 2),
+(6, 'Catastrophes médicales', 16, 3),
 (7, 'Victimes d\'exclusion des soins ou de violences', 6, 1),
 (8, 'Victimes d\'exclusion des soins ou de violences', 13, 2),
 (9, 'Victimes d\'exclusion des soins ou de violences', 20, 3),

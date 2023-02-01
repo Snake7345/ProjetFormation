@@ -27,4 +27,5 @@ export class ProjetslaboController {
     return await this.projetslaboService.findAllByAnnee(id)
   }
 
+
 }
