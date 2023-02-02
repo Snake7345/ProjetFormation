@@ -34,6 +34,11 @@ export class ProjetslaboService {
       relations: ['FK_idValeursLabo', 'FK_idAnneesLabo'],
       where:{
         FK_idAnneesLabo :Like(annee)
+      },
+      order: {
+        FK_idValeursLabo:{
+          valeur:"DESC"
+        }
       }
     });
     if (!list.length) {

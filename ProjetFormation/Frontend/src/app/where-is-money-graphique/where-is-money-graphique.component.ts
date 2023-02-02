@@ -50,6 +50,7 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
   afficherProjets() {
     //On vide notre tableau
     this.projetsLabos = []
+    this.projetData = []
     // On charge les valeurs a partir du moment où l'utilisateur a selectionné sa donnée
     this.isloading = true;
     console.log("j'ai selectionné : " + this.selectedValue)
