@@ -17,6 +17,11 @@ export class ProjetslaboService {
   async getAll(): Promise<ProjetslaboEntity[]> {
     const list = await this.projetslaboRepository.find({
       relations: ['FK_idValeursLabo', 'FK_idAnneesLabo'],
+      order: {
+        FK_idValeursLabo: {
+          valeur: "DESC"
+        }
+      }
     });
     if (!list.length) {
       throw new NotFoundException(
@@ -28,8 +33,6 @@ export class ProjetslaboService {
   }
 
   async findAllByAnnee(annee : number): Promise<ProjetslaboEntity[]> {
-    /*return await this.projetslaboRepository.query
-    ('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =?', [annee])*/
     const list = await this.projetslaboRepository.find({
       relations: ['FK_idValeursLabo', 'FK_idAnneesLabo'],
       where:{
