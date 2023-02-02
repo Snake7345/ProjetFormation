@@ -12,20 +12,19 @@ export class ProjetslaboService {
   constructor(private httpClient: HttpClient) { }
 
   projetsURL = environment.projetsUrl;
-  projetsanneeURL = environment.projetsUrl;
 
 
   public liste(): Observable<Projetslabo[]> {
     return this.httpClient.get<Projetslabo[]>(`${this.projetsURL}`);
   }
 
-  public detail(id: number): Observable<Projetslabo> {
+  /*public detail(id: number): Observable<Projetslabo> {
     return this.httpClient.get<Projetslabo>(`${this.projetsURL}${id}`);
-  }
+  }*/
 
-  public findbyAnnee(id: number): Observable<Projetslabo[]>
+  public findbyAnnee(id: number | undefined): Observable<Projetslabo[]>
   {
-    return this.httpClient.get<Projetslabo[]>(`${this.projetsanneeURL}${id}`);
+    return this.httpClient.get<Projetslabo[]>(`${this.projetsURL}/annee/${id}`);
   }
 
   public save(projets: Projetslabo): Observable<any> {

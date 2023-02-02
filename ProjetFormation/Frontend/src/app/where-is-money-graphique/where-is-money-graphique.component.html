@@ -8,7 +8,7 @@
       </mat-option>
     </mat-select>-->
     <mat-select [(ngModel)]="selectedValue" (ngModelChange)="afficherProjets()" name="annee">
-      <mat-option *ngFor="let annee of anneeLabos" [value]="annee.annee">
+      <mat-option *ngFor="let annee of anneeLabos" [value]="annee.idAnneesLabo">
         {{annee.annee}}
       </mat-option>
     </mat-select>

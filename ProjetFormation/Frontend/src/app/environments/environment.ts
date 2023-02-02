@@ -8,7 +8,6 @@ export const environment = {
   projetsUrl : 'http://localhost:8080/projetslabo',
   valeursUrl : 'http://localhost:8080/valeurslabo',
   anneesUrl : 'http://localhost:8080/anneeslabo',
-  projetsanneeURL : 'http://localhost:8080/projetslabo/annee'
 
 };
 
