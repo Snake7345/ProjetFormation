@@ -4,6 +4,7 @@ import { MessageDto } from "../common/message.dto";
 import { ProjetslaboRepository } from "./projetsLabo.repository";
 import { ProjetslaboEntity } from "./projetslabo.entity";
 import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
+import { Like } from "typeorm";
 
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
@@ -27,9 +28,21 @@ export class ProjetslaboService {
   }
 
   async findAllByAnnee(annee : number): Promise<ProjetslaboEntity[]> {
-    /*La requete en dur fonctionne
-   return await this.projetslaboRepository.query('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =1')*/
-    return await this.projetslaboRepository.query('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =?', [annee])
+    /*return await this.projetslaboRepository.query
+    ('SELECT * FROM projetslabo WHERE projetslabo.fKIdAnneesLaboIdAnneesLabo =?', [annee])*/
+    const list = await this.projetslaboRepository.find({
+      relations: ['FK_idValeursLabo', 'FK_idAnneesLabo'],
+      where:{
+        FK_idAnneesLabo :Like(annee)
+      }
+    });
+    if (!list.length) {
+      throw new NotFoundException(
+        new MessageDto('Server : list is empty'),
+      );
+    }
+    console.log(list)
+    return list;
  }
 
 

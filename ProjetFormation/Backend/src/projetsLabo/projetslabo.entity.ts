@@ -1,6 +1,6 @@
 /*Description de l'entité, à faire a la main*/
 
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AnneeslaboEntity } from "../anneesLabo/anneeslabo.entity";
 import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
 
@@ -18,7 +18,7 @@ export class ProjetslaboEntity {
     nullable: false })
   FK_idValeursLabo: ValeurslaboEntity
 
-  @ManyToOne(() => AnneeslaboEntity,
+  @ManyToOne((type) => AnneeslaboEntity,
     (FK_idAnneesLabo) => FK_idAnneesLabo.projetLabos,
     {nullable : false})
   FK_idAnneesLabo: AnneeslaboEntity

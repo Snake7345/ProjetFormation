@@ -49,17 +49,18 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
 
   afficherProjets() {
     //On vide notre tableau
-    this.projetData = []
+    this.projetsLabos = []
     // On charge les valeurs a partir du moment où l'utilisateur a selectionné sa donnée
     this.isloading = true;
-    this.projetsLaboService.liste().subscribe(
+    this.projetsLaboService.findbyAnnee().subscribe(
       {
         next: (data) => {
           this.isloading = false;
           this.projetsLabos = data;
-          //Affichage des valeurs
-          //this.projetsLabos.forEach(element => console.log(element));
-          /*Parcours du tableau de base et quand l'année est égale à selectedValue, on le met dans le tableau projetdata*/
+
+          /*Affichage des valeurs
+          this.projetsLabos.forEach(element => console.log(element));
+          Parcours du tableau de base et quand l'année est égale à selectedValue, on le met dans le tableau projetdata
           this.projetsLabos.forEach((element, index) => {
             if (element.FK_idAnneesLabo.annee.toString() == this.selectedValue) {
               this.projetData.push({
@@ -71,7 +72,7 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
             }
           })
 
-        },
+        },*/
         error: (err) => {
           this.listeVide = err.error.message
         }

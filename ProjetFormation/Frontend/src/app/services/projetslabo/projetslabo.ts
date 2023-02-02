@@ -12,6 +12,7 @@ export class ProjetslaboService {
   constructor(private httpClient: HttpClient) { }
 
   projetsURL = environment.projetsUrl;
+  projetsanneeURL = environment.projetsUrl;
 
 
   public liste(): Observable<Projetslabo[]> {
@@ -24,7 +25,7 @@ export class ProjetslaboService {
 
   public findbyAnnee(id: number): Observable<Projetslabo[]>
   {
-    return this.httpClient.get<Projetslabo[]>(`${this.projetsURL}${id}`);
+    return this.httpClient.get<Projetslabo[]>(`${this.projetsanneeURL}${id}`);
   }
 
   public save(projets: Projetslabo): Observable<any> {
