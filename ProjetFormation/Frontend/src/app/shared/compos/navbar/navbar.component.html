@@ -62,14 +62,14 @@
 
 <button mat-button [matMenuTriggerFor]="after3Menu"><mat-icon> bar_chart</mat-icon>ONG</button>
 <mat-menu #after3Menu="matMenu" xPosition="after">
-  <button routerLink="presentation-labo" mat-menu-item><mat-icon>assignment</mat-icon>présentation</button>
+  <button routerLink="presentation-labo" mat-menu-item><mat-icon>assignment</mat-icon>Ex1 : Présentation</button>
 
 
 
-  <button mat-menu-item [matMenuTriggerFor]="exercice1">
-    <mat-icon>assignment</mat-icon>Ex1 : Où va votre argent?
+  <button mat-menu-item [matMenuTriggerFor]="exercice2">
+    <mat-icon>assignment</mat-icon>Ex2 : Où va votre argent?
   </button>
-  <mat-menu #exercice1="matMenu" xPosition="after">
+  <mat-menu #exercice2="matMenu" xPosition="after">
     <button routerLink="where-is-money" mat-menu-item >
       <mat-icon> money</mat-icon>Table
     </button>
@@ -78,10 +78,10 @@
     </button>
   </mat-menu>
 
-  <button mat-menu-item [matMenuTriggerFor]="exercice2">
-    <mat-icon>assignment</mat-icon>Ex2 : Géographie
+  <button mat-menu-item [matMenuTriggerFor]="exercice3">
+    <mat-icon>assignment</mat-icon>Ex3 : Géographie
   </button>
-  <mat-menu #exercice2="matMenu" xPosition="after">
+  <mat-menu #exercice3="matMenu" xPosition="after">
     <button mat-menu-item >
       <mat-icon> money</mat-icon>Où sommes nous ?
     </button>

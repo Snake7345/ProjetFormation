@@ -39,6 +39,7 @@ import { WhereIsMoneyGraphiqueComponent } from './where-is-money-graphique/where
 import {MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import { OuSommesNousComponent } from './ou-sommes-nous/ou-sommes-nous.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import {MatSelectModule} from "@angular/material/select";
     PresentationLaboComponent,
     WhereIsMoneyComponent,
     WhereIsMoneyGraphiqueComponent,
+    OuSommesNousComponent,
   ],
   imports: [
     /*Modules principaux*/
