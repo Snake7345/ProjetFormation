@@ -14,4 +14,5 @@ export class ValeurslaboEntity {
   @OneToMany((type) => ProjetslaboEntity,
       projetLabos => projetLabos.FK_idValeursLabo, {cascade: true})
   projetLabos: ProjetslaboEntity[]
+
 }

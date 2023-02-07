@@ -20,6 +20,7 @@ import { UpdateUtilisateursComponent } from './utilisateurs/update-utilisateurs/
 import {PresentationLaboComponent} from "./presentation-labo/presentation-labo.component";
 import {WhereIsMoneyComponent} from "./where-is-money/where-is-money.component";
 import {WhereIsMoneyGraphiqueComponent} from "./where-is-money-graphique/where-is-money-graphique.component";
+import {OuSommesNousComponent} from "./ou-sommes-nous/ou-sommes-nous.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'presentation-labo', component: PresentationLaboComponent},
   { path: 'where-is-money', component: WhereIsMoneyComponent},
   { path: 'where-is-money-graphique', component: WhereIsMoneyGraphiqueComponent},
+  { path: 'ou-sommes-nous', component: OuSommesNousComponent},
   /*Quand une route n'existe pas, la page redirige sur une erreur 404*/
   { path: '**', component: FourofourComponent },
 ];
