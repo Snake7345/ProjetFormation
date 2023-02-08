@@ -21,6 +21,7 @@ import {PresentationLaboComponent} from "./presentation-labo/presentation-labo.c
 import {WhereIsMoneyComponent} from "./where-is-money/where-is-money.component";
 import {WhereIsMoneyGraphiqueComponent} from "./where-is-money-graphique/where-is-money-graphique.component";
 import {OuSommesNousComponent} from "./ou-sommes-nous/ou-sommes-nous.component";
+import {DepensesParPaysComponent} from "./depenses-par-pays/depenses-par-pays.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'where-is-money', component: WhereIsMoneyComponent},
   { path: 'where-is-money-graphique', component: WhereIsMoneyGraphiqueComponent},
   { path: 'ou-sommes-nous', component: OuSommesNousComponent},
+  { path: 'depenses-par-pays', component: DepensesParPaysComponent},
   /*Quand une route n'existe pas, la page redirige sur une erreur 404*/
   { path: '**', component: FourofourComponent },
 ];

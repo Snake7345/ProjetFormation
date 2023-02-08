@@ -2,6 +2,7 @@
 
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProjetslaboEntity } from "../projetsLabo/projetslabo.entity";
+import { PayslaboEntity } from "../paysLabo/payslabo.entity";
 
 @Entity({ name: 'valeurslabo' })
 export class ValeurslaboEntity {
@@ -14,5 +15,10 @@ export class ValeurslaboEntity {
   @OneToMany((type) => ProjetslaboEntity,
       projetLabos => projetLabos.FK_idValeursLabo, {cascade: true})
   projetLabos: ProjetslaboEntity[]
+
+  @OneToMany((type) => PayslaboEntity,
+    paysLabos => paysLabos.idPaysLabo, {cascade: true})
+  paysLabos: PayslaboEntity[]
+
 
 }

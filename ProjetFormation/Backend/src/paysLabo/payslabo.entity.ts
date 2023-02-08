@@ -1,6 +1,6 @@
-/*Description de l'entité, à faire a la main*/
+/*Description de l'entité, à faire à la main*/
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProjetslaboEntity } from "../projetsLabo/projetslabo.entity";
 import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
 
@@ -9,7 +9,13 @@ export class PayslaboEntity {
   @PrimaryGeneratedColumn()
   idPaysLabo: number;
 
-  @Column({ type: 'string', nullable: false })
-  denomination: number;
+  @Column({ type: 'varchar', length: 100, nullable: false })
+  denomination: string;
+
+  @ManyToOne(type => ValeurslaboEntity,
+    FK_idValeursLabo => FK_idValeursLabo.paysLabos,
+    {
+      nullable: false })
+  FK_idValeursLabo: ValeurslaboEntity
 
 }

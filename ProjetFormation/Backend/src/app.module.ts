@@ -18,6 +18,8 @@ import { CategoriesEntity } from "./categories/categories.entity";
 import { AnneeslaboEntity } from "./anneesLabo/anneeslabo.entity";
 import { ProjetslaboEntity } from "./projetsLabo/projetslabo.entity";
 import { ValeurslaboEntity } from "./valeursLabo/valeurslabo.entity";
+import { PayslaboEntity } from "./paysLabo/payslabo.entity";
+import { PayslaboModule } from "./paysLabo/payslabo.module";
 
 /*Au démarrage du programme, celui-ci démarrera toujours en lisant le fichier constants dans le dossier config*/
 @Module({
@@ -35,7 +37,7 @@ import { ValeurslaboEntity } from "./valeursLabo/valeurslabo.entity";
         username: configService.get<string>(DB_USER),
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
-        entities: [CategoriesEntity, AnneeslaboEntity, ProjetslaboEntity, ValeurslaboEntity],
+        entities: [CategoriesEntity, AnneeslaboEntity, ProjetslaboEntity, ValeurslaboEntity, PayslaboEntity],
         synchronize: true,
         autoLoadEntities: true,
         //mettre un true pour generer le sql et ensuite false
@@ -47,6 +49,7 @@ import { ValeurslaboEntity } from "./valeursLabo/valeurslabo.entity";
     ProjetslaboModule,
     ValeurslaboModule,
     AnneeslaboModule,
+    PayslaboModule
   ],
   controllers: [AppController],
   providers: [AppService],

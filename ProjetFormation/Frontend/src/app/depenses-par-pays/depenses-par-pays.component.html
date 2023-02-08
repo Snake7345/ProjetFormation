@@ -1,6 +1,8 @@
-<p>depenses-par-pays works!</p>
+<h1>Le top 10 des dépenses par pays</h1>
+<div class="graphique" *ngIf="!isloading" >
 <ngx-charts-advanced-pie-chart
   [view]="view"
-  [results]="single"
+  [results]="paysData"
 >
 </ngx-charts-advanced-pie-chart>
+</div>
