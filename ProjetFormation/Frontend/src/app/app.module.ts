@@ -81,14 +81,15 @@ import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatFormFieldModule,
     /*Autres modules*/
     ToastrModule.forRoot(),
     RouterModule,
     HttpClientModule,
     NgxChartsModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatFormFieldModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

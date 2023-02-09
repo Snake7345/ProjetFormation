@@ -14,7 +14,6 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
 
   ngOnInit(): void {
     this.afficherAnnees();
-
   }
 
   projetData: IProjet[] = []
@@ -62,17 +61,18 @@ export class WhereIsMoneyGraphiqueComponent implements OnInit {
           this.projetsLabos = data;
           console.log(data)
           console.log(this.projetsLabos);
+          this.projetData = this.projetsLabos.map((p)=>{return {name:p.nom, value:p.FK_idValeursLabo.valeur}})
           //Affichage des valeurs
-          this.projetsLabos.forEach(element => console.log(element));
+          //this.projetsLabos.forEach(element => console.log(element));
           //Parcours du tableau de base et transfert des données utiles dans un tableau
-          this.projetsLabos.forEach((element, index) => {
-              this.projetData.push({
-                name: element.nom,
-                value: element.FK_idValeursLabo.valeur
-              });
-              this.listeVide = undefined;
-              console.log(this.projetData)
-          })
+          //this.projetsLabos.forEach((element, index) => {
+          //    this.projetData.push({
+          //      name: element.nom,
+          //      value: element.FK_idValeursLabo.valeur
+          //    });
+          //    this.listeVide = undefined;
+          //    console.log(this.projetData)
+          //})
         },
         error: (err) => {
           this.listeVide = err.error.message

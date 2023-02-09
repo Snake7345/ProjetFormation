@@ -11,7 +11,9 @@ export class ProjetslaboService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // Double variable a changer
   projetsURL = environment.projetsUrl;
+
 
 
   public liste(): Observable<Projetslabo[]> {

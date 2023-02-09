@@ -44,7 +44,6 @@ const routes: Routes = [
   { path: 'updateQuestions', component: UpdateQuestionsComponent},
   { path: 'updateSyllabus', component: UpdateSyllabusComponent},
   { path: 'updateUtilisateurs', component: UpdateUtilisateursComponent},
-
   /*Routes pour le presentation-labo*/
   { path: 'presentation-labo', component: PresentationLaboComponent},
   { path: 'where-is-money', component: WhereIsMoneyComponent},

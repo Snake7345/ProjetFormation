@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseUrl:"http://localhost:8080/",
   categoriesUrl: 'http://localhost:8080/categories',
   projetsUrl : 'http://localhost:8080/projetslabo',
   valeursUrl : 'http://localhost:8080/valeurslabo',
