@@ -1,6 +1,6 @@
 {
-  "name": "backend",
-  "version": "0.0.1",
+  "name": "backend NestJS/TypeORM",
+  "version": "0.8.0",
   "description": "",
   "author": "",
   "private": true,
