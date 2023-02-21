@@ -1,6 +1,8 @@
 /*Description de l'entité, à faire a la main*/
 
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {UtilisateurscategoriesEntity} from "../utilisateursCategories/utilisateurscategories.entity";
+import {FormationsEntity} from "../formations/formations.entity";
 
 @Entity({ name: 'categories' })
 export class CategoriesEntity {
@@ -12,4 +14,10 @@ export class CategoriesEntity {
 
   @Column({ type: 'integer', default: 1 })
   actif: number;
+
+  @OneToMany(() => UtilisateurscategoriesEntity, (utilisateursCategories) => utilisateursCategories.categories)
+  categories: UtilisateurscategoriesEntity[]
+
+  @OneToMany(() => FormationsEntity, (formations) => formations.categories)
+  formations: FormationsEntity[]
 }
