@@ -2,7 +2,7 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe, Query
+  ParseIntPipe,
 } from "@nestjs/common";
 import { AnneeslaboService } from "./anneeslabo.service";
 // On appelle les méthodes à partir du service

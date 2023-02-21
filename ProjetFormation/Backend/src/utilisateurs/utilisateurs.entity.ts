@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { RolesEntity } from "../roles/roles.entity";
+import { DiplomesEntity } from "../diplomes/diplomes.entity";
+import { DiplomesUtilisateursEntity } from "../diplomesUtilisateurs/diplomesutilisateurs.entity";
 
 export enum Sexe {
   MASCULIN = "masculin",
@@ -31,5 +34,14 @@ export class UtilisateursEntity {
   })
   sexe: Sexe
 
+  @Column({ type: 'tinyint', width: 1, default: 1 })
+  actif : number
+
+  @ManyToOne(() => RolesEntity, (role) => role.utilisateurs)
+  role: RolesEntity
+
+  @OneToMany(() => DiplomesUtilisateursEntity, (diplomesUtilisateursEntity) =>
+    diplomesUtilisateursEntity.diplomeU)
+  diplomes : DiplomesUtilisateursEntity[]
 
 }
