@@ -1,0 +1,105 @@
+<!--TODO: 1. Quand connecté le boutton doit afficher Déconnexion
+      et si l'utilisateur n'est pas connecté, ne pas afficher le menu, afficher le
+    formulaire de connexion et mettre le bouton avec le label login
+      2. ATTENTION : le menu est le même pour tout le monde sauf que(a modifier avec les permissions) :
+    - les admins ont accès a tout MAIS NE PEUT PAS S'INSCRIRE A UNE FORMATION
+    - le directeur ont accès a tout mais ne peut pas modifier ces collègues ni les désactiver mais ne peut pas s'inscrire a une formation
+    - Le professeur voit l'ensemble des formations modifie uniquement ces formations, mon profil mais ne peut pas s'inscrire a une formation
+  - L'étudiant peut voir les formations pour lesquelles il peut s'inscrire,
+    a accès a l'inscription aux formations selon sa catégorie d'utilisateur (basket, sports,...) vià la page mon profil-->
+
+<button mat-button routerLink="/"><mat-icon>home</mat-icon>Accueil</button>
+
+<button mat-button [matMenuTriggerFor]="belowMenu">
+  <mat-icon> category</mat-icon>Catégories
+</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button routerLink="categories" mat-menu-item>
+    <mat-icon> table_chart</mat-icon>Table des catégories
+  </button>
+  <button routerLink="addCategories" mat-menu-item>
+    <mat-icon>playlist_add</mat-icon>Ajouter une catégorie
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="beforeMenu">
+  <mat-icon>school</mat-icon>Formations
+</button>
+<mat-menu #beforeMenu="matMenu" xPosition="after">
+  <button routerLink="tableFormations" mat-menu-item>
+    <mat-icon> table_chart</mat-icon>Table de l'ensemble des formations
+  </button>
+  <button routerLink="addFormations" mat-menu-item>
+    <mat-icon>playlist_add</mat-icon>Ajouter une formation
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="afterMenu">
+  <mat-icon>person</mat-icon>Mon profil
+</button>
+<mat-menu #afterMenu="matMenu" xPosition="after">
+  <button routerLink="updateUtilisateurs" mat-menu-item>
+    <mat-icon>edit</mat-icon>Modifier mon profil
+  </button>
+  <button mat-menu-item>
+    <mat-icon> insert_drive_file</mat-icon>Mes formations(Non fonctionnel)
+  </button>
+  <button mat-menu-item>
+    <mat-icon>library_books</mat-icon>Mes diplômes(Non fonctionnel)
+  </button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="after2Menu">
+  <mat-icon>people</mat-icon>Utilisateurs
+</button>
+<mat-menu #after2Menu="matMenu" xPosition="after">
+  <button routerLink="tableUtilisateurs" mat-menu-item>
+    <mat-icon> table_chart</mat-icon>Table des utilisateurs
+  </button>
+  <button routerLink="addUtilisateurs" mat-menu-item>
+    <mat-icon>playlist_add</mat-icon>Ajouter un utilisateur
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="after3Menu"><mat-icon> bar_chart</mat-icon>ONG</button>
+<mat-menu #after3Menu="matMenu" xPosition="after">
+  <button routerLink="presentation-labo" mat-menu-item><mat-icon>assignment</mat-icon>Ex1 : Présentation</button>
+
+
+
+  <button mat-menu-item [matMenuTriggerFor]="exercice2">
+    <mat-icon>assignment</mat-icon>Ex2 : Où va votre argent?
+  </button>
+  <mat-menu #exercice2="matMenu" xPosition="after">
+    <button routerLink="where-is-money" mat-menu-item >
+      <mat-icon> money</mat-icon>Table
+    </button>
+    <button routerLink="where-is-money-graphique" mat-menu-item>
+      <mat-icon> money</mat-icon>Graphique
+    </button>
+  </mat-menu>
+
+  <button mat-menu-item [matMenuTriggerFor]="exercice3">
+    <mat-icon>assignment</mat-icon>Ex3 : Géographie
+  </button>
+  <mat-menu #exercice3="matMenu" xPosition="after">
+    <button routerLink="ou-sommes-nous" mat-menu-item >
+      <mat-icon> money</mat-icon>Où sommes nous ?
+    </button>
+    <button routerLink="depenses-par-pays" mat-menu-item>
+      <mat-icon> money</mat-icon>Top 10: Quel argent est investi par pays ?
+    </button>
+    <button mat-menu-item>
+      <mat-icon> money</mat-icon>Problèmes/Pays
+    </button>
+  </mat-menu>
+
+  <button mat-menu-item>
+    <mat-icon> language icon</mat-icon>Géographie
+  </button>
+  <button mat-menu-item>
+    <mat-icon> format_list_bulleted</mat-icon>Nos chiffres
+  </button>
+  <button mat-menu-item>
+    <mat-icon> format_list_bulleted</mat-icon>Nos missions
+  </button>
+</mat-menu>

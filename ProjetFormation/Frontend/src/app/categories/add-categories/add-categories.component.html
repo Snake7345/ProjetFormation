@@ -1,0 +1,16 @@
+<p>Formulaire : Veuillez remplir le questionnaire suivant pour ajouter une catégorie</p>
+<!--TODO: Questionnaire à faire
+  !-->
+
+<form class="example-form" (ngSubmit)="Submit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nouvelle catégorie</mat-label>
+    <input type="text" matInput [formControl]="denominationFormControl" />
+    <mat-error *ngIf="denominationFormControl.hasError('required')">
+      La dénomination de la catégorie est <strong>requise.</strong>
+    </mat-error>
+  </mat-form-field>
+  <p></p>
+  <input type="submit" value="Envoyer">
+  <p></p>
+</form>

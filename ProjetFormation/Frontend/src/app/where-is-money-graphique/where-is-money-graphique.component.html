@@ -1,0 +1,32 @@
+<h1>Graphique : Where is my money ? </h1>
+<div class="container">
+  <mat-form-field appearance="fill">
+    <mat-label>Année de recherche</mat-label>
+    <!--<mat-select [(ngModel)]="selectedValue" name="food">
+      <mat-option *ngFor="let annee of projetsLabos" [value]="annee.FK_idAnneesLabo.annee">
+        {{annee.FK_idAnneesLabo.annee}}
+      </mat-option>
+    </mat-select>-->
+    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="afficherProjets()" name="annee">
+      <mat-option *ngFor="let annee of anneeLabos" [value]="annee.idAnneesLabo">
+        {{annee.annee}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="graphique" *ngIf="!isloading" >
+  <p>Dépense en millions d'euros par projet en fonction de l'année</p>
+  <ngx-charts-bar-vertical
+    [view]="[1000,800]"
+    [results]="projetData"
+    [xAxisLabel]="'Projet'"
+    [yAxisLabel]="'Dépenses (en Millions d\'€)'"
+    [legend]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+  ></ngx-charts-bar-vertical>
+  <br/>
+</div>

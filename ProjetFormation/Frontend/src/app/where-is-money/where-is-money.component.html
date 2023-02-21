@@ -1,0 +1,36 @@
+<!--
+<ngx-charts-line-chart
+[results]="myData"
+[xAxis]="true"
+[yAxis]="true"
+[showYAxisLabel]="true"
+[yAxisLabel]="yLabel"
+[showXAxisLabel]="true"
+[xAxisLabel]="'Date'"
+[legend]="true"
+[scheme]="'neons'"
+style="fill: chartreuse;"
+></ngx-charts-line-chart>
+-->
+<h1>Table : Where is my money ? </h1>
+<div class="container">
+  <table *ngIf="projetsLabos != []" class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">IdProjetlabo</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Valeur</th>
+      <th scope="col">Année</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let projetslabo of projetsLabos">
+      <td>{{ projetslabo.idProjetsLabo}}</td>
+      <td>{{ projetslabo.nom }}</td>
+      <td>{{ projetslabo.FK_idValeursLabo.valeur}}</td>
+      <td>{{ projetslabo.FK_idAnneesLabo.annee}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
