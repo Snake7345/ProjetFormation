@@ -1,6 +1,6 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { RolesEntity } from "../roles/roles.entity";
-import { PermissionsEntity } from "../permissions/permissions.entity";
+import {Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {RolesEntity} from "../roles/roles.entity";
+import {PermissionsEntity} from "../permissions/permissions.entity";
 
 @Entity({ name: 'rolespermissions' })
 export class RolespermissionsEntity {

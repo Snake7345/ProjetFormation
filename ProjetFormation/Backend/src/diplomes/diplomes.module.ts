@@ -1,8 +1,8 @@
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { DiplomesEntity } from "./diplomes.entity";
-import { DiplomesService } from "./diplomes.service";
-import { DiplomesController } from "./diplomes.controller";
+import {Module} from "@nestjs/common";
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {DiplomesEntity} from "./diplomes.entity";
+import {DiplomesService} from "./diplomes.service";
+import {DiplomesController} from "./diplomes.controller";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
@@ -10,4 +10,4 @@ import { DiplomesController } from "./diplomes.controller";
   providers: [DiplomesService],
   controllers: [DiplomesController],
 })
-export class CategoriesModule {}
+export class DiplomesModule {}
