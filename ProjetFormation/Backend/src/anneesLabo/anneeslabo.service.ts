@@ -1,11 +1,9 @@
-import {
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
 import { AnneeslaboEntity } from "./anneeslabo.entity";
 import { MessageDto } from "../common/message.dto";
 import { Repository } from "typeorm";
+
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
 export class AnneeslaboService {

@@ -1,7 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
-import { SERVER_PORT } from './config/constants';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { ConfigService } from "@nestjs/config";
+import { SERVER_PORT } from "./config/constants";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 /*Port sur lequel s'exécute le programme et permet de ne pas le mettre en dur dans le fichier

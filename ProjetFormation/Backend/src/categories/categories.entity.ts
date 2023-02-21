@@ -1,6 +1,6 @@
 /*Description de l'entité, à faire a la main*/
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'categories' })
 export class CategoriesEntity {

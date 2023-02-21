@@ -1,5 +1,4 @@
 import { Controller, Get } from "@nestjs/common";
-import { ProjetslaboService } from "../projetsLabo/projetslabo.service";
 import { PayslaboService } from "./payslabo.service";
 
 @Controller('payslabo')

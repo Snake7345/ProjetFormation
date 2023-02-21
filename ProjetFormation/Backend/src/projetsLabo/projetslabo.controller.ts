@@ -1,10 +1,6 @@
-import {
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe, Query
-} from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { ProjetslaboService } from "./projetslabo.service";
+
 // On appelle les méthodes à partir du service
 @Controller('projetslabo')
 export class ProjetslaboController {

@@ -1,6 +1,7 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DiplomesEntity } from "../diplomes/diplomes.entity";
 import { UtilisateursEntity } from "../utilisateurs/utilisateurs.entity";
+
 @Entity({ name: 'diplomesUtilisateurs' })
 export class DiplomesUtilisateursEntity {
 

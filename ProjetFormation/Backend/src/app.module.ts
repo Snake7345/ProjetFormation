@@ -1,16 +1,10 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import {
-  DB_DATABASE,
-  DB_HOST,
-  DB_PASSWORD,
-  DB_PORT,
-  DB_USER,
-} from './config/constants';
-import { CategoriesModule } from './categories/categories.module';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from "./config/constants";
+import { CategoriesModule } from "./categories/categories.module";
 import { ProjetslaboModule } from "./projetsLabo/projetslabo.module";
 import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
 import { AnneeslaboModule } from "./anneesLabo/anneeslabo.module";

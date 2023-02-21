@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProjetslaboEntity } from "./projetsLabo.entity";
 import { ProjetslaboController } from "./projetsLabo.controller";
 import { ProjetslaboService } from "./projetslabo.service";

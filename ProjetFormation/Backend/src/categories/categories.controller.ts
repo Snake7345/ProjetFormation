@@ -8,10 +8,11 @@ import {
   Post,
   Put,
   UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
-import { CategoriesService } from './categories.service';
-import { CategoriesDto } from './dto/categories.dto';
+  ValidationPipe
+} from "@nestjs/common";
+import { CategoriesService } from "./categories.service";
+import { CategoriesDto } from "./dto/categories.dto";
+
 // On appelle les méthodes à partir du service
 @Controller('categories')
 export class CategoriesController {
