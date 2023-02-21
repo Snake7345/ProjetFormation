@@ -1,6 +1,6 @@
 import { registerDecorator, ValidationOptions } from "class-validator";
 
-//
+//master
 export function IsNotBlank(validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
