@@ -38,6 +38,7 @@ import { PayslaboModule } from "./paysLabo/payslabo.module";
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
         entities: [CategoriesEntity, AnneeslaboEntity, ProjetslaboEntity, ValeurslaboEntity, PayslaboEntity],
+        // Synchronise les modifications
         synchronize: true,
         autoLoadEntities: true,
         //mettre un true pour generer le sql et ensuite false

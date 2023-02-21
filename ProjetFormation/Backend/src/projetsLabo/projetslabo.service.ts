@@ -1,17 +1,15 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MessageDto } from "../common/message.dto";
-import { ProjetslaboRepository } from "./projetsLabo.repository";
 import { ProjetslaboEntity } from "./projetslabo.entity";
-import { ValeurslaboEntity } from "../valeursLabo/valeurslabo.entity";
-import { Like } from "typeorm";
+import { Like, Repository } from "typeorm";
 
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
 export class ProjetslaboService {
   constructor(
     @InjectRepository(ProjetslaboEntity)
-    private projetslaboRepository: ProjetslaboRepository,
+    private projetslaboRepository: Repository<ProjetslaboEntity>,
   ) {}
 
   async getAll(): Promise<ProjetslaboEntity[]> {

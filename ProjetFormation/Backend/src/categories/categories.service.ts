@@ -5,15 +5,15 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoriesEntity } from './categories.entity';
-import { CategoriesRepository } from './categories.repository';
 import { MessageDto } from '../common/message.dto';
 import { CategoriesDto } from './dto/categories.dto';
+import { Repository } from "typeorm";
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
 @Injectable()
 export class CategoriesService {
   constructor(
     @InjectRepository(CategoriesEntity)
-    private categoriesRepository: CategoriesRepository,
+    private categoriesRepository: Repository<CategoriesEntity>,
   ) {}
 
   async getAll(): Promise<CategoriesEntity[]> {
