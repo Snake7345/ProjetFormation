@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationOptions } from "class-validator";
-//kg
+//kgf
 export function IsNotBlank(validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
