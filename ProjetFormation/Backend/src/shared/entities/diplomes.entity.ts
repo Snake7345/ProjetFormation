@@ -1,7 +1,7 @@
 import {Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {DiplomesUtilisateursEntity} from "./diplomesutilisateurs.entity";
 import {FormationsEntity} from "./formations.entity";
-
+//test
 @Entity({ name: 'diplomes' })
 export class DiplomesEntity {
   @PrimaryGeneratedColumn()
