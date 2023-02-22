@@ -2,7 +2,7 @@ import {BadRequestException, Injectable, NotFoundException} from "@nestjs/common
 import {InjectRepository} from "@nestjs/typeorm";
 import {CategoriesEntity} from "../shared/entities/categories.entity";
 import {MessageDto} from "../common/message.dto";
-import {CategoriesDto} from "../shared/dto/categories.dto";
+import {CategoriesDto} from "../shared/dto/categories/categories.dto";
 import {Repository} from "typeorm";
 
 /*CRUD : le service sert a créer les méthodes qui seront utilisé partout ailleurs dans notre programme*/
