@@ -1,6 +1,9 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { RolesEntity } from "../roles/roles.entity";
-import { DiplomesUtilisateursEntity } from "../diplomesUtilisateurs/diplomesutilisateurs.entity";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {RolesEntity} from "../roles/roles.entity";
+import {DiplomesUtilisateursEntity} from "../diplomesUtilisateurs/diplomesutilisateurs.entity";
+import {FormationsEntity} from "../formations/formations.entity";
+import {ReponsesEntity} from "../reponses/reponses.entity";
+import {UtilisateurscategoriesEntity} from "../utilisateursCategories/utilisateurscategories.entity";
 
 export enum Sexe {
   MASCULIN = "masculin",
@@ -42,5 +45,17 @@ export class UtilisateursEntity {
   @OneToMany(() => DiplomesUtilisateursEntity, (diplomesUtilisateursEntity) =>
     diplomesUtilisateursEntity.diplomeU)
   diplomes : DiplomesUtilisateursEntity[]
+
+  @OneToMany(() => FormationsEntity, (formations) =>
+      formations.utilisateurs)
+  formations : FormationsEntity[]
+
+  @OneToMany(() => ReponsesEntity, (rep) =>
+      rep.utilisateurs)
+  reponses : ReponsesEntity[]
+
+  @OneToMany(() => UtilisateurscategoriesEntity, (utilcat) =>
+      utilcat.utilisateurs)
+  utilisateurcategories : UtilisateurscategoriesEntity[]
 
 }

@@ -1,5 +1,5 @@
-import { Controller, Get } from "@nestjs/common";
-import { PayslaboService } from "./payslabo.service";
+import {Controller, Get} from "@nestjs/common";
+import {PayslaboService} from "./payslabo.service";
 
 @Controller('payslabo')
 export class PayslaboController {

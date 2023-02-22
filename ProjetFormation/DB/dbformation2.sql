@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 23 jan. 2023 à 14:34
--- Version du serveur : 8.0.31
--- Version de PHP : 8.1.13
+-- Généré le : mar. 21 fév. 2023 à 23:47
+-- Version du serveur : 8.0.30
+-- Version de PHP : 8.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -67,13 +67,44 @@ INSERT INTO `categories` (`idCategories`, `nom`, `actif`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `payslabo`
+--
+
+DROP TABLE IF EXISTS `payslabo`;
+CREATE TABLE IF NOT EXISTS `payslabo` (
+  `idPaysLabo` int NOT NULL AUTO_INCREMENT,
+  `denomination` varchar(100) NOT NULL,
+  `fKIdValeursLaboIdValeursLabo` int NOT NULL,
+  PRIMARY KEY (`idPaysLabo`),
+  KEY `FK_eaea4829276e0059b4526ac30bb` (`fKIdValeursLaboIdValeursLabo`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Déchargement des données de la table `payslabo`
+--
+
+INSERT INTO `payslabo` (`idPaysLabo`, `denomination`, `fKIdValeursLaboIdValeursLabo`) VALUES
+(1, 'République démocatrice du Congo', 22),
+(2, 'Yémen', 23),
+(3, 'Soudan du Sud', 24),
+(4, 'République centrafricaine', 25),
+(5, 'Nigéria', 26),
+(6, 'Soudan', 27),
+(7, 'Afghanistan', 28),
+(8, 'Ethiopie', 29),
+(9, 'Haiti', 29),
+(10, 'Niger', 30);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `projetslabo`
 --
 
 DROP TABLE IF EXISTS `projetslabo`;
 CREATE TABLE IF NOT EXISTS `projetslabo` (
   `idProjetsLabo` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `nom` varchar(100) NOT NULL,
   `fKIdValeursLaboIdValeursLabo` int NOT NULL,
   `fKIdAnneesLaboIdAnneesLabo` int NOT NULL,
   PRIMARY KEY (`idProjetsLabo`),
@@ -85,13 +116,13 @@ CREATE TABLE IF NOT EXISTS `projetslabo` (
 -- Déchargement des données de la table `projetslabo`
 --
 
-INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `valeur_id`, `annee_id`) VALUES
-(1, 'Cons�quences des conflits', 1, 1),
-(2, 'Cons�quences des conflits', 8, 2),
-(3, 'Cons�quences des conflits', 15, 3),
-(4, 'Catastrophes m�dicales', 2, 1),
-(5, 'Catastrophes m�dicales', 9, 2),
-(6, 'Catastrophes m�dicales', 16, 3),
+INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `fKIdValeursLaboIdValeursLabo`, `fKIdAnneesLaboIdAnneesLabo`) VALUES
+(1, 'Conséquences des conflits', 1, 1),
+(2, 'Conséquences des conflits', 8, 2),
+(3, 'Conséquences des conflits', 15, 3),
+(4, 'Catastrophes médicales', 2, 1),
+(5, 'Catastrophes médicales', 9, 2),
+(6, 'Catastrophes médicales', 16, 3),
 (7, 'Victimes d\'exclusion des soins ou de violences', 6, 1),
 (8, 'Victimes d\'exclusion des soins ou de violences', 13, 2),
 (9, 'Victimes d\'exclusion des soins ou de violences', 20, 3),
@@ -110,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `valeurslabo` (
   `idValeursLabo` int NOT NULL AUTO_INCREMENT,
   `valeur` decimal(5,2) NOT NULL,
   PRIMARY KEY (`idValeursLabo`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `valeurslabo`
@@ -128,11 +159,26 @@ INSERT INTO `valeurslabo` (`idValeursLabo`, `valeur`) VALUES
 (15, '93.10'),
 (16, '93.40'),
 (20, '16.20'),
-(21, '3.00');
+(21, '3.00'),
+(22, '95.00'),
+(23, '90.00'),
+(24, '80.00'),
+(25, '70.00'),
+(26, '53.00'),
+(27, '40.00'),
+(28, '39.00'),
+(29, '35.00'),
+(30, '34.00');
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `payslabo`
+--
+ALTER TABLE `payslabo`
+  ADD CONSTRAINT `FK_eaea4829276e0059b4526ac30bb` FOREIGN KEY (`fKIdValeursLaboIdValeursLabo`) REFERENCES `valeurslabo` (`idValeursLabo`);
 
 --
 -- Contraintes pour la table `projetslabo`
