@@ -1,6 +1,6 @@
 import {Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {CategoriesEntity} from "../categories/categories.entity";
-import {UtilisateursEntity} from "../utilisateurs/utilisateurs.entity";
+import {CategoriesEntity} from "./categories.entity";
+import {UtilisateursEntity} from "./utilisateurs.entity";
 
 @Entity({ name: 'utilisateurscategories' })
 export class UtilisateurscategoriesEntity {

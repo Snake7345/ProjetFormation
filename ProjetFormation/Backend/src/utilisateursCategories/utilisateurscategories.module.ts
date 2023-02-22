@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {UtilisateurscategoriesEntity} from "./utilisateurscategories.entity";
+import {UtilisateurscategoriesEntity} from "../shared/entities/utilisateurscategories.entity";
 import {UtilisateurscategoriesService} from "./utilisateurscategories.service";
 import {UtilisateurscategoriesController} from "./utilisateurscategories.controller";
 

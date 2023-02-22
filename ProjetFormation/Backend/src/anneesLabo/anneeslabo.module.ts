@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {AnneeslaboEntity} from "./anneeslabo.entity";
+import {AnneeslaboEntity} from "../shared/entities/anneeslabo.entity";
 import {AnneeslaboService} from "./anneeslabo.service";
 import {AnneeslaboController} from "./anneeslabo.controller";
 

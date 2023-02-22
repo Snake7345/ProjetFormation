@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {PermissionsEntity} from "./permissions.entity";
+import {PermissionsEntity} from "../shared/entities/permissions.entity";
 import {PermissionsService} from "./permissions.service";
 import {PermissionsController} from "./permissions.controller";
 

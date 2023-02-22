@@ -1,7 +1,7 @@
 /*Description de l'entité, à faire à la main*/
 
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {ValeurslaboEntity} from "../valeursLabo/valeurslabo.entity";
+import {ValeurslaboEntity} from "./valeurslabo.entity";
 
 @Entity({ name: 'payslabo' })
 export class PayslaboEntity {
@@ -11,7 +11,7 @@ export class PayslaboEntity {
   @Column({ type: 'varchar', length: 100, nullable: false })
   denomination: string;
 
-  @ManyToOne(type => ValeurslaboEntity,
+  @ManyToOne(() => ValeurslaboEntity,
     FK_idValeursLabo => FK_idValeursLabo.paysLabos,
     {
       nullable: false })

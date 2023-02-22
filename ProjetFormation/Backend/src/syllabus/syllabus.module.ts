@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {SyllabusEntity} from "./syllabus.entity";
+import {SyllabusEntity} from "../shared/entities/syllabus.entity";
 import {SyllabusService} from "./syllabus.service";
 import {SyllabusController} from "./syllabus.controller";
 

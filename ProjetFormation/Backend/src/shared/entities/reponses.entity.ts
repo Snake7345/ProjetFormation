@@ -1,6 +1,6 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {UtilisateursEntity} from "../utilisateurs/utilisateurs.entity";
-import {QuestionsEntity} from "../questions/questions.entity";
+import {UtilisateursEntity} from "./utilisateurs.entity";
+import {QuestionsEntity} from "./questions.entity";
 
 @Entity({ name: 'reponses' })
 export class ReponsesEntity {

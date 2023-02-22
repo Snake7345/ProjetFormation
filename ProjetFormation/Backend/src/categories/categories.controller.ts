@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe} from "@nestjs/common";
 import {CategoriesService} from "./categories.service";
-import {CategoriesDto} from "./dto/categories.dto";
+import {CategoriesDto} from "../shared/dto/categories.dto";
 
 // On appelle les méthodes à partir du service
 @Controller('categories')
