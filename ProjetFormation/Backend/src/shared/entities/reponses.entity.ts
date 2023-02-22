@@ -13,9 +13,9 @@ export class ReponsesEntity {
     @Column("decimal", { precision: 5, scale: 2, nullable:true })
     coteAttribue: string;
 
-    @ManyToOne(() => UtilisateursEntity, (util) => util.reponses)
+    @ManyToOne(() => UtilisateursEntity, (util) => util.reponses, { nullable: false })
     utilisateurs: UtilisateursEntity
 
-    @ManyToOne(() => QuestionsEntity, (ques) => ques.reponses)
+    @ManyToOne(() => QuestionsEntity, (ques) => ques.reponses, { nullable: false })
     questions: QuestionsEntity
 }

@@ -9,11 +9,11 @@ export class CategoriesEntity {
   @PrimaryGeneratedColumn()
   idCategories: number;
 
-  @Column({ type: 'varchar', length: 10, nullable: false })
+  @Column({ type: 'varchar', length: 100, nullable: false })
   nom: string;
 
-  @Column({ type: 'integer', default: 1 })
-  actif: number;
+  @Column({ type: 'tinyint', width: 1, default: 1 })
+  actif : number
 
   @OneToMany(() => UtilisateurscategoriesEntity, (utilisateursCategories) => utilisateursCategories.categories)
   categories: UtilisateurscategoriesEntity[]

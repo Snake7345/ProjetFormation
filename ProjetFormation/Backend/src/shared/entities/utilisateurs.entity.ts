@@ -39,7 +39,7 @@ export class UtilisateursEntity {
   @Column({ type: 'tinyint', width: 1, default: 1 })
   actif : number
 
-  @ManyToOne(() => RolesEntity, (role) => role.utilisateurs)
+  @ManyToOne(() => RolesEntity, (role) => role.utilisateurs, { nullable: false })
   role: RolesEntity
 
   @OneToMany(() => DiplomesUtilisateursEntity, (diplomesUtilisateursEntity) =>

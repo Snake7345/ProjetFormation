@@ -7,10 +7,10 @@ export class UtilisateurscategoriesEntity {
     @PrimaryGeneratedColumn()
     idUtilisateursCategories : number
 
-    @ManyToOne(() => CategoriesEntity, (categories) => categories.categories)
+    @ManyToOne(() => CategoriesEntity, (categories) => categories.categories, { nullable: false })
     categories: CategoriesEntity
 
-    @ManyToOne(() => UtilisateursEntity, (util) => util.utilisateurcategories)
+    @ManyToOne(() => UtilisateursEntity, (util) => util.utilisateurcategories, { nullable: false })
     utilisateurs: UtilisateursEntity
 
 

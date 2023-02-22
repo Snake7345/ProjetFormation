@@ -7,9 +7,9 @@ export class RolespermissionsEntity {
   @PrimaryGeneratedColumn()
   idRolespermissions : number
 
-  @ManyToOne(() => RolesEntity, (roles) => roles.rolespermissions)
+  @ManyToOne(() => RolesEntity, (roles) => roles.rolespermissions, { nullable: false })
   roles: RolespermissionsEntity
 
-  @ManyToOne(() => PermissionsEntity, (permissions) => permissions.rolespermissions)
+  @ManyToOne(() => PermissionsEntity, (permissions) => permissions.rolespermissions, { nullable: false })
   permissions: PermissionsEntity
 }

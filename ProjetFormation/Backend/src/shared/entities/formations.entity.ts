@@ -25,10 +25,10 @@ export class FormationsEntity {
     @Column({ type: 'datetime' })
     dateQuestionnaire : Date
 
-    @ManyToOne(() => CategoriesEntity, (categorie) => categorie.formations)
+    @ManyToOne(() => CategoriesEntity, (categorie) => categorie.formations, { nullable: false })
     categories: CategoriesEntity
 
-    @ManyToOne(() => UtilisateursEntity, (utilisateur) => utilisateur.formations)
+    @ManyToOne(() => UtilisateursEntity, (utilisateur) => utilisateur.formations, { nullable: false })
     utilisateurs: UtilisateursEntity
 
     @OneToMany(() => SyllabusEntity, (syl) =>

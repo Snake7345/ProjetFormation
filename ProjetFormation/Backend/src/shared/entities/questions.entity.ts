@@ -17,7 +17,7 @@ export class QuestionsEntity {
     actif : number
 
     @ManyToOne(() => FormationsEntity, (form) =>
-        form.questions)
+        form.questions, { nullable: false })
     formations: FormationsEntity
 
     @OneToMany(() => ReponsesEntity, (rep) =>

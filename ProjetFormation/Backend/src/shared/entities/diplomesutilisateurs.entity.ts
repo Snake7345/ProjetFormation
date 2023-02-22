@@ -8,9 +8,9 @@ export class DiplomesUtilisateursEntity {
   @PrimaryGeneratedColumn()
   idDiplomesUtilisateurs: number;
 
-  @ManyToOne(() => DiplomesEntity, (diplomeEntity) => diplomeEntity.diplomes)
+  @ManyToOne(() => DiplomesEntity, (diplomeEntity) => diplomeEntity.diplomes, { nullable: false })
   diplomeE: DiplomesEntity
 
-  @ManyToOne(() => UtilisateursEntity, (utilisateurEntity) => utilisateurEntity.diplomes)
+  @ManyToOne(() => UtilisateursEntity, (utilisateurEntity) => utilisateurEntity.diplomes, { nullable: false })
   diplomeU: UtilisateursEntity
 }

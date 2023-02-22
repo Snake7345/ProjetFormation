@@ -13,7 +13,7 @@ export class DiplomesEntity {
   @OneToMany(() => DiplomesUtilisateursEntity, (diplome) => diplome.diplomeE)
   diplomes: DiplomesUtilisateursEntity[]
 
-  @OneToOne(() => FormationsEntity)
+  @OneToOne(() => FormationsEntity, { nullable: false })
   @JoinColumn()
   formation: FormationsEntity
 }

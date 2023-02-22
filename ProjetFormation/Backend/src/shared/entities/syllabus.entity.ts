@@ -12,9 +12,9 @@ export class SyllabusEntity {
     @Column({ type: 'varchar', length: 255, nullable: false })
     chemin: string;
 
-    @Column({ type: 'integer', nullable:false} )
-    actif: number;
+    @Column({ type: 'tinyint', width: 1, default: 1 })
+    actif : number
 
-    @ManyToOne(() => FormationsEntity, (formation) => formation.syllabus)
+    @ManyToOne(() => FormationsEntity, (formation) => formation.syllabus, { nullable: false })
     formations: FormationsEntity
 }
