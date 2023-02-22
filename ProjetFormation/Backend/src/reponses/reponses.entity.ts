@@ -10,7 +10,7 @@ export class ReponsesEntity {
     @Column({ type: 'varchar', length: 250, nullable: true })
     reponse: string;
 
-    @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true})
+    @Column("decimal", { precision: 5, scale: 2, nullable:true })
     coteAttribue: string;
 
     @ManyToOne(() => UtilisateursEntity, (util) => util.reponses)

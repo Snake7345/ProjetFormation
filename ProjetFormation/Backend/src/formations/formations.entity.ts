@@ -19,10 +19,10 @@ export class FormationsEntity {
     @Column({ type: 'integer', nullable:true} )
     actif: number;
 
-    @Column({ type: 'timestamptz' })
+    @Column({ type: 'datetime' })
     dateLimiteInscription : Date
 
-    @Column({ type: 'timestamptz' })
+    @Column({ type: 'datetime' })
     dateQuestionnaire : Date
 
     @ManyToOne(() => CategoriesEntity, (categorie) => categorie.formations)

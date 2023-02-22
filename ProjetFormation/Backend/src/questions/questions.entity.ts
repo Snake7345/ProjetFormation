@@ -10,7 +10,7 @@ export class QuestionsEntity {
     @Column({ type: 'varchar', length: 250, nullable: false })
     question: string;
 
-    @Column({ type: 'decimal', precision: 5, scale: 2,})
+    @Column("decimal", { precision: 5, scale: 2, nullable:false })
     cote: number;
 
     @Column({ type: 'tinyint', width: 1, default: 1 })
