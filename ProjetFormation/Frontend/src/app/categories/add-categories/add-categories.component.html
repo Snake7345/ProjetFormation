@@ -5,7 +5,7 @@
 <form [formGroup]="categorieFormGroup" class="example-form" (ngSubmit)="onCreate()">
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle catégorie</mat-label>
-    <input type="text" matInput [(ngModel)]="nom" formControlName="nom"/>
+    <input type="text" matInput formControlName="nom"/>
     <!--1ere solution-->
     <mat-error *ngIf="checkError('nom','required')">
       La dénomination de la catégorie est <strong>requise.</strong>
@@ -22,6 +22,7 @@
   <p></p>
   <button class="btn btn-outline-primary btn-block" (click)="retour()">
     <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
-
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!categorieFormGroup.valid">
+    <i class="far fa-plus-square"></i> Ajouter</button>
   <p></p>
 </form>

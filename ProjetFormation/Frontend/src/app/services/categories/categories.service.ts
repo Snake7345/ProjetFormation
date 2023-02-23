@@ -26,7 +26,7 @@ export class CategoriesService {
   }
 
   public update(id: number, produits: Categories | null): Observable<any> {
-    return this.httpClient.put<any>(`${this.categoriesURL}${id}`, produits);
+    return this.httpClient.patch<any>(`${this.categoriesURL}/modifier${id}`, produits);
   }
 
   public delete(id: number): Observable<any> {

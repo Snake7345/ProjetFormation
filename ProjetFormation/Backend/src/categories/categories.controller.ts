@@ -27,7 +27,7 @@ export class CategoriesController {
   }
 
 
-  @Get('updateCategories:id')
+  @Get('readcategorie:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) {
     return await this.categoriesService.findById(id);
   }
@@ -39,7 +39,7 @@ export class CategoriesController {
     return await this.categoriesService.create(dto);
   }
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  @Patch(':id')
+  @Patch('modifier:id')
   async update(
       @Body(ValidationPipe) updateCategorie : UpdatecategoriesDto
   ) : Promise<CategoriesDto> {

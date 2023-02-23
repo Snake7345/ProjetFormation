@@ -11,8 +11,6 @@ import {Categories} from "../../models/categories";
   styleUrls: ['./add-categories.component.scss'],
 })
 export class AddCategoriesComponent implements OnInit {
-
-  nom = '';
   actif : number = 1;
 
   public categorieFormGroup! : FormGroup
@@ -22,7 +20,6 @@ export class AddCategoriesComponent implements OnInit {
     private categorieService : CategoriesService,
 
     private toastr : ToastrService,
-    private _formBuilder : FormBuilder,
     private _router : Router
   ) { }
 
@@ -32,26 +29,15 @@ export class AddCategoriesComponent implements OnInit {
         Validators.minLength(2), Validators.maxLength(100)])
     })
   }
-  //1ere solution
   public checkError = (controlName: string, errorName: string) => {
     return this.categorieFormGroup.controls[controlName].hasError(errorName);
   }
 
-  /* 2eme solution
-  get errorMessage(): string {
-    const form: FormControl = (this.denominationFormGroup.get('nom') as FormControl);
-    return form.hasError('required') ?
-      'La dénomination de la catégorie est requise' :
-      form.hasError('maxlength') ?
-        'La longueur doit être entre 2 et 100 caractères' :
-        form.hasError('minlength') ?
-          'La longueur doit être entre 2 et 100 caractères' : '';
-  }*/
 
   onCreate() : void
   {
     if(this.categorieFormGroup.invalid) return
-    const categorie = new Categories(this.nom, this.actif);
+    const categorie = new Categories(this.categorieFormGroup.value.nom, this.actif);
     console.log(categorie)
     this.categorieService.save(categorie).subscribe(
       data => {
@@ -70,4 +56,16 @@ export class AddCategoriesComponent implements OnInit {
   retour() {
     this._router.navigate(["tableCategories"])
   }
+
+
+  /* 2eme solution
+  get errorMessage(): string {
+    const form: FormControl = (this.denominationFormGroup.get('nom') as FormControl);
+    return form.hasError('required') ?
+      'La dénomination de la catégorie est requise' :
+      form.hasError('maxlength') ?
+        'La longueur doit être entre 2 et 100 caractères' :
+        form.hasError('minlength') ?
+          'La longueur doit être entre 2 et 100 caractères' : '';
+  }*/
 }

@@ -12,26 +12,34 @@ import {CategoriesService} from "../../services/categories/categories.service";
 })
 export class UpdateCategoriesComponent implements OnInit {
 
-  public categorieFormGroup = FormGroup
+  public categorieFormGroup! : FormGroup
 
   /*! = devant une variable il sera initialisé plus tard
-  * ? = null*/
+  * ? = il peut valoir quelque chose ou null*/
   categorie!: Categories;
 
   constructor(
-
     private categorieService : CategoriesService,
     private toastr: ToastrService,
 
     private activatedRoute: ActivatedRoute,
-    private _formBuilder : FormBuilder,
     private _router : Router
   ) { }
+
   ngOnInit(): void {
+    this.categorieFormGroup = new FormGroup({
+      nom:new FormControl('', [Validators.required,
+        Validators.minLength(2), Validators.maxLength(100)])
+    })
     const id = this.activatedRoute.snapshot.params['id'];
     this.categorieService.detail(id).subscribe(
       data => {
-        this.categorie = data;
+        console.log("data :", data)
+        console.log("data :", data.nom)
+        //TODO : Erreur ne récupère pas la donnée dans le formulaire
+        this.categorieFormGroup.patchValue({idCategories:data.idCategories,nom:data.nom,actif:data.actif});
+        console.log(typeof this.categorieFormGroup)
+        //this.categorieFormGroup.get("nom")?.setValue(data.nom)
       },
       err => {
         this.toastr.error(err.error.message, 'Fail', {
@@ -40,16 +48,17 @@ export class UpdateCategoriesComponent implements OnInit {
         this._router.navigate(['/']);
       }
     );
-    this.categorieFormGroup = new FormGroup({
-      nom:new FormControl('', [Validators.required,
-        Validators.minLength(2), Validators.maxLength(100)])
-    })
 
+
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.categorieFormGroup.controls[controlName].hasError(errorName);
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.categorieService.update(id, this.categorie).subscribe(
+    this.categorieService.update(id, this.categorieFormGroup.value.nom).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
@@ -64,17 +73,9 @@ export class UpdateCategoriesComponent implements OnInit {
     );
   }
 
-  public checkError = (controlName: string, errorName: string) => {
-    return this.categorieFormGroup.controls[controlName].hasError(errorName);
-  }
-
   retour() {
     this._router.navigate(["tableCategories"])
   }
-  /*denominationFormControl = new FormControl('', [Validators.required]);
-  Submit() {
-    this._router.navigate(["tableCategories"])
-  }*/
 }
 
 
