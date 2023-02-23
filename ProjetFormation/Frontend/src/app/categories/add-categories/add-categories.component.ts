@@ -25,14 +25,16 @@ export class AddCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
-  denominationFormControl = new FormControl('', [Validators.required]);
+  denominationFormControl = new FormControl("", [Validators.required,
+    Validators.minLength(2), Validators.maxLength(100)]);
 
 
   onCreate() : void
   {
+
     const categorie = new Categories(this.nom, this.actif);
+    console.log(categorie)
     this.categorieService.save(categorie).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
