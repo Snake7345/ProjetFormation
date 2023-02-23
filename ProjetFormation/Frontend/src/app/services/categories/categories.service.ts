@@ -21,8 +21,8 @@ export class CategoriesService {
     return this.httpClient.get<Categories>(`${this.categoriesURL}${id}`);
   }
 
-  public save(produits: Categories): Observable<any> {
-    return this.httpClient.post<any>(`${this.categoriesURL}`, produits);
+  public save(categories: Categories): Observable<any> {
+    return this.httpClient.post<any>(`${this.categoriesURL}/createcategorie`, categories);
   }
 
   public update(id: number, produits: Categories | null): Observable<any> {

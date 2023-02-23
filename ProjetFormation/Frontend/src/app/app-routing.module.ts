@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'addSyllabus', component: AddSyllabusComponent},
   { path: 'addUtilisateurs', component: AddUtilisateursComponent},
   /*Route tables*/
-  { path: 'categories', component: TableCategoriesComponent},
+  { path: 'tablecategories', component: TableCategoriesComponent},
   { path: 'tableFormations', component: TableFormationsComponent},
   { path: 'tableQuestions', component: TableQuestionsComponent},
   { path: 'tableSyllabus', component: TableSyllabusComponent},

@@ -2,7 +2,7 @@ import {Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {DiplomesEntity} from "./diplomes.entity";
 import {UtilisateursEntity} from "./utilisateurs.entity";
 
-@Entity({ name: 'diplomesUtilisateurs' })
+@Entity({ name: 'diplomesutilisateurs' })
 export class DiplomesUtilisateursEntity {
 
   @PrimaryGeneratedColumn()

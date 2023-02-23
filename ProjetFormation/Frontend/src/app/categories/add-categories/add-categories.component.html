@@ -2,15 +2,18 @@
 <!--TODO: Questionnaire à faire
   !-->
 
-<form class="example-form" (ngSubmit)="Submit()">
+<form class="example-form" (ngSubmit)="onCreate()" novalidate #f="ngForm">
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle catégorie</mat-label>
-    <input type="text" matInput [formControl]="denominationFormControl" />
+    <input type="text" matInput [formControl]="denominationFormControl"/>
     <mat-error *ngIf="denominationFormControl.hasError('required')">
       La dénomination de la catégorie est <strong>requise.</strong>
     </mat-error>
   </mat-form-field>
   <p></p>
-  <input type="submit" value="Envoyer">
+  <button class="btn btn-outline-primary btn-block" (click)="retour()"><i
+    class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+    <i class="far fa-plus-square"></i> Creer</button>
   <p></p>
 </form>
