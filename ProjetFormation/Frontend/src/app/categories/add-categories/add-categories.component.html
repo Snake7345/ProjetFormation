@@ -2,18 +2,26 @@
 <!--TODO: Questionnaire à faire
   !-->
 
-<form class="example-form" (ngSubmit)="onCreate()" novalidate #f="ngForm">
+<form [formGroup]="categorieFormGroup" class="example-form" (ngSubmit)="onCreate()">
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle catégorie</mat-label>
-    <input type="text" matInput id="nom" name="nom" [(ngModel)]="nom" [formControl]="denominationFormControl"/>
-    <mat-error *ngIf="denominationFormControl.hasError('required')">
+    <input type="text" matInput [(ngModel)]="nom" formControlName="nom"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('nom','required')">
       La dénomination de la catégorie est <strong>requise.</strong>
     </mat-error>
+    <mat-error *ngIf="checkError('nom','minlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+    <mat-error *ngIf="checkError('nom','maxlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+    <!--2eme solution
+    <mat-error>{{ errorMessage }}</mat-error>-->
   </mat-form-field>
   <p></p>
-  <button class="btn btn-outline-primary btn-block" (click)="retour()"><i
-    class="fas fa-arrow-alt-circle-left"></i> Retour</button>
-  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!f.invalid">
-    <i class="far fa-plus-square"></i> Creer</button>
+  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+
   <p></p>
 </form>

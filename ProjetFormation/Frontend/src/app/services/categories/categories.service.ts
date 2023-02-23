@@ -18,7 +18,7 @@ export class CategoriesService {
   }
 
   public detail(id: number): Observable<Categories> {
-    return this.httpClient.get<Categories>(`${this.categoriesURL}${id}`);
+    return this.httpClient.get<Categories>(`${this.categoriesURL}/readcategorie${id}`);
   }
 
   public save(categories: Categories): Observable<any> {

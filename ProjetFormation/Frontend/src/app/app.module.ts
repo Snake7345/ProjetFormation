@@ -41,6 +41,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { OuSommesNousComponent } from './ou-sommes-nous/ou-sommes-nous.component';
 import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.component';
+import {CommonModule} from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.
   ],
   imports: [
     /*Modules principaux*/
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -27,7 +27,7 @@ export class CategoriesController {
   }
 
 
-  @Get(':id')
+  @Get('updateCategories:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) {
     return await this.categoriesService.findById(id);
   }

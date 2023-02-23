@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {CategoriesService} from "../../services/categories/categories.service";
 import {ToastrService} from "ngx-toastr";
@@ -15,6 +15,8 @@ export class AddCategoriesComponent implements OnInit {
   nom = '';
   actif : number = 1;
 
+  public categorieFormGroup! : FormGroup
+
   constructor(
 
     private categorieService : CategoriesService,
@@ -25,14 +27,30 @@ export class AddCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.categorieFormGroup = new FormGroup({
+      nom:new FormControl('', [Validators.required,
+        Validators.minLength(2), Validators.maxLength(100)])
+    })
   }
-  denominationFormControl = new FormControl("", [Validators.required,
-    Validators.minLength(2), Validators.maxLength(100)]);
+  //1ere solution
+  public checkError = (controlName: string, errorName: string) => {
+    return this.categorieFormGroup.controls[controlName].hasError(errorName);
+  }
 
+  /* 2eme solution
+  get errorMessage(): string {
+    const form: FormControl = (this.denominationFormGroup.get('nom') as FormControl);
+    return form.hasError('required') ?
+      'La dénomination de la catégorie est requise' :
+      form.hasError('maxlength') ?
+        'La longueur doit être entre 2 et 100 caractères' :
+        form.hasError('minlength') ?
+          'La longueur doit être entre 2 et 100 caractères' : '';
+  }*/
 
   onCreate() : void
   {
-
+    if(this.categorieFormGroup.invalid) return
     const categorie = new Categories(this.nom, this.actif);
     console.log(categorie)
     this.categorieService.save(categorie).subscribe(
@@ -40,7 +58,7 @@ export class AddCategoriesComponent implements OnInit {
         this.toastr.success(data.message, 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-        this._router.navigate(['tablecategories']);
+        this._router.navigate(['tableCategories']);
       },
       err => {
         this.toastr.error(err.error.message, 'Fail', {
@@ -50,6 +68,6 @@ export class AddCategoriesComponent implements OnInit {
     );
   }
   retour() {
-    this._router.navigate(["tablecategories"])
+    this._router.navigate(["tableCategories"])
   }
 }

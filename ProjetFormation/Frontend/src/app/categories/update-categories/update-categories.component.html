@@ -1,11 +1,22 @@
 <h1>Mise a jour de la catégorie</h1>
-<form class="example-form">
+<form [formGroup]="categorieFormGroup" class="example-form" (ngSubmit)="onUpdate()">
   <mat-form-field class="example-full-width">
-    <mat-label>Modifier une catégorie</mat-label>
-    <input type="text" matInput [formControl]="denominationFormControl" />
-    <mat-error *ngIf="denominationFormControl.hasError('required')">
+    <mat-label>Modifier le nom de la catégorie</mat-label>
+    <input type="text" matInput [(ngModel)]="categorie.nom" formControlName="nom"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('nom','required')">
       La dénomination de la catégorie est <strong>requise.</strong>
+    </mat-error>
+    <mat-error *ngIf="checkError('nom','minlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+    <mat-error *ngIf="checkError('nom','maxlength')">
+      La longueur doit être entre 2 et 100 caracteres.
     </mat-error>
   </mat-form-field>
   <input type="submit" value="Modifier">
+  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!categorieFormGroup.valid">
+    <i class="far fa-plus-square"></i> Creer</button>
 </form>

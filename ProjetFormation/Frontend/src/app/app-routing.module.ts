@@ -33,17 +33,17 @@ const routes: Routes = [
   { path: 'addSyllabus', component: AddSyllabusComponent},
   { path: 'addUtilisateurs', component: AddUtilisateursComponent},
   /*Route tables*/
-  { path: 'tablecategories', component: TableCategoriesComponent},
+  { path: 'tableCategories', component: TableCategoriesComponent},
   { path: 'tableFormations', component: TableFormationsComponent},
   { path: 'tableQuestions', component: TableQuestionsComponent},
   { path: 'tableSyllabus', component: TableSyllabusComponent},
   { path: 'tableUtilisateurs', component: TableUtilisateursComponent},
   /*Route updates*/
-  { path: 'updateCategories', component: UpdateCategoriesComponent},
-  { path: 'updateFormations', component: UpdateFormationsComponent},
-  { path: 'updateQuestions', component: UpdateQuestionsComponent},
-  { path: 'updateSyllabus', component: UpdateSyllabusComponent},
-  { path: 'updateUtilisateurs', component: UpdateUtilisateursComponent},
+  { path: 'updateCategories/:id', component: UpdateCategoriesComponent},
+  { path: 'updateFormations/:id', component: UpdateFormationsComponent},
+  { path: 'updateQuestions/:id', component: UpdateQuestionsComponent},
+  { path: 'updateSyllabus/:id', component: UpdateSyllabusComponent},
+  { path: 'updateUtilisateurs/:id', component: UpdateUtilisateursComponent},
   /*Routes pour le presentation-labo*/
   { path: 'presentation-labo', component: PresentationLaboComponent},
   { path: 'where-is-money', component: WhereIsMoneyComponent},

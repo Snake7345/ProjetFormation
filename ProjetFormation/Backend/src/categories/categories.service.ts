@@ -49,6 +49,7 @@ export class CategoriesService {
       );
     }
     let categorie : CategoriesEntity = this.categoriesRepository.create(dto)
+
     return this.categoriesRepository.save(categorie)
         .catch(_ => {
           throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
