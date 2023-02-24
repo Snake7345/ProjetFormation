@@ -1,6 +1,7 @@
 import {Controller, Get, Param, ParseIntPipe} from "@nestjs/common";
 import {ProjetslaboService} from "./projetslabo.service";
-
+import { ApiTags } from "@nestjs/swagger";
+@ApiTags("ProjetsLabo")
 // On appelle les méthodes à partir du service
 @Controller('projetslabo')
 export class ProjetslaboController {
