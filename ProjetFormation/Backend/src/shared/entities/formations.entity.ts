@@ -16,14 +16,20 @@ export class FormationsEntity {
     @Column({ type: 'varchar', length: 1000, nullable: true })
     infos: string;
 
-    @Column({ type: 'integer', nullable:true} )
+    @Column({ type: 'tinyint', width: 1, default: 1 })
     actif: number;
 
-    @Column({ type: 'datetime' })
+    @Column({ type: 'date' })
     dateLimiteInscription : Date
 
-    @Column({ type: 'datetime' })
+    @Column({ type: 'date' })
+    heureLimiteInscription : Date
+
+    @Column({ type: 'date' })
     dateQuestionnaire : Date
+
+    @Column({type: 'time'})
+    heureQuestionnaire : Date
 
     @ManyToOne(() => CategoriesEntity, (categorie) => categorie.formations, { nullable: false })
     categories: CategoriesEntity
