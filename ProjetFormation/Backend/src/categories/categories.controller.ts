@@ -15,20 +15,22 @@ import {CategoriesService} from "./categories.service";
 import {CategoriesDto} from "../shared/dto/categories/categories.dto";
 import {UpdatecategoriesDto} from "../shared/dto/categories/updatecategories.dto";
 import {CategorieIdDto} from "../shared/dto/categories/categorieId.dto";
+import { ApiTags } from "@nestjs/swagger";
 
 // On appelle les méthodes à partir du service
+@ApiTags("Categories")
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Get()
-  async GetAll() {
+  async GetAll() : Promise<CategoriesDto[]> {
     return await this.categoriesService.getAll();
   }
 
 
   @Get('readcategorie:id')
-  async GetOne(@Param('id', ParseIntPipe) id: number) {
+  async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<CategoriesDto> {
     return await this.categoriesService.findById(id);
   }
 

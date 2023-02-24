@@ -16,31 +16,42 @@ export class CategoriesService {
     private categoriesRepository: Repository<CategoriesEntity>,
   ) {}
 
-  async getAll(): Promise<CategoriesEntity[]> {
-    const list = await this.categoriesRepository.find();
+  async getAll(): Promise<CategoriesDto[]> {
+    /*const list = await this.categoriesRepository.find();
     if (!list.length) {
       throw new NotFoundException(
         new MessageDto('Serveur : La liste est vide'),
       );
     }
-    return list;
+    return list;*/
+    return this.categoriesRepository.find({
+      select : {
+        idCategories : true,
+        nom : true,
+        actif : true
+      }
+    })
   }
 
-  async findById(idCategories: number): Promise<CategoriesEntity> {
-    const categorie = await this.categoriesRepository.findOneBy({
-      idCategories,
-    });
-    if (!categorie) {
-      throw new NotFoundException(
-        new MessageDto("Serveur : Cette catégorie n'existe pas"),
-      );
-    }
-    return categorie;
+  async findById(id: number): Promise<CategoriesDto> {
+    return await this.categoriesRepository.findOneOrFail({
+      where : {idCategories : id}
+    })
+      .catch((error) => {
+        console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
+        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+      })
   }
 
-  async findByNom(nom: string): Promise<CategoriesEntity> {
-    const categorie = await this.categoriesRepository.findOneBy({ nom: nom });
-    return categorie ? categorie : null;
+
+  async findByNom(nom: string): Promise<CategoriesDto> {
+    return await this.categoriesRepository.findOneOrFail({
+      where : {nom : nom}
+    })
+      .catch((error) => {
+        console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
+        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+      })
   }
 
   async create(dto: CategoriesDto): Promise<CategoriesDto> {
@@ -54,7 +65,6 @@ export class CategoriesService {
         .catch(_ => {
           throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
         })
-    console.log("La catégorie est créée")
   }
 
   async update(dto : UpdatecategoriesDto): Promise<UpdatecategoriesDto> {
@@ -91,6 +101,5 @@ export class CategoriesService {
           console.log(error)
           throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
         })
-    console.log("La catégorie est supprimés")
   }
 }
