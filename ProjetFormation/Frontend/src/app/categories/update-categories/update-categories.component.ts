@@ -34,11 +34,15 @@ export class UpdateCategoriesComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params['id'];
     this.categorieService.detail(id).subscribe(
       data => {
-        console.log("data :", data)
-        console.log("data :", data.nom)
+        this.categorie = {
+          idCategories:data.idCategories,
+          nom:data.nom,
+          actif:data.actif
+        }
         //TODO : Erreur ne récupère pas la donnée dans le formulaire
-        this.categorieFormGroup.patchValue({idCategories:data.idCategories,nom:data.nom,actif:data.actif});
-        console.log(typeof this.categorieFormGroup)
+        this.categorieFormGroup.patchValue(
+          this.categorie
+        );
         //this.categorieFormGroup.get("nom")?.setValue(data.nom)
       },
       err => {
@@ -48,17 +52,22 @@ export class UpdateCategoriesComponent implements OnInit {
         this._router.navigate(['/']);
       }
     );
-
-
   }
 
   public checkError = (controlName: string, errorName: string) => {
     return this.categorieFormGroup.controls[controlName].hasError(errorName);
   }
 
+  public updateData(): void
+  {
+    //this.categorie.idCategories=this.categorieFormGroup.get("idCategories")?.value
+    this.categorie.nom=this.categorieFormGroup.get("nom")?.value
+    //this.categorie.actif=this.categorieFormGroup.get("actif")?.value
+  }
+
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.categorieService.update(id, this.categorieFormGroup.value.nom).subscribe(
+    this.categorieService.update(id, this.categorie).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'

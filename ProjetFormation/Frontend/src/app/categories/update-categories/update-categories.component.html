@@ -16,6 +16,6 @@
   </mat-form-field>
   <button class="btn btn-outline-primary btn-block" (click)="retour()">
     <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
-  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!categorieFormGroup.valid">
+  <button type="submit" class="btn btn-outline-success btn-block" (click)="updateData()" [disabled]="!categorieFormGroup.valid">
     <i class="far fa-plus-square"></i> Modifier</button>
 </form>
