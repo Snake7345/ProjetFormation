@@ -1,9 +1,9 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {RolesEntity} from "./roles.entity";
-import {DiplomesUtilisateursEntity} from "./diplomesutilisateurs.entity";
-import {FormationsEntity} from "./formations.entity";
-import {ReponsesEntity} from "./reponses.entity";
-import {UtilisateurscategoriesEntity} from "./utilisateurscategories.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { RolesEntity } from "./roles.entity";
+import { DiplomesUtilisateursEntity } from "./diplomesutilisateurs.entity";
+import { FormationsEntity } from "./formations.entity";
+import { ReponsesEntity } from "./reponses.entity";
+import { UtilisateurscategoriesEntity } from "./utilisateurscategories.entity";
 
 export enum Sexe {
   MASCULIN = "masculin",

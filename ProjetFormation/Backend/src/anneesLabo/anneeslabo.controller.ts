@@ -1,5 +1,5 @@
-import {Controller, Get, Param, ParseIntPipe} from "@nestjs/common";
-import {AnneeslaboService} from "./anneeslabo.service";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
+import { AnneeslaboService } from "./anneeslabo.service";
 import { ApiTags } from "@nestjs/swagger";
 
 // On appelle les méthodes à partir du service

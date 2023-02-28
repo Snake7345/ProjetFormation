@@ -1,12 +1,11 @@
-import {BadRequestException, HttpException, Injectable, NotFoundException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {CategoriesEntity} from "../shared/entities/categories.entity";
-import {MessageDto} from "../common/message.dto";
-import {CategoriesDto} from "../shared/dto/categories/categories.dto";
-import {Repository} from "typeorm";
-import {ErrorGeneral, ErrorStatus, ErrorTypeCategories} from "../shared/utilities/error.enum";
-import {UpdatecategoriesDto} from "../shared/dto/categories/updatecategories.dto";
-import {CategorieIdDto} from "../shared/dto/categories/categorieId.dto";
+import { HttpException, Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CategoriesEntity } from "../shared/entities/categories.entity";
+import { CategoriesDto } from "../shared/dto/categories/categories.dto";
+import { Repository } from "typeorm";
+import { ErrorGeneral, ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum";
+import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
+import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 
 /*CRUD : le service sert à créer les méthodes qui seront utilisées partout ailleurs dans notre programme*/
 @Injectable()

@@ -1,8 +1,8 @@
-import {Module} from "@nestjs/common";
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {ReponsesEntity} from "../shared/entities/reponses.entity";
-import {ReponsesService} from "./reponses.service";
-import {ReponsesController} from "./reponses.controller";
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { ReponsesEntity } from "../shared/entities/reponses.entity";
+import { ReponsesService } from "./reponses.service";
+import { ReponsesController } from "./reponses.controller";
 
 @Module({
     /*Remplir toutes les entités dans les imports*/

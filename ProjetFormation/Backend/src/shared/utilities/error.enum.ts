@@ -33,6 +33,16 @@ export enum ErrorTypeFormations
 
 }
 
+export enum ErrorTypePermissions
+{
+    TYPE_ERROR = "le type de la permission doit être une chaîne de caractère",
+    TYPE_LENGTH = "Le type de la permission doit être compris entre 2 et 150 caractères",
+    ACTION_LENGTH = "L'action de la permission doit être compris entre 2 et 150 caractères",
+    ACTION_ERROR = "l'action de la permission doit être une chaîne de caractère",
+    EMPTY_TYPE_ERROR = "Le type de la permission ne doit pas être vide.",
+    EMPTY_ACTION_ERROR = "L'action de la permission ne doit pas être vide."
+}
+
 
 export enum ErrorGeneral{
     ERROR_UNKNOW ="erreur inconnue du system"

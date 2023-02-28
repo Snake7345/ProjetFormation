@@ -1,6 +1,6 @@
-import {Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {DiplomesEntity} from "./diplomes.entity";
-import {UtilisateursEntity} from "./utilisateurs.entity";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { DiplomesEntity } from "./diplomes.entity";
+import { UtilisateursEntity } from "./utilisateurs.entity";
 
 @Entity({ name: 'diplomesutilisateurs' })
 export class DiplomesUtilisateursEntity {

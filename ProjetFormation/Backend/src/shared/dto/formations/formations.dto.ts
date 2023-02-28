@@ -1,4 +1,4 @@
-import { IsDate, IsDateString, IsNumber, IsString, Length } from "class-validator";
+import { IsDate, IsNumber, IsString, Length } from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
 

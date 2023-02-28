@@ -1,5 +1,5 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {FormationsEntity} from "./formations.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { FormationsEntity } from "./formations.entity";
 
 @Entity({ name: 'syllabus' })
 export class SyllabusEntity {

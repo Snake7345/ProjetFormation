@@ -1,8 +1,8 @@
 /*Description de l'entité, à faire a la main*/
 
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {UtilisateurscategoriesEntity} from "./utilisateurscategories.entity";
-import {FormationsEntity} from "./formations.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { UtilisateurscategoriesEntity } from "./utilisateurscategories.entity";
+import { FormationsEntity } from "./formations.entity";
 
 @Entity({ name: 'categories' })
 export class CategoriesEntity {

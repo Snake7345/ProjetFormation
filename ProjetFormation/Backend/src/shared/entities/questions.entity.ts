@@ -1,6 +1,6 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {FormationsEntity} from "./formations.entity";
-import {ReponsesEntity} from "./reponses.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { FormationsEntity } from "./formations.entity";
+import { ReponsesEntity } from "./reponses.entity";
 
 @Entity({ name: 'questions' })
 export class QuestionsEntity {

@@ -1,7 +1,7 @@
 /*Description de l'entité, à faire à la main*/
 
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {ValeurslaboEntity} from "./valeurslabo.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ValeurslaboEntity } from "./valeurslabo.entity";
 
 @Entity({ name: 'payslabo' })
 export class PayslaboEntity {

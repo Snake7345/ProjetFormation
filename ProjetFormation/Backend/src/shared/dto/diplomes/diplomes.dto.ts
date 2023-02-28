@@ -1,8 +1,9 @@
-import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
-import { ErrorGeneral, ErrorTypeDiplomes, ErrorTypeFormations } from "../../utilities/error.enum";
-import { IsNumber, IsString, Length } from "class-validator";
+import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
+import { ErrorTypeDiplomes } from "../../utilities/error.enum";
+import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 
 export class DiplomesDto {
+  @IsDefined()
   @IsNumber()
   idDiplomes : number
   @IsNotBlank({message : 'DTO : ' + ErrorTypeDiplomes.EMPTY_NOM_ERROR})

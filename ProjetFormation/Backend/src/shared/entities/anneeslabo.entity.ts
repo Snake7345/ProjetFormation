@@ -1,7 +1,7 @@
 /*Description de l'entité, à faire a la main*/
 //test
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {ProjetslaboEntity} from "./projetslabo.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProjetslaboEntity } from "./projetslabo.entity";
 
 @Entity({ name: 'anneeslabo' })
 export class AnneeslaboEntity {

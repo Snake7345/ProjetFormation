@@ -1,8 +1,8 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {CategoriesEntity} from "./categories.entity";
-import {UtilisateursEntity} from "./utilisateurs.entity";
-import {SyllabusEntity} from "./syllabus.entity";
-import {QuestionsEntity} from "./questions.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { CategoriesEntity } from "./categories.entity";
+import { UtilisateursEntity } from "./utilisateurs.entity";
+import { SyllabusEntity } from "./syllabus.entity";
+import { QuestionsEntity } from "./questions.entity";
 
 @Entity({ name: 'formations' })
 export class FormationsEntity {

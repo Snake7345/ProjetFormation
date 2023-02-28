@@ -7,14 +7,13 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  Put,
   UsePipes,
   ValidationPipe
 } from "@nestjs/common";
-import {CategoriesService} from "./categories.service";
-import {CategoriesDto} from "../shared/dto/categories/categories.dto";
-import {UpdatecategoriesDto} from "../shared/dto/categories/updatecategories.dto";
-import {CategorieIdDto} from "../shared/dto/categories/categorieId.dto";
+import { CategoriesService } from "./categories.service";
+import { CategoriesDto } from "../shared/dto/categories/categories.dto";
+import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
+import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import { ApiTags } from "@nestjs/swagger";
 
 // On appelle les méthodes à partir du service

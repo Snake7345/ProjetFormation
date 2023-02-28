@@ -1,7 +1,8 @@
-import {Controller} from "@nestjs/common";
+import { Controller } from "@nestjs/common";
 
-import {DiplomesService} from "./diplomes.service";
+import { DiplomesService } from "./diplomes.service";
 import { ApiTags } from "@nestjs/swagger";
+
 @ApiTags("Diplomes")
 @Controller('diplomes')
 export class DiplomesController {

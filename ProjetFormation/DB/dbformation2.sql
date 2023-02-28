@@ -84,11 +84,11 @@ CREATE TABLE IF NOT EXISTS `payslabo` (
 --
 
 INSERT INTO `payslabo` (`idPaysLabo`, `denomination`, `fKIdValeursLaboIdValeursLabo`) VALUES
-(1, 'RÃ©publique dÃ©mocatrice du Congo', 22),
-(2, 'YÃ©men', 23),
+(1, 'République démocatrice du Congo', 22),
+(2, 'Yémen', 23),
 (3, 'Soudan du Sud', 24),
-(4, 'RÃ©publique centrafricaine', 25),
-(5, 'NigÃ©ria', 26),
+(4, 'République centrafricaine', 25),
+(5, 'Nigéria', 26),
 (6, 'Soudan', 27),
 (7, 'Afghanistan', 28),
 (8, 'Ethiopie', 29),
@@ -117,12 +117,12 @@ CREATE TABLE IF NOT EXISTS `projetslabo` (
 --
 
 INSERT INTO `projetslabo` (`idProjetsLabo`, `nom`, `fKIdValeursLaboIdValeursLabo`, `fKIdAnneesLaboIdAnneesLabo`) VALUES
-(1, 'ConsÃ©quences des conflits', 1, 1),
-(2, 'ConsÃ©quences des conflits', 8, 2),
-(3, 'ConsÃ©quences des conflits', 15, 3),
-(4, 'Catastrophes mÃ©dicales', 2, 1),
-(5, 'Catastrophes mÃ©dicales', 9, 2),
-(6, 'Catastrophes mÃ©dicales', 16, 3),
+(1, 'Conséquences des conflits', 1, 1),
+(2, 'Conséquences des conflits', 8, 2),
+(3, 'Conséquences des conflits', 15, 3),
+(4, 'Catastrophes médicales', 2, 1),
+(5, 'Catastrophes médicales', 9, 2),
+(6, 'Catastrophes médicales', 16, 3),
 (7, 'Victimes d\'exclusion des soins ou de violences', 6, 1),
 (8, 'Victimes d\'exclusion des soins ou de violences', 13, 2),
 (9, 'Victimes d\'exclusion des soins ou de violences', 20, 3),
