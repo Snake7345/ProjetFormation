@@ -34,8 +34,9 @@ export class UtilisateursDto{
     @Length(11,11,{message: "DTO : Le numéro de registre national doit comporter 11 caractères"})
     nrn: string;
 
-    @IsEnum(EnumUtilisateur)
+
     @IsNotEmpty()
+    @IsEnum(EnumUtilisateur)
     sexe: EnumUtilisateur;
 
     @IsDefined()

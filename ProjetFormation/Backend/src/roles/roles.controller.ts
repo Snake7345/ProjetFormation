@@ -1,20 +1,6 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  UsePipes,
-  ValidationPipe
-} from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { RolesService } from "./roles.service";
 import { ApiTags } from "@nestjs/swagger";
-import {CategoriesDto} from "../shared/dto/categories/categories.dto";
-import {UpdatecategoriesDto} from "../shared/dto/categories/updatecategories.dto";
-import {CategorieIdDto} from "../shared/dto/categories/categorieId.dto";
 import {RolesDto} from "../shared/dto/roles/roles.dto";
 import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
 import {RolesIdDto} from "../shared/dto/roles/rolesId.dto";
@@ -23,7 +9,6 @@ import {RolesIdDto} from "../shared/dto/roles/rolesId.dto";
 @Controller('roles')
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {
-
   }
 
   @Get()

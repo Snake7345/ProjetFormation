@@ -43,6 +43,16 @@ export enum ErrorTypePermissions
     EMPTY_ACTION_ERROR = "L'action de la permission ne doit pas être vide."
 }
 
+export enum ErrorTypeUtilisateurs
+{
+    UTILISATEUR_NOT_FOUND = "l'utilisateur n'existe pas",
+    TYPE_LENGTH = "Le type de la permission doit être compris entre 2 et 150 caractères",
+    ACTION_LENGTH = "L'action de la permission doit être compris entre 2 et 150 caractères",
+    ACTION_ERROR = "l'action de la permission doit être une chaîne de caractère",
+    EMPTY_TYPE_ERROR = "Le type de la permission ne doit pas être vide.",
+    EMPTY_ACTION_ERROR = "L'action de la permission ne doit pas être vide."
+}
+
 
 export enum ErrorGeneral{
     ERROR_UNKNOW ="erreur inconnue du system"
@@ -52,7 +62,9 @@ export enum ErrorStatus{
     CATEGORIE_NOT_EXIST = 404,
     CATEGORIE_EXIST = 500,
     NOM_EXIST = 500,
-    ERROR_UNKNOW = 500
+    ERROR_UNKNOW = 500,
+
+    UTILISATEUR_NOT_FOUND = 404
 
 
 }
