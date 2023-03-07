@@ -4,12 +4,9 @@ import { DiplomesUtilisateursEntity } from "./diplomesutilisateurs.entity";
 import { FormationsEntity } from "./formations.entity";
 import { ReponsesEntity } from "./reponses.entity";
 import { UtilisateurscategoriesEntity } from "./utilisateurscategories.entity";
+import { EnumUtilisateur } from "../../utilisateurs/enumUtilisateur";
 
-export enum Sexe {
-  MASCULIN = "masculin",
-  FEMININ = "feminin",
-  X = "x",
-}
+
 @Entity({ name: 'utilisateurs' })
 export class UtilisateursEntity {
   @PrimaryGeneratedColumn()
@@ -31,10 +28,10 @@ export class UtilisateursEntity {
 
   @Column({
     type: "enum",
-    enum: Sexe,
-    default: Sexe.X,
+    enum: EnumUtilisateur,
+    default: EnumUtilisateur.X,
   })
-  sexe: Sexe
+  sexe: EnumUtilisateur
 
   @Column({ type: 'tinyint', width: 1, default: 1 })
   actif : number

@@ -4,10 +4,11 @@ import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
 import { UtilisateursService } from "./utilisateurs.service";
 import { UtilisateursController } from "./utilisateurs.controller";
 import { RolesService } from "../roles/roles.service";
+import { RolesEntity } from "../shared/entities/roles.entity";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesService])],
+  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesEntity])],
   providers: [UtilisateursService, RolesService],
   controllers: [UtilisateursController],
 })

@@ -1,5 +1,8 @@
 import {IsDefined, IsEnum, IsNotEmpty, isNotEmpty, IsNumber, IsString, Length} from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
+import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
+import { RolesEntity } from "../../entities/roles.entity";
+import { RolesDto } from "../roles/roles.dto";
 
 export class UtilisateursDto{
 
@@ -32,7 +35,7 @@ export class UtilisateursDto{
     @IsString()
     @IsNotBlank({message: "Dto : le numéro de registre national ne doit pas être vide"})
     @Length(11,11,{message: "DTO : Le numéro de registre national doit comporter 11 caractères"})
-    nrn: string;
+    NRN: string;
 
 
     @IsNotEmpty()
@@ -44,6 +47,6 @@ export class UtilisateursDto{
     actif: number
 
     @IsDefined()
-    roleIdRoles : number
+    role : RolesDto
 
 }

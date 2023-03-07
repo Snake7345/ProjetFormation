@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
-import { ErrorStatus, ErrorTypeUtilisateurs } from "../shared/utilities/error.enum";
+import { ErrorStatus, ErrorTypeCategories, ErrorTypeUtilisateurs } from "../shared/utilities/error.enum";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 
@@ -18,11 +18,26 @@ export class UtilisateursService {
     private readonly rolesService : RolesService
   ) {}
 
-  async getAllUtilisateurs(roleId : number) : Promise<any>
+  async getAllGardensByRole(roleId : number) : Promise<any>
   {
     return this.rolesRepository.findOneOrFail({
-      where : {idRoles : roleId},
-      relations : {utilisateurs : true}
+      where : { idRoles : roleId},
+      relations : { utilisateurs : true}
+    })
+      .catch((error) => {
+        console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
+        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, 404)
+      })
+  }
+
+  async getRoleOneGardensById(roleId : number, utilisateurId : number) : Promise<any>
+  {
+    return this.rolesRepository.findOneOrFail({
+      where : {
+        idRoles : roleId,
+        utilisateurs : {idUtilisateur : utilisateurId}
+      },
+      relations : { utilisateurs : true}
     })
       .catch((error) => {
         console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
@@ -30,18 +45,31 @@ export class UtilisateursService {
       })
   }
 
+  async getAll(): Promise<UtilisateursDto[]> {
+    return this.utilisateursRepository.find(
+      {
+        relations : {role : true},
+      select : {
+        idUtilisateur : true,
+        nom : true,
+        prenom : true,
+        mail : true,
+        NRN : true,
+        sexe : true,
+        actif : true,
+      }
+    })
+  }
 
-  async getOneUtilisateurById(roleId : number, userId : number) : Promise<any> {
-    return this.rolesRepository.findOneOrFail({
-      where: {
-        idRoles: roleId,
-        utilisateurs: { idUtilisateur: userId }
-      },
-      relations: { utilisateurs: true }
+
+  async findById(id: number): Promise<UtilisateursDto> {
+    return await this.utilisateursRepository.findOneOrFail({
+      relations : {role : true},
+      where : {idUtilisateur : id}
     })
       .catch((error) => {
-        console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.UTILISATEUR_NOT_FOUND)
+        console.log("l'utilisateur n'existe pas")
+        throw new HttpException("l'utilisateur n'existe pas", 404)
       })
   }
 
@@ -94,17 +122,17 @@ export class UtilisateursService {
         throw new HttpException("role pas ajouté au user", 404)
       })
   }
-
+/*
   async deleteUtilisateurs(roleId : number, userId : any) : Promise<any>
   {
-    let user : UsersEntity = await this.usersRepo.findOneOrFail({
+    let user : RolesEntity = await this.rolesRepository.findOneOrFail({
       where : {
-        id : userId,
-        gardens : {
-          id : gardenId
+        idRoles : roleId,
+        utilisateurs : {
+          idUtilisateur : userId
         }
       },
-      relations : { gardens : true}
+      relations : { utilisateurs : true}
     })
       .catch((error) => {
         console.log(ErrorMessage.USER_NOT_FOUND)
@@ -114,6 +142,6 @@ export class UtilisateursService {
 
     return await this.gardensRepo.softRemove(user.gardens[0])
   }
-
+*/
 
 }

@@ -16,13 +16,6 @@ export class CategoriesService {
   ) {}
 
   async getAll(): Promise<CategoriesDto[]> {
-    /*const list = await this.categoriesRepository.find();
-    if (!list.length) {
-      throw new NotFoundException(
-        new MessageDto('Serveur : La liste est vide'),
-      );
-    }
-    return list;*/
     return this.categoriesRepository.find({
       select : {
         idCategories : true,
