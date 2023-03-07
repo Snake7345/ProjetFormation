@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  UsePipes,
-  ValidationPipe
-} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe} from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { CategoriesDto } from "../shared/dto/categories/categories.dto";
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
@@ -39,6 +28,8 @@ export class CategoriesController {
   async create(@Body(ValidationPipe) dto: CategoriesDto) : Promise<CategoriesDto> {
     return await this.categoriesService.create(dto);
   }
+
+
   @UsePipes(new ValidationPipe({ whitelist: true }))
   @Patch('modifier:id')
   async update(

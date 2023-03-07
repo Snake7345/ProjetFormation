@@ -34,6 +34,7 @@ import { RolesModule } from "./roles/roles.module";
 import { RolespermissionsModule } from "./rolesPermissions/rolespermissions.module";
 import { SyllabusModule } from "./syllabus/syllabus.module";
 import { UtilisateurscategoriesModule } from "./utilisateursCategories/utilisateurscategories.module";
+import {UtilisateursModule} from "./utilisateurs/utilisateurs.module";
 
 /*Au démarrage du programme, celui-ci démarrera toujours en lisant le fichier constants dans le dossier config*/
 @Module({
@@ -65,7 +66,7 @@ import { UtilisateurscategoriesModule } from "./utilisateursCategories/utilisate
     }),
     AnneeslaboModule, CategoriesModule, DiplomesModule, DiplomesUtilisateursEntity, FormationsModule,
     PayslaboModule, PermissionsModule,ProjetslaboModule, QuestionsModule, ReponsesModule, RolesModule,
-    RolespermissionsModule,SyllabusModule,UtilisateursEntity,UtilisateurscategoriesModule,ValeurslaboModule,
+    RolespermissionsModule,SyllabusModule,UtilisateursModule,UtilisateurscategoriesModule,ValeurslaboModule,
   ],
   controllers: [AppController],
   providers: [AppService],
