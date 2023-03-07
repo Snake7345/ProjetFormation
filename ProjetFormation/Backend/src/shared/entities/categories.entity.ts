@@ -6,6 +6,8 @@ import { FormationsEntity } from "./formations.entity";
 
 @Entity({ name: 'categories' })
 export class CategoriesEntity {
+  // DAO et entity en 1
+  // DAO : Ligne 14, 17, 20, 23 Entity tout le reste
   @PrimaryGeneratedColumn()
   idCategories: number;
 
