@@ -15,8 +15,6 @@ export class RolesController {
   async GetAll() : Promise<RolesDto[]> {
     return await this.rolesService.getAll();
   }
-
-
   @Get('readrole:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<RolesDto> {
     return await this.rolesService.findById(id);

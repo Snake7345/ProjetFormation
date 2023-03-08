@@ -37,6 +37,11 @@ export class UtilisateursDto{
     @Length(11,11,{message: "DTO : Le numéro de registre national doit comporter 11 caractères"})
     NRN: string;
 
+    @IsDefined()
+    @IsString()
+    @IsNotBlank({message: "Dto : le mot de passe ne doit pas être vide"})
+    @Length(2,100,{message: "DTO : le mot de passe doit être composé de minimum 2 caractères"})
+    password : string;
 
     @IsNotEmpty()
     @IsEnum(EnumUtilisateur)

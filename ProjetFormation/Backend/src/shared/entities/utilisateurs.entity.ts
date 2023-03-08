@@ -25,11 +25,14 @@ export class UtilisateursEntity {
   @Column({ type: 'varchar', length: 11, nullable: false })
   NRN: string;
 
+  @Column({ type: 'varchar', length: 100, nullable: false })
+  password: string;
+
 
   @Column({
     type: "enum",
     enum: EnumUtilisateur,
-    default: EnumUtilisateur.X,
+    default: EnumUtilisateur.x,
   })
   sexe: EnumUtilisateur
 

@@ -55,6 +55,7 @@ export class UtilisateursService {
         prenom : true,
         mail : true,
         NRN : true,
+        password : true,
         sexe : true,
         actif : true,
       }

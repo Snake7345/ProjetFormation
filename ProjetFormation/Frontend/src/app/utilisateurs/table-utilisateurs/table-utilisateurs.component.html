@@ -1,1 +1,32 @@
 <h1> Table des utilisateurs</h1>
+
+<div class="container">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">IdUtilisateur</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Mail</th>
+      <th scope="col">NRN</th>
+      <th scope="col">Sexe</th>
+      <th scope="col">Actif</th>
+      <th scope="col">Role</th>
+      <th scope="col">Boutons</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let utilisateur of utilisateurs">
+      <td>{{ utilisateur.idUtilisateur }}</td>
+      <td>{{ utilisateur.nom }}</td>
+      <td>{{ utilisateur.prenom }}</td>
+      <td>{{ utilisateur.mail }}</td>
+      <td>{{ utilisateur.NRN }}</td>
+      <td>{{ utilisateur.password }}</td>
+      <td>{{ utilisateur.sexe }}</td>
+      <td>{{ utilisateur.actif }}</td>
+      <td>{{ utilisateur.role.denomination }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,25 +1,99 @@
-<p>add-utilisateurs works!</p>
+<p>Formulaire : Veuillez remplir le questionnaire suivant pour ajouter un utilisateur</p>
 <!--TODO: Questionnaire à faire
   !-->
-<!--<form class="example-form">
+<form [formGroup]="utilisateurFormGroup" class="example-form" (ngSubmit)="onCreate()">
   <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      [formControl]="emailFormControl"
-      placeholder="Ex. pat@example.com"
-    />
-    <mat-error
-      *ngIf="
-        emailFormControl.hasError('email') &&
-        !emailFormControl.hasError('required')
-      "
-    >
-      Please enter a valid email address
+    <mat-label>Nom de l'utilisateur</mat-label>
+    <input type="text" matInput formControlName="nom"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('nom','required')">
+      Le nom de l'utilisateur est <strong>requis.</strong>
     </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
+    <mat-error *ngIf="checkError('nom','minlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+    <mat-error *ngIf="checkError('nom','maxlength')">
+      La longueur doit être entre 2 et 100 caracteres.
     </mat-error>
   </mat-form-field>
-</form>-->
+  <p></p>
+  <mat-form-field class="example-full-width">
+    <mat-label>Prénom de l'utilisateur</mat-label>
+    <input type="text" matInput formControlName="prenom"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('prenom','required')">
+      Le prénom de l'utilisateur est <strong>requis.</strong>
+    </mat-error>
+    <mat-error *ngIf="checkError('prenom','minlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+    <mat-error *ngIf="checkError('prenom','maxlength')">
+      La longueur doit être entre 2 et 100 caracteres.
+    </mat-error>
+  </mat-form-field>
+  <p></p>
+  <mat-form-field class="example-full-width">
+    <mat-label>Mail de l'utilisateur</mat-label>
+    <input type="email" matInput formControlName="email"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('email','required')">
+      Le mail est <strong>requis.</strong>
+    </mat-error>
+    <mat-error *ngIf="checkError('email','minlength')">
+      La longueur doit être entre 4 et 100 caracteres.
+    </mat-error>
+    <mat-error *ngIf="checkError('email','maxlength')">
+      La longueur doit être entre 4 et 100 caracteres.
+    </mat-error>
+  </mat-form-field>
+  <p></p>
+  <mat-form-field class="example-full-width">
+  <mat-label>Numero de registre national</mat-label>
+  <input type="text" matInput formControlName="NRN"/>
+  <!--1ere solution-->
+  <mat-error *ngIf="checkError('NRN','required')">
+    Le registre national est <strong>requis.</strong>
+  </mat-error>
+  <mat-error *ngIf="checkError('NRN','minlength')">
+    La longueur doit être de 11 caractères.
+  </mat-error>
+  <mat-error *ngIf="checkError('NRN','maxlength')">
+    La longueur doit être de 11 caractères.
+  </mat-error>
+  </mat-form-field>
+  <p></p>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="checkError('password','required')">
+      Le password est <strong>requis.</strong>
+    </mat-error>
+    <mat-error *ngIf="checkError('password','minlength')">
+      La longueur doit être entre 2 et 100 caractères.
+    </mat-error>
+    <mat-error *ngIf="checkError('password','maxlength')">
+      La longueur doit être entre 2 et 100 caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <p></p>
+  <mat-form-field appearance="fill">
+  <mat-label>Choissiez votre sexe</mat-label>
+  <mat-select [(ngModel)]="selectedValueSexe" name="sexe">
+    <mat-option *ngFor="let sexe of sexe" [value]="sexe.value">
+      {{sexe.viewValue}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  <p></p>
+  <mat-form-field appearance="fill">
+  <mat-label>Choissiez votre rôle</mat-label>
+  <mat-select [(ngModel)]="selectedValueRole" (ngModelChange)="afficherRole()" name="role">
+    <mat-option *ngFor="let role of roles" [value]="role.idRoles">
+      {{role.denomination}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  <p></p>
+</form>

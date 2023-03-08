@@ -10,6 +10,8 @@ export const environment = {
   valeursUrl : 'http://localhost:8080/valeurslabo',
   anneesUrl : 'http://localhost:8080/anneeslabo',
   paysUrl : 'http://localhost:8080/payslabo',
+  utilisateursUrl:'http://localhost:8080/utilisateurs',
+  rolesUrl:'http://localhost:8080/roles'
 
 };
 
