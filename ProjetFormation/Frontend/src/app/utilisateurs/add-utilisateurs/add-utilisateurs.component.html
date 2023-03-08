@@ -80,20 +80,31 @@
   <p></p>
   <mat-form-field appearance="fill">
   <mat-label>Choissiez votre sexe</mat-label>
-  <mat-select [(ngModel)]="selectedValueSexe" name="sexe">
-    <mat-option *ngFor="let sexe of sexe" [value]="sexe.value">
+  <mat-select [(ngModel)]="selectedValueSexe" name="sexe" formControlName="sexe">
+    <mat-option *ngFor="let sexe of sexes" [value]="sexe.value">
       {{sexe.viewValue}}
     </mat-option>
   </mat-select>
+    <mat-error *ngIf="checkError('sexe','required')">
+      Le sexe est <strong>requis.</strong>
+    </mat-error>
   </mat-form-field>
   <p></p>
   <mat-form-field appearance="fill">
   <mat-label>Choissiez votre rôle</mat-label>
-  <mat-select [(ngModel)]="selectedValueRole" (ngModelChange)="afficherRole()" name="role">
+  <mat-select [(ngModel)]="selectedValueRole" formControlName="role" (ngModelChange)="afficherRole()" name="role">
     <mat-option *ngFor="let role of roles" [value]="role.idRoles">
       {{role.denomination}}
     </mat-option>
   </mat-select>
+    <mat-error *ngIf="checkError('role','required')">
+      Le role est <strong>requis.</strong>
+    </mat-error>
   </mat-form-field>
+  <p></p>
+  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!utilisateurFormGroup.valid">
+    <i class="far fa-plus-square"></i> Ajouter</button>
   <p></p>
 </form>

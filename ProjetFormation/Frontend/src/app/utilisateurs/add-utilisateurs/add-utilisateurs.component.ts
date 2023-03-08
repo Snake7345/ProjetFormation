@@ -22,7 +22,7 @@ export class AddUtilisateursComponent implements OnInit{
 
   selectedValueSexe? : string;
   selectedValueRole? : string;
-  sexe: ISexe[] = [
+  sexes: ISexe[] = [
     {value: 'x', viewValue: 'X'},
     {value: 'feminin', viewValue: 'Féminin'},
     {value: 'masculin', viewValue: 'Masculin'},
@@ -54,8 +54,11 @@ export class AddUtilisateursComponent implements OnInit{
       NRN:new FormControl('', [Validators.required,
         Validators.minLength(11), Validators.maxLength(11)]),
       password:new FormControl('', [Validators.required,
-        Validators.minLength(11), Validators.maxLength(11)])
+        Validators.minLength(2), Validators.maxLength(100)]),
+      sexe:new FormControl('', [Validators.required,]),
+      role:new FormControl('', [Validators.required,])
     })
+    this.afficherRole()
   }
 
   public checkError = (controlName: string, errorName: string) => {
@@ -66,6 +69,7 @@ export class AddUtilisateursComponent implements OnInit{
     this.roleservice.liste().subscribe(
       (data) => {
         this.roles = data;
+        console.log("affichage role : ", this.roles)
         this.listeVide = undefined;
         console.log(this.roles)
       },
