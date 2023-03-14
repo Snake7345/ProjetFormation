@@ -1,110 +1,82 @@
 <p>Formulaire : Veuillez remplir le questionnaire suivant pour ajouter un utilisateur</p>
 <!--TODO: Questionnaire à faire
   !-->
-<form [formGroup]="utilisateurFormGroup" class="example-form" (ngSubmit)="onCreate()">
+<form [formGroup]="utilisateurFormGroup" class="register-form" (ngSubmit)="onCreate()">
   <mat-form-field class="example-full-width">
     <mat-label>Nom de l'utilisateur</mat-label>
     <input type="text" matInput formControlName="nom"/>
-    <!--1ere solution-->
-    <mat-error *ngIf="checkError('nom','required')">
-      Le nom de l'utilisateur est <strong>requis.</strong>
-    </mat-error>
-    <mat-error *ngIf="checkError('nom','minlength')">
-      La longueur doit être entre 2 et 100 caracteres.
-    </mat-error>
-    <mat-error *ngIf="checkError('nom','maxlength')">
-      La longueur doit être entre 2 et 100 caracteres.
+    <mat-error *ngIf="utilisateurFormGroup.controls['nom'].invalid">
+      {{ getErrorMessageNom() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Prénom de l'utilisateur</mat-label>
     <input type="text" matInput formControlName="prenom"/>
-    <!--1ere solution-->
-    <mat-error *ngIf="checkError('prenom','required')">
-      Le prénom de l'utilisateur est <strong>requis.</strong>
-    </mat-error>
-    <mat-error *ngIf="checkError('prenom','minlength')">
-      La longueur doit être entre 2 et 100 caracteres.
-    </mat-error>
-    <mat-error *ngIf="checkError('prenom','maxlength')">
-      La longueur doit être entre 2 et 100 caracteres.
+    <mat-error *ngIf="utilisateurFormGroup.controls['prenom'].invalid">
+      {{ getErrorMessagePrenom() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Mail de l'utilisateur</mat-label>
     <input type="email" matInput formControlName="email"/>
     <!--1ere solution-->
-    <mat-error *ngIf="checkError('email','required')">
-      Le mail est <strong>requis.</strong>
-    </mat-error>
-    <mat-error *ngIf="checkError('email','minlength')">
-      La longueur doit être entre 4 et 100 caracteres.
-    </mat-error>
-    <mat-error *ngIf="checkError('email','maxlength')">
-      La longueur doit être entre 4 et 100 caracteres.
+    <mat-error *ngIf="utilisateurFormGroup.controls['email'].invalid">
+      {{ getErrorMessageMail() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
+
   <mat-form-field class="example-full-width">
   <mat-label>Numero de registre national</mat-label>
-  <input type="text" matInput formControlName="NRN"/>
-  <!--1ere solution-->
-  <mat-error *ngIf="checkError('NRN','required')">
-    Le registre national est <strong>requis.</strong>
-  </mat-error>
-  <mat-error *ngIf="checkError('NRN','minlength')">
-    La longueur doit être de 11 caractères.
-  </mat-error>
-  <mat-error *ngIf="checkError('NRN','maxlength')">
-    La longueur doit être de 11 caractères.
+  <input type="text" matInput maxlength="11" formControlName="NRN"/>
+  <mat-error *ngIf="utilisateurFormGroup.controls['NRN'].invalid">
+    <!--Le registre national est <strong>requis.</strong>-->
+    {{ getErrorMessageNRN() }}
   </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
     <input type="password" matInput formControlName="password"/>
     <!--1ere solution-->
-    <mat-error *ngIf="checkError('password','required')">
-      Le password est <strong>requis.</strong>
-    </mat-error>
-    <mat-error *ngIf="checkError('password','minlength')">
-      La longueur doit être entre 2 et 100 caractères.
-    </mat-error>
-    <mat-error *ngIf="checkError('password','maxlength')">
-      La longueur doit être entre 2 et 100 caractères.
+    <mat-error *ngIf="utilisateurFormGroup.controls['password'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessagePassword() }}
     </mat-error>
   </mat-form-field>
 
-  <p></p>
+  <br/>
   <mat-form-field appearance="fill">
   <mat-label>Choissiez votre sexe</mat-label>
-  <mat-select [(ngModel)]="selectedValueSexe" name="sexe" formControlName="sexe">
+  <mat-select formControlName="sexe">
     <mat-option *ngFor="let sexe of sexes" [value]="sexe.value">
       {{sexe.viewValue}}
     </mat-option>
   </mat-select>
-    <mat-error *ngIf="checkError('sexe','required')">
-      Le sexe est <strong>requis.</strong>
+    <mat-error *ngIf="utilisateurFormGroup.controls['sexe'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessageSexe() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field appearance="fill">
   <mat-label>Choissiez votre rôle</mat-label>
-  <mat-select [(ngModel)]="selectedValueRole" formControlName="role" (ngModelChange)="afficherRole()" name="role">
+  <mat-select formControlName="role" (ngModelChange)="afficherRole()">
     <mat-option *ngFor="let role of roles" [value]="role.idRoles">
       {{role.denomination}}
     </mat-option>
   </mat-select>
-    <mat-error *ngIf="checkError('role','required')">
-      Le role est <strong>requis.</strong>
+    <mat-error *ngIf="utilisateurFormGroup.controls['role'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessageRole() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <button class="btn btn-outline-primary btn-block" (click)="retour()">
     <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
-  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!utilisateurFormGroup.valid">
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!utilisateurFormGroup.valid ">
     <i class="far fa-plus-square"></i> Ajouter</button>
   <p></p>
 </form>

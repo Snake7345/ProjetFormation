@@ -1,14 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {CategoriesService} from "../../services/categories/categories.service";
 import {ToastrService} from "ngx-toastr";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
-import {Categories} from "../../models/categories";
 import {Utilisateurs} from "../../models/utilisateurs";
 import {ISexe} from "./ISexe";
 import {RolesService} from "../../services/roles/roles.service";
-import {Anneeslabo} from "../../models/anneeslabo";
 import {Roles} from "../../models/role";
 
 @Component({
@@ -19,9 +16,6 @@ import {Roles} from "../../models/role";
 export class AddUtilisateursComponent implements OnInit{
 
   actif : number = 1;
-
-  selectedValueSexe? : string;
-  selectedValueRole? : string;
   sexes: ISexe[] = [
     {value: 'x', viewValue: 'X'},
     {value: 'feminin', viewValue: 'Féminin'},
@@ -52,7 +46,7 @@ export class AddUtilisateursComponent implements OnInit{
       email:new FormControl('', [Validators.required,
         Validators.minLength(4), Validators.maxLength(100)]),
       NRN:new FormControl('', [Validators.required,
-        Validators.minLength(11), Validators.maxLength(11)]),
+        Validators.minLength(11), Validators.maxLength(11), Validators.pattern("^[0-9]*$"),]),
       password:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(100)]),
       sexe:new FormControl('', [Validators.required,]),
@@ -60,6 +54,8 @@ export class AddUtilisateursComponent implements OnInit{
     })
     this.afficherRole()
   }
+
+
 
   public checkError = (controlName: string, errorName: string) => {
     return this.utilisateurFormGroup.controls[controlName].hasError(errorName);
@@ -85,7 +81,7 @@ export class AddUtilisateursComponent implements OnInit{
     if(this.utilisateurFormGroup.invalid) return
     const utilisateur = new Utilisateurs(this.utilisateurFormGroup.value.nom,
       this.utilisateurFormGroup.value.prenom,this.utilisateurFormGroup.value.password,
-      this.utilisateurFormGroup.value.mail,this.utilisateurFormGroup.value.NRN,
+      this.utilisateurFormGroup.value.email,this.utilisateurFormGroup.value.NRN,
       this.utilisateurFormGroup.value.sexe,this.actif, this.utilisateurFormGroup.value.role);
     console.log(utilisateur)
     this.utilisateurService.save(utilisateur).subscribe(
@@ -105,5 +101,59 @@ export class AddUtilisateursComponent implements OnInit{
 
   retour() {
     this._router.navigate(["tableUtilisateurs"])
+  }
+
+  /*Gestion des erreurs : */
+
+  getErrorMessageNom()
+  {
+    return this.utilisateurFormGroup.controls['nom'].hasError('required') ? ' Le nom de l\'utilisateur est requis' :
+      this.utilisateurFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+        this.utilisateurFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+          '';
+  }
+
+  getErrorMessagePrenom()
+  {
+    return this.utilisateurFormGroup.controls['prenom'].hasError('required') ? ' Le prénom de l\'utilisateur est requis.' :
+      this.utilisateurFormGroup.controls['prenom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
+        this.utilisateurFormGroup.controls['prenom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
+          '';
+  }
+
+  getErrorMessageMail()
+  {
+    return this.utilisateurFormGroup.controls['email'].hasError('required') ? 'Le mail est requis.' :
+      this.utilisateurFormGroup.controls['email'].hasError('minlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
+        this.utilisateurFormGroup.controls['email'].hasError('maxlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
+          '';
+  }
+
+  getErrorMessageSexe()
+  {
+    return this.utilisateurFormGroup.controls['sexe'].hasError('required') ? 'Le sexe est requis.' :
+          '';
+  }
+
+  getErrorMessageRole()
+  {
+    return this.utilisateurFormGroup.controls['role'].hasError('required') ? 'Le role est requis.' :
+      '';
+  }
+
+  getErrorMessagePassword()
+  {
+    return this.utilisateurFormGroup.controls['password'].hasError('required') ? 'Le password est requis' :
+      this.utilisateurFormGroup.controls['password'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+        this.utilisateurFormGroup.controls['password'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+          '';
+  }
+
+  getErrorMessageNRN() {
+    return this.utilisateurFormGroup.controls['NRN'].hasError('required') ? 'Le registre national est requis' :
+      this.utilisateurFormGroup.controls['NRN'].hasError('pattern') ? 'Le registre national doit contenir que des chiffres.' :
+        this.utilisateurFormGroup.controls['NRN'].hasError('minlength') ? 'La longueur doit être de 11 caractères.' :
+          this.utilisateurFormGroup.controls['NRN'].hasError('maxlength') ? 'La longueur doit être de 11 caractères.' :
+            '';
   }
 }
