@@ -22,7 +22,7 @@ export class FormationsEntity {
     @Column({ type: 'date' })
     dateLimiteInscription : Date
 
-    @Column({ type: 'date' })
+    @Column({ type: 'time' })
     heureLimiteInscription : Date
 
     @Column({ type: 'date' })

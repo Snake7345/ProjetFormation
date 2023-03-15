@@ -3,8 +3,6 @@ import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import {ErrorTypePermissions} from "../../utilities/error.enum";
 
 export class NewquestionsDto{
-    @IsDefined()
-    @IsNumber()
     idQuestions: number
 
     @IsDefined()

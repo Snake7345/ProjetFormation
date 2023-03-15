@@ -3,8 +3,7 @@ import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import {ErrorTypeDiplomes} from "../../utilities/error.enum";
 
 export class NewdiplomesDto {
-    @IsDefined()
-    @IsNumber()
+
     idDiplomes: number
     @IsNotBlank({message: 'DTO : ' + ErrorTypeDiplomes.EMPTY_NOM_ERROR})
     @IsString({message: 'DTO : ' + ErrorTypeDiplomes.NOM_ERROR})

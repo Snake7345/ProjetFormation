@@ -3,7 +3,7 @@ import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
 
 export class NewformationsDto{
-    @IsNumber()
+
     idFormations : number
 
     @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_NOM_ERROR})

@@ -6,6 +6,7 @@ import { Repository } from "typeorm";
 import { ErrorGeneral, ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum";
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
 import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
+import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
 
 /*CRUD : le service sert à créer les méthodes qui seront utilisées partout ailleurs dans notre programme*/
 @Injectable()
@@ -26,7 +27,7 @@ export class CategoriesService {
   }
 
   async findById(id: number): Promise<CategoriesDto> {
-    return await this.categoriesRepository.findOneOrFail({
+    return await this.categoriesRepository.findOne({
       where : {idCategories : id}
     })
       .catch((error) => {
@@ -37,7 +38,8 @@ export class CategoriesService {
 
 
   async findByNom(nom: string): Promise<CategoriesDto> {
-    return await this.categoriesRepository.findOneOrFail({
+
+    return await this.categoriesRepository.findOne({
       where : {nom : nom}
     })
       .catch((error) => {
@@ -45,8 +47,9 @@ export class CategoriesService {
         throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
       })
   }
+  /*Demandez la différence entre findone,findoneby et findoneorfail*/
 
-  async create(dto: CategoriesDto): Promise<CategoriesDto> {
+  async create(dto: NewcategoriesDto): Promise<NewcategoriesDto> {
     if (await this.findByNom(dto.nom)) {
       throw new HttpException(ErrorTypeCategories.NOM_EXIST,ErrorStatus.NOM_EXIST
       );

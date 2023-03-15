@@ -30,4 +30,6 @@ export class TableCategoriesComponent implements OnInit{
     );
   }
 
+
+
 }

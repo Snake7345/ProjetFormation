@@ -6,7 +6,8 @@
       <th scope="col">IdCategories</th>
       <th scope="col">Nom</th>
       <th scope="col">Actif</th>
-      <th scope="col">Boutons</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Désactiver</th>
     </tr>
     </thead>
     <tbody>
@@ -24,18 +25,16 @@
       </td>-->
       <td>
         <button class="btn btn-outline-warning"
-                routerLink="/updateCategories/{{ categorie.idCategories }}">
-          <i class="far fa-edit"></i> Modifier
+                routerLink="/updateCategories/{{ categorie.idCategories }}"><mat-icon>update</mat-icon>Modifier
         </button>
       </td>
-      <!--<td>
+      <td>
         <button
-          class="btn btn-outline-danger"
-          (click)="supprimer(produit.id)"
-        >
-          <i class="far fa-trash-alt"></i> Supprimer
+          class="btn btn-outline-danger">
+          <!--(click)="delete(produit.id)"-->
+          <mat-icon>delete</mat-icon> Désactiver
         </button>
-      </td>-->
+      </td>
     </tr>
     </tbody>
   </table>

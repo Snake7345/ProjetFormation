@@ -4,6 +4,7 @@ import { CategoriesDto } from "../shared/dto/categories/categories.dto";
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
 import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import { ApiTags } from "@nestjs/swagger";
+import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
 
 // On appelle les méthodes à partir du service
 @ApiTags("Categories")
@@ -25,7 +26,7 @@ export class CategoriesController {
   /*Je ne comprends pas la validation whitelist*/
   @UsePipes(new ValidationPipe({ whitelist: true }))
   @Post('createcategorie')
-  async create(@Body(ValidationPipe) dto: CategoriesDto) : Promise<CategoriesDto> {
+  async create(@Body(ValidationPipe) dto: NewcategoriesDto) : Promise<CategoriesDto> {
     return await this.categoriesService.create(dto);
   }
 
