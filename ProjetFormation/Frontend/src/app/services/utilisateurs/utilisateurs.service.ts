@@ -26,6 +26,11 @@ export class UtilisateursService {
     return this.httpClient.patch<any>(`${this.utilisateursUrl}/modifier${id}`, utilisateurs);
   }
 
+  public activdesactiv(id:number, utilisateurs:Utilisateurs): Observable<any>
+  {
+    return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv${id}`, utilisateurs);
+  }
+
   public save(utilisateurs: Utilisateurs): Observable<any> {
     return this.httpClient.post<any>(`${this.utilisateursUrl}/createutilisateur`, utilisateurs);
   }

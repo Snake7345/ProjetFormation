@@ -44,7 +44,8 @@ export class TableUtilisateursComponent implements OnInit {
       cancelButtonText: 'Non'
     }).then((result) => {
       if (result.value) {
-        //this.utilisateurService.delete(id).subscribe(res => this.cargarProductos());
+
+        //this.utilisateurService.activdesactiv(id).subscribe(res => this.cargarProductos());
         Swal.fire(
           'OK',
           'Utilisateur activé/désactivé',
