@@ -43,7 +43,7 @@ export class AddUtilisateursComponent implements OnInit{
         Validators.minLength(2), Validators.maxLength(100)]),
       prenom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(100)]),
-      email:new FormControl('', [Validators.required,
+      mail:new FormControl('', [Validators.required,
         Validators.minLength(4), Validators.maxLength(100)]),
       NRN:new FormControl('', [Validators.required,
         Validators.minLength(11), Validators.maxLength(11), Validators.pattern("^[0-9]*$"),]),
@@ -75,7 +75,7 @@ export class AddUtilisateursComponent implements OnInit{
     if(this.utilisateurFormGroup.invalid) return
     const utilisateur = new Utilisateurs(this.utilisateurFormGroup.value.nom,
       this.utilisateurFormGroup.value.prenom,this.utilisateurFormGroup.value.password,
-      this.utilisateurFormGroup.value.email,this.utilisateurFormGroup.value.NRN,
+      this.utilisateurFormGroup.value.mail,this.utilisateurFormGroup.value.NRN,
       this.utilisateurFormGroup.value.sexe,this.actif, this.utilisateurFormGroup.value.role);
     console.log(utilisateur)
     this.utilisateurService.save(utilisateur).subscribe(
@@ -117,9 +117,9 @@ export class AddUtilisateursComponent implements OnInit{
 
   getErrorMessageMail()
   {
-    return this.utilisateurFormGroup.controls['email'].hasError('required') ? 'Le mail est requis.' :
-      this.utilisateurFormGroup.controls['email'].hasError('minlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
-        this.utilisateurFormGroup.controls['email'].hasError('maxlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
+    return this.utilisateurFormGroup.controls['mail'].hasError('required') ? 'Le mail est requis.' :
+      this.utilisateurFormGroup.controls['mail'].hasError('minlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
+        this.utilisateurFormGroup.controls['mail'].hasError('maxlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
           '';
   }
 

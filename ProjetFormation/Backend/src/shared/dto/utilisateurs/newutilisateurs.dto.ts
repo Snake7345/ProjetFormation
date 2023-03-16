@@ -48,6 +48,6 @@ export class NewutilisateursDto{
     actif: number
 
     @IsDefined()
-    role : RolesDto
+    role : number
 
 }

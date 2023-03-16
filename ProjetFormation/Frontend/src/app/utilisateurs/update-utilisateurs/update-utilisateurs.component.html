@@ -1,2 +1,82 @@
-<h1>Mise a jour du compte utilisateur</h1>
-<input type="submit" value="Modifier">
+<h1>Mise a jour de l'utilisateur</h1>
+<!--TODO: Questionnaire à faire
+  !-->
+<form [formGroup]="utilisateurFormGroup" class="register-form" (ngSubmit)="onUpdate()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom de l'utilisateur</mat-label>
+    <input type="text" matInput formControlName="nom"/>
+    <mat-error *ngIf="utilisateurFormGroup.controls['nom'].invalid">
+      {{ getErrorMessageNom() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Prénom de l'utilisateur</mat-label>
+    <input type="text" matInput formControlName="prenom"/>
+    <mat-error *ngIf="utilisateurFormGroup.controls['prenom'].invalid">
+      {{ getErrorMessagePrenom() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Mail de l'utilisateur</mat-label>
+    <input type="email" matInput formControlName="mail"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="utilisateurFormGroup.controls['mail'].invalid">
+      {{ getErrorMessageMail() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Numero de registre national</mat-label>
+    <input type="text" matInput maxlength="11" formControlName="NRN"/>
+    <mat-error *ngIf="utilisateurFormGroup.controls['NRN'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessageNRN() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="utilisateurFormGroup.controls['password'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessagePassword() }}
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+  <mat-form-field appearance="fill">
+    <mat-label>Choissiez votre sexe</mat-label>
+    <mat-select formControlName="sexe">
+      <mat-option *ngFor="let sexe of sexes" [value]="sexe.value">
+        {{sexe.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="utilisateurFormGroup.controls['sexe'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessageSexe() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field appearance="fill">
+    <mat-label>Choissiez votre rôle</mat-label>
+    <mat-select formControlName="role" (ngModelChange)="afficherRole()">
+      <mat-option *ngFor="let role of roles" [value]="role.idRoles">
+        {{role.denomination}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="utilisateurFormGroup.controls['role'].invalid">
+      {{ getErrorMessageRole() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" (click)="updateData()" [disabled]="!utilisateurFormGroup.valid ">
+    <i class="far fa-plus-square"></i> Ajouter</button>
+  <p></p>
+</form>
+

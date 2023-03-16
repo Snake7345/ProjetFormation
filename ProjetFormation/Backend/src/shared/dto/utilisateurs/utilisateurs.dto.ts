@@ -5,10 +5,6 @@ import { RolesEntity } from "../../entities/roles.entity";
 import { RolesDto } from "../roles/roles.dto";
 
 export class UtilisateursDto{
-
-    @IsDefined()
-    @IsNotBlank()
-    @IsNumber()
     idUtilisateur: number
 
     @IsDefined()
@@ -52,6 +48,6 @@ export class UtilisateursDto{
     actif: number
 
     @IsDefined()
-    role : RolesDto
+    role : number
 
 }

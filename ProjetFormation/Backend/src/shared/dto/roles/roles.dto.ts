@@ -2,9 +2,6 @@ import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 
 export class RolesDto{
-  @IsDefined()
-  @IsNotBlank()
-  @IsNumber()
   idRoles: number
 
   @IsDefined()

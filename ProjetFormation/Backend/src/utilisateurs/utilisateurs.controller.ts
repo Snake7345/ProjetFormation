@@ -1,7 +1,22 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UsePipes,
+  ValidationPipe
+} from "@nestjs/common";
 import { UtilisateursService } from "./utilisateurs.service";
 import { ApiTags } from "@nestjs/swagger";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
+import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.dto";
+import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
+import { CategoriesDto } from "../shared/dto/categories/categories.dto";
+import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
@@ -21,11 +36,18 @@ export class UtilisateursController {
 
   @Post('createutilisateur')
   createUtilisateurs(
-    @Param("userId", ParseIntPipe) userId : number,
-    @Body(ValidationPipe) newUtilisateur : UtilisateursDto
+    @Body(ValidationPipe) newUtilisateur : NewutilisateursDto
   ) : Promise<any>
   {
-    return this.utilisateursService.createUtilisateurs(userId, newUtilisateur)
+    return this.utilisateursService.createUtilisateurs(newUtilisateur)
+  }
+
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  @Patch('modifier:id')
+  async update(
+    @Body(ValidationPipe) updateUtilisateurs : UpdateutilisateursDto
+  ) : Promise<UtilisateursDto> {
+    return await this.utilisateursService.updateUtilisateurs(updateUtilisateurs);
   }
 
 }

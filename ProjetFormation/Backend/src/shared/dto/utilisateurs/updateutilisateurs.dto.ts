@@ -3,9 +3,6 @@ import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
 
 export class UpdateutilisateursDto{
-    @IsDefined()
-    @IsNotBlank()
-    @IsNumber()
     idUtilisateur: number
 
     @IsDefined()
@@ -32,7 +29,7 @@ export class UpdateutilisateursDto{
     @IsString()
     @IsNotBlank({message: "Dto : le numéro de registre national ne doit pas être vide"})
     @Length(11,11,{message: "DTO : Le numéro de registre national doit comporter 11 caractères"})
-    nrn: string;
+    NRN: string;
 
 
     @IsDefined()
@@ -50,6 +47,6 @@ export class UpdateutilisateursDto{
     actif: number
 
     @IsDefined()
-    roleIdRoles : number
+    role : number
 
 }

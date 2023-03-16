@@ -20,9 +20,9 @@
   <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Mail de l'utilisateur</mat-label>
-    <input type="email" matInput formControlName="email"/>
+    <input type="email" matInput formControlName="mail"/>
     <!--1ere solution-->
-    <mat-error *ngIf="utilisateurFormGroup.controls['email'].invalid">
+    <mat-error *ngIf="utilisateurFormGroup.controls['mail'].invalid">
       {{ getErrorMessageMail() }}
     </mat-error>
   </mat-form-field>

@@ -36,7 +36,7 @@ export class RolesService {
   }
 
   async findById(id: number): Promise<RolesDto> {
-    return await this.rolesRepository.findOneOrFail({
+    return await this.rolesRepository.findOne({
       where : {idRoles : id}
     })
         .catch((error) => {
@@ -46,7 +46,7 @@ export class RolesService {
   }
 
   async findByNom(nom: string): Promise<RolesDto> {
-    return await this.rolesRepository.findOneOrFail({
+    return await this.rolesRepository.findOne({
       where : {denomination : nom}
     })
         .catch((error) => {

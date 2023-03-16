@@ -46,7 +46,7 @@ export class UtilisateursService {
   }
 
   async getAll(): Promise<UtilisateursDto[]> {
-    return this.utilisateursRepository.find(
+    return (await this.utilisateursRepository.find(
       {
         relations : {role : true},
       select : {
@@ -59,25 +59,28 @@ export class UtilisateursService {
         sexe : true,
         actif : true,
       }
-    })
+    })).map(u => ({ ...u, role: u.role.idRoles }))
   }
 
 
   async findById(id: number): Promise<UtilisateursDto> {
-    return await this.utilisateursRepository.findOneOrFail({
-      relations : {role : true},
-      where : {idUtilisateur : id}
-    })
-      .catch((error) => {
-        console.log("l'utilisateur n'existe pas")
-        throw new HttpException("l'utilisateur n'existe pas", 404)
-      })
+    try {
+      const user = await this.utilisateursRepository.findOneOrFail({
+        relations : {role : true},
+        where : {idUtilisateur : id}
+      });
+      return {...user, role: user.role.idRoles}
+    }
+    catch(error) {
+      console.log("l'utilisateur n'existe pas")
+      throw new HttpException("l'utilisateur n'existe pas", 404)
+    }
   }
 
-    async createUtilisateurs(roleId : number, userToCreate : UtilisateursDto) : Promise<any>
+    async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
   {
     let role : RolesEntity = await this.rolesRepository.findOneOrFail({
-    where : { idRoles : roleId },
+    where : { idRoles : userToCreate.role },
     relations : { utilisateurs : true}
   })
       .catch((error) => {
@@ -85,7 +88,7 @@ export class UtilisateursService {
         throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.UTILISATEUR_NOT_FOUND)
       })
 
-    let newUtilisateurs : UtilisateursEntity = this.utilisateursRepository.create(userToCreate)
+    let newUtilisateurs : UtilisateursEntity = this.utilisateursRepository.create({ ... userToCreate, role })
     await this.utilisateursRepository.save(newUtilisateurs)
 
     role.utilisateurs.push(newUtilisateurs)
@@ -97,13 +100,15 @@ export class UtilisateursService {
       })
   }
 
-  async updateUtilisateurs(roleId : number, userId : number, utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
+  async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
+    console.log("User ", utilisateurToUpdate)
+    console.log(42);
     let role : RolesEntity = await this.rolesRepository.findOneOrFail({
       where : {
-        idRoles : roleId,
+        idRoles : utilisateurToUpdate.role,
         utilisateurs : {
-          idUtilisateur : userId
+          idUtilisateur : utilisateurToUpdate.idUtilisateur
         }
       },
       relations : { utilisateurs : true}
@@ -115,7 +120,12 @@ export class UtilisateursService {
     // Element a modifier
     role.utilisateurs[0].nom = utilisateurToUpdate.nom
     role.utilisateurs[0].prenom = utilisateurToUpdate.prenom
-
+    role.utilisateurs[0].NRN = utilisateurToUpdate.NRN
+    role.utilisateurs[0].password = utilisateurToUpdate.password
+    role.utilisateurs[0].actif = utilisateurToUpdate.actif
+    role.utilisateurs[0].mail = utilisateurToUpdate.mail
+    role.utilisateurs[0].sexe = utilisateurToUpdate.sexe
+    role.utilisateurs[0].role.idRoles = utilisateurToUpdate.role
 
     return await this.rolesRepository.save(role)
       .catch((error) => {
@@ -123,8 +133,8 @@ export class UtilisateursService {
         throw new HttpException("role pas ajouté au user", 404)
       })
   }
-/*
-  async deleteUtilisateurs(roleId : number, userId : any) : Promise<any>
+
+  /*async deleteUtilisateurs(roleId : number, userId : any) : Promise<any>
   {
     let user : RolesEntity = await this.rolesRepository.findOneOrFail({
       where : {
@@ -142,7 +152,7 @@ export class UtilisateursService {
 
 
     return await this.gardensRepo.softRemove(user.gardens[0])
-  }
-*/
+  }*/
+
 
 }

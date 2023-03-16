@@ -30,7 +30,6 @@ export class CategoriesController {
     return await this.categoriesService.create(dto);
   }
 
-
   @UsePipes(new ValidationPipe({ whitelist: true }))
   @Patch('modifier:id')
   async update(
