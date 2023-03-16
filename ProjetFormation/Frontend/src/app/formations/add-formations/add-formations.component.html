@@ -1,39 +1,80 @@
 <p>Veuillez remplir le questionnaire suivant pour ajouter une formation</p>
 <!--TODO: Questionnaire à faire
   !-->
-<form class="example-form" (ngSubmit)="Submit()" >
+<form [formGroup]="formationFormGroup" class="example-form" (ngSubmit)="onCreate()" >
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle formation</mat-label>
-    <input type="text" matInput [formControl]="nomFormControl" />
-    <mat-error *ngIf="nomFormControl.hasError('required')">
-      Le nom de la formation est <strong>requise.</strong>
+    <input type="text" matInput formControlName="nom" />
+    <mat-error *ngIf="formationFormGroup.controls['nom'].invalid">
+      {{ getErrorMessageNom() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Info complémentaires</mat-label>
-    <textarea matInput [formControl]="infosFormControl"></textarea>
+    <textarea matInput formControlName="infos"></textarea>
+    <mat-error *ngIf="formationFormGroup.controls['infos'].invalid">
+      {{ getErrorMessageInfos() }}
+    </mat-error>
   </mat-form-field>
-  <p></p>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Date limite de l'inscription</mat-label>
-    <input
-      type="date"
-      matInput
-      [formControl]="dateLimiteInscriptionFormControl"
+    <input type="date" matInput formControlName="dateLimiteInscription"
     />
-    <mat-error *ngIf="dateLimiteInscriptionFormControl.hasError('required')">
-      La date limite d'inscription est <strong>requise.</strong>
+    <mat-error *ngIf="formationFormGroup.controls['dateLimiteInscription'].invalid">
+      {{ getErrorMessageDateLimiteInscription() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
+  <mat-form-field class="example-full-width">
+    <mat-label>Heure limite de l'inscription</mat-label>
+    <input type="time" matInput formControlName="heureLimiteInscription" />
+    <mat-error *ngIf="formationFormGroup.controls['heureLimiteInscription'].invalid">
+      {{ getErrorMessageHeureLimiteInscription() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
   <mat-form-field class="example-full-width">
     <mat-label>Date du questionnaire de l'examen</mat-label>
-    <input type="date" matInput [formControl]="dateQuestionnaireFormControl" />
-    <mat-error *ngIf="dateQuestionnaireFormControl.hasError('required')">
-      La date du questionnaire de fin de formation est <strong>requise.</strong>
+    <input type="date" matInput formControlName="dateQuestionnaire" />
+    <mat-error *ngIf="formationFormGroup.controls['dateQuestionnaire'].invalid">
+      {{ getErrorMessageDateQuestionnaire() }}
     </mat-error>
   </mat-form-field>
-  <p></p>
-  <input type="submit" value="Envoyer">
+  <mat-form-field class="example-full-width">
+    <mat-label>Heure de questionnaire</mat-label>
+    <input type="time" matInput formControlName="heureQuestionnaire" />
+    <mat-error *ngIf="formationFormGroup.controls['heureQuestionnaire'].invalid">
+      {{ getErrorMessageHeureQuestionnaire() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field appearance="fill">
+    <mat-label>Choissiez la catégorie</mat-label>
+    <mat-select formControlName="categorie" (ngModelChange)="afficherCategorie()">
+      <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategories">
+        {{categorie.nom}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formationFormGroup.controls['categorie'].invalid">
+      {{ getErrorMessageCategorie() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field appearance="fill">
+    <mat-label>Choissiez le responsable</mat-label>
+    <mat-select formControlName="utilisateur" (ngModelChange)="afficherUtilisateur()">
+      <mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.idUtilisateur">
+        {{utilisateur.nom + utilisateur.prenom}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formationFormGroup.controls['utilisateur'].invalid">
+      {{ getErrorMessageUtilisateur() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!formationFormGroup.valid ">
+    <i class="far fa-plus-square"></i> Ajouter</button>
 </form>

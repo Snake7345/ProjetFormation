@@ -55,12 +55,6 @@ export class AddUtilisateursComponent implements OnInit{
     this.afficherRole()
   }
 
-
-
-  public checkError = (controlName: string, errorName: string) => {
-    return this.utilisateurFormGroup.controls[controlName].hasError(errorName);
-  }
-
   afficherRole(): void {
     this.roleservice.liste().subscribe(
       (data) => {

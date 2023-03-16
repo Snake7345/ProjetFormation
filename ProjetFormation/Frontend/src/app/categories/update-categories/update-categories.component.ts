@@ -54,6 +54,13 @@ export class UpdateCategoriesComponent implements OnInit {
     );
   }
 
+  errorMessageNom()
+  {
+    return this.categorieFormGroup.controls['nom'].hasError('required') ? ' La dénomination de la catégorie est requise.' :
+      this.categorieFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
+        this.categorieFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+          '';
+  }
   public checkError = (controlName: string, errorName: string) => {
     return this.categorieFormGroup.controls[controlName].hasError(errorName);
   }

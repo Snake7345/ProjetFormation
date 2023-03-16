@@ -13,7 +13,8 @@
       <th scope="col">Sexe</th>
       <th scope="col">Actif</th>
       <th scope="col">Role</th>
-      <th scope="col">Boutons</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Désactiver</th>
     </tr>
     </thead>
     <tbody>
@@ -27,6 +28,18 @@
       <td>{{ utilisateur.sexe }}</td>
       <td>{{ utilisateur.actif }}</td>
       <td>{{ utilisateur.role.denomination }}</td>
+      <td>
+        <button class="btn btn-outline-warning"
+                routerLink="/updateUtilisateurs/{{ utilisateur.idUtilisateur }}"><mat-icon>update</mat-icon>Modifier
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-danger">
+          <!--(click)="delete(produit.id)"-->
+          <mat-icon>delete</mat-icon> Désactiver
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>
