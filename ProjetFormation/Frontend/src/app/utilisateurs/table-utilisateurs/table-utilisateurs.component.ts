@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Categories} from "../../models/categories";
-import {CategoriesService} from "../../services/categories/categories.service";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {Utilisateurs} from "../../models/utilisateurs";
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-table-utilisateurs',
   templateUrl: './table-utilisateurs.component.html',
@@ -33,5 +31,32 @@ export class TableUtilisateursComponent implements OnInit {
         this.listeVide = err.error.message;
       }
     );
+  }
+
+  onUpdate(): void
+  {
+    Swal.fire({
+      title: 'Confirmation ?',
+      text: 'êtes vous sur de vouloir désactiver/réactiver l\'utilisateur ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non'
+    }).then((result) => {
+      if (result.value) {
+        //this.utilisateurService.delete(id).subscribe(res => this.cargarProductos());
+        Swal.fire(
+          'OK',
+          'Utilisateur activé/désactivé',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Annulé',
+          'L\'action a été annulé',
+          'error'
+        );
+      }
+    });
   }
 }

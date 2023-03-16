@@ -105,7 +105,7 @@ export class UpdateUtilisateursComponent {
         this.toastr.success(data.message, 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-        this._router.navigate(['tableCategories']);
+        this._router.navigate(['tableUtilisateurs']);
       },
       err => {
         this.toastr.error(err.error.message, 'Fail', {

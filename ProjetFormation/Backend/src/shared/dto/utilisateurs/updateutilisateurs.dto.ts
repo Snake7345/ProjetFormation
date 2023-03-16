@@ -3,6 +3,7 @@ import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
 
 export class UpdateutilisateursDto{
+    @IsNumber()
     idUtilisateur: number
 
     @IsDefined()

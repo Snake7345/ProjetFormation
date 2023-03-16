@@ -5,6 +5,7 @@ import { RolesEntity } from "../../entities/roles.entity";
 import { RolesDto } from "../roles/roles.dto";
 
 export class UtilisateursDto{
+    @IsNumber()
     idUtilisateur: number
 
     @IsDefined()

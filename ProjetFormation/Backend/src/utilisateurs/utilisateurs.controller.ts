@@ -50,4 +50,12 @@ export class UtilisateursController {
     return await this.utilisateursService.updateUtilisateurs(updateUtilisateurs);
   }
 
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  @Patch('activdesactiv:id')
+  async activdesactiv(
+    @Body(ValidationPipe) updateUtilisateurs : UpdateutilisateursDto
+  ) : Promise<UtilisateursDto> {
+    return await this.utilisateursService.activDesactivUtilisateurs(updateUtilisateurs);
+  }
+
 }
