@@ -104,33 +104,49 @@ export class UtilisateursService {
   {
     console.log("User ", utilisateurToUpdate)
     console.log(42);
-    let role : RolesEntity = await this.rolesRepository.findOneOrFail({
-      where : {
-        idRoles : utilisateurToUpdate.role,
-        utilisateurs : {
-          idUtilisateur : utilisateurToUpdate.idUtilisateur
-        }
-      },
-      relations : { utilisateurs : true}
-    })
-      .catch((error) => {
-        console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.UTILISATEUR_NOT_FOUND)
-      })
-    // Element a modifier
-    role.utilisateurs[0].nom = utilisateurToUpdate.nom
-    role.utilisateurs[0].prenom = utilisateurToUpdate.prenom
-    role.utilisateurs[0].NRN = utilisateurToUpdate.NRN
-    role.utilisateurs[0].password = utilisateurToUpdate.password
-    role.utilisateurs[0].actif = utilisateurToUpdate.actif
-    role.utilisateurs[0].mail = utilisateurToUpdate.mail
-    role.utilisateurs[0].sexe = utilisateurToUpdate.sexe
-    role.utilisateurs[0].role.idRoles = utilisateurToUpdate.role
+    // let role : RolesEntity = await this.rolesRepository.findOneOrFail({
+    //   where : {
+    //     idRoles : utilisateurToUpdate.role,
+    //     utilisateurs : {
+    //       idUtilisateur : utilisateurToUpdate.idUtilisateur
+    //     }
+    //   },
+    //   relations : { utilisateurs : true}
+    // })
+    //   .catch((error) => {
+    //     console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
+    //     throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.UTILISATEUR_NOT_FOUND)
+    //   })
 
-    return await this.rolesRepository.save(role)
+    const user = await  this.utilisateursRepository.findOneOrFail({
+      where: {
+        idUtilisateur: utilisateurToUpdate.idUtilisateur
+      },
+    })
+    const role = await this.rolesRepository.findOneBy(
+      {idRoles : utilisateurToUpdate.role}
+    )
+
+    user.nom = utilisateurToUpdate.nom
+    console.log(43);
+    user.prenom = utilisateurToUpdate.prenom
+    console.log(44);
+    user.NRN = utilisateurToUpdate.NRN
+    console.log(45);
+    user.password = utilisateurToUpdate.password
+    console.log(46);
+    user.actif = utilisateurToUpdate.actif
+    console.log(47);
+    user.mail = utilisateurToUpdate.mail
+    console.log(48);
+    user.sexe = utilisateurToUpdate.sexe
+    console.log(49);
+    user.role = role
+    console.log("user renvoye", user)
+    return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
-        console.log("role pas ajouté au user")
-        throw new HttpException("role pas ajouté au user", 404)
+        console.log("Problème concernant la mise a jour de l'utilisateur")
+        throw new HttpException("Problème concernant la mise a jour de l'utilisateur", 404)
       })
   }
 
