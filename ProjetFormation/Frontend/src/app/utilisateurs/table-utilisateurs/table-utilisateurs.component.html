@@ -35,10 +35,15 @@
         </button>
       </td>
       <td>
-        <button (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)"
+
+        <button *ngIf="utilisateur.actif !=0; else active" (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)"
           class="btn btn-outline-danger">
           <mat-icon>delete</mat-icon> Désactiver
         </button>
+        <ng-template #active>
+          <button (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)" class="btn btn-outline-danger">
+          <mat-icon>delete</mat-icon> Activé
+        </button></ng-template>
       </td>
     </tr>
     </tbody>
