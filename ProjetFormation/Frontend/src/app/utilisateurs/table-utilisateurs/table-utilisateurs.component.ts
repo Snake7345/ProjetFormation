@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {Utilisateurs} from "../../models/utilisateurs";
 import Swal from 'sweetalert2';
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
+import {UtilisateursActivDesactiv} from "../../models/utilisateursActivDesactiv";
 @Component({
   selector: 'app-table-utilisateurs',
   templateUrl: './table-utilisateurs.component.html',
@@ -13,8 +16,11 @@ export class TableUtilisateursComponent implements OnInit {
 
   listeVide = undefined;
 
-  constructor(private utilisateurService: UtilisateursService) {
-  }
+  constructor(private utilisateurService: UtilisateursService,
+              private toastr : ToastrService,
+              private _router : Router
+  )
+  {}
 
   ngOnInit(): void {
     this.afficherUtilisateurs();
@@ -33,8 +39,9 @@ export class TableUtilisateursComponent implements OnInit {
     );
   }
 
-  onUpdate(): void
+  onUpdate(id: number | undefined, actif : number): void
   {
+
     Swal.fire({
       title: 'Confirmation ?',
       text: 'êtes vous sur de vouloir désactiver/réactiver l\'utilisateur ?',
@@ -44,13 +51,35 @@ export class TableUtilisateursComponent implements OnInit {
       cancelButtonText: 'Non'
     }).then((result) => {
       if (result.value) {
+        if(actif == 1)
+        {
+          actif = 0;
+        }
+        else
+        {
+          actif = 1;
+        }
+        this.utilisateurService.activdesactiv(id, actif).subscribe(
+          data => {
+            this.toastr.success(data.message, 'OK', {
+              timeOut: 3000, positionClass: 'toast-top-center'
+            });
+            this._router.navigate(['tableUtilisateurs']);
+            Swal.fire(
+            'OK',
+            'Utilisateur activé/désactivé',
+            'success'
+            );
+          },
 
-        //this.utilisateurService.activdesactiv(id).subscribe(res => this.cargarProductos());
-        Swal.fire(
-          'OK',
-          'Utilisateur activé/désactivé',
-          'success'
+          err => {
+            this.toastr.error(err.error.message, 'Fail', {
+              timeOut: 3000,  positionClass: 'toast-top-center',
+            });
+          }
         );
+
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Annulé',

@@ -27,7 +27,6 @@ export class Utilisateurs{
     this.NRN = NRN;
     this.sexe = sexe;
     this.password = password
-    this.actif = actif;
     this.role = role;
     this.actif = actif;
   }

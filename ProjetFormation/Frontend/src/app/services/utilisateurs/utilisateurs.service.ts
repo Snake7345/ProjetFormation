@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
 import {Categories} from "../../models/categories";
+import {UtilisateursActivDesactiv} from "../../models/utilisateursActivDesactiv";
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,11 @@ export class UtilisateursService {
     return this.httpClient.patch<any>(`${this.utilisateursUrl}/modifier${id}`, utilisateurs);
   }
 
-  public activdesactiv(id:number, utilisateurs:Utilisateurs): Observable<any>
+  public activdesactiv(id: number | undefined, actif: number): Observable<any>
   {
-    return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv${id}`, utilisateurs);
+    console.log("j'affiche actif : ", actif)
+    console.log("j'affiche id : ", id)
+    return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv/${id}`, {"actif":actif});
   }
 
   public save(utilisateurs: Utilisateurs): Observable<any> {

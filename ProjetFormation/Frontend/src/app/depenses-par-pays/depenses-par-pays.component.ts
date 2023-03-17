@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Payslabo} from "../models/payslabo";
 import {PayslaboService} from "../services/payslabo/payslabo.service";
-import {IPays} from "./IPays";
+import {IPays} from "../shared/interfaces/IPays";
 
 @Component({
   selector: 'app-depenses-par-pays',

@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {Utilisateurs} from "../../models/utilisateurs";
-import {ISexe} from "./ISexe";
+import {ISexe} from "../../shared/interfaces/ISexe";
 import {RolesService} from "../../services/roles/roles.service";
 import {Roles} from "../../models/role";
 

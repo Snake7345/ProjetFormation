@@ -3,7 +3,7 @@ import {Projetslabo} from "../models/projetslabo";
 import {ProjetslaboService} from "../services/projetslabo/projetslabo";
 import {Anneeslabo} from "../models/anneeslabo";
 import {AnneeslaboService} from "../services/anneeslabo/anneeslabo";
-import {IProjet} from "./IProjet";
+import {IProjet} from "../shared/interfaces/IProjet";
 
 @Component({
   selector: 'app-where-is-money-graphique',

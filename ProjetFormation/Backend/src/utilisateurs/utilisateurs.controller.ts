@@ -14,8 +14,6 @@ import { UtilisateursService } from "./utilisateurs.service";
 import { ApiTags } from "@nestjs/swagger";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.dto";
-import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
-import { CategoriesDto } from "../shared/dto/categories/categories.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 
 @ApiTags("Utilisateurs")
@@ -50,12 +48,10 @@ export class UtilisateursController {
     return await this.utilisateursService.updateUtilisateurs(updateUtilisateurs);
   }
 
-  @UsePipes(new ValidationPipe({ whitelist: true }))
-  @Patch('activdesactiv:id')
-  async activdesactiv(
-    @Body(ValidationPipe) updateUtilisateurs : UpdateutilisateursDto
-  ) : Promise<UtilisateursDto> {
-    return await this.utilisateursService.activDesactivUtilisateurs(updateUtilisateurs);
+  @Patch('activdesactiv/:id')
+  async activdesactiv(@Param('id', ParseIntPipe) id: number, @Body()actif : any) : Promise<any> {
+    console.log("je suis un id et un actif : ", id, " ", actif)
+    return await this.utilisateursService.activDesactivUtilisateurs(id, actif.actif);
   }
 
 }

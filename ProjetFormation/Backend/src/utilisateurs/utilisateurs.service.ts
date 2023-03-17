@@ -7,7 +7,7 @@ import { RolesService } from "../roles/roles.service";
 import { ErrorGeneral, ErrorStatus, ErrorTypeCategories, ErrorTypeUtilisateurs } from "../shared/utilities/error.enum";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
-import { CategoriesEntity } from "../shared/entities/categories.entity";
+import { CategoriesEntity } from "../shared/entities/categories.entity"
 
 @Injectable()
 export class UtilisateursService {
@@ -120,16 +120,15 @@ export class UtilisateursService {
       })
   }
 
-  async activDesactivUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
+  async activDesactivUtilisateurs(id : number, actif : number) : Promise<any>
   {
-    console.log("User ", utilisateurToUpdate.idUtilisateur)
     const user = await  this.utilisateursRepository.findOneOrFail({
       where: {
-        idUtilisateur: utilisateurToUpdate.idUtilisateur
+        idUtilisateur: id
       },
     })
-    user.actif = utilisateurToUpdate.actif
-
+    user.actif = actif
+    console.log("je suis un user :", user)
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
         console.log("Problème concernant la désactivation/activation de l\'utilisateur'")

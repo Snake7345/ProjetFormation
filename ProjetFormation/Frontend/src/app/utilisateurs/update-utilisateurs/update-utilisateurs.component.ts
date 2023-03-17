@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ISexe} from "../add-utilisateurs/ISexe";
+import {ISexe} from "../../shared/interfaces/ISexe";
 import {Roles} from "../../models/role";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {RolesService} from "../../services/roles/roles.service";
