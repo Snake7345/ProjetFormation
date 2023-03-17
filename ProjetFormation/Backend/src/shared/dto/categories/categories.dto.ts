@@ -3,7 +3,6 @@ import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 import { ErrorTypeCategories } from "../../utilities/error.enum";
 
 export class CategoriesDto {
-  @IsDefined()
   @IsNumber()
   idCategories : number
 

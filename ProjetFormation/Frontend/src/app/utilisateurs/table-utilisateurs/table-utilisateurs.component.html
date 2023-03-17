@@ -14,7 +14,7 @@
       <th scope="col">Actif</th>
       <th scope="col">Role</th>
       <th scope="col">Modifier</th>
-      <th scope="col">Désactiver</th>
+      <th scope="col">On/off</th>
     </tr>
     </thead>
     <tbody>
@@ -35,14 +35,13 @@
         </button>
       </td>
       <td>
-
         <button *ngIf="utilisateur.actif !=0; else active" (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)"
           class="btn btn-outline-danger">
-          <mat-icon>delete</mat-icon> Désactiver
+          <mat-icon>power_off</mat-icon> Désactiver
         </button>
         <ng-template #active>
           <button (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)" class="btn btn-outline-danger">
-          <mat-icon>delete</mat-icon> Activé
+          <mat-icon>power_on</mat-icon>Activé
         </button></ng-template>
       </td>
     </tr>

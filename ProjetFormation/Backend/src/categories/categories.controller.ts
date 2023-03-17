@@ -5,6 +5,8 @@ import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.d
 import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import { ApiTags } from "@nestjs/swagger";
 import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
+import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import { ActivdesactivcategoriesDto } from "../shared/dto/categories/activdesactivcategories.dto";
 
 // On appelle les méthodes à partir du service
 @ApiTags("Categories")
@@ -36,6 +38,12 @@ export class CategoriesController {
       @Body(ValidationPipe) updateCategorie : UpdatecategoriesDto
   ) : Promise<CategoriesDto> {
     return await this.categoriesService.update(updateCategorie);
+  }
+
+  @Patch('activdesactiv/:id')
+  async activdesactiv(@Body(ValidationPipe) updateCategories : ActivdesactivcategoriesDto) : Promise<any> {
+    console.log("je suis un id et un actif : ", updateCategories.idCategories, " ", updateCategories.actif)
+    return await this.categoriesService.activDesactivCategories(updateCategories);
   }
 
   /*@Delete('/:id')

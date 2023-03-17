@@ -4,7 +4,6 @@ import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 
 export class UpdatecategoriesDto
 {
-    @IsDefined()
     @IsNumber()
     idCategories : number
     @IsDefined()

@@ -7,4 +7,4 @@ export class UtilisateursActivDesactiv{
     this.idUtilisateur = idUtilisateur;
     this.actif = actif;
   }
-  }
+}

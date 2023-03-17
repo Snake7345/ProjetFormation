@@ -4,7 +4,7 @@ import {Utilisateurs} from "../../models/utilisateurs";
 import Swal from 'sweetalert2';
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {UtilisateursActivDesactiv} from "../../models/utilisateursActivDesactiv";
+import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 import {RolesService} from "../../services/roles/roles.service";
 import {Roles} from "../../models/role";
 
@@ -25,7 +25,6 @@ export class TableUtilisateursComponent implements OnInit {
   constructor(private utilisateurService: UtilisateursService,
               private toastr : ToastrService,
               private _router : Router,
-              private roleService : RolesService
   )
   {}
 

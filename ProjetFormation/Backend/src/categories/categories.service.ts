@@ -7,6 +7,8 @@ import { ErrorGeneral, ErrorStatus, ErrorTypeCategories } from "../shared/utilit
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
 import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
+import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import { ActivdesactivcategoriesDto } from "../shared/dto/categories/activdesactivcategories.dto";
 
 /*CRUD : le service sert à créer les méthodes qui seront utilisées partout ailleurs dans notre programme*/
 @Injectable()
@@ -78,6 +80,22 @@ export class CategoriesService {
         throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
       })
     console.log("La catégorie est modifié")
+  }
+
+  async activDesactivCategories(updateCategorie : ActivdesactivcategoriesDto) : Promise<any>
+  {
+    const cat = await  this.categoriesRepository.findOneOrFail({
+      where: {
+        idCategories: updateCategorie.idCategories
+      },
+    })
+    cat.actif = updateCategorie.actif
+    console.log("je suis une categorie :", cat)
+    return await this.categoriesRepository.update(cat.idCategories, cat)
+      .catch((error) => {
+        console.log("Problème concernant la désactivation/activation de la catégorie'")
+        throw new HttpException("Problème concernant la désactivation/activation de la catégorie", 404)
+      })
   }
 
   async delete(dtoId: CategorieIdDto): Promise<UpdatecategoriesDto> {
