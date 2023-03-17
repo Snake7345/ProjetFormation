@@ -15,7 +15,7 @@ export class RolesController {
   async GetAll() : Promise<RolesDto[]> {
     return await this.rolesService.getAll();
   }
-  @Get('readrole:id')
+  @Get('readrole/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<RolesDto> {
     return await this.rolesService.findById(id);
   }
@@ -27,14 +27,14 @@ export class RolesController {
     return await this.rolesService.create(dto);
   }
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  @Patch('modifierrole:id')
+  @Patch('modifierrole/:id')
   async update(
       @Body(ValidationPipe) updateRoles : UpdaterolesDto
   ) : Promise<RolesDto> {
     return await this.rolesService.update(updateRoles);
   }
 
-  @Delete('deleterole:id')
+  @Delete('deleterole/:id')
   async delete(@Body(ValidationPipe) deleteRole : RolesIdDto) : Promise<UpdaterolesDto> {
     return await this.rolesService.delete(deleteRole);
   }

@@ -5,6 +5,9 @@ import Swal from 'sweetalert2';
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {UtilisateursActivDesactiv} from "../../models/utilisateursActivDesactiv";
+import {RolesService} from "../../services/roles/roles.service";
+import {Roles} from "../../models/role";
+
 @Component({
   selector: 'app-table-utilisateurs',
   templateUrl: './table-utilisateurs.component.html',
@@ -16,9 +19,13 @@ export class TableUtilisateursComponent implements OnInit {
 
   listeVide = undefined;
 
+  role : Roles[] = [];
+
+
   constructor(private utilisateurService: UtilisateursService,
               private toastr : ToastrService,
-              private _router : Router
+              private _router : Router,
+              private roleService : RolesService
   )
   {}
 
@@ -29,6 +36,7 @@ export class TableUtilisateursComponent implements OnInit {
   afficherUtilisateurs(): void {
     this.utilisateurService.liste().subscribe(
       (data) => {
+        console.log("je suis la data ", data)
         this.utilisateurs = data;
         console.log("affichage:" , data)
         this.listeVide = undefined;
@@ -39,9 +47,9 @@ export class TableUtilisateursComponent implements OnInit {
     );
   }
 
+
   onUpdate(id: number | undefined, actif : number): void
   {
-
     Swal.fire({
       title: 'Confirmation ?',
       text: 'êtes vous sur de vouloir désactiver/réactiver l\'utilisateur ?',
@@ -59,12 +67,14 @@ export class TableUtilisateursComponent implements OnInit {
         {
           actif = 1;
         }
-        this.utilisateurService.activdesactiv(id, actif).subscribe(
+        const utilisateur = new UtilisateursActivDesactiv(id,actif)
+        this.utilisateurService.activdesactiv(id, utilisateur).subscribe(
           data => {
             this.toastr.success(data.message, 'OK', {
               timeOut: 3000, positionClass: 'toast-top-center'
             });
             this._router.navigate(['tableUtilisateurs']);
+            this.afficherUtilisateurs();
             Swal.fire(
             'OK',
             'Utilisateur activé/désactivé',

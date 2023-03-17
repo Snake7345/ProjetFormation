@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
-import {Categories} from "../../models/categories";
 import {UtilisateursActivDesactiv} from "../../models/utilisateursActivDesactiv";
 
 @Injectable({
@@ -20,18 +19,18 @@ export class UtilisateursService {
   }
 
   public detail(id: number): Observable<Utilisateurs> {
-    return this.httpClient.get<Utilisateurs>(`${this.utilisateursUrl}/readutilisateur${id}`);
+    return this.httpClient.get<Utilisateurs>(`${this.utilisateursUrl}/readutilisateur/${id}`);
   }
 
   public update(id: number, utilisateurs: Utilisateurs | null): Observable<any> {
-    return this.httpClient.patch<any>(`${this.utilisateursUrl}/modifier${id}`, utilisateurs);
+    return this.httpClient.patch<any>(`${this.utilisateursUrl}/modifier/${id}`, utilisateurs);
   }
 
-  public activdesactiv(id: number | undefined, actif: number): Observable<any>
+  public activdesactiv(id: number | undefined, utilisateur : UtilisateursActivDesactiv): Observable<any>
   {
-    console.log("j'affiche actif : ", actif)
+    console.log("j'affiche utilisateur : ", utilisateur)
     console.log("j'affiche id : ", id)
-    return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv/${id}`, {"actif":actif});
+    return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv/${id}`, utilisateur);
   }
 
   public save(utilisateurs: Utilisateurs): Observable<any> {

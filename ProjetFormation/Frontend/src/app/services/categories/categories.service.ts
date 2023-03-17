@@ -18,7 +18,7 @@ export class CategoriesService {
   }
 
   public detail(id: number): Observable<Categories> {
-    return this.httpClient.get<Categories>(`${this.categoriesURL}/readcategorie${id}`);
+    return this.httpClient.get<Categories>(`${this.categoriesURL}/readcategorie/${id}`);
   }
 
   public save(categories: Categories): Observable<any> {
@@ -26,7 +26,7 @@ export class CategoriesService {
   }
 
   public update(id: number, categories: Categories | null): Observable<any> {
-    return this.httpClient.patch<any>(`${this.categoriesURL}/modifier${id}`, categories);
+    return this.httpClient.patch<any>(`${this.categoriesURL}/modifier/${id}`, categories);
   }
 
   public delete(id: number): Observable<any> {

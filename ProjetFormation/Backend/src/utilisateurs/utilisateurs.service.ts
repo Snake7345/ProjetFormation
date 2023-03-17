@@ -8,6 +8,7 @@ import { ErrorGeneral, ErrorStatus, ErrorTypeCategories, ErrorTypeUtilisateurs }
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import { CategoriesEntity } from "../shared/entities/categories.entity"
+import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 
 @Injectable()
 export class UtilisateursService {
@@ -60,7 +61,7 @@ export class UtilisateursService {
         sexe : true,
         actif : true,
       }
-    })).map(u => ({ ...u, role: u.role.idRoles }))
+    })).map(u => ({ ...u, role: u.role}))
   }
 
 
@@ -70,7 +71,7 @@ export class UtilisateursService {
         relations : {role : true},
         where : {idUtilisateur : id}
       });
-      return {...user, role: user.role.idRoles}
+      return {...user, role: user.role}
     }
     catch(error) {
       console.log("l'utilisateur n'existe pas")
@@ -81,7 +82,7 @@ export class UtilisateursService {
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
       const role = await this.rolesRepository.findOneBy(
-        {idRoles : userToCreate.role}
+        {idRoles : userToCreate.role.idRoles}
       )
       let utilisateur : UtilisateursEntity = this.utilisateursRepository.create({...userToCreate, role})
       console.log("utilisateur reçu : ", utilisateur)
@@ -94,17 +95,14 @@ export class UtilisateursService {
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
-    console.log("User ", utilisateurToUpdate)
-    console.log(42);
+    const role = await this.rolesRepository.findOneBy(
+        {idRoles : utilisateurToUpdate.role}
+    )
     const user = await  this.utilisateursRepository.findOneOrFail({
       where: {
         idUtilisateur: utilisateurToUpdate.idUtilisateur
       },
     })
-    const role = await this.rolesRepository.findOneBy(
-      {idRoles : utilisateurToUpdate.role}
-    )
-
     user.nom = utilisateurToUpdate.nom
     user.prenom = utilisateurToUpdate.prenom
     user.NRN = utilisateurToUpdate.NRN
@@ -120,14 +118,14 @@ export class UtilisateursService {
       })
   }
 
-  async activDesactivUtilisateurs(id : number, actif : number) : Promise<any>
+  async activDesactivUtilisateurs(updateUtilisateur : ActivdesactivutilisateursDto) : Promise<any>
   {
     const user = await  this.utilisateursRepository.findOneOrFail({
       where: {
-        idUtilisateur: id
+        idUtilisateur: updateUtilisateur.idUtilisateur
       },
     })
-    user.actif = actif
+    user.actif = updateUtilisateur.actif
     console.log("je suis un user :", user)
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {

@@ -12,9 +12,13 @@ export class RolesService {
   constructor(private httpClient: HttpClient) {
   }
 
-  rolesURL = environment.rolesUrl;
+  rolesUrl = environment.rolesUrl;
 
   public liste(): Observable<Roles[]> {
-    return this.httpClient.get<Roles[]>(`${this.rolesURL}`);
+    return this.httpClient.get<Roles[]>(`${this.rolesUrl}`);
+  }
+
+  public detail(id: number): Observable<Roles> {
+    return this.httpClient.get<Roles>(`${this.rolesUrl}/readrole/${id}`);
   }
 }

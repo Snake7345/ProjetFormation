@@ -18,7 +18,7 @@ export class CategoriesController {
   }
 
 
-  @Get('readcategorie:id')
+  @Get('readcategorie/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<CategoriesDto> {
     return await this.categoriesService.findById(id);
   }
@@ -31,15 +31,15 @@ export class CategoriesController {
   }
 
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  @Patch('modifier:id')
+  @Patch('modifier/:id')
   async update(
       @Body(ValidationPipe) updateCategorie : UpdatecategoriesDto
   ) : Promise<CategoriesDto> {
     return await this.categoriesService.update(updateCategorie);
   }
 
-  @Delete(':id')
+  /*@Delete('/:id')
   async delete(@Body(ValidationPipe) deleteCategorie : CategorieIdDto) : Promise<UpdatecategoriesDto> {
     return await this.categoriesService.delete(deleteCategorie);
-  }
+  }*/
 }

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
-import {Roles} from "../../models/role";
 import {Formations} from "../../models/formations";
 import {Categories} from "../../models/categories";
-import {RolesService} from "../../services/roles/roles.service";
 import {CategoriesService} from "../../services/categories/categories.service";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {Utilisateurs} from "../../models/utilisateurs";

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Categories} from "../../models/categories";
@@ -39,11 +39,9 @@ export class UpdateCategoriesComponent implements OnInit {
           nom:data.nom,
           actif:data.actif
         }
-        //TODO : Erreur ne récupère pas la donnée dans le formulaire
         this.categorieFormGroup.patchValue(
           this.categorie
         );
-        //this.categorieFormGroup.get("nom")?.setValue(data.nom)
       },
       err => {
         this.toastr.error(err.error.message, 'Fail', {

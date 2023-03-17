@@ -49,6 +49,7 @@ export class UtilisateursDto{
     actif: number
 
     @IsDefined()
-    role : number
+    role : RolesDto
+
 
 }

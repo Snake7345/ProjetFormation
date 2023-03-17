@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ISexe} from "../../shared/interfaces/ISexe";
 import {Roles} from "../../models/role";
@@ -21,13 +21,15 @@ export class UpdateUtilisateursComponent {
     {value: 'masculin', viewValue: 'Masculin'},
   ];
 
-  roles: Roles[] = []
+  roles: Roles[] = [];
 
-  utilisateur! : Utilisateurs
+  utilisateur! : Utilisateurs;
 
   listeVide = undefined;
 
-  public utilisateurFormGroup! : FormGroup
+  selectedRole! :number | undefined;
+
+  public utilisateurFormGroup! : FormGroup;
 
   constructor(
     private utilisateurService : UtilisateursService,
@@ -39,6 +41,7 @@ export class UpdateUtilisateursComponent {
   ) { }
 
   ngOnInit(): void {
+    this.afficherRole()
     this.utilisateurFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(100)]),
@@ -56,6 +59,7 @@ export class UpdateUtilisateursComponent {
     const id = this.activatedRoute.snapshot.params['id'];
     this.utilisateurService.detail(id).subscribe(
       data => {
+        this.selectedRole = data.role.idRoles
         this.utilisateur = {
           idUtilisateur:data.idUtilisateur,
           nom:data.nom,
@@ -65,7 +69,7 @@ export class UpdateUtilisateursComponent {
           role : data.role,
           password : data.password,
           mail : data.mail,
-          actif:data.actif
+          actif:data.actif,
         }
         console.log("affichage utilisateur",this.utilisateur)
         //TODO : Erreur ne récupère pas la donnée dans le formulaire

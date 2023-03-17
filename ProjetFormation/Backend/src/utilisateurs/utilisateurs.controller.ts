@@ -15,6 +15,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
+import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
@@ -27,7 +28,7 @@ export class UtilisateursController {
     return await this.utilisateursService.getAll();
   }
 
-  @Get('readutilisateur:id')
+  @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
     return await this.utilisateursService.findById(id);
   }
@@ -41,7 +42,7 @@ export class UtilisateursController {
   }
 
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  @Patch('modifier:id')
+  @Patch('modifier/:id')
   async update(
     @Body(ValidationPipe) updateUtilisateurs : UpdateutilisateursDto
   ) : Promise<UtilisateursDto> {
@@ -49,9 +50,9 @@ export class UtilisateursController {
   }
 
   @Patch('activdesactiv/:id')
-  async activdesactiv(@Param('id', ParseIntPipe) id: number, @Body()actif : any) : Promise<any> {
-    console.log("je suis un id et un actif : ", id, " ", actif)
-    return await this.utilisateursService.activDesactivUtilisateurs(id, actif.actif);
+  async activdesactiv(@Body(ValidationPipe) updateUtilisateurs : ActivdesactivutilisateursDto) : Promise<any> {
+    console.log("je suis un id et un actif : ", updateUtilisateurs.idUtilisateur, " ", updateUtilisateurs.actif)
+    return await this.utilisateursService.activDesactivUtilisateurs(updateUtilisateurs);
   }
 
 }

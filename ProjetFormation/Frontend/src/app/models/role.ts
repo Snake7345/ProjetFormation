@@ -1,5 +1,3 @@
-import {Sexe} from "./enum/enumSexe";
-
 export class Roles {
 
   idRoles? : number

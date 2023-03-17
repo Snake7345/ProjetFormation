@@ -63,7 +63,7 @@
   <br/>
   <mat-form-field appearance="fill">
     <mat-label>Choissiez votre rôle</mat-label>
-    <mat-select formControlName="role" (ngModelChange)="afficherRole()">
+    <mat-select formControlName="role" [(value)]="selectedRole">
       <mat-option *ngFor="let role of roles" [value]="role.idRoles">
         {{role.denomination}}
       </mat-option>

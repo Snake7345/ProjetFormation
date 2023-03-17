@@ -27,8 +27,9 @@
       <td>{{ utilisateur.password }}</td>
       <td>{{ utilisateur.sexe }}</td>
       <td>{{ utilisateur.actif }}</td>
-      <td>{{ utilisateur.role.denomination }}</td>
+      <td><!--{{afficherRole(utilisateur.role.idRoles)}}-->{{utilisateur.role.denomination}}</td>
       <td>
+        <!--Utiliser un resolver pour que ça soit plus propre-->
         <button class="btn btn-outline-warning"
                 routerLink="/updateUtilisateurs/{{ utilisateur.idUtilisateur }}"><mat-icon>update</mat-icon>Modifier
         </button>
