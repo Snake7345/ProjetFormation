@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Formations} from "../../models/formations";
+import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,12 @@ export class FormationsService {
 
   public liste(): Observable<Formations[]> {
     return this.httpClient.get<Formations[]>(`${this.formationsUrl}`);
+  }
+
+  public activdesactiv(id: number | undefined, formation : UtilisateursActivDesactiv): Observable<any>
+  {
+    console.log("j'affiche formations : ", formation)
+    console.log("j'affiche id : ", id)
+    return this.httpClient.patch<any>(`${this.formationsUrl}/activdesactiv/${id}`, formation);
   }
 }

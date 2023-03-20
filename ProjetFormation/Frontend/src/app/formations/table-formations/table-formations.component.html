@@ -38,11 +38,14 @@
         </button>
       </td>
       <td>
-        <button
-          class="btn btn-outline-danger">
-          <!--(click)="delete(produit.id)"-->
-          <mat-icon>delete</mat-icon> Désactiver
+        <button *ngIf="formation.actif !=0; else active" class="btn btn-outline-danger"
+                (click)="onUpdate(formation.idFormations, formation.actif)">
+          <mat-icon>power_off</mat-icon> Désactiver
         </button>
+        <ng-template #active>
+          <button (click)="onUpdate(formation.idFormations, formation.actif)" class="btn btn-outline-danger">
+            <mat-icon>power_on</mat-icon>Activé
+          </button></ng-template>
       </td>
     </tr>
     </tbody>

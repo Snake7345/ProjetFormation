@@ -15,7 +15,6 @@ import {Router} from "@angular/router";
 export class TableCategoriesComponent implements OnInit{
 
   categories: Categories[] = [];
-
   listeVide = undefined;
   constructor(private categorieService: CategoriesService,
   private toastr : ToastrService,
