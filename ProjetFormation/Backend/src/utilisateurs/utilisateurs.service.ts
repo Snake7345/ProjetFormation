@@ -9,6 +9,7 @@ import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import { CategoriesEntity } from "../shared/entities/categories.entity"
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import {CategoriesDto} from "../shared/dto/categories/categories.dto";
 
 @Injectable()
 export class UtilisateursService {
@@ -52,11 +53,27 @@ export class UtilisateursService {
     }
   }
 
+  async findByNRN(NRN: string): Promise<UtilisateursDto> {
+
+    return await this.utilisateursRepository.findOne({
+      where : {NRN : NRN}
+    })
+        .catch((error) => {
+          console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
+          throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+        })
+  }
+
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
+      if (await this.findByNRN(userToCreate.NRN)) {
+        throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", 500
+        );
+      }
       const role = await this.rolesRepository.findOneBy(
         {idRoles : userToCreate.role.idRoles}
       )
+
       let utilisateur : UtilisateursEntity = this.utilisateursRepository.create({...userToCreate, role})
       console.log("utilisateur reçu : ", utilisateur)
       return this.utilisateursRepository.save(utilisateur)
@@ -68,6 +85,8 @@ export class UtilisateursService {
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
+    //Faire en sorte de modifier son registre national
+
     const role = await this.rolesRepository.findOneBy(
         {idRoles : utilisateurToUpdate.role}
     )
