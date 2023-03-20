@@ -14,6 +14,4 @@ export class NewrolesDto{
     @IsNotBlank()
     @IsNumber()
     actif: number
-
-    // Rajouter l'utilisateur
 }

@@ -16,7 +16,7 @@ export class DiplomesController {
   constructor(private readonly diplomesService: DiplomesService) {
   }
 
-  @Get()
+  /*@Get()
   async GetAll() : Promise<DiplomesDto[]> {
     return await this.diplomesService.getAll();
   }
@@ -24,6 +24,6 @@ export class DiplomesController {
   @Get('readdiplomes/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<DiplomesDto> {
     return await this.diplomesService.findById(id);
-  }
+  }*/
 
 }

@@ -13,14 +13,14 @@ export class DiplomesService {
     @InjectRepository(DiplomesEntity)
     private diplomesRepository: Repository<DiplomesEntity>,
 
-    @InjectRepository(FormationsEntity)
+    /*@InjectRepository(FormationsEntity)
     private formationsRepository: Repository<FormationsEntity>,
 
-    private readonly formationsService : FormationsService
+    private readonly formationsService : FormationsService*/
 
   ) {}
 
-  async getAll(): Promise<DiplomesDto[]> {
+  /*async getAll(): Promise<DiplomesDto[]> {
     return (await this.diplomesRepository.find(
         {
           relations : {formation : true},
@@ -44,6 +44,6 @@ export class DiplomesService {
       console.log("le diplome n'existe pas")
       throw new HttpException("le diplome n'existe pas", 404)
     }
-  }
+  }*/
 
 }

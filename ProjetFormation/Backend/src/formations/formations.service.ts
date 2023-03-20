@@ -17,7 +17,7 @@ export class FormationsService {
         @InjectRepository(FormationsEntity)
         private formationsRepository: Repository<FormationsEntity>,
 
-        @InjectRepository(CategoriesEntity)
+        /*@InjectRepository(CategoriesEntity)
         private categorieRepository: Repository<CategoriesEntity>,
 
         @InjectRepository(UtilisateursEntity)
@@ -25,7 +25,7 @@ export class FormationsService {
 
         private readonly categoriesService : CategoriesService,
 
-        private readonly utilisateursService : UtilisateursService
+        private readonly utilisateursService : UtilisateursService*/
     ) {
     }
     async getAll(): Promise<FormationsDto[]> {
@@ -75,7 +75,7 @@ export class FormationsService {
             })
     }
 
-    async createFormations(formationToCreate : FormationsDto) : Promise<any>
+    /*async createFormations(formationToCreate : FormationsDto) : Promise<any>
     {
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToCreate.categories.idCategories}
@@ -121,5 +121,5 @@ export class FormationsService {
                 console.log("Problème concernant la mise a jour de la formation")
                 throw new HttpException("Problème concernant la mise a jour de la formation", 404)
             })
-    }
+    }*/
 }

@@ -32,7 +32,7 @@ export class FormationsController {
         return await this.formationsService.findById(id);
     }
 
-    @Post('createformation')
+    /*@Post('createformation')
     createFormations(
         @Body(ValidationPipe) newFormations : NewformationsDto
     ) : Promise<any>
@@ -46,6 +46,6 @@ export class FormationsController {
         @Body(ValidationPipe) updateFormation : UpdateformationsDto
     ) : Promise<FormationsDto> {
         return await this.formationsService.updateFormations(updateFormation);
-    }
+    }*/
 
 }

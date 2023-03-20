@@ -48,7 +48,10 @@ export class UpdateUtilisateursComponent {
       prenom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(100)]),
       mail:new FormControl('', [Validators.required,
-        Validators.minLength(4), Validators.maxLength(100)]),
+        Validators.minLength(4), Validators.maxLength(100),
+        Validators.pattern(
+          "[a-z0-9!#$%&’*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        )]),
       NRN:new FormControl('', [Validators.required,
         Validators.minLength(11), Validators.maxLength(11), Validators.pattern("^[0-9]*$"),]),
       password:new FormControl('', [Validators.required,
@@ -157,6 +160,7 @@ export class UpdateUtilisateursComponent {
     return this.utilisateurFormGroup.controls['mail'].hasError('required') ? 'Le mail est requis.' :
       this.utilisateurFormGroup.controls['mail'].hasError('minlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
         this.utilisateurFormGroup.controls['mail'].hasError('maxlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
+          this.utilisateurFormGroup.controls['mail'].hasError('pattern') ? 'Le format du mail ne correspond pas.' :
           '';
   }
 
