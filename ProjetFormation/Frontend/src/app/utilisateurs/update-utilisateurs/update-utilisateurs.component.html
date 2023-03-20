@@ -27,10 +27,9 @@
     </mat-error>
   </mat-form-field>
   <br/>
-
   <mat-form-field class="example-full-width">
     <mat-label>Numero de registre national</mat-label>
-    <input type="text" matInput maxlength="11" formControlName="NRN"/>
+    <input type="text" readonly matInput maxlength="11" formControlName="NRN"/>
     <mat-error *ngIf="utilisateurFormGroup.controls['NRN'].invalid">
       <!--Le registre national est <strong>requis.</strong>-->
       {{ getErrorMessageNRN() }}
