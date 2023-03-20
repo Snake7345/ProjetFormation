@@ -1,6 +1,8 @@
-import { IsDate, IsNumber, IsString, Length } from "class-validator";
+import {IsDate, IsDefined, IsNumber, IsString, Length} from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
+import {CategoriesDto} from "../categories/categories.dto";
+import {UtilisateursDto} from "../utilisateurs/utilisateurs.dto";
 
 export class UpdateformationsDto{
   @IsNumber()
@@ -33,7 +35,11 @@ export class UpdateformationsDto{
   @IsDate({message : 'DTO : ' + ErrorTypeFormations.HEURE_QUESTIONNAIRE_ERROR})
   heureQuestionnaire : Date
 
+  @IsDefined()
+  categories : CategoriesDto
 
+  @IsDefined()
+  utilisateurs : UtilisateursDto
 
   // ATTENTION IL FAUT INTEGRER CATEGORIES ET UTILISATEURS
 }

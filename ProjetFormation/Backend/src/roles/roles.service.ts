@@ -72,11 +72,11 @@ export class RolesService {
     const role = await this.findById(dto.idRoles);
     const exists = await this.findByNom(dto.denomination);
     if (!role) {
-      throw new HttpException("la categorie n'existe pas",404
+      throw new HttpException("le role n'existe pas",404
       );
     }
     if (exists && exists.idRoles !== dto.idRoles) {
-      throw new HttpException("La catégorie existe déjà",500
+      throw new HttpException("Le role existe déjà",500
       );
     }
     return await this.rolesRepository.save(dto)
@@ -84,24 +84,6 @@ export class RolesService {
           throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
         })
     console.log("Le role est modifié")
-  }
-
-  async delete(dtoId: RolesIdDto): Promise<UpdaterolesDto> {
-    if(!await this.findById(dtoId.idRoles))
-    {
-      throw new HttpException("la catégorie n'existe pas",404
-      );
-    }
-    let roleToDelete = this.rolesRepository.create({idRoles : dtoId.idRoles})
-    return this.rolesRepository.softRemove(roleToDelete)
-        .then((res) => {
-          return res
-          console.log(res)
-        })
-        .catch((error) => {
-          console.log(error)
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
-        })
   }
 
 }

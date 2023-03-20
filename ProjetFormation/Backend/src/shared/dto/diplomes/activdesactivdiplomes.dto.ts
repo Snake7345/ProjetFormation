@@ -1,10 +1,10 @@
-import {IsDefined, IsNumber, IsString, Length} from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import {ErrorTypeDiplomes} from "../../utilities/error.enum";
+import {IsDefined, IsNumber, IsString, Length} from "class-validator";
 import {FormationsDto} from "../formations/formations.dto";
 
 export class NewdiplomesDto {
-
+    @IsNumber()
     idDiplomes: number
     @IsNotBlank({message: 'DTO : ' + ErrorTypeDiplomes.EMPTY_NOM_ERROR})
     @IsString({message: 'DTO : ' + ErrorTypeDiplomes.NOM_ERROR})
@@ -15,5 +15,3 @@ export class NewdiplomesDto {
     formation : FormationsDto
 
 }
-
-// ATTENTION : Le diplome reçoit la formation

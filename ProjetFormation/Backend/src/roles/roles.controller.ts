@@ -34,8 +34,5 @@ export class RolesController {
     return await this.rolesService.update(updateRoles);
   }
 
-  @Delete('deleterole/:id')
-  async delete(@Body(ValidationPipe) deleteRole : RolesIdDto) : Promise<UpdaterolesDto> {
-    return await this.rolesService.delete(deleteRole);
-  }
+
 }

@@ -20,33 +20,6 @@ export class UtilisateursService {
     private readonly rolesService : RolesService
   ) {}
 
-  async getAllGardensByRole(roleId : number) : Promise<any>
-  {
-    return this.rolesRepository.findOneOrFail({
-      where : { idRoles : roleId},
-      relations : { utilisateurs : true}
-    })
-      .catch((error) => {
-        console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, 404)
-      })
-  }
-
-  async getRoleOneGardensById(roleId : number, utilisateurId : number) : Promise<any>
-  {
-    return this.rolesRepository.findOneOrFail({
-      where : {
-        idRoles : roleId,
-        utilisateurs : {idUtilisateur : utilisateurId}
-      },
-      relations : { utilisateurs : true}
-    })
-      .catch((error) => {
-        console.log(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND)
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.UTILISATEUR_NOT_FOUND)
-      })
-  }
-
   async getAll(): Promise<UtilisateursDto[]> {
     return (await this.utilisateursRepository.find(
       {
@@ -133,26 +106,6 @@ export class UtilisateursService {
         throw new HttpException("Problème concernant la désactivation/activation de l\'utilisateur", 404)
       })
   }
-
-  /*async deleteUtilisateurs(roleId : number, userId : any) : Promise<any>
-  {
-    let user : RolesEntity = await this.rolesRepository.findOneOrFail({
-      where : {
-        idRoles : roleId,
-        utilisateurs : {
-          idUtilisateur : userId
-        }
-      },
-      relations : { utilisateurs : true}
-    })
-      .catch((error) => {
-        console.log(ErrorMessage.USER_NOT_FOUND)
-        throw new HttpException(ErrorMessage.USER_NOT_FOUND, ErrorStatus.USER_NOT_FOUND)
-      })
-
-
-    return await this.gardensRepo.softRemove(user.gardens[0])
-  }*/
 
 
 }
