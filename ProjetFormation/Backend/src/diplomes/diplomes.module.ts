@@ -5,11 +5,17 @@ import { DiplomesService } from "./diplomes.service";
 import { DiplomesController } from "./diplomes.controller";
 import {FormationsEntity} from "../shared/entities/formations.entity";
 import {FormationsService} from "../formations/formations.service";
+import { CategoriesEntity } from "../shared/entities/categories.entity";
+import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
+import { CategoriesService } from "../categories/categories.service";
+import { UtilisateursService } from "../utilisateurs/utilisateurs.service";
+import { RolesService } from "../roles/roles.service";
+import { RolesEntity } from "../shared/entities/roles.entity";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([DiplomesEntity, FormationsEntity])],
-  providers: [DiplomesService, FormationsService],
+  imports: [TypeOrmModule.forFeature([DiplomesEntity, CategoriesEntity, UtilisateursEntity, FormationsEntity, RolesEntity])],
+  providers: [DiplomesService, FormationsService, CategoriesService, UtilisateursService, RolesService],
   controllers: [DiplomesController],
 })
 export class DiplomesModule {}
