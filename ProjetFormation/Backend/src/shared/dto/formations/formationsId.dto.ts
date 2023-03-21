@@ -1,6 +1,6 @@
 import { IsNumber } from "class-validator";
 
 export class FormationsIdDto{
-@IsNumber()
+  @IsNumber()
   idFormations : number
 }

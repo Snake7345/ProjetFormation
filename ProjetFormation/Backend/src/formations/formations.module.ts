@@ -10,8 +10,8 @@ import {UtilisateursService} from "../utilisateurs/utilisateurs.service";
 
 @Module({
     /*Remplir toutes les entités dans les imports*/
-    imports: [TypeOrmModule.forFeature([FormationsEntity, /*CategoriesEntity, UtilisateursEntity*/])],
-    providers: [FormationsService, /*CategoriesService, UtilisateursService*/],
+    imports: [TypeOrmModule.forFeature([FormationsEntity, CategoriesEntity, UtilisateursEntity])],
+    providers: [FormationsService, CategoriesService, UtilisateursService],
     controllers: [FormationsController],
 })
 export class FormationsModule {}

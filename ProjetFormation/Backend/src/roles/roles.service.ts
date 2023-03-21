@@ -2,14 +2,9 @@ import {HttpException, Injectable} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { RolesEntity } from "../shared/entities/roles.entity";
-import {CategoriesDto} from "../shared/dto/categories/categories.dto";
 import {RolesDto} from "../shared/dto/roles/roles.dto";
-import {ErrorGeneral, ErrorStatus, ErrorTypeCategories} from "../shared/utilities/error.enum";
-import {CategoriesEntity} from "../shared/entities/categories.entity";
-import {UpdatecategoriesDto} from "../shared/dto/categories/updatecategories.dto";
+import {ErrorGeneral, ErrorStatus} from "../shared/utilities/error.enum";
 import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
-import {CategorieIdDto} from "../shared/dto/categories/categorieId.dto";
-import {RolesIdDto} from "../shared/dto/roles/rolesId.dto";
 
 @Injectable()
 export class RolesService {

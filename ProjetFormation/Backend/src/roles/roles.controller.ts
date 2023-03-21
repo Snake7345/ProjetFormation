@@ -1,9 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { RolesService } from "./roles.service";
 import { ApiTags } from "@nestjs/swagger";
 import {RolesDto} from "../shared/dto/roles/roles.dto";
 import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
-import {RolesIdDto} from "../shared/dto/roles/rolesId.dto";
 
 @ApiTags("Roles")
 @Controller('roles')

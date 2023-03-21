@@ -4,7 +4,6 @@ import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 import {FormationsDto} from "../formations/formations.dto";
 
 export class DiplomesDto {
-  @IsDefined()
   @IsNumber()
   idDiplomes : number
   @IsNotBlank({message : 'DTO : ' + ErrorTypeDiplomes.EMPTY_NOM_ERROR})
@@ -14,6 +13,4 @@ export class DiplomesDto {
 
   @IsDefined()
   formation : FormationsDto
-
-  // ATTENTION : Le diplome reçoit la formation
 }

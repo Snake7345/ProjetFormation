@@ -8,8 +8,8 @@ import {FormationsService} from "../formations/formations.service";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([DiplomesEntity, /*FormationsEntity*/])],
-  providers: [DiplomesService, /*FormationsService*/],
+  imports: [TypeOrmModule.forFeature([DiplomesEntity, FormationsEntity])],
+  providers: [DiplomesService, FormationsService],
   controllers: [DiplomesController],
 })
 export class DiplomesModule {}

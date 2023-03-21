@@ -1,10 +1,9 @@
 import { IsDefined, IsNumber, IsString, Length } from "class-validator";
-import { Column } from "typeorm";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypePermissions } from "../../utilities/error.enum";
+import { FormationsDto } from "../formations/formations.dto";
 
 export class QuestionsDto{
-  @IsDefined()
   @IsNumber()
   idQuestions: number
 
@@ -24,5 +23,6 @@ export class QuestionsDto{
   @IsNumber()
   actif : number
 
-  // Ne pas oublier de mettre la clé étrangère formations
+  @IsDefined()
+  formations : FormationsDto
 }

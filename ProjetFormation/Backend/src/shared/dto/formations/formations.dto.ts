@@ -1,12 +1,10 @@
 import {IsDate, IsDefined, IsNumber, IsString, Length} from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
-import {RolesDto} from "../roles/roles.dto";
 import {CategoriesDto} from "../categories/categories.dto";
 import {UtilisateursDto} from "../utilisateurs/utilisateurs.dto";
 
 export class FormationsDto{
-  @IsDefined()
   @IsNumber()
   idFormations : number
 
@@ -42,7 +40,5 @@ export class FormationsDto{
 
   @IsDefined()
   utilisateurs : UtilisateursDto
-
-  // ATTENTION IL FAUT INTEGRER CATEGORIES ET UTILISATEURS
 
 }

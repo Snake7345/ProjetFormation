@@ -4,7 +4,6 @@ import { IsDefined, IsNumber, IsString, Length } from "class-validator";
 import {FormationsDto} from "../formations/formations.dto";
 
 export class Updatediplomesdto {
-  @IsDefined()
   @IsNumber()
   idDiplomes : number
 
@@ -16,7 +15,5 @@ export class Updatediplomesdto {
 
   @IsDefined()
   formation : FormationsDto
-
-  // ATTENTION : Le diplome reçoit la formation
 
 }

@@ -40,6 +40,4 @@ export class UpdateformationsDto{
 
   @IsDefined()
   utilisateurs : UtilisateursDto
-
-  // ATTENTION IL FAUT INTEGRER CATEGORIES ET UTILISATEURS
 }

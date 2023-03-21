@@ -16,6 +16,6 @@ export class ReponsesEntity {
     @ManyToOne(() => UtilisateursEntity, (util) => util.reponses, { nullable: false })
     utilisateurs: UtilisateursEntity
 
-    @ManyToOne(() => QuestionsEntity, (ques) => ques.reponses, { nullable: false })
+    @ManyToOne(() => QuestionsEntity, (ques) => ques.reponses, { nullable: true })
     questions: QuestionsEntity
 }

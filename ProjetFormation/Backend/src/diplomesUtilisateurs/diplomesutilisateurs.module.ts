@@ -10,4 +10,4 @@ import { DiplomesutilisateursController } from "./diplomesutilisateurs.controlle
   providers: [DiplomesutilisateursService],
   controllers: [DiplomesutilisateursController],
 })
-export class CategoriesModule {}
+export class DiplomesutilisateursModule {}

@@ -1,9 +1,8 @@
-import { Column } from "typeorm";
 import { IsDefined, IsNumber, IsString, Length } from "class-validator";
+import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
+import { QuestionsDto } from "../questions/questions.dto";
 
 export class NewreponsesDto {
-    @IsDefined()
-    @IsNumber()
     idReponses: number
 
     @IsString()
@@ -13,5 +12,9 @@ export class NewreponsesDto {
     @IsNumber()
     coteAttribue: string;
 
-    // Rajouter l'id utilisateur et question
+    @IsDefined()
+    utilisateur : UtilisateursDto
+
+    @IsDefined()
+    questions : QuestionsDto
 }

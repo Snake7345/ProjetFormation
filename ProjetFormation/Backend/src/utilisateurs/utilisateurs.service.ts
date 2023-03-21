@@ -4,12 +4,10 @@ import { Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
-import { ErrorGeneral, ErrorStatus, ErrorTypeCategories, ErrorTypeUtilisateurs } from "../shared/utilities/error.enum";
+import { ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
-import { CategoriesEntity } from "../shared/entities/categories.entity"
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
-import {CategoriesDto} from "../shared/dto/categories/categories.dto";
 
 @Injectable()
 export class UtilisateursService {

@@ -1,4 +1,6 @@
 import { IsDefined, IsNumber, IsString, Length } from "class-validator";
+import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
+import { QuestionsDto } from "../questions/questions.dto";
 
 export class UpdatereponsesDto {
   @IsDefined()
@@ -12,5 +14,9 @@ export class UpdatereponsesDto {
   @IsNumber()
   coteAttribue: string;
 
-  // Rajouter l'id utilisateur et question
+  @IsDefined()
+  utilisateur : UtilisateursDto
+
+  @IsDefined()
+  questions : QuestionsDto
 }

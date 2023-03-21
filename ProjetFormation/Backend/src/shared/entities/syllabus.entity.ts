@@ -15,6 +15,6 @@ export class SyllabusEntity {
     @Column({ type: 'tinyint', width: 1, default: 1 })
     actif : number
 
-    @ManyToOne(() => FormationsEntity, (formation) => formation.syllabus, { nullable: false })
+    @ManyToOne(() => FormationsEntity, (formation) => formation.syllabus, { nullable: true })
     formations: FormationsEntity
 }

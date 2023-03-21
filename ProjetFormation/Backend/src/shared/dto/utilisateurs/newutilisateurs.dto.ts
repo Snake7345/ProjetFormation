@@ -1,4 +1,4 @@
-import {IsDefined, IsEnum, IsNotEmpty, isNotEmpty, IsNumber, IsString, Length} from "class-validator";
+import {IsDefined, IsEnum, IsNotEmpty, IsNumber, IsString, Length} from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
 import {RolesDto} from "../roles/roles.dto";

@@ -1,9 +1,8 @@
-import { IsDefined, IsNumber } from "class-validator";
-import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
+import { IsDefined } from "class-validator";
 import { DiplomesDto } from "../diplomes/diplomes.dto";
+import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
 
-export class DiplomesutilisateursDto {
-  @IsNumber()
+export class NewdiplomesutilisateursDto {
   idDiplomesUtilisateur : number
 
   @IsDefined()

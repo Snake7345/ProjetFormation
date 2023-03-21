@@ -1,11 +1,9 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe} from "@nestjs/common";
+import {Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe} from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { CategoriesDto } from "../shared/dto/categories/categories.dto";
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
-import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import { ApiTags } from "@nestjs/swagger";
 import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
-import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ActivdesactivcategoriesDto } from "../shared/dto/categories/activdesactivcategories.dto";
 
 // On appelle les méthodes à partir du service

@@ -1,4 +1,4 @@
-import {IsDefined, IsNumber, IsString, Length} from "class-validator";
+import {IsDefined, IsString, Length} from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 import {ErrorTypeDiplomes} from "../../utilities/error.enum";
 import {FormationsDto} from "../formations/formations.dto";
@@ -15,5 +15,3 @@ export class NewdiplomesDto {
     formation : FormationsDto
 
 }
-
-// ATTENTION : Le diplome reçoit la formation

@@ -41,6 +41,4 @@ export class NewformationsDto{
     @IsDefined()
     utilisateurs : UtilisateursDto
 
-    // ATTENTION IL FAUT INTEGRER CATEGORIES ET UTILISATEURS
-
 }

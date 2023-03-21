@@ -7,7 +7,6 @@ import { ErrorGeneral, ErrorStatus, ErrorTypeCategories } from "../shared/utilit
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
 import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import {NewcategoriesDto} from "../shared/dto/categories/newcategories.dto";
-import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ActivdesactivcategoriesDto } from "../shared/dto/categories/activdesactivcategories.dto";
 
 /*CRUD : le service sert à créer les méthodes qui seront utilisées partout ailleurs dans notre programme*/

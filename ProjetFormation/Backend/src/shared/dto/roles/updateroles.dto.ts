@@ -2,6 +2,7 @@ import {IsDefined, IsNumber, IsString, Length} from "class-validator";
 import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
 
 export class UpdaterolesDto{
+    @IsNumber()
     idRoles: number
 
     @IsString()

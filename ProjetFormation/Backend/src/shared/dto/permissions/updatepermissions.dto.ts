@@ -4,7 +4,6 @@ import { ErrorTypePermissions } from "../../utilities/error.enum";
 
 export class UpdatepermissionsDto
 {
-  @IsDefined()
   @IsNumber()
   idPermissions : number
 

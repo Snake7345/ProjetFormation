@@ -5,7 +5,6 @@ import { FormationsEntity } from "../shared/entities/formations.entity";
 import {FormationsDto} from "../shared/dto/formations/formations.dto";
 import {ActivdesactivformationsDto} from "../shared/dto/formations/activdesactivformations.dto";
 import {UtilisateursEntity} from "../shared/entities/utilisateurs.entity";
-import {RolesEntity} from "../shared/entities/roles.entity";
 import {CategoriesEntity} from "../shared/entities/categories.entity";
 import {CategoriesService} from "../categories/categories.service";
 import {UtilisateursService} from "../utilisateurs/utilisateurs.service";
@@ -17,7 +16,7 @@ export class FormationsService {
         @InjectRepository(FormationsEntity)
         private formationsRepository: Repository<FormationsEntity>,
 
-        /*@InjectRepository(CategoriesEntity)
+        @InjectRepository(CategoriesEntity)
         private categorieRepository: Repository<CategoriesEntity>,
 
         @InjectRepository(UtilisateursEntity)
@@ -25,7 +24,7 @@ export class FormationsService {
 
         private readonly categoriesService : CategoriesService,
 
-        private readonly utilisateursService : UtilisateursService*/
+        private readonly utilisateursService : UtilisateursService
     ) {
     }
     async getAll(): Promise<FormationsDto[]> {
@@ -75,7 +74,7 @@ export class FormationsService {
             })
     }
 
-    /*async createFormations(formationToCreate : FormationsDto) : Promise<any>
+    async createFormations(formationToCreate : FormationsDto) : Promise<any>
     {
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToCreate.categories.idCategories}
@@ -83,7 +82,9 @@ export class FormationsService {
         const utilisateur = await this.utilisateurRepository.findOneBy(
             {idUtilisateur : formationToCreate.utilisateurs.idUtilisateur}
         )
-        let formation : FormationsEntity = this.formationsRepository.create({...formationToCreate, categorie, utilisateur})
+
+
+        let formation : FormationsEntity = this.formationsRepository.create({...formationToCreate, categories:categorie, utilisateurs:utilisateur});
         console.log("formation reçue : ", formation)
         return this.formationsRepository.save(formation)
             .catch((error) => {
@@ -95,11 +96,11 @@ export class FormationsService {
     async updateFormations(formationToUpdate : UpdateformationsDto) : Promise<any>
     {
         const categorie = await this.categorieRepository.findOneBy(
-            {idCategories : formationToUpdate.categories}
+            {idCategories : formationToUpdate.categories.idCategories}
         )
 
         const utilisateur = await this.utilisateurRepository.findOneBy(
-            {idUtilisateur : formationToUpdate.utilisateurs}
+            {idUtilisateur : formationToUpdate.utilisateurs.idUtilisateur}
         )
         const formation = await  this.formationsRepository.findOneOrFail({
             where: {
@@ -121,5 +122,5 @@ export class FormationsService {
                 console.log("Problème concernant la mise a jour de la formation")
                 throw new HttpException("Problème concernant la mise a jour de la formation", 404)
             })
-    }*/
+    }
 }
