@@ -93,6 +93,7 @@ export class AddFormationsComponent implements OnInit {
       this.formationFormGroup.value.dateQuestionnaire,
       this.formationFormGroup.value.heureLimiteInscription,this.formationFormGroup.value.categorie,
       this.formationFormGroup.value.utilisateur,);
+    console.log("voici la formation : ", formation)
     this.formationservice.save(formation).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {

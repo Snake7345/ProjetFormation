@@ -42,6 +42,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { OuSommesNousComponent } from './ou-sommes-nous/ou-sommes-nous.component';
 import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.component';
 import {CommonModule} from "@angular/common";
+import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +92,7 @@ import {CommonModule} from "@angular/common";
     RouterModule,
     HttpClientModule,
     NgxChartsModule,
+    NgxMatTimepickerModule,
 
   ],
   providers: [],

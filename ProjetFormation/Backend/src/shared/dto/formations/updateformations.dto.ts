@@ -20,17 +20,17 @@ export class UpdateformationsDto{
   actif: number
 
   @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_DATE_INSCRIPTION_LIMIT_ERROR})
-  @IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_INSCRIPTION_LIMIT_ERROR})
+  //@IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_INSCRIPTION_LIMIT_ERROR})
   dateLimiteInscription : Date
 
   @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_HEURE_LIMIT_INSCRIPTION_ERROR})
-  @IsDate({message : 'DTO : ' + ErrorTypeFormations.HEURE_INSCRIPTION_LIMIT_ERROR})
+  //@IsDate({message : 'DTO : ' + ErrorTypeFormations.HEURE_INSCRIPTION_LIMIT_ERROR})
   heureLimiteInscription : Date
   @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_DATE_QUESTIONNAIRE_ERROR})
-  @IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_QUESTIONNAIRE_ERROR})
+  //@IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_QUESTIONNAIRE_ERROR})
   dateQuestionnaire : Date
   @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_HEURE_QUESTIONNAIRE_ERROR})
-  @IsDate({message : 'DTO : ' + ErrorTypeFormations.HEURE_QUESTIONNAIRE_ERROR})
+  //@IsDate({message : 'DTO : ' + ErrorTypeFormations.HEURE_QUESTIONNAIRE_ERROR})
   heureQuestionnaire : Date
 
   @IsDefined()
