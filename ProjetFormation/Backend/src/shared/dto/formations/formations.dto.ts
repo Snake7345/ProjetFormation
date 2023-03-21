@@ -1,4 +1,4 @@
-import {IsDate, IsDefined, IsNumber, IsString, Length} from "class-validator";
+import { IsDate, IsDefined, IsNumber, IsString, Length, MaxLength } from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
 import {CategoriesDto} from "../categories/categories.dto";
@@ -13,9 +13,7 @@ export class FormationsDto{
   @Length(2,150, {message : 'DTO : '+ ErrorTypeFormations.NOM_LENGTH})
   nom: string;
 
-  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_INFOS_ERROR})
-  @IsString({message : 'DTO : '+ ErrorTypeFormations.INFOS_ERROR})
-  @Length(2,1000, {message : 'DTO : '+ ErrorTypeFormations.INFOS_LENGTH})
+  @MaxLength(1000, {message : 'DTO : '+ ErrorTypeFormations.INFOS_LENGTH})
   infos: string;
 
   @IsNumber()

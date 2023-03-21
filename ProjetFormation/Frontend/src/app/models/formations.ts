@@ -20,7 +20,6 @@ export class Formations {
     this.heureQuestionnaire = heureQuestionnaire;
     this.actif = actif;
     this.dateLimiteInscription = dateLimiteInscription;
-
     this.dateQuestionnaire = dateQuestionnaire
     this.heureLimiteInscription = heureLimiteInscription;
     this.categories = categories;

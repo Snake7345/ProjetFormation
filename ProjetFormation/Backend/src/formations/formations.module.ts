@@ -7,8 +7,8 @@ import {CategoriesEntity} from "../shared/entities/categories.entity";
 import {UtilisateursEntity} from "../shared/entities/utilisateurs.entity";
 import {CategoriesService} from "../categories/categories.service";
 import {UtilisateursService} from "../utilisateurs/utilisateurs.service";
-import { RolesEntity } from "../shared/entities/roles.entity";
-import { RolesService } from "../roles/roles.service";
+import {RolesEntity} from "../shared/entities/roles.entity";
+import {RolesService} from "../roles/roles.service";
 
 @Module({
     /*Remplir toutes les entités dans les imports*/

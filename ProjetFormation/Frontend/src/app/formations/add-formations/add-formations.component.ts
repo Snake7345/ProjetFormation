@@ -6,6 +6,8 @@ import {Categories} from "../../models/categories";
 import {CategoriesService} from "../../services/categories/categories.service";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {Utilisateurs} from "../../models/utilisateurs";
+import {FormationsService} from "../../services/formations/formations.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-formations',
@@ -20,8 +22,12 @@ export class AddFormationsComponent implements OnInit {
     private categorieservice : CategoriesService,
 
     private utilisateurservice : UtilisateursService,
+    private toastr : ToastrService,
+
+    private formationservice : FormationsService,
   ) { }
 
+  actif : number = 1;
   public formationFormGroup! : FormGroup
 
   listeVide = undefined;
@@ -77,6 +83,31 @@ export class AddFormationsComponent implements OnInit {
 
   }
 
+  onCreate() : void
+  {
+    if(this.formationFormGroup.invalid) return
+    const formation = new Formations(this.formationFormGroup.value.nom,
+      this.formationFormGroup.value.infos,this.formationFormGroup.value.heureQuestionnaire,
+      this.actif,
+      this.formationFormGroup.value.dateLimiteInscription,
+      this.formationFormGroup.value.dateQuestionnaire,
+      this.formationFormGroup.value.heureLimiteInscription,this.formationFormGroup.value.categorie,
+      this.formationFormGroup.value.utilisateur,);
+    this.formationservice.save(formation).subscribe(
+      data => {
+        this.toastr.success(data.message, 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        this._router.navigate(['tableFormations']);
+      },
+      err => {
+        this.toastr.error(err.error.message, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
+      }
+    );
+  }
+
   retour() {
     this._router.navigate(["tableFormations"])
   }
@@ -127,9 +158,5 @@ export class AddFormationsComponent implements OnInit {
   {
     return this.formationFormGroup.controls['heureLimiteInscription'].hasError('required') ? ' L\'heure limite de l\'inscription est requise' :
       '';
-  }
-
-  onCreate() {
-    this._router.navigate(["tableFormations"])
   }
 }

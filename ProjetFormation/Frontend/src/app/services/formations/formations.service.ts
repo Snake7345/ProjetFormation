@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Formations} from "../../models/formations";
 import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
+import {Utilisateurs} from "../../models/utilisateurs";
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,9 @@ export class FormationsService {
     console.log("j'affiche id : ", id)
     return this.httpClient.patch<any>(`${this.formationsUrl}/activdesactiv/${id}`, formation);
   }
+
+  public save(formation: Formations): Observable<any> {
+    return this.httpClient.post<any>(`${this.formationsUrl}/createformation`, formation);
+  }
+
 }
