@@ -1,5 +1,5 @@
 /*----------------Modules principaux-------------------------------------------------------------------*/
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,13 +36,14 @@ import { PresentationLaboComponent } from './presentation-labo/presentation-labo
 import { WhereIsMoneyComponent } from './where-is-money/where-is-money.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { WhereIsMoneyGraphiqueComponent } from './where-is-money-graphique/where-is-money-graphique.component';
-import {MatOptionModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { OuSommesNousComponent } from './ou-sommes-nous/ou-sommes-nous.component';
 import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.component';
 import {CommonModule} from "@angular/common";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,9 +94,11 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
     HttpClientModule,
     NgxChartsModule,
     NgxMatTimepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

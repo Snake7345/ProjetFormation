@@ -18,10 +18,11 @@
     </mat-error>
   </mat-form-field>
   <br/>
-  <mat-form-field class="example-full-width">
+  <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
-    <input type="date" matInput formControlName="dateLimiteInscription"
-    />
+    <input matInput formControlName="dateLimiteInscription" [matDatepicker]="picker4" readonly/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+    <mat-datepicker #picker4></mat-datepicker>
     <mat-error *ngIf="formationFormGroup.controls['dateLimiteInscription'].invalid">
       {{ getErrorMessageDateLimiteInscription() }}
     </mat-error>
@@ -43,31 +44,32 @@
   </mat-form-field>
   <ngx-mat-timepicker #picker></ngx-mat-timepicker>
   <br/>
-  <mat-form-field class="example-full-width">
+  <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
     <mat-label>Date du questionnaire de l'examen</mat-label>
-    <input type="date" matInput formControlName="dateQuestionnaire" />
+    <input matInput formControlName="dateQuestionnaire" [matDatepicker]="picker3" readonly/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
     <mat-error *ngIf="formationFormGroup.controls['dateQuestionnaire'].invalid">
       {{ getErrorMessageDateQuestionnaire() }}
     </mat-error>
   </mat-form-field>
+
   <mat-form-field class="example-full-width">
     <mat-label>Heure de questionnaire</mat-label>
     <input matInput
-           [ngxMatTimepicker]="picker"
+           [ngxMatTimepicker]="picker2"
            [format]="24"
            formControlName="heureQuestionnaire"
            readonly/>
     <mat-icon matSuffix
-              (click)="picker.open()">
+              (click)="picker2.open()">
       watch_later
     </mat-icon>
     <mat-error *ngIf="formationFormGroup.controls['heureQuestionnaire'].invalid">
       {{ getErrorMessageHeureQuestionnaire() }}
     </mat-error>
   </mat-form-field>
-  <!--<div class="ngx-timepicker-field-example">
-    <ngx-timepicker-field [defaultTime]="'11:11 am'"></ngx-timepicker-field>
-  </div>-->
+  <ngx-mat-timepicker #picker2></ngx-mat-timepicker>
   <br/>
   <mat-form-field appearance="fill">
     <mat-label>Choissiez la catégorie</mat-label>
@@ -93,7 +95,7 @@
     </mat-error>
   </mat-form-field>
   <br/>
-  <button class="btn btn-outline-primary btn-block" (click)="retour()">
+  <button style="margin-right: 10px" class="btn btn-outline-primary btn-block" (click)="retour()">
     <i class="fas fa-arrow-alt-circle-left"></i> Retour</button>
   <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!formationFormGroup.valid ">
     <i class="far fa-plus-square"></i> Ajouter</button>

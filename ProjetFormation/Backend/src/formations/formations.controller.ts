@@ -5,6 +5,7 @@ import {FormationsDto} from "../shared/dto/formations/formations.dto";
 import {ActivdesactivformationsDto} from "../shared/dto/formations/activdesactivformations.dto";
 import {NewformationsDto} from "../shared/dto/formations/newformations.dto";
 import {UpdateformationsDto} from "../shared/dto/formations/updateformations.dto";
+import {UtilisateursDto} from "../shared/dto/utilisateurs/utilisateurs.dto";
 
 @ApiTags("Formations")
 @Controller('formations')

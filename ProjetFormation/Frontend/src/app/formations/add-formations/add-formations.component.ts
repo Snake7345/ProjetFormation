@@ -67,6 +67,8 @@ export class AddFormationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.afficherCategorie()
+    this.afficherUtilisateur()
     this.formationFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),
@@ -78,9 +80,6 @@ export class AddFormationsComponent implements OnInit {
       categorie:new FormControl('', [Validators.required,]),
       utilisateur:new FormControl('', [Validators.required,])
     })
-    this.afficherCategorie()
-    this.afficherUtilisateur()
-
   }
 
   onCreate() : void

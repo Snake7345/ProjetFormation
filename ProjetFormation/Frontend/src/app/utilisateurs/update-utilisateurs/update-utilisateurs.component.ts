@@ -79,7 +79,6 @@ export class UpdateUtilisateursComponent {
         this.utilisateurFormGroup.patchValue(
           this.utilisateur
         );
-        //this.categorieFormGroup.get("nom")?.setValue(data.nom)
       },
       err => {
         this.toastr.error(err.error.message, 'Fail', {

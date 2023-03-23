@@ -30,4 +30,12 @@ export class FormationsService {
     return this.httpClient.post<any>(`${this.formationsUrl}/createformation`, formation);
   }
 
+  public detail(id: number): Observable<Formations> {
+    return this.httpClient.get<Formations>(`${this.formationsUrl}/readformation/${id}`);
+  }
+
+  public update(id: number, formations: Formations | null): Observable<any> {
+    return this.httpClient.patch<any>(`${this.formationsUrl}/modifier/${id}`, formations);
+  }
+
 }
