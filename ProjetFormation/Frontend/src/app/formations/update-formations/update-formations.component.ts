@@ -8,6 +8,7 @@ import {FormationsService} from "../../services/formations/formations.service";
 import {Formations} from "../../models/formations";
 import {Categories} from "../../models/categories";
 import {Utilisateurs} from "../../models/utilisateurs";
+import {Time} from "@angular/common";
 
 @Component({
   selector: 'app-update-formations',
@@ -68,6 +69,7 @@ export class UpdateFormationsComponent {
           idFormations:data.idFormations,
           nom:data.nom,
           infos: data.infos,
+          // Problème les données ne doivent pas prendre les secondes
           heureQuestionnaire: data.heureQuestionnaire,
           heureLimiteInscription: data.heureLimiteInscription,
           categories : data.categories,
@@ -76,7 +78,7 @@ export class UpdateFormationsComponent {
           dateLimiteInscription:data.dateLimiteInscription,
           dateQuestionnaire : data.dateQuestionnaire
         }
-        console.log("affichage utilisateur",this.formation)
+        console.log("affichage formation",this.formation)
         //TODO : Erreur ne récupère pas la donnée dans le formulaire
         this.formationFormGroup.patchValue(
           this.formation
