@@ -20,7 +20,9 @@
   <br/>
   <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
-    <input type="date"  matInput formControlName="dateLimiteInscription"/>
+    <input matInput formControlName="dateLimiteInscription" [matDatepicker]="picker2" readonly/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
     <mat-error *ngIf="formationFormGroup.controls['dateLimiteInscription'].invalid">
       {{ getErrorMessageDateLimiteInscription() }}
     </mat-error>
@@ -35,7 +37,9 @@
   <br/>
   <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
     <mat-label>Date du questionnaire de l'examen</mat-label>
-    <input type="date" matInput formControlName="dateQuestionnaire"/>
+    <input matInput formControlName="dateQuestionnaire" [matDatepicker]="picker" readonly/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
     <mat-error *ngIf="formationFormGroup.controls['dateQuestionnaire'].invalid">
       {{ getErrorMessageDateQuestionnaire() }}
     </mat-error>

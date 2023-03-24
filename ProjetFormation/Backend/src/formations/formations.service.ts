@@ -98,22 +98,22 @@ export class FormationsService {
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToUpdate.categories}
         )
-        console.log("je recois ceci comme catégorie : ",categorie)
         const utilisateur = await this.utilisateurRepository.findOneBy(
             {idUtilisateur : formationToUpdate.utilisateurs}
         )
-        console.log("je recois ceci comme utilisateur : ",utilisateur)
+        console.log("j'ai la date ", formationToUpdate.dateLimiteInscription)
         const formation = await  this.formationsRepository.findOneOrFail({
             where: {
                 idFormations: formationToUpdate.idFormations
             },
         })
-
         formation.nom = formationToUpdate.nom
         formation.infos = formationToUpdate.infos
         formation.actif = formationToUpdate.actif
+        console.log("j'ai la date ", formationToUpdate.dateLimiteInscription)
         formation.dateLimiteInscription = formationToUpdate.dateLimiteInscription
         formation.heureLimiteInscription = formationToUpdate.heureLimiteInscription
+        console.log("j'ai la date questionnaire ", formationToUpdate.dateQuestionnaire)
         formation.dateQuestionnaire = formationToUpdate.dateQuestionnaire
         formation.heureQuestionnaire = formationToUpdate.heureQuestionnaire
         formation.categories = categorie

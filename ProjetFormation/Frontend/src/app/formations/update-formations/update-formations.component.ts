@@ -34,8 +34,6 @@ export class UpdateFormationsComponent {
 
   listeVide = undefined;
 
-  formations: Formations[] = []
-
   categories : Categories[] = []
 
   utilisateurs : Utilisateurs[] = []
@@ -48,7 +46,7 @@ export class UpdateFormationsComponent {
 
   str1! : string;
 
-  time! : Time;
+  date! : Date;
 
   ngOnInit(): void {
     this.afficherCategorie()
@@ -69,25 +67,18 @@ export class UpdateFormationsComponent {
       data => {
         this.selectedCat = data.categories.idCategories
         this.selectedUser = data.utilisateurs.idUtilisateur
-        this.str1 = String(data.heureQuestionnaire).substring(0,5);
-        console.log("le string vaut : ", this.str1)
-
         this.formation = {
           idFormations:data.idFormations,
           nom:data.nom,
           infos: data.infos,
-          // Problème les données ne doivent pas prendre les secondes
           heureQuestionnaire: data.heureQuestionnaire,
           heureLimiteInscription: data.heureLimiteInscription,
-          //-------------------------------------------------------
           categories : data.categories,
           utilisateurs : data.utilisateurs,
           actif : data.actif,
           dateLimiteInscription:data.dateLimiteInscription,
           dateQuestionnaire : data.dateQuestionnaire
         }
-        console.log(" la formation que je dois update' : ", this.formation)
-        //TODO : Erreur ne récupère pas la donnée dans le formulaire
         this.formationFormGroup.patchValue(
           this.formation
         );
@@ -107,8 +98,14 @@ export class UpdateFormationsComponent {
     this.formation.infos=this.formationFormGroup.get("infos")?.value
     this.formation.heureQuestionnaire=this.formationFormGroup.get("heureQuestionnaire")?.value
     this.formation.heureLimiteInscription=this.formationFormGroup.get("heureLimiteInscription")?.value
-    this.formation.dateQuestionnaire=this.formationFormGroup.get("dateQuestionnaire")?.value
-    this.formation.dateLimiteInscription=this.formationFormGroup.get("dateLimiteInscription")?.value
+    this.date = new Date(this.formationFormGroup.get("dateQuestionnaire")?.value)
+    this.date.setHours(5)
+    console.log("Date questionnaire : ", this.date)
+    this.formation.dateQuestionnaire=this.date
+    this.date = new Date(this.formationFormGroup.get("dateLimiteInscription")?.value)
+    this.date.setHours(5)
+    console.log("Date limite : ", this.date)
+    this.formation.dateLimiteInscription=this.date
     this.formation.categories=this.formationFormGroup.get("categorie")?.value
     this.formation.utilisateurs=this.formationFormGroup.get("utilisateur")?.value
   }
