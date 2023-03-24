@@ -27,7 +27,7 @@
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Heure limite de l'inscription</mat-label>
-    <input type="time" matInput formControlName="heureLimiteInscription" />
+    <input type="time" step="60" matInput formControlName="heureLimiteInscription" />
     <mat-error *ngIf="formationFormGroup.controls['heureLimiteInscription'].invalid">
       {{ getErrorMessageHeureLimiteInscription() }}
     </mat-error>
@@ -43,7 +43,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Heure de questionnaire</mat-label>
-    <input type="time" matInput formControlName="heureQuestionnaire" />
+    <input type="time" step="60" matInput formControlName="heureQuestionnaire" />
     <mat-error *ngIf="formationFormGroup.controls['heureQuestionnaire'].invalid">
       {{ getErrorMessageHeureQuestionnaire() }}
     </mat-error>
