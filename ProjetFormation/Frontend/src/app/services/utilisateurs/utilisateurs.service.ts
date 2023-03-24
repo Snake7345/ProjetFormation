@@ -28,8 +28,6 @@ export class UtilisateursService {
 
   public activdesactiv(id: number | undefined, utilisateur : UtilisateursActivDesactiv): Observable<any>
   {
-    console.log("j'affiche utilisateur : ", utilisateur)
-    console.log("j'affiche id : ", id)
     return this.httpClient.patch<any>(`${this.utilisateursUrl}/activdesactiv/${id}`, utilisateur);
   }
 

@@ -61,7 +61,6 @@ export class AddUtilisateursComponent implements OnInit{
     this.roleservice.liste().subscribe(
       (data) => {
         this.roles = data;
-        console.log("affichage role : ", this.roles)
         this.listeVide = undefined;
         console.log(this.roles)
       },

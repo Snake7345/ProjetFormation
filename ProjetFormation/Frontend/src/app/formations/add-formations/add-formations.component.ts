@@ -42,9 +42,7 @@ export class AddFormationsComponent implements OnInit {
     this.categorieservice.liste().subscribe(
       (data) => {
         this.categories = data;
-        console.log("affichage categorie : ", this.categories)
         this.listeVide = undefined;
-        console.log(this.categories)
       },
       (err) => {
         this.listeVide = err.error.message;
@@ -56,9 +54,7 @@ export class AddFormationsComponent implements OnInit {
     this.utilisateurservice.liste().subscribe(
       (data) => {
         this.utilisateurs = data;
-        console.log("affichage utilisateurs : ", this.utilisateurs)
         this.listeVide = undefined;
-        console.log(this.utilisateurs)
       },
       (err) => {
         this.listeVide = err.error.message;
@@ -92,7 +88,6 @@ export class AddFormationsComponent implements OnInit {
       this.formationFormGroup.value.dateQuestionnaire,
       this.formationFormGroup.value.heureLimiteInscription,this.formationFormGroup.value.categorie,
       this.formationFormGroup.value.utilisateur,);
-    console.log("voici la formation : ", formation)
     this.formationservice.save(formation).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {

@@ -21,8 +21,6 @@ export class FormationsService {
 
   public activdesactiv(id: number | undefined, formation : UtilisateursActivDesactiv): Observable<any>
   {
-    console.log("j'affiche formations : ", formation)
-    console.log("j'affiche id : ", id)
     return this.httpClient.patch<any>(`${this.formationsUrl}/activdesactiv/${id}`, formation);
   }
 

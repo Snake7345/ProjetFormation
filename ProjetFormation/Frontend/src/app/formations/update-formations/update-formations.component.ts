@@ -46,6 +46,10 @@ export class UpdateFormationsComponent {
 
   formation! : Formations;
 
+  str1! : string;
+
+  time! : Time;
+
   ngOnInit(): void {
     this.afficherCategorie()
     this.afficherUtilisateur()
@@ -65,6 +69,9 @@ export class UpdateFormationsComponent {
       data => {
         this.selectedCat = data.categories.idCategories
         this.selectedUser = data.utilisateurs.idUtilisateur
+        this.str1 = String(data.heureQuestionnaire).substring(0,5);
+        console.log("le string vaut : ", this.str1)
+
         this.formation = {
           idFormations:data.idFormations,
           nom:data.nom,
@@ -72,13 +79,14 @@ export class UpdateFormationsComponent {
           // Problème les données ne doivent pas prendre les secondes
           heureQuestionnaire: data.heureQuestionnaire,
           heureLimiteInscription: data.heureLimiteInscription,
+          //-------------------------------------------------------
           categories : data.categories,
           utilisateurs : data.utilisateurs,
           actif : data.actif,
           dateLimiteInscription:data.dateLimiteInscription,
           dateQuestionnaire : data.dateQuestionnaire
         }
-        console.log("affichage formation",this.formation)
+        console.log(" la formation que je dois update' : ", this.formation)
         //TODO : Erreur ne récupère pas la donnée dans le formulaire
         this.formationFormGroup.patchValue(
           this.formation
@@ -93,9 +101,21 @@ export class UpdateFormationsComponent {
     );
   }
 
+  public updateData(): void
+  {
+    this.formation.nom=this.formationFormGroup.get("nom")?.value
+    this.formation.infos=this.formationFormGroup.get("infos")?.value
+    this.formation.heureQuestionnaire=this.formationFormGroup.get("heureQuestionnaire")?.value
+    this.formation.heureLimiteInscription=this.formationFormGroup.get("heureLimiteInscription")?.value
+    this.formation.dateQuestionnaire=this.formationFormGroup.get("dateQuestionnaire")?.value
+    this.formation.dateLimiteInscription=this.formationFormGroup.get("dateLimiteInscription")?.value
+    this.formation.categories=this.formationFormGroup.get("categorie")?.value
+    this.formation.utilisateurs=this.formationFormGroup.get("utilisateur")?.value
+  }
+
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    console.log("formation envoyé : ", this.formation)
+    console.log("formation que j'ai update : ", this.formation)
     this.formationservice.update(id, this.formation).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
@@ -115,9 +135,7 @@ export class UpdateFormationsComponent {
     this.categorieservice.liste().subscribe(
       (data) => {
         this.categories = data;
-        console.log("affichage categorie : ", this.categories)
         this.listeVide = undefined;
-        console.log(this.categories)
       },
       (err) => {
         this.listeVide = err.error.message;
@@ -129,9 +147,7 @@ export class UpdateFormationsComponent {
     this.utilisateurservice.liste().subscribe(
       (data) => {
         this.utilisateurs = data;
-        console.log("affichage utilisateurs : ", this.utilisateurs)
         this.listeVide = undefined;
-        console.log(this.utilisateurs)
       },
       (err) => {
         this.listeVide = err.error.message;

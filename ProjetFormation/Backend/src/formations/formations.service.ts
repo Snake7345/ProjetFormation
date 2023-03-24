@@ -96,12 +96,13 @@ export class FormationsService {
     async updateFormations(formationToUpdate : UpdateformationsDto) : Promise<any>
     {
         const categorie = await this.categorieRepository.findOneBy(
-            {idCategories : formationToUpdate.categories.idCategories}
+            {idCategories : formationToUpdate.categories}
         )
-
+        console.log("je recois ceci comme catégorie : ",categorie)
         const utilisateur = await this.utilisateurRepository.findOneBy(
-            {idUtilisateur : formationToUpdate.utilisateurs.idUtilisateur}
+            {idUtilisateur : formationToUpdate.utilisateurs}
         )
+        console.log("je recois ceci comme utilisateur : ",utilisateur)
         const formation = await  this.formationsRepository.findOneOrFail({
             where: {
                 idFormations: formationToUpdate.idFormations

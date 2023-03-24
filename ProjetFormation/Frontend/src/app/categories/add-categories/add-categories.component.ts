@@ -42,7 +42,6 @@ export class AddCategoriesComponent implements OnInit {
   {
     if(this.categorieFormGroup.invalid) return
     const categorie = new Categories(this.categorieFormGroup.value.nom, this.actif);
-    console.log(categorie)
     this.categorieService.save(categorie).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {

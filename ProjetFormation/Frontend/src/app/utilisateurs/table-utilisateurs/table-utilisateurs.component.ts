@@ -35,9 +35,7 @@ export class TableUtilisateursComponent implements OnInit {
   afficherUtilisateurs(): void {
     this.utilisateurService.liste().subscribe(
       (data) => {
-        console.log("je suis la data ", data)
         this.utilisateurs = data;
-        console.log("affichage:" , data)
         this.listeVide = undefined;
       },
       (err) => {

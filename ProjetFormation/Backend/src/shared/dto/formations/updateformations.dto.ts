@@ -34,8 +34,8 @@ export class UpdateformationsDto{
   heureQuestionnaire : Date
 
   @IsDefined()
-  categories : CategoriesDto
+  categories : number
 
   @IsDefined()
-  utilisateurs : UtilisateursDto
+  utilisateurs : number
 }
