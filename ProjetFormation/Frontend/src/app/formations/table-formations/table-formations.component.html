@@ -7,8 +7,8 @@
       <th scope="col">IdFormations</th>
       <th scope="col">Nom</th>
       <th scope="col">Infos</th>
-      <th scope="col">Date disponible du questionnaire</th>
       <th scope="col">Date limite pour les inscriptions</th>
+      <th scope="col">Date disponible du questionnaire</th>
       <th scope="col">Actif</th>
       <th scope="col">Prof référent</th>
       <th scope="col">Catégorie du cours</th>
@@ -22,8 +22,8 @@
       <td>{{ formation.idFormations }}</td>
       <td>{{ formation.nom }}</td>
       <td>{{ formation.infos }}</td>
-      <td>{{ formation.dateQuestionnaire | date: 'dd/MM/yyyy' }} {{ formation.heureQuestionnaire }}</td>
       <td>{{ formation.dateLimiteInscription | date: 'dd/MM/yyyy' }} {{ formation.heureLimiteInscription }} </td>
+      <td>{{ formation.dateQuestionnaire | date: 'dd/MM/yyyy' }} {{ formation.heureQuestionnaire }}</td>
       <td>{{ formation.actif }}</td>
       <td>{{ formation.utilisateurs.nom + " " + formation.utilisateurs.prenom }}</td>
       <td>{{ formation.categories.nom }}</td>
