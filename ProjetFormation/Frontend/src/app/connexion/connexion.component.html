@@ -1,0 +1,27 @@
+<p style=" color: white">Formulaire : Veuillez remplir le questionnaire suivant pour ajouter une catégorie</p>
+
+<form [formGroup]="connexionFormGroup" class="example-form" (ngSubmit)="connexion()">
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Veuillez insérez votre mail : </mat-label>
+    <input type="email" matInput formControlName="mail"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="connexionFormGroup.controls['mail'].invalid">
+      {{ getErrorMessageMail() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Veuillez insérer votre password : </mat-label>
+    <input type="password" matInput formControlName="password"/>
+    <!--1ere solution-->
+    <mat-error *ngIf="connexionFormGroup.controls['password'].invalid">
+      <!--Le registre national est <strong>requis.</strong>-->
+      {{ getErrorMessagePassword() }}
+    </mat-error>
+  </mat-form-field>
+  <p></p>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!connexionFormGroup.valid">
+    <i class="far fa-plus-square"></i> Se connecter</button>
+  <p></p>
+</form>

@@ -22,11 +22,13 @@ import {WhereIsMoneyComponent} from "./where-is-money/where-is-money.component";
 import {WhereIsMoneyGraphiqueComponent} from "./where-is-money-graphique/where-is-money-graphique.component";
 import {OuSommesNousComponent} from "./ou-sommes-nous/ou-sommes-nous.component";
 import {DepensesParPaysComponent} from "./depenses-par-pays/depenses-par-pays.component";
+import {ConnexionComponent} from "./connexion/connexion.component";
 
 const routes: Routes = [
   /*Routes de la navbar et des sous-formulaires*/
-  { path: '', component: HomepageComponent },
+  { path: '', component: ConnexionComponent },
   /*Route add*/
+  { path: 'homepage', component : HomepageComponent},
   { path: 'addCategories', component: AddCategoriesComponent},
   { path: 'addFormations', component: AddFormationsComponent},
   { path: 'addQuestions', component: AddQuestionsComponent},

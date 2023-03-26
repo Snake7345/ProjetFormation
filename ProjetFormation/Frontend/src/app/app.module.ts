@@ -44,6 +44,7 @@ import { DepensesParPaysComponent } from './depenses-par-pays/depenses-par-pays.
 import {CommonModule} from "@angular/common";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { ConnexionComponent } from './connexion/connexion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     WhereIsMoneyGraphiqueComponent,
     OuSommesNousComponent,
     DepensesParPaysComponent,
+    ConnexionComponent,
   ],
   imports: [
     /*Modules principaux*/
