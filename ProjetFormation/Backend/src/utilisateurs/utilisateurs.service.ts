@@ -8,6 +8,7 @@ import { ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
 
 @Injectable()
 export class UtilisateursService {
@@ -35,6 +36,18 @@ export class UtilisateursService {
       }
     })).map(u => ({ ...u, role: u.role}))
   }
+
+  async connexionvalid(invite: ConnexionutilisateursDto):Promise<void>
+    {
+      try{
+        const user = await this.utilisateursRepository
+      }
+      catch(error)
+      {
+        console.log("L'adresse mail et/ou le mdp est invalide")
+        throw new HttpException("L'adresse mail et/ou le mdp est invalide", 404)
+      }
+    }
 
 
   async findById(id: number): Promise<UtilisateursDto> {

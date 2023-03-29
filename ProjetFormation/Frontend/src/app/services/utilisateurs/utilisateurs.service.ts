@@ -34,4 +34,8 @@ export class UtilisateursService {
   public save(utilisateurs: Utilisateurs): Observable<any> {
     return this.httpClient.post<any>(`${this.utilisateursUrl}/createutilisateur`, utilisateurs);
   }
+
+  public connexion(invite : Invite): Observable<any>{
+    return this.httpClient.post<any>(`${this.utilisateursUrl}/connexion`, invite);
+  }
 }
