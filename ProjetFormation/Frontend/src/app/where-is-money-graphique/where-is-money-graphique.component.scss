@@ -1,1 +1,9 @@
-
+.graphique
+{
+  color:white;
+}
+::ng-deep .ngx-charts {
+  text{
+    fill: blue!important;
+  }
+}

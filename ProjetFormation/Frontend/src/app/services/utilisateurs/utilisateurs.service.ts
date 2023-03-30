@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
 import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
+import {Invite} from "../../models/otherModels/Invite";
 
 @Injectable({
   providedIn: 'root'

@@ -8,8 +8,7 @@
   - L'étudiant peut voir les formations pour lesquelles il peut s'inscrire,
     a accès a l'inscription aux formations selon sa catégorie d'utilisateur (basket, sports,...) vià la page mon profil-->
 
-<button mat-button routerLink="/"><mat-icon>home</mat-icon>Accueil</button>
-
+<button mat-button routerLink="/homepage"><mat-icon>home</mat-icon>Accueil</button>
 <button mat-button [matMenuTriggerFor]="belowMenu">
   <mat-icon> category</mat-icon>Catégories
 </button>
@@ -90,7 +89,6 @@
       <mat-icon> money</mat-icon>Problèmes/Pays
     </button>
   </mat-menu>
-
   <button mat-menu-item>
     <mat-icon> language icon</mat-icon>Géographie
   </button>
@@ -101,3 +99,4 @@
     <mat-icon> format_list_bulleted</mat-icon>Nos missions
   </button>
 </mat-menu>
+<button style="float:right" mat-button routerLink="/"><mat-icon>eject</mat-icon>Se déconnecter</button>

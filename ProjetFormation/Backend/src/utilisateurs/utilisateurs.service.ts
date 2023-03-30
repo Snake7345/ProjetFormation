@@ -37,15 +37,18 @@ export class UtilisateursService {
     })).map(u => ({ ...u, role: u.role}))
   }
 
-  async connexionvalid(invite: ConnexionutilisateursDto):Promise<void>
+  async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>
     {
-      try{
-        const user = await this.utilisateursRepository
+      try {
+        const user = await this.utilisateursRepository.findOneOrFail({
+          relations:{role:true},
+          where: {mail: invite.mail, password: invite.password}
+        });
+        return {...user, role: user.role}
       }
-      catch(error)
-      {
-        console.log("L'adresse mail et/ou le mdp est invalide")
-        throw new HttpException("L'adresse mail et/ou le mdp est invalide", 404)
+      catch(error) {
+        console.log("l'utilisateur n'existe pas")
+        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
       }
     }
 

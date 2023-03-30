@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {Utilisateurs} from "../models/utilisateurs";
+import {Invite} from "../models/otherModels/Invite";
+import {UtilisateursService} from "../services/utilisateurs/utilisateurs.service";
 
 @Component({
   selector: 'app-connexion',
@@ -12,6 +15,7 @@ export class ConnexionComponent implements OnInit
 {
   public connexionFormGroup! : FormGroup;
   constructor(
+    private utilisateurService: UtilisateursService,
     private activatedRoute: ActivatedRoute,
     private toastr : ToastrService,
     private _router : Router)
@@ -41,7 +45,19 @@ export class ConnexionComponent implements OnInit
 
   connexion()
   {
-
+      if(this.connexionFormGroup.invalid) return
+      const invite = new Invite(this.connexionFormGroup.value.mail,
+        this.connexionFormGroup.value.password);
+      console.log(invite)
+      this.utilisateurService.connexion(invite).subscribe(
+        data => {
+          this._router.navigate(['homepage']);
+        },
+        err => {
+          this.toastr.error(err.error.message, 'Fail', {
+            timeOut: 3000,  positionClass: 'toast-top-center',
+          });
+        }
+      );
   }
-
 }
