@@ -12,7 +12,7 @@
 style="fill: chartreuse;"
 ></ngx-charts-line-chart>
 -->
-<h1 style=" color: white">Table : Where is my money ? </h1>
+<h1>Table : Where is my money ? </h1>
 <div class="container">
   <table *ngIf="projetsLabos != []" class="table table-dark">
     <thead>
@@ -25,10 +25,10 @@ style="fill: chartreuse;"
     </thead>
     <tbody>
     <tr *ngFor="let projetslabo of projetsLabos">
-      <td style=" color: white">{{ projetslabo.idProjetsLabo}}</td>
-      <td style=" color: white">{{ projetslabo.nom }}</td>
-      <td style=" color: white">{{ projetslabo.FK_idValeursLabo.valeur}}</td>
-      <td style=" color: white">{{ projetslabo.FK_idAnneesLabo.annee}}</td>
+      <td>{{ projetslabo.idProjetsLabo}}</td>
+      <td>{{ projetslabo.nom }}</td>
+      <td >{{ projetslabo.FK_idValeursLabo.valeur}}</td>
+      <td>{{ projetslabo.FK_idAnneesLabo.annee}}</td>
     </tr>
     </tbody>
   </table>
