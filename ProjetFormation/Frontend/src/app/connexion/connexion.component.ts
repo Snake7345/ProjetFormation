@@ -28,7 +28,7 @@ export class ConnexionComponent implements OnInit
         )]),
       password:new FormControl('', [Validators.required,]),
     })
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   getErrorMessageMail()

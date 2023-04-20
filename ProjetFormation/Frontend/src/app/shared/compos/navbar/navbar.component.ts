@@ -16,7 +16,7 @@ export class NavbarComponent
 
   DisconnectClearData()
   {
-    localStorage.clear();
+    sessionStorage.clear();
     this._router.navigate(['/']);
   }
 

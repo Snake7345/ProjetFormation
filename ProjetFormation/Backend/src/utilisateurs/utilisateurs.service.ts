@@ -78,10 +78,36 @@ export class UtilisateursService {
         })
   }
 
+  async findByMail(mail: string): Promise<UtilisateursDto> {
+
+    return await this.utilisateursRepository.findOne({
+      where : {mail : mail}
+    })
+      .catch((error) => {
+        console.log("le mail n'existe pas")
+        throw new HttpException("Le mail n'existe pas", 500)
+      })
+  }
+
+  async findByMailDoublon(mail: string): Promise<[UtilisateursDto[], number] | void> {
+
+    return await this.utilisateursRepository.findAndCount({
+      where : {mail : mail}
+    })
+      .catch((error) => {
+        console.log("le mail n'existe pas")
+        throw new HttpException("Le mail n'existe pas", 500)
+      })
+  }
+
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
       if (await this.findByNRN(userToCreate.NRN)) {
         throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", 500
+        );
+      }
+      if (await this.findByMail(userToCreate.mail)) {
+        throw new HttpException("Cette adresse mail existe déjà, veuillez en choisir une autre", 500
         );
       }
       const role = await this.rolesRepository.findOneBy(
@@ -99,8 +125,6 @@ export class UtilisateursService {
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
-    //Faire en sorte de modifier son registre national
-
     const role = await this.rolesRepository.findOneBy(
         {idRoles : utilisateurToUpdate.role}
     )

@@ -19,7 +19,7 @@ export class UtilisateursEntity {
   @Column({ type: 'varchar', length: 100, nullable: false })
   prenom: string;
 
-  @Column({ type: 'varchar', length: 100, nullable: false })
+  @Column({ type: 'varchar', length: 100, nullable: false, unique:true })
   mail: string;
 
   @Column({ type: 'varchar', length: 11, nullable: false })

@@ -78,7 +78,9 @@ export class UpdateFormationsComponent {
           actif : data.actif,
           dateLimiteInscription:data.dateLimiteInscription,
           dateQuestionnaire : data.dateQuestionnaire
+
         }
+        console.log(this.formation);
         this.formationFormGroup.patchValue(
           this.formation
         );
