@@ -4,7 +4,6 @@ import {FormationsService} from "../../services/formations/formations.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
-import {CategoriesActivDesactiv} from "../../models/otherModels/categoriesActivDesactiv";
 import {FormationsActivDesactiv} from "../../models/otherModels/formationsActivDesactiv";
 
 @Component({

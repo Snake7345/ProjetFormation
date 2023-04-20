@@ -38,7 +38,7 @@
               (click)="picker.open()">
       watch_later
     </mat-icon>
-    <!--<input type="time" step="60" matInput formControlName="heureLimiteInscription" readonly />-->
+
     <mat-error *ngIf="formationFormGroup.controls['heureLimiteInscription'].invalid">
       {{ getErrorMessageHeureLimiteInscription() }}
     </mat-error>

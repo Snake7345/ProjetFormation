@@ -35,11 +35,9 @@ export class FormationsService {
                     idFormations : true,
                     nom : true,
                     infos : true,
-                    heureQuestionnaire : true,
                     actif : true,
-                    dateLimiteInscription : true,
-                    dateQuestionnaire : true,
-                    heureLimiteInscription : true,
+                    dateheureLimiteInscription : true,
+                    dateheureQuestionnaire : true,
                 }
             })).map(f => ({ ...f, categorie: f.categories, utilisateur : f.utilisateurs}))
     }
@@ -101,7 +99,7 @@ export class FormationsService {
         const utilisateur = await this.utilisateurRepository.findOneBy(
             {idUtilisateur : formationToUpdate.utilisateurs}
         )
-        console.log("j'ai la date ", formationToUpdate.dateLimiteInscription)
+        console.log("j'ai la date ", formationToUpdate.dateheureLimiteInscription)
         const formation = await  this.formationsRepository.findOneOrFail({
             where: {
                 idFormations: formationToUpdate.idFormations
@@ -110,12 +108,10 @@ export class FormationsService {
         formation.nom = formationToUpdate.nom
         formation.infos = formationToUpdate.infos
         formation.actif = formationToUpdate.actif
-        console.log("j'ai la date ", formationToUpdate.dateLimiteInscription)
-        formation.dateLimiteInscription = formationToUpdate.dateLimiteInscription
-        formation.heureLimiteInscription = formationToUpdate.heureLimiteInscription
-        console.log("j'ai la date questionnaire ", formationToUpdate.dateQuestionnaire)
-        formation.dateQuestionnaire = formationToUpdate.dateQuestionnaire
-        formation.heureQuestionnaire = formationToUpdate.heureQuestionnaire
+        console.log("j'ai la date ", formationToUpdate.dateheureLimiteInscription)
+        formation.dateheureLimiteInscription = formationToUpdate.dateheureLimiteInscription
+        console.log("j'ai la date questionnaire ", formationToUpdate.dateheureQuestionnaire)
+        formation.dateheureQuestionnaire = formationToUpdate.dateheureQuestionnaire
         formation.categories = categorie
         formation.utilisateurs = utilisateur
         return await this.formationsRepository.update(formation.idFormations, formation)

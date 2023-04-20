@@ -71,13 +71,11 @@ export class UpdateFormationsComponent {
           idFormations:data.idFormations,
           nom:data.nom,
           infos: data.infos,
-          heureQuestionnaire: data.heureQuestionnaire,
-          heureLimiteInscription: data.heureLimiteInscription,
+          dateheureQuestionnaire: data.dateheureQuestionnaire,
+          dateheureLimiteInscription  : data.dateheureLimiteInscription,
           categories : data.categories,
           utilisateurs : data.utilisateurs,
           actif : data.actif,
-          dateLimiteInscription:data.dateLimiteInscription,
-          dateQuestionnaire : data.dateQuestionnaire
 
         }
         console.log(this.formation);
@@ -98,16 +96,16 @@ export class UpdateFormationsComponent {
   {
     this.formation.nom=this.formationFormGroup.get("nom")?.value
     this.formation.infos=this.formationFormGroup.get("infos")?.value
-    this.formation.heureQuestionnaire=this.formationFormGroup.get("heureQuestionnaire")?.value
-    this.formation.heureLimiteInscription=this.formationFormGroup.get("heureLimiteInscription")?.value
-    this.date = new Date(this.formationFormGroup.get("dateQuestionnaire")?.value)
-    this.date.setHours(5)
-    console.log("Date questionnaire : ", this.date)
-    this.formation.dateQuestionnaire=this.date
-    this.date = new Date(this.formationFormGroup.get("dateLimiteInscription")?.value)
-    this.date.setHours(5)
-    console.log("Date limite : ", this.date)
-    this.formation.dateLimiteInscription=this.date
+    this.formation.dateheureQuestionnaire=this.formationFormGroup.get("dateheureQuestionnaire")?.value
+    this.formation.dateheureLimiteInscription=this.formationFormGroup.get("dateheureLimiteInscription")?.value
+    /*this.date = new Date(this.formationFormGroup.get("dateQuestionnaire")?.value)
+    this.date.setHours(5)*/
+    /*console.log("Date questionnaire : ", this.date)
+    this.formation.dateheureQuestionnaire=this.date*/
+    /*this.date = new Date(this.formationFormGroup.get("dateLimiteInscription")?.value)*/
+    /*this.date.setHours(5)
+    console.log("Date limite : ", this.date)*/
+    this.formation.dateheureLimiteInscription=this.date
     this.formation.categories=this.formationFormGroup.get("categorie")?.value
     this.formation.utilisateurs=this.formationFormGroup.get("utilisateur")?.value
   }

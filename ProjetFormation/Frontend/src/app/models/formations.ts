@@ -6,22 +6,17 @@ export class Formations {
   idFormations?: number
   nom: string
   infos: string
-  heureQuestionnaire: Time
+  dateheureQuestionnaire: Date
   actif: number
-  dateLimiteInscription: Date
-  dateQuestionnaire: Date
-  heureLimiteInscription: Time
+  dateheureLimiteInscription: Date
   categories: Categories
   utilisateurs: Utilisateurs
-  constructor(nom: string, infos: string, heureQuestionnaire: Time, actif: number, dateLimiteInscription: Date, dateQuestionnaire: Date,
-              heureLimiteInscription: Time, categories: Categories, utilisateurs: Utilisateurs) {
+  constructor(nom: string, infos: string, actif: number, dateheureLimiteInscription: Date, dateheureQuestionnaire: Date, categories: Categories, utilisateurs: Utilisateurs) {
     this.nom = nom;
     this.infos = infos;
-    this.heureQuestionnaire = heureQuestionnaire;
+    this.dateheureQuestionnaire = dateheureQuestionnaire;
     this.actif = actif;
-    this.dateLimiteInscription = dateLimiteInscription;
-    this.dateQuestionnaire = dateQuestionnaire
-    this.heureLimiteInscription = heureLimiteInscription;
+    this.dateheureLimiteInscription = dateheureLimiteInscription;
     this.categories = categories;
     this.utilisateurs = utilisateurs;
   }

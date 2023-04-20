@@ -69,10 +69,8 @@ export class AddFormationsComponent implements OnInit {
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),
       infos:new FormControl('', [Validators.maxLength(150)]),
-      dateLimiteInscription:new FormControl('', [Validators.required,]),
-      dateQuestionnaire:new FormControl('', [Validators.required,]),
-      heureQuestionnaire:new FormControl('', [Validators.required,]),
-      heureLimiteInscription:new FormControl('', [Validators.required,]),
+      dateheureLimiteInscription:new FormControl('', [Validators.required,]),
+      dateheureQuestionnaire:new FormControl('', [Validators.required,]),
       categorie:new FormControl('', [Validators.required,]),
       utilisateur:new FormControl('', [Validators.required,])
     })
@@ -82,11 +80,10 @@ export class AddFormationsComponent implements OnInit {
   {
     if(this.formationFormGroup.invalid) return
     const formation = new Formations(this.formationFormGroup.value.nom,
-      this.formationFormGroup.value.infos,this.formationFormGroup.value.heureQuestionnaire,
+      this.formationFormGroup.value.infos,
       this.actif,
-      this.formationFormGroup.value.dateLimiteInscription,
-      this.formationFormGroup.value.dateQuestionnaire,
-      this.formationFormGroup.value.heureLimiteInscription,this.formationFormGroup.value.categorie,
+      this.formationFormGroup.value.dateheureQuestionnaire,
+      this.formationFormGroup.value.dateheureLimiteInscription,this.formationFormGroup.value.categorie,
       this.formationFormGroup.value.utilisateur,);
     this.formationservice.save(formation).subscribe(
       data => {

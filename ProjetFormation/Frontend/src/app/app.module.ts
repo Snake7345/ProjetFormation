@@ -45,6 +45,7 @@ import {CommonModule} from "@angular/common";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ConnexionComponent } from './connexion/connexion.component';
+import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +99,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
     NgxMatTimepickerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
 
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],

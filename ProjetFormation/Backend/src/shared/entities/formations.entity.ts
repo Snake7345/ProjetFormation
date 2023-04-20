@@ -19,17 +19,11 @@ export class FormationsEntity {
     @Column({ type: 'tinyint', width: 1, default: 1 })
     actif: number;
 
-    @Column({ type: 'date' })
-    dateLimiteInscription : Date
+    @Column({ type: 'timestamp' })
+    dateheureLimiteInscription : Date
 
-    @Column({ type: 'time' })
-    heureLimiteInscription : Date
-
-    @Column({ type: 'date' })
-    dateQuestionnaire : Date
-
-    @Column({type: 'time'})
-    heureQuestionnaire : Date
+    @Column({ type: 'timestamp' })
+    dateheureQuestionnaire : Date
 
     @ManyToOne(() => CategoriesEntity, (categorie) => categorie.formations, { nullable: false })
     categories: CategoriesEntity
