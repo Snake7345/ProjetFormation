@@ -22,7 +22,7 @@
       <td>{{ formation.nom }}</td>
       <td>{{ formation.infos }}</td>
       <td>{{ formation.dateheureLimiteInscription  | date: 'dd/MM/yy à HH:mm' }}</td>
-      <td>{{ formation.dateheureLimiteInscription | date: 'dd/MM/yy à HH:mm' }}</td>
+      <td>{{ formation.dateheureQuestionnaire | date: 'dd/MM/yy à HH:mm' }}</td>
       <td>{{ formation.utilisateurs.nom + " " + formation.utilisateurs.prenom }}</td>
       <td>{{ formation.categories.nom }}</td>
       <td>{{ formation.actif }}</td>

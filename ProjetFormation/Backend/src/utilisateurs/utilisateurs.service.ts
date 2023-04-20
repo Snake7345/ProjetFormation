@@ -89,17 +89,6 @@ export class UtilisateursService {
       })
   }
 
-  async findByMailDoublon(mail: string): Promise<[UtilisateursDto[], number] | void> {
-
-    return await this.utilisateursRepository.findAndCount({
-      where : {mail : mail}
-    })
-      .catch((error) => {
-        console.log("le mail n'existe pas")
-        throw new HttpException("Le mail n'existe pas", 500)
-      })
-  }
-
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
       if (await this.findByNRN(userToCreate.NRN)) {

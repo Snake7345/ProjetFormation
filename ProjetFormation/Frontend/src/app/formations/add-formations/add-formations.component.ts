@@ -116,14 +116,14 @@ export class AddFormationsComponent implements OnInit {
       '';
   }
 
-  getErrorMessageDateQuestionnaire()
+  getErrorMessageDateHeureQuestionnaire()
   {
-    return this.formationFormGroup.controls['dateQuestionnaire'].hasError('required') ? ' La date du questionnaire est requise' :
+    return this.formationFormGroup.controls['dateheureQuestionnaire'].hasError('required') ? ' La date et l\' heure du questionnaire est requise' :
       '';
   }
-  getErrorMessageHeureQuestionnaire()
+  getErrorMessageDateHeureLimiteInscription()
   {
-    return this.formationFormGroup.controls['heureQuestionnaire'].hasError('required') ? ' L\'heure du questionnaire est requis' :
+    return this.formationFormGroup.controls['dateheureLimiteInscription'].hasError('required') ? ' La date et l\'heure de l\'inscription est requise' :
       '';
   }
 
@@ -138,17 +138,5 @@ export class AddFormationsComponent implements OnInit {
   {
     return this.formationFormGroup.controls['infos'].hasError('maxlength') ? ' Les infos sont limités à 1000 caractères' :
           '';
-  }
-
-  getErrorMessageDateLimiteInscription()
-  {
-    return this.formationFormGroup.controls['dateLimiteInscription'].hasError('required') ? ' La date limite d\'inscription est requise' :
-          '';
-  }
-
-  getErrorMessageHeureLimiteInscription()
-  {
-    return this.formationFormGroup.controls['heureLimiteInscription'].hasError('required') ? ' L\'heure limite de l\'inscription est requise' :
-      '';
   }
 }

@@ -20,9 +20,9 @@
   <br/>
   <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
-    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
-    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
+    <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
                              [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
                              [enableMeridian]="false" [disableMinute]="false" [hideTime]="false">
       <!-- Custom icon or text of Apply icon -->
@@ -31,6 +31,9 @@
         <span>OK</span>
       </ng-template>
     </ngx-mat-datetime-picker>
+    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid">
+      {{ getErrorMessageDateHeureLimiteInscription() }}
+    </mat-error>
   </mat-form-field>
   <br/>
   <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
@@ -46,6 +49,9 @@
         <span>OK</span>
       </ng-template>
     </ngx-mat-datetime-picker>
+    <mat-error *ngIf="formationFormGroup.controls['dateheureQuestionnaire'].invalid">
+      {{ getErrorMessageDateHeureQuestionnaire() }}
+    </mat-error>
   </mat-form-field>
   <br/>
   <mat-form-field appearance="fill">

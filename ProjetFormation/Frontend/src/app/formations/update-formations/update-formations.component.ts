@@ -55,10 +55,8 @@ export class UpdateFormationsComponent {
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),
       infos:new FormControl('', [Validators.maxLength(150)]),
-      dateLimiteInscription:new FormControl('', [Validators.required,]),
-      dateQuestionnaire:new FormControl('', [Validators.required,]),
-      heureQuestionnaire:new FormControl('', [Validators.required,]),
-      heureLimiteInscription:new FormControl('', [Validators.required,]),
+      dateheureLimiteInscription:new FormControl('', [Validators.required,]),
+      dateheureQuestionnaire:new FormControl('', [Validators.required,]),
       categorie:new FormControl('', [Validators.required,]),
       utilisateur:new FormControl('', [Validators.required,])
     })
@@ -98,14 +96,6 @@ export class UpdateFormationsComponent {
     this.formation.infos=this.formationFormGroup.get("infos")?.value
     this.formation.dateheureQuestionnaire=this.formationFormGroup.get("dateheureQuestionnaire")?.value
     this.formation.dateheureLimiteInscription=this.formationFormGroup.get("dateheureLimiteInscription")?.value
-    /*this.date = new Date(this.formationFormGroup.get("dateQuestionnaire")?.value)
-    this.date.setHours(5)*/
-    /*console.log("Date questionnaire : ", this.date)
-    this.formation.dateheureQuestionnaire=this.date*/
-    /*this.date = new Date(this.formationFormGroup.get("dateLimiteInscription")?.value)*/
-    /*this.date.setHours(5)
-    console.log("Date limite : ", this.date)*/
-    this.formation.dateheureLimiteInscription=this.date
     this.formation.categories=this.formationFormGroup.get("categorie")?.value
     this.formation.utilisateurs=this.formationFormGroup.get("utilisateur")?.value
   }
@@ -168,17 +158,16 @@ export class UpdateFormationsComponent {
       '';
   }
 
-  getErrorMessageDateQuestionnaire()
+  getErrorMessageDateHeureQuestionnaire()
   {
-    return this.formationFormGroup.controls['dateQuestionnaire'].hasError('required') ? ' La date du questionnaire est requise' :
+    return this.formationFormGroup.controls['dateheureQuestionnaire'].hasError('required') ? ' La date et l\' heure du questionnaire est requise' :
       '';
   }
-  getErrorMessageHeureQuestionnaire()
+  getErrorMessageDateHeureLimiteInscription()
   {
-    return this.formationFormGroup.controls['heureQuestionnaire'].hasError('required') ? ' L\'heure du questionnaire est requis' :
+    return this.formationFormGroup.controls['dateheureLimiteInscription'].hasError('required') ? ' La date et l\'heure de l\'inscription est requise' :
       '';
   }
-
   getErrorMessageNom()
   {
     return this.formationFormGroup.controls['nom'].hasError('required') ? ' Le nom de la formation est requis' :
@@ -189,18 +178,6 @@ export class UpdateFormationsComponent {
   getErrorMessageInfos()
   {
     return this.formationFormGroup.controls['infos'].hasError('maxlength') ? ' Les infos sont limités à 1000 caractères' :
-      '';
-  }
-
-  getErrorMessageDateLimiteInscription()
-  {
-    return this.formationFormGroup.controls['dateLimiteInscription'].hasError('required') ? ' La date limite d\'inscription est requise' :
-      '';
-  }
-
-  getErrorMessageHeureLimiteInscription()
-  {
-    return this.formationFormGroup.controls['heureLimiteInscription'].hasError('required') ? ' L\'heure limite de l\'inscription est requise' :
       '';
   }
 

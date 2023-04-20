@@ -18,51 +18,41 @@
     </mat-error>
   </mat-form-field>
   <br/>
-  <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
-    <mat-label>Date limite de l'inscription</mat-label>
-    <input matInput formControlName="dateLimiteInscription" [matDatepicker]="picker2"/>
-    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-    <mat-error *ngIf="formationFormGroup.controls['dateLimiteInscription'].invalid">
-      {{ getErrorMessageDateLimiteInscription() }}
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Date du questionnaire</mat-label>
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
+                             [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
+                             [enableMeridian]="false" [disableMinute]="false" [hideTime]="false">
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+    <mat-error *ngIf="formationFormGroup.controls['dateheureQuestionnaire'].invalid">
+      {{ getErrorMessageDateHeureQuestionnaire() }}
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Heure limite de l'inscription</mat-label>
-    <input matInput
-           [ngxMatTimepicker]="picker"
-           [format]="24"
-           formControlName="heureLimiteInscription"
-           readonly/>
-    <mat-icon matSuffix
-              (click)="picker.open()">
-      watch_later
-    </mat-icon>
-
-    <mat-error *ngIf="formationFormGroup.controls['heureLimiteInscription'].invalid">
-      {{ getErrorMessageHeureLimiteInscription() }}
-    </mat-error>
-  </mat-form-field>
-  <ngx-mat-timepicker #picker></ngx-mat-timepicker>
   <br/>
-  <mat-form-field style="padding: 5px" class="example-full-width" appearance="fill">
-    <mat-label>Date du questionnaire de l'examen</mat-label>
-    <input matInput formControlName="dateQuestionnaire" [matDatepicker]="picker3"/>
-    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
-    <mat-datepicker #picker3></mat-datepicker>
-    <mat-error *ngIf="formationFormGroup.controls['dateQuestionnaire'].invalid">
-      {{ getErrorMessageDateQuestionnaire() }}
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Date limite de l'inscription</mat-label>
+    <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
+                             [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
+                             [enableMeridian]="false" [disableMinute]="false" [hideTime]="false">
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid">
+      {{ getErrorMessageDateHeureLimiteInscription() }}
     </mat-error>
   </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Heure de questionnaire</mat-label>
-    <input type="time" step="60" matInput formControlName="heureQuestionnaire" readonly />
-    <mat-error *ngIf="formationFormGroup.controls['heureQuestionnaire'].invalid">
-      {{ getErrorMessageHeureQuestionnaire() }}
-    </mat-error>
-  </mat-form-field>
-
   <br/>
   <mat-form-field appearance="fill">
     <mat-label>Choissiez la catégorie</mat-label>
