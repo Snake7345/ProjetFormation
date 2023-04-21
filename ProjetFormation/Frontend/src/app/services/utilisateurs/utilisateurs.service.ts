@@ -39,4 +39,6 @@ export class UtilisateursService {
   public connexion(invite : Invite): Observable<any>{
     return this.httpClient.post<any>(`${this.utilisateursUrl}/connexion`, invite);
   }
+
+
 }

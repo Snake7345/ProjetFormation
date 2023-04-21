@@ -46,6 +46,7 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ConnexionComponent } from './connexion/connexion.component';
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
+import { UpdateProfilComponent } from './profil/update-profil/update-profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +75,7 @@ import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-mater
     OuSommesNousComponent,
     DepensesParPaysComponent,
     ConnexionComponent,
+    UpdateProfilComponent,
   ],
   imports: [
     /*Modules principaux*/

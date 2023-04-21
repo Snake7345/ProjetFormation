@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {Utilisateurs} from "../models/utilisateurs";
 import {Invite} from "../models/otherModels/Invite";
 import {UtilisateursService} from "../services/utilisateurs/utilisateurs.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-connexion',
@@ -14,6 +15,7 @@ import {UtilisateursService} from "../services/utilisateurs/utilisateurs.service
 export class ConnexionComponent implements OnInit
 {
   public connexionFormGroup! : FormGroup;
+  
   constructor(
     private utilisateurService: UtilisateursService,
     private activatedRoute: ActivatedRoute,
@@ -49,9 +51,10 @@ export class ConnexionComponent implements OnInit
       if(this.connexionFormGroup.invalid) return
       const invite = new Invite(this.connexionFormGroup.value.mail,
         this.connexionFormGroup.value.password);
-      console.log(invite)
       this.utilisateurService.connexion(invite).subscribe(
         data => {
+          /*sessionStorage.setItem("id", data.idUtilisateur)
+          sessionStorage.setItem("role", data.role.denomination)*/
           this._router.navigate(['homepage']);
         },
         err => {

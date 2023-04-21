@@ -12,6 +12,7 @@ import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionut
 
 @Injectable()
 export class UtilisateursService {
+
   constructor(
     @InjectRepository(UtilisateursEntity)
     private utilisateursRepository: Repository<UtilisateursEntity>,
@@ -44,14 +45,14 @@ export class UtilisateursService {
           relations:{role:true},
           where: {mail: invite.mail, password: invite.password}
         });
-        return {...user, role: user.role}
+
+        return {...user, role: user.role, idUtilisateur:user.idUtilisateur}
       }
       catch(error) {
         console.log("l'utilisateur n'existe pas")
         throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
       }
     }
-
 
   async findById(id: number): Promise<UtilisateursDto> {
     try {
@@ -130,6 +131,7 @@ export class UtilisateursService {
     user.mail = utilisateurToUpdate.mail
     user.sexe = utilisateurToUpdate.sexe
     user.role = role
+    // TODO: Catché l'erreur concernant le duplicata d'adresse mail
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
         console.log("Problème concernant la mise a jour de l'utilisateur")

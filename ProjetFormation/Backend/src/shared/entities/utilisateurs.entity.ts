@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique} from "typeorm";
 import { RolesEntity } from "./roles.entity";
 import { DiplomesUtilisateursEntity } from "./diplomesutilisateurs.entity";
 import { FormationsEntity } from "./formations.entity";

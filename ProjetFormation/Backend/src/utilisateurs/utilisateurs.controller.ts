@@ -34,8 +34,7 @@ export class UtilisateursController {
   }
   @Post('connexion')
   connexion(
-    @Body(ValidationPipe) invite : ConnexionutilisateursDto
-  ) : Promise<any>
+    @Body(ValidationPipe) invite : ConnexionutilisateursDto) : Promise<any>
   {
     return this.utilisateursService.connexionvalid(invite)
   }
