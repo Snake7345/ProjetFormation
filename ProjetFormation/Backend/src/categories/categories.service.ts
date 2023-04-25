@@ -23,13 +23,15 @@ export class CategoriesService {
         idCategories : true,
         nom : true,
         actif : true
-      }
+      },
+      relations:{categories:true}
     })
   }
 
   async findById(id: number): Promise<CategoriesDto> {
     return await this.categoriesRepository.findOne({
-      where : {idCategories : id}
+      where : {idCategories : id},
+      relations:{categories:true}
     })
       .catch((error) => {
         console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
@@ -41,7 +43,8 @@ export class CategoriesService {
   async findByNom(nom: string): Promise<CategoriesDto> {
 
     return await this.categoriesRepository.findOne({
-      where : {nom : nom}
+      where : {nom : nom},
+      relations:{categories:true}
     })
       .catch((error) => {
         console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)

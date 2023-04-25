@@ -14,6 +14,7 @@ export class PermissionsService {
 
     async getAll(): Promise<PermissionsDto[]> {
         return this.permissionsRepository.find({
+            relations:{rolespermissions:true},
             select : {
                 idPermissions : true,
                 action : true,
@@ -24,7 +25,8 @@ export class PermissionsService {
 
     async findById(id: number): Promise<PermissionsDto> {
         return await this.permissionsRepository.findOne({
-            where : {idPermissions : id}
+            relations:{rolespermissions:true},
+            where : {idPermissions : id},
         })
             .catch((error) => {
                 console.log("la permission n\'existe pas")

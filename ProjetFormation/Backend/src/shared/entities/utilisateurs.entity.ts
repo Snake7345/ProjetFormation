@@ -44,7 +44,7 @@ export class UtilisateursEntity {
 
   @OneToMany(() => DiplomesUtilisateursEntity, (diplomesUtilisateursEntity) =>
     diplomesUtilisateursEntity.diplomeU)
-  diplomes : DiplomesUtilisateursEntity[]
+  diplomesutilisateurs : DiplomesUtilisateursEntity[]
 
   @OneToMany(() => FormationsEntity, (formations) =>
       formations.utilisateurs)

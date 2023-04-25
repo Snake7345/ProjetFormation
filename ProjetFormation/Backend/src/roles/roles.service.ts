@@ -22,6 +22,7 @@ export class RolesService {
     }
     return list;*/
     return this.rolesRepository.find({
+      relations : {rolespermissions:true},
       select : {
         idRoles : true,
         denomination : true,
@@ -32,7 +33,9 @@ export class RolesService {
 
   async findById(id: number): Promise<RolesDto> {
     return await this.rolesRepository.findOne({
-      where : {idRoles : id}
+      relations : {rolespermissions:true},
+      where : {idRoles : id},
+
     })
         .catch((error) => {
           console.log("Le role n'existe pas")
@@ -42,7 +45,8 @@ export class RolesService {
 
   async findByNom(nom: string): Promise<RolesDto> {
     return await this.rolesRepository.findOne({
-      where : {denomination : nom}
+      relations : {rolespermissions:true},
+      where : {denomination : nom},
     })
         .catch((error) => {
           console.log("Le role n'existe pas")
@@ -80,5 +84,7 @@ export class RolesService {
         })
     console.log("Le role est modifié")
   }
+
+
 
 }

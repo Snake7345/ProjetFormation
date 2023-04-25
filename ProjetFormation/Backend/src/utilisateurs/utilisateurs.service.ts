@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { Not, Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
@@ -9,6 +9,7 @@ import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
+import { not } from "rxjs/internal/util/not";
 
 @Injectable()
 export class UtilisateursService {
@@ -24,7 +25,7 @@ export class UtilisateursService {
   async getAll(): Promise<UtilisateursDto[]> {
     return (await this.utilisateursRepository.find(
       {
-        relations : {role : true},
+        relations : {role : true, utilisateurcategories:true},
       select : {
         idUtilisateur : true,
         nom : true,
@@ -42,7 +43,7 @@ export class UtilisateursService {
     {
       try {
         const user = await this.utilisateursRepository.findOneOrFail({
-          relations:{role:true},
+          relations : {role : true, utilisateurcategories:true},
           where: {mail: invite.mail, password: invite.password}
         });
 
@@ -57,7 +58,7 @@ export class UtilisateursService {
   async findById(id: number): Promise<UtilisateursDto> {
     try {
       const user = await this.utilisateursRepository.findOneOrFail({
-        relations : {role : true},
+        relations : {role : true, utilisateurcategories:true},
         where : {idUtilisateur : id}
       });
       return {...user, role: user.role}
@@ -71,6 +72,7 @@ export class UtilisateursService {
   async findByNRN(NRN: string): Promise<UtilisateursDto> {
 
     return await this.utilisateursRepository.findOne({
+      relations : {role : true, utilisateurcategories:true, diplomesutilisateurs:true},
       where : {NRN : NRN}
     })
         .catch((error) => {
@@ -82,6 +84,7 @@ export class UtilisateursService {
   async findByMail(mail: string): Promise<UtilisateursDto> {
 
     return await this.utilisateursRepository.findOne({
+      relations : {role : true, utilisateurcategories:true},
       where : {mail : mail}
     })
       .catch((error) => {
@@ -89,6 +92,18 @@ export class UtilisateursService {
         throw new HttpException("Le mail n'existe pas", 500)
       })
   }
+
+  async findCountMail(mail: string, id : number): Promise<number> {
+
+    return await this.utilisateursRepository.count({where:{mail:mail,
+        idUtilisateur: Not(id) }
+    })
+      .catch((error) => {
+        console.log("Probleme avec le comptage des adresse mail")
+        throw new HttpException("Probleme avec le comptage des adresse mail", 500)
+      })
+
+}
 
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
@@ -115,6 +130,8 @@ export class UtilisateursService {
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
+    // Verifier si le mail est identique pour un utilisateur différent de l'actuelle
+
     const role = await this.rolesRepository.findOneBy(
         {idRoles : utilisateurToUpdate.role}
     )
@@ -123,6 +140,15 @@ export class UtilisateursService {
         idUtilisateur: utilisateurToUpdate.idUtilisateur
       },
     })
+
+    /*const count :number = await this.utilisateursRepository.count({where:{mail:utilisateurToUpdate.mail,
+        idUtilisateur: Not(utilisateurToUpdate.idUtilisateur) }})*/
+    const count = await this.findCountMail(utilisateurToUpdate.mail, utilisateurToUpdate.idUtilisateur)
+    if(count>0)
+    {
+      throw new HttpException("Le mail existe déjà, veuillez en choisir un autre", 500
+      );
+    }
     user.nom = utilisateurToUpdate.nom
     user.prenom = utilisateurToUpdate.prenom
     user.NRN = utilisateurToUpdate.NRN
@@ -131,7 +157,8 @@ export class UtilisateursService {
     user.mail = utilisateurToUpdate.mail
     user.sexe = utilisateurToUpdate.sexe
     user.role = role
-    // TODO: Catché l'erreur concernant le duplicata d'adresse mail
+
+
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
         console.log("Problème concernant la mise a jour de l'utilisateur")

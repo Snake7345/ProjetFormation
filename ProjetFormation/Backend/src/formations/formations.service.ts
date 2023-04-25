@@ -30,7 +30,7 @@ export class FormationsService {
     async getAll(): Promise<FormationsDto[]> {
         return (await this.formationsRepository.find(
             {
-                relations : {utilisateurs : true, categories : true},
+                relations : {utilisateurs : true, categories : true, syllabus:true, questions:true},
                 select : {
                     idFormations : true,
                     nom : true,
@@ -45,7 +45,7 @@ export class FormationsService {
     async findById(id: number): Promise<FormationsDto> {
         try {
             const formation = await this.formationsRepository.findOneOrFail({
-                relations : {categories : true, utilisateurs : true},
+                relations : {utilisateurs : true, categories : true, syllabus:true, questions:true},
                 where : {idFormations : id}
             });
             return {...formation, categories: formation.categories, utilisateurs : formation.utilisateurs}

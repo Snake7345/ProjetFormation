@@ -11,6 +11,6 @@ export class DiplomesUtilisateursEntity {
   @ManyToOne(() => DiplomesEntity, (diplomeEntity) => diplomeEntity.diplomes, { nullable: false })
   diplomeE: DiplomesEntity
 
-  @ManyToOne(() => UtilisateursEntity, (utilisateurEntity) => utilisateurEntity.diplomes, { nullable: false })
+  @ManyToOne(() => UtilisateursEntity, (utilisateurEntity) => utilisateurEntity.diplomesutilisateurs, { nullable: false })
   diplomeU: UtilisateursEntity
 }
