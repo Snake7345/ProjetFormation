@@ -47,6 +47,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ConnexionComponent } from './connexion/connexion.component';
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 import { UpdateProfilComponent } from './profil/update-profil/update-profil.component';
+import { MesFormationsComponent } from './formations/mes-formations/mes-formations.component';
+import { MesDiplomesComponent } from './diplomes/mes-diplomes/mes-diplomes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,8 @@ import { UpdateProfilComponent } from './profil/update-profil/update-profil.comp
     DepensesParPaysComponent,
     ConnexionComponent,
     UpdateProfilComponent,
+    MesFormationsComponent,
+    MesDiplomesComponent,
   ],
   imports: [
     /*Modules principaux*/
