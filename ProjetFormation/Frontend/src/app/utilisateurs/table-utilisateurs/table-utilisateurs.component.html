@@ -13,8 +13,7 @@
       <th scope="col">Sexe</th>
       <th scope="col">Actif</th>
       <th scope="col">Role</th>
-      <th scope="col">Modifier</th>
-      <th scope="col">On/off</th>
+      <td scope="col" colspan="2" style="text-align: center;">Options</td>
     </tr>
     </thead>
     <tbody>
@@ -27,7 +26,7 @@
       <td>{{ utilisateur.password }}</td>
       <td>{{ utilisateur.sexe }}</td>
       <td>{{ utilisateur.actif }}</td>
-      <td><!--{{afficherRole(utilisateur.role.idRoles)}}-->{{utilisateur.role.denomination}}</td>
+      <td>{{utilisateur.role.denomination}}</td>
       <td>
         <!--Utiliser un resolver pour que ça soit plus propre-->
         <button class="btn btn-outline-warning"

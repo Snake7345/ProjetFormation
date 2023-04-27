@@ -9,7 +9,6 @@ import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-import { not } from "rxjs/internal/util/not";
 
 @Injectable()
 export class UtilisateursService {

@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {Utilisateurs} from "../models/utilisateurs";
 import {Invite} from "../models/otherModels/Invite";
 import {UtilisateursService} from "../services/utilisateurs/utilisateurs.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-connexion',
@@ -15,7 +13,7 @@ import {Observable} from "rxjs";
 export class ConnexionComponent implements OnInit
 {
   public connexionFormGroup! : FormGroup;
-  
+
   constructor(
     private utilisateurService: UtilisateursService,
     private activatedRoute: ActivatedRoute,
@@ -30,7 +28,6 @@ export class ConnexionComponent implements OnInit
         )]),
       password:new FormControl('', [Validators.required,]),
     })
-    sessionStorage.clear();
   }
 
   getErrorMessageMail()

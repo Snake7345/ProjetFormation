@@ -37,14 +37,14 @@
   <mat-icon>person</mat-icon>Mon profil
 </button>
 <mat-menu #afterMenu="matMenu" xPosition="after">
-  <button routerLink="updateUtilisateurs" mat-menu-item>
+  <button routerLink="mon-profil" mat-menu-item>
     <mat-icon>edit</mat-icon>Modifier mon profil
   </button>
-  <button mat-menu-item>
-    <mat-icon> insert_drive_file</mat-icon>Mes formations(Non fonctionnel)
+  <button routerLink="mes-formations" mat-menu-item>
+    <mat-icon> insert_drive_file</mat-icon>Mes formations
   </button>
-  <button mat-menu-item>
-    <mat-icon>library_books</mat-icon>Mes diplômes(Non fonctionnel)
+  <button routerLink="mes-diplomes" mat-menu-item>
+    <mat-icon>library_books</mat-icon>Mes diplômes
   </button>
 </mat-menu>
 <button mat-button [matMenuTriggerFor]="after2Menu">
