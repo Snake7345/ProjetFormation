@@ -4,22 +4,6 @@ import { AppService } from "./app.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from "./config/constants";
-import { CategoriesEntity } from "./shared/entities/categories.entity";
-import { AnneeslaboEntity } from "./shared/entities/anneeslabo.entity";
-import { ProjetslaboEntity } from "./shared/entities/projetslabo.entity";
-import { ValeurslaboEntity } from "./shared/entities/valeurslabo.entity";
-import { PayslaboEntity } from "./shared/entities/payslabo.entity";
-import { DiplomesEntity } from "./shared/entities/diplomes.entity";
-import { DiplomesUtilisateursEntity } from "./shared/entities/diplomesutilisateurs.entity";
-import { FormationsEntity } from "./shared/entities/formations.entity";
-import { PermissionsEntity } from "./shared/entities/permissions.entity";
-import { QuestionsEntity } from "./shared/entities/questions.entity";
-import { ReponsesEntity } from "./shared/entities/reponses.entity";
-import { RolesEntity } from "./shared/entities/roles.entity";
-import { RolespermissionsEntity } from "./shared/entities/rolespermissions.entity";
-import { SyllabusEntity } from "./shared/entities/syllabus.entity";
-import { UtilisateursEntity } from "./shared/entities/utilisateurs.entity";
-import { UtilisateurscategoriesEntity } from "./shared/entities/utilisateurscategories.entity";
 import { AnneeslaboModule } from "./anneesLabo/anneeslabo.module";
 import { CategoriesModule } from "./categories/categories.module";
 import { DiplomesModule } from "./diplomes/diplomes.module";
@@ -53,10 +37,11 @@ import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
         username: configService.get<string>(DB_USER),
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
-        entities: [AnneeslaboEntity, CategoriesEntity, DiplomesEntity, DiplomesUtilisateursEntity, FormationsEntity,
+        /*entities: [AnneeslaboEntity, CategoriesEntity, DiplomesEntity, DiplomesUtilisateursEntity, FormationsEntity,
           PayslaboEntity,PermissionsEntity,ProjetslaboEntity, QuestionsEntity, ReponsesEntity, RolesEntity,
           RolespermissionsEntity,SyllabusEntity,UtilisateursEntity,UtilisateurscategoriesEntity,ValeurslaboEntity,
-        ],
+        ]*/
+        entities: [__dirname + "/**/*.entity.{ts, js}"],
         // Synchronise les modifications
         synchronize: true,
         autoLoadEntities: true,
