@@ -16,11 +16,11 @@ import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.d
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-
+import * as bcrypt from 'bcrypt';
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
 export class UtilisateursController {
-  constructor(private readonly utilisateursService: UtilisateursService) {
+  constructor(private readonly utilisateursService: UtilisateursService,) {
   }
 
   @Get()
@@ -33,7 +33,7 @@ export class UtilisateursController {
     return await this.utilisateursService.findById(id);
   }
   @Post('connexion')
-  connexion(
+  async connexion(
     @Body(ValidationPipe) invite : ConnexionutilisateursDto) : Promise<any>
   {
     return this.utilisateursService.connexionvalid(invite)
@@ -41,10 +41,10 @@ export class UtilisateursController {
 
 
   @Post('createutilisateur')
-  createUtilisateurs(
-    @Body(ValidationPipe) newUtilisateur : NewutilisateursDto
-  ) : Promise<any>
-  {
+  async createUtilisateurs(
+      @Body(ValidationPipe) newUtilisateur: NewutilisateursDto
+  ): Promise<any> {
+
     return this.utilisateursService.createUtilisateurs(newUtilisateur)
   }
 

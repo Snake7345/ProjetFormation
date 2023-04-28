@@ -9,6 +9,7 @@ import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UtilisateursService {
@@ -38,18 +39,34 @@ export class UtilisateursService {
     })).map(u => ({ ...u, role: u.role}))
   }
 
+  async cryptPassword(password: string):Promise<string>
+  {
+    password = await bcrypt.hash(password, 8)
+    return password
+  }
+
+  /*async comparePassword(passwordNonCrypte:string,passwordCrypte)
+  {
+    if(!await bcrypt.compare(passwordNonCrypte, passwordCrypte))
+    {
+      throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
+    }
+  }*/
+
   async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>
     {
+
       try {
         const user = await this.utilisateursRepository.findOneOrFail({
           relations : {role : true, utilisateurcategories:true},
-          where: {mail: invite.mail, password: invite.password}
+          where: {mail: invite.mail}
         });
+        if(!await bcrypt.compare(invite.password, user.password))//TODO : Optimisation à faire sur le throw
+          throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
 
         return {...user, role: user.role, idUtilisateur:user.idUtilisateur}
       }
       catch(error) {
-        console.log("l'utilisateur n'existe pas")
         throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
       }
     }
@@ -106,6 +123,7 @@ export class UtilisateursService {
 
     async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
     {
+      userToCreate.password = await this.cryptPassword(userToCreate.password)
       if (await this.findByNRN(userToCreate.NRN)) {
         throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", 500
         );
@@ -129,7 +147,7 @@ export class UtilisateursService {
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {
-    // Verifier si le mail est identique pour un utilisateur différent de l'actuelle
+    utilisateurToUpdate.password = await this.cryptPassword(utilisateurToUpdate.password)
 
     const role = await this.rolesRepository.findOneBy(
         {idRoles : utilisateurToUpdate.role}
