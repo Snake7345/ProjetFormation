@@ -37,10 +37,6 @@ import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
         username: configService.get<string>(DB_USER),
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
-        /*entities: [AnneeslaboEntity, CategoriesEntity, DiplomesEntity, DiplomesUtilisateursEntity, FormationsEntity,
-          PayslaboEntity,PermissionsEntity,ProjetslaboEntity, QuestionsEntity, ReponsesEntity, RolesEntity,
-          RolespermissionsEntity,SyllabusEntity,UtilisateursEntity,UtilisateurscategoriesEntity,ValeurslaboEntity,
-        ]*/
         entities: [__dirname + "/**/*.entity.{ts, js}"],
         // Synchronise les modifications
         synchronize: true,

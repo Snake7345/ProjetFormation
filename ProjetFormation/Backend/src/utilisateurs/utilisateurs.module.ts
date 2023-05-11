@@ -8,7 +8,7 @@ import { RolesEntity } from "../shared/entities/roles.entity";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesEntity])],
+  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesEntity]),],
   providers: [UtilisateursService, RolesService],
   controllers: [UtilisateursController],
 })

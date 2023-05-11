@@ -10,6 +10,7 @@ import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisat
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
 import * as bcrypt from 'bcrypt';
+import {SigninoutDto} from "../shared/dto/utilisateurs/signinout.dto";
 
 @Injectable()
 export class UtilisateursService {
@@ -19,7 +20,7 @@ export class UtilisateursService {
     private utilisateursRepository: Repository<UtilisateursEntity>,
     @InjectRepository(RolesEntity)
     private rolesRepository: Repository<RolesEntity>,
-    private readonly rolesService : RolesService
+    private readonly rolesService : RolesService,
   ) {}
 
   async getAll(): Promise<UtilisateursDto[]> {
@@ -53,7 +54,7 @@ export class UtilisateursService {
     }
   }*/
 
-  async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>
+  async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>//Promise<SigninoutDto>
     {
 
       try {
@@ -65,6 +66,12 @@ export class UtilisateursService {
           throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
 
         return {...user, role: user.role, idUtilisateur:user.idUtilisateur}
+
+        /*const payload = {sub: user.idUtilisateur, role:user.role.denomination };
+        return {
+          access_token: this.jwtService.sign(payload, {secret: "miaou", expiresIn:60*60})
+        };*/
+
       }
       catch(error) {
         throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
