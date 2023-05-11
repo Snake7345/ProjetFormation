@@ -26,7 +26,6 @@ export class AddFormationsComponent implements OnInit {
 
     private formationservice : FormationsService,
   ) { }
-
   actif : number = 1;
   public formationFormGroup! : FormGroup
 
@@ -82,8 +81,8 @@ export class AddFormationsComponent implements OnInit {
     const formation = new Formations(this.formationFormGroup.value.nom,
       this.formationFormGroup.value.infos,
       this.actif,
-      this.formationFormGroup.value.dateheureQuestionnaire,
-      this.formationFormGroup.value.dateheureLimiteInscription,this.formationFormGroup.value.categorie,
+      this.formationFormGroup.value.dateheureLimiteInscription,
+      this.formationFormGroup.value.dateheureQuestionnaire,this.formationFormGroup.value.categorie,
       this.formationFormGroup.value.utilisateur,);
     this.formationservice.save(formation).subscribe(
       data => {

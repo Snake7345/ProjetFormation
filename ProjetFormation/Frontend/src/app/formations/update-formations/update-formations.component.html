@@ -1,6 +1,5 @@
 <p>Veuillez remplir le questionnaire suivant pour ajouter une formation</p>
-<!--TODO: Questionnaire à faire
-  !-->
+
 <form [formGroup]="formationFormGroup" class="example-form" (ngSubmit)="onUpdate()" >
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle formation</mat-label>
@@ -19,25 +18,8 @@
   </mat-form-field>
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Date du questionnaire</mat-label>
-    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire">
-    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
-                             [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
-                             [enableMeridian]="false" [disableMinute]="false" [hideTime]="false">
-      <!-- Custom icon or text of Apply icon -->
-      <ng-template>
-        <!-- <mat-icon>star</mat-icon> -->
-        <span>OK</span>
-      </ng-template>
-    </ngx-mat-datetime-picker>
-    <mat-error *ngIf="formationFormGroup.controls['dateheureQuestionnaire'].invalid">
-      {{ getErrorMessageDateHeureQuestionnaire() }}
-    </mat-error>
-  </mat-form-field>
-  <br/>
-  <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
+    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
     <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
     <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
@@ -51,6 +33,25 @@
     </ngx-mat-datetime-picker>
     <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid">
       {{ getErrorMessageDateHeureLimiteInscription() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Date du questionnaire</mat-label>
+    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
+                             [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
+                             [enableMeridian]="false" [disableMinute]="false" [hideTime]="false">
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+    <mat-error *ngIf="formationFormGroup.controls['dateheureQuestionnaire'].invalid">
+      {{ getErrorMessageDateHeureQuestionnaire() }}
     </mat-error>
   </mat-form-field>
   <br/>

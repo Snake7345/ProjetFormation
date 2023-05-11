@@ -69,8 +69,8 @@ export class UpdateFormationsComponent {
           idFormations:data.idFormations,
           nom:data.nom,
           infos: data.infos,
-          dateheureQuestionnaire: data.dateheureQuestionnaire,
           dateheureLimiteInscription  : data.dateheureLimiteInscription,
+          dateheureQuestionnaire: data.dateheureQuestionnaire,
           categories : data.categories,
           utilisateurs : data.utilisateurs,
           actif : data.actif,
@@ -94,8 +94,8 @@ export class UpdateFormationsComponent {
   {
     this.formation.nom=this.formationFormGroup.get("nom")?.value
     this.formation.infos=this.formationFormGroup.get("infos")?.value
-    this.formation.dateheureQuestionnaire=this.formationFormGroup.get("dateheureQuestionnaire")?.value
     this.formation.dateheureLimiteInscription=this.formationFormGroup.get("dateheureLimiteInscription")?.value
+    this.formation.dateheureQuestionnaire=this.formationFormGroup.get("dateheureQuestionnaire")?.value
     this.formation.categories=this.formationFormGroup.get("categorie")?.value
     this.formation.utilisateurs=this.formationFormGroup.get("utilisateur")?.value
   }

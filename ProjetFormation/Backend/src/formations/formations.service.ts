@@ -74,14 +74,17 @@ export class FormationsService {
 
     async createFormations(formationToCreate : FormationsDto) : Promise<any>
     {
+        console.log(formationToCreate.dateheureLimiteInscription + " comparer " + formationToCreate.dateheureQuestionnaire)
+        if(formationToCreate.dateheureQuestionnaire < formationToCreate.dateheureLimiteInscription)
+        {
+            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", 500)
+        }
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToCreate.categories.idCategories}
         )
         const utilisateur = await this.utilisateurRepository.findOneBy(
             {idUtilisateur : formationToCreate.utilisateurs.idUtilisateur}
         )
-
-
         let formation : FormationsEntity = this.formationsRepository.create({...formationToCreate, categories:categorie, utilisateurs:utilisateur});
         console.log("formation reçue : ", formation)
         return this.formationsRepository.save(formation)
@@ -93,6 +96,12 @@ export class FormationsService {
 
     async updateFormations(formationToUpdate : UpdateformationsDto) : Promise<any>
     {
+        console.log(formationToUpdate.dateheureLimiteInscription + " comparer " + formationToUpdate.dateheureQuestionnaire)
+        console.log(typeof(formationToUpdate.dateheureLimiteInscription))
+        if(formationToUpdate.dateheureQuestionnaire < formationToUpdate.dateheureLimiteInscription)
+        {
+            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", 500)
+        }
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToUpdate.categories}
         )

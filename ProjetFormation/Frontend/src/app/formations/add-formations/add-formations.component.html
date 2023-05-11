@@ -1,6 +1,5 @@
 <p>Veuillez remplir le questionnaire suivant pour ajouter une formation</p>
-<!--TODO: Questionnaire à faire
-  !-->
+
 <form [formGroup]="formationFormGroup" class="example-form" (ngSubmit)="onCreate()" >
   <mat-form-field class="example-full-width">
     <mat-label>Nouvelle formation</mat-label>
@@ -20,6 +19,7 @@
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
+    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
     <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
     <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
@@ -38,6 +38,7 @@
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date du questionnaire</mat-label>
+    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
     <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire">
     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
