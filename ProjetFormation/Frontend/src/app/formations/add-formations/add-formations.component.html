@@ -20,7 +20,7 @@
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
     <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
-    <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription">
+    <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription" readonly>
     <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
                              [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
@@ -39,7 +39,7 @@
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date du questionnaire</mat-label>
     <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
-    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire">
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire" readonly>
     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
                              [stepMinute]="1" [stepSecond]="1" [touchUi]="false" [color]="undefined"
