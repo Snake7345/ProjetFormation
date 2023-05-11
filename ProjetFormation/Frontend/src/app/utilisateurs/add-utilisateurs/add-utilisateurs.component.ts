@@ -40,9 +40,9 @@ export class AddUtilisateursComponent implements OnInit{
   ngOnInit(): void {
     this.utilisateurFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
-        Validators.minLength(2), Validators.maxLength(100)]),
+        Validators.minLength(2), Validators.maxLength(100), Validators.pattern("^[a-zA-Z]+(?:-[a-zA-Z]+)*$")]),
       prenom:new FormControl('', [Validators.required,
-        Validators.minLength(2), Validators.maxLength(100)]),
+        Validators.minLength(2), Validators.maxLength(100), Validators.pattern("^[a-zA-Z]+(?:-[a-zA-Z]+)*$")]),
       mail:new FormControl('', [Validators.required,
         Validators.minLength(4), Validators.maxLength(100), Validators.pattern(
           "[a-z0-9!#$%&’*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
@@ -105,6 +105,7 @@ export class AddUtilisateursComponent implements OnInit{
     return this.utilisateurFormGroup.controls['nom'].hasError('required') ? ' Le nom de l\'utilisateur est requis' :
       this.utilisateurFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
         this.utilisateurFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+          this.utilisateurFormGroup.controls['nom'].hasError('pattern') ? 'Pas de caractères spéciaux (sauf le -) ni chiffres.' :
           '';
   }
 
@@ -113,6 +114,7 @@ export class AddUtilisateursComponent implements OnInit{
     return this.utilisateurFormGroup.controls['prenom'].hasError('required') ? ' Le prénom de l\'utilisateur est requis.' :
       this.utilisateurFormGroup.controls['prenom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
         this.utilisateurFormGroup.controls['prenom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
+          this.utilisateurFormGroup.controls['prenom'].hasError('pattern') ? 'Pas de caractères spéciaux (sauf le -) ni chiffres.' :
           '';
   }
 
