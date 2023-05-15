@@ -16,7 +16,7 @@ export class RolesEntity {
   @OneToMany(() => UtilisateursEntity, (utilisateur) => utilisateur.role)
   utilisateurs : UtilisateursEntity[]
 
-  @OneToMany(() => RolespermissionsEntity, (rolespermission) => rolespermission.roles)
+  @OneToMany(() => RolespermissionsEntity, (rolespermissions) => rolespermissions.roles)
   rolespermissions : RolespermissionsEntity[]
 
 }

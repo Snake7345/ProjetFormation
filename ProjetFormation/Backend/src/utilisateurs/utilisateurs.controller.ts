@@ -5,7 +5,7 @@ import {
   Param,
   ParseIntPipe,
   Patch,
-  Post, UseGuards,
+  Post,
   UsePipes,
   ValidationPipe
 } from "@nestjs/common";
@@ -16,7 +16,6 @@ import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.d
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-import * as bcrypt from 'bcrypt';
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
 export class UtilisateursController {

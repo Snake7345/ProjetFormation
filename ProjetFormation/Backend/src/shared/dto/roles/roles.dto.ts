@@ -16,5 +16,5 @@ export class RolesDto{
   @IsNumber()
   actif: number
 
-  // Rajouter l'utilisateur
+
 }

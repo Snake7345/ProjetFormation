@@ -7,7 +7,7 @@ import { UtilisateurscategoriesEntity } from "../shared/entities/utilisateurscat
 export class UtilisateurscategoriesService {
     constructor(
         @InjectRepository(UtilisateurscategoriesEntity)
-        private diplomesRepository: Repository<UtilisateurscategoriesEntity>,
+        private utilisateurscategoriesRepository: Repository<UtilisateurscategoriesEntity>,
     ) {
     }
 }

@@ -16,7 +16,7 @@ import { RolesService } from "../roles/roles.service";
     /*Remplir toutes les entités dans les imports*/
     imports: [TypeOrmModule.forFeature(
       [SyllabusEntity, FormationsEntity, CategoriesEntity, UtilisateursEntity,RolesEntity])],
-    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService],
+    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService        ],
     controllers: [SyllabusController],
 })
 export class SyllabusModule {}

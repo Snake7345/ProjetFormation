@@ -12,6 +12,6 @@ export class PermissionsEntity {
   @Column({ type: 'varchar', length: 150, nullable: false })
   type: string;
 
-  @OneToMany(() => RolespermissionsEntity, (rolespermission) => rolespermission.permissions)
+  @OneToMany(() => RolespermissionsEntity, (rolespermissions) => rolespermissions.permissions)
   rolespermissions : RolespermissionsEntity[]
 }
