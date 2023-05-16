@@ -14,6 +14,10 @@ export class ConnexionComponent implements OnInit
 {
   public connexionFormGroup! : FormGroup;
 
+  /*
+  * ? = Cela permet de dire que ca sera initialisé au plus tard dans le constructeur ou le oninit et que la valeur soit la valeur du type ou undefined
+  * ! = Cela permet de dire que ca sera initialisé au plus tard dans le constructeur ou le oninit et que la valeur soit la valeur du type
+  * */
   constructor(
     private utilisateurService: UtilisateursService,
     private activatedRoute: ActivatedRoute,
@@ -50,6 +54,8 @@ export class ConnexionComponent implements OnInit
         this.connexionFormGroup.value.password);
       this.utilisateurService.connexion(invite).subscribe(
         data => {
+          this.utilisateurService.utilisateurSubject$.next(data)
+
           /*sessionStorage.setItem("id", data.idUtilisateur)
           sessionStorage.setItem("role", data.role.denomination)*/
           this._router.navigate(['homepage']);
