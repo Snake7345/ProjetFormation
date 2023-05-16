@@ -11,6 +11,8 @@ import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesa
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
 import * as bcrypt from 'bcrypt';
 import {SigninoutDto} from "../shared/dto/utilisateurs/signinout.dto";
+import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
+import {RolespermissionsEntity} from "../shared/entities/rolespermissions.entity";
 
 @Injectable()
 export class UtilisateursService {
@@ -20,6 +22,8 @@ export class UtilisateursService {
     private utilisateursRepository: Repository<UtilisateursEntity>,
     @InjectRepository(RolesEntity)
     private rolesRepository: Repository<RolesEntity>,
+    @InjectRepository(RolespermissionsEntity)
+    private rolesPermissionsRepository: Repository<RolespermissionsEntity>,
     private readonly rolesService : RolesService,
   ) {}
 
@@ -46,7 +50,7 @@ export class UtilisateursService {
     return password
   }
 
-  async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>//Promise<SigninoutDto>
+  /*async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>//Promise<SigninoutDto>
     {
 
       try {
@@ -59,16 +63,42 @@ export class UtilisateursService {
 
         return {...user, role: user.role, idUtilisateur:user.idUtilisateur}
 
-        /*const payload = {sub: user.idUtilisateur, role:user.role.denomination };
+        const payload = {sub: user.idUtilisateur, role:user.role.denomination };
         return {
           access_token: this.jwtService.sign(payload, {secret: "miaou", expiresIn:60*60})
-        };*/
+        };
 
       }
       catch(error) {
         throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
       }
+    }*/
+
+  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
+    try {
+      const utilisateur = await this.utilisateursRepository.findOneOrFail({
+        relations: { role: true, utilisateurcategories: true },
+        where: { mail: invite.mail },
+      });
+
+      if (!await bcrypt.compare(invite.password, utilisateur.password))
+        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404);
+
+      const rolePermissions = await this.rolesPermissionsRepository.find({
+        where: { roles: { idRoles: utilisateur.role.idRoles } },
+        relations: ['permissions'],
+      });
+
+      const permissions = rolePermissions.map(rp => rp.permissions);
+
+      return {
+        utilisateur,
+        permissions,
+      };
+    } catch (error) {
+      throw new HttpException("Un problème a été rencontré", 404);
     }
+  }
 
   async findById(id: number): Promise<UtilisateursDto> {
     try {

@@ -11,12 +11,14 @@ import { CategoriesService } from "../categories/categories.service";
 import { UtilisateursService } from "../utilisateurs/utilisateurs.service";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
+import {RolespermissionsEntity} from "../shared/entities/rolespermissions.entity";
+import {RolespermissionsService} from "../rolesPermissions/rolespermissions.service";
 
 @Module({
     /*Remplir toutes les entités dans les imports*/
     imports: [TypeOrmModule.forFeature(
-      [SyllabusEntity, FormationsEntity, CategoriesEntity, UtilisateursEntity,RolesEntity])],
-    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService        ],
+      [SyllabusEntity, FormationsEntity, CategoriesEntity, UtilisateursEntity,RolesEntity, RolespermissionsEntity])],
+    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService, RolespermissionsService],
     controllers: [SyllabusController],
 })
 export class SyllabusModule {}

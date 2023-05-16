@@ -5,22 +5,19 @@ import { RolesEntity } from "../shared/entities/roles.entity";
 import {RolesDto} from "../shared/dto/roles/roles.dto";
 import {ErrorGeneral, ErrorStatus} from "../shared/utilities/error.enum";
 import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
+import {RolespermissionsEntity} from "../shared/entities/rolespermissions.entity";
+import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
 
 @Injectable()
 export class RolesService {
   constructor(
     @InjectRepository(RolesEntity)
     private rolesRepository: Repository<RolesEntity>,
+    @InjectRepository(RolespermissionsEntity)
+    private rolesPermissionsRepository: Repository<RolespermissionsEntity>
   ) {}
 
   async getAll(): Promise<RolesDto[]> {
-    /*const list = await this.categoriesRepository.find();
-    if (!list.length) {
-      throw new NotFoundException(
-        new MessageDto('Serveur : La liste est vide'),
-      );
-    }
-    return list;*/
     return this.rolesRepository.find({
       relations : {rolespermissions:true},
       select : {
@@ -30,6 +27,8 @@ export class RolesService {
       }
     })
   }
+
+
 
   async findById(id: number): Promise<RolesDto> {
     return await this.rolesRepository.findOne({
@@ -84,7 +83,5 @@ export class RolesService {
         })
     console.log("Le role est modifié")
   }
-
-
 
 }

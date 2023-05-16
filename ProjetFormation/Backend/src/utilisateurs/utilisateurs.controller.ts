@@ -29,13 +29,15 @@ export class UtilisateursController {
 
   @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
+    console.log(this.utilisateursService.findById(id))
     return await this.utilisateursService.findById(id);
   }
   @Post('connexion')
   async connexion(
     @Body(ValidationPipe) invite : ConnexionutilisateursDto) : Promise<any>
   {
-    return this.utilisateursService.connexionvalid(invite)
+
+    return await this.utilisateursService.connexionGetAll(invite)
   }
 
 
@@ -44,7 +46,7 @@ export class UtilisateursController {
       @Body(ValidationPipe) newUtilisateur: NewutilisateursDto
   ): Promise<any> {
 
-    return this.utilisateursService.createUtilisateurs(newUtilisateur)
+    return await this.utilisateursService.createUtilisateurs(newUtilisateur)
   }
 
   @UsePipes(new ValidationPipe({ whitelist: true }))

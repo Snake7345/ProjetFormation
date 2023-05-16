@@ -3,6 +3,8 @@ import { RolesService } from "./roles.service";
 import { ApiTags } from "@nestjs/swagger";
 import {RolesDto} from "../shared/dto/roles/roles.dto";
 import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
+import {PermissionsEntity} from "../shared/entities/permissions.entity";
+import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
 
 @ApiTags("Roles")
 @Controller('roles')
@@ -19,7 +21,6 @@ export class RolesController {
     return await this.rolesService.findById(id);
   }
 
-  /*Je ne comprends pas la validation whitelist*/
   @UsePipes(new ValidationPipe({ whitelist: true }))
   @Post('createrole')
   async create(@Body(ValidationPipe) dto: RolesDto) : Promise<RolesDto> {
