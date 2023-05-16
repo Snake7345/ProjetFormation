@@ -10,8 +10,8 @@ import {UtilisateursService} from "../utilisateurs/utilisateurs.service";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([DiplomesUtilisateursEntity, DiplomesEntity, UtilisateursEntity])],
-  providers: [DiplomesutilisateursService, DiplomesService,UtilisateursService],
+  imports: [TypeOrmModule.forFeature([DiplomesUtilisateursEntity])],
+  providers: [DiplomesutilisateursService],
   controllers: [DiplomesutilisateursController],
 })
 export class DiplomesutilisateursModule {}

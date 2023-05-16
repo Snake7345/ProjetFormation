@@ -46,14 +46,6 @@ export class UtilisateursService {
     return password
   }
 
-  /*async comparePassword(passwordNonCrypte:string,passwordCrypte)
-  {
-    if(!await bcrypt.compare(passwordNonCrypte, passwordCrypte))
-    {
-      throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
-    }
-  }*/
-
   async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>//Promise<SigninoutDto>
     {
 
