@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UtilisateursService} from "../../../services/utilisateurs/utilisateurs.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
+import {UtilisateurCo} from "../../../models/otherModels/utilisateurCo";
 import {Utilisateurs} from "../../../models/utilisateurs";
-import {UtilisateurCo} from "../../interfaces/UtilisateurCo";
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,22 +14,28 @@ export class NavbarComponent implements OnInit
 
   utilisateur?: UtilisateurCo;
 
+
+  public hasPermissions(action : string, type : string)
+  {
+    return this.utilisateur?.permissions.find(p => p.action === action && p.type === type)
+  }
+
   constructor(
     private _router : Router,
-    private _utilisateursService: UtilisateursService
+    private utilisateursService: UtilisateursService
   )
   {}
 
   DisconnectClearData()
   {
-    sessionStorage.clear();
     this._router.navigate(['/']);
   }
 
   ngOnInit(): void {
-    this._utilisateursService.utilisateurSubject$.subscribe({
-      next: (data: UtilisateurCo) => this.utilisateur = data
+    this.utilisateursService.utilisateurSubject$.subscribe({
+      next: (data: UtilisateurCo) => this.utilisateur = data as UtilisateurCo
     })
-  }
+    console.log("je suis un concon", this.utilisateur)
 
+  }
 }

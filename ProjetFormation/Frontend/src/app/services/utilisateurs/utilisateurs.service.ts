@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
 import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 import {Invite} from "../../models/otherModels/Invite";
-import {UtilisateurCo} from "../../shared/interfaces/UtilisateurCo";
+import {UtilisateurCo} from "../../models/otherModels/utilisateurCo";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class UtilisateursService {
   constructor(private httpClient: HttpClient) { }
 
   utilisateursUrl = environment.utilisateursUrl;
-  utilisateurSubject$: Subject<UtilisateurCo> = new Subject<UtilisateurCo>();
+  utilisateurSubject$: BehaviorSubject<UtilisateurCo> = new BehaviorSubject<any>(undefined);
 
 
 
