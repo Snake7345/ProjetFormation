@@ -49,8 +49,8 @@ export class AddFormationsComponent implements OnInit {
     );
   }
 
-  afficherUtilisateur(): void {
-    this.utilisateurservice.liste().subscribe(
+  afficherUtilisateurProf(): void {
+    this.utilisateurservice.listeByID(1).subscribe(
       (data) => {
         this.utilisateurs = data;
         this.listeVide = undefined;
@@ -63,7 +63,7 @@ export class AddFormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.afficherCategorie()
-    this.afficherUtilisateur()
+    this.afficherUtilisateurProf()
     this.formationFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),

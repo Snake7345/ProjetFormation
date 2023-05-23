@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UtilisateursService} from "../../../services/utilisateurs/utilisateurs.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UtilisateurCo} from "../../../models/otherModels/utilisateurCo";
-import {Utilisateurs} from "../../../models/utilisateurs";
 
 @Component({
   selector: 'app-navbar',

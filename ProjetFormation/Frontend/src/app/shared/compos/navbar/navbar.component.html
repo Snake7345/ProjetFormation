@@ -6,6 +6,9 @@
     a accès a l'inscription aux formations selon sa catégorie d'utilisateur (basket, sports,...) vià la page mon profil-->
 
 <button mat-button routerLink="/homepage"><mat-icon>home</mat-icon>Accueil</button>
+
+<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Categories')">
+
 <button mat-button [matMenuTriggerFor]="belowMenu">
   <mat-icon> category</mat-icon>Catégories
 </button>
@@ -13,10 +16,16 @@
   <button routerLink="tableCategories" mat-menu-item>
     <mat-icon > table_chart</mat-icon>Table des catégories
   </button>
+  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Categories')">
   <button routerLink="addCategories" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter une catégorie
   </button>
+  </ng-container>
 </mat-menu>
+
+</ng-container>
+
+<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Formations')">
 
 <button mat-button [matMenuTriggerFor]="beforeMenu">
   <mat-icon>school</mat-icon>Formations
@@ -25,10 +34,14 @@
   <button routerLink="tableFormations" mat-menu-item>
     <mat-icon> table_chart</mat-icon>Table de l'ensemble des formations
   </button>
+  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Formations')">
   <button routerLink="addFormations" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter une formation
   </button>
+  </ng-container>
 </mat-menu>
+
+</ng-container>
 
 <button mat-button [matMenuTriggerFor]="afterMenu">
   <mat-icon>person</mat-icon>Mon profil
@@ -47,8 +60,6 @@
 
 <ng-container *ngIf="utilisateur && hasPermissions('Read', 'Utilisateurs')">
 
-
-
 <button mat-button [matMenuTriggerFor]="after2Menu">
   <mat-icon>people</mat-icon>Utilisateurs
 </button>
@@ -56,9 +67,11 @@
   <button routerLink="tableUtilisateurs" mat-menu-item>
     <mat-icon> table_chart</mat-icon>Table des utilisateurs
   </button>
+  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Utilisateurs')">
   <button routerLink="addUtilisateurs" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter un utilisateur
   </button>
+  </ng-container>
 </mat-menu>
 
 </ng-container>

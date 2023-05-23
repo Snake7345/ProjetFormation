@@ -18,6 +18,11 @@ export class UtilisateursController {
     return await this.utilisateursService.getAll();
   }
 
+  @Get('role/:id')
+  async GetAllByID(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto[]> {
+    return await this.utilisateursService.getAllByID(id);
+  }
+
   @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
     console.log(this.utilisateursService.findById(id))

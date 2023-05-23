@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from "@nestjs/common";
+import {HttpException, Injectable, NotFoundException} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Not, Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
@@ -43,6 +43,28 @@ export class UtilisateursService {
     })).map(u => ({ ...u, role: u.role}))
   }
 
+  async getAllByID(id:number): Promise<UtilisateursDto[]> {
+    return (await this.utilisateursRepository.find(
+        {
+          relations : {role : true, utilisateurcategories:true},
+          select : {
+            idUtilisateur : true,
+            nom : true,
+            prenom : true,
+            mail : true,
+            NRN : true,
+            password : true,
+            sexe : true,
+            actif : true,
+          },
+          where: {
+            role: {
+              idRoles: id,
+            },
+          },
+        })).map(u => ({ ...u, role: u.role}))
+  }
+
   async cryptPassword(password: string):Promise<string>
   {
     password = await bcrypt.hash(password, 8)
@@ -73,15 +95,16 @@ export class UtilisateursService {
       }
     }*/
 
-  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
+  /*async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
     try {
-      const utilisateur = await this.utilisateursRepository.findOneOrFail({
+      const utilisateur = await this.utilisateursRepository.findOne({
         relations: { role: true, utilisateurcategories: true },
         where: { mail: invite.mail },
       });
 
-      if (!await bcrypt.compare(invite.password, utilisateur.password))
+      if (!utilisateur || !(await bcrypt.compare(invite.password, utilisateur.password))) {
         throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR, ErrorStatus.ERROR_500);
+      }
 
       const rolePermissions = await this.rolesPermissionsRepository.find({
         where: { roles: { idRoles: utilisateur.role.idRoles } },
@@ -95,9 +118,37 @@ export class UtilisateursService {
         permissions,
       };
     } catch (error) {
-      throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404);
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500);
+      }
     }
+  }*/
+
+  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
+    const utilisateur = await this.utilisateursRepository.findOne({
+      relations: { role: true, utilisateurcategories: true },
+      where: { mail: invite.mail },
+    });
+
+    if (!utilisateur || !(await bcrypt.compare(invite.password, utilisateur.password))) {
+      throw new NotFoundException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR);
+    }
+
+    const rolePermissions = await this.rolesPermissionsRepository.find({
+      where: { roles: { idRoles: utilisateur.role.idRoles } },
+      relations: ['permissions'],
+    });
+
+    const permissions = rolePermissions.map(rp => rp.permissions);
+
+    return {
+      utilisateur,
+      permissions,
+    };
   }
+
 
   async findById(id: number): Promise<UtilisateursDto> {
     try {
@@ -146,27 +197,36 @@ export class UtilisateursService {
 
 }
 
-    async createUtilisateurs(userToCreate : UtilisateursDto) : Promise<any>
-    {
-      userToCreate.password = await this.cryptPassword(userToCreate.password)
-      if (await this.findByNRN(userToCreate.NRN)) {
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NRN_EXIST, ErrorStatus.ERROR_500
-        );
-      }
-      if (await this.findByMail(userToCreate.mail)) {
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_MAIL_EXIST, ErrorStatus.ERROR_500
-        );
-      }
-      const role = await this.rolesRepository.findOneBy(
-        {idRoles : userToCreate.role.idRoles}
-      )
+  async createUtilisateurs(userToCreate: UtilisateursDto): Promise<any> {
+    try {
+      userToCreate.password = await this.cryptPassword(userToCreate.password);
 
-      let utilisateur : UtilisateursEntity = this.utilisateursRepository.create({...userToCreate, role})
-      return this.utilisateursRepository.save(utilisateur)
-        .catch((error) => {
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
-        })
+      if (await this.findByNRN(userToCreate.NRN)) {
+        throw new HttpException(
+            ErrorTypeUtilisateurs.UTILISATEUR_NRN_EXIST,
+            ErrorStatus.ERROR_500
+        );
+      }
+
+      if (await this.findByMail(userToCreate.mail)) {
+        throw new HttpException(
+            ErrorTypeUtilisateurs.UTILISATEUR_MAIL_EXIST,
+            ErrorStatus.ERROR_500
+        );
+      }
+
+      const role = await this.rolesRepository.findOneBy({ idRoles: userToCreate.role.idRoles });
+
+      const utilisateur: UtilisateursEntity = this.utilisateursRepository.create({
+        ...userToCreate,
+        role
+      });
+
+      return await this.utilisateursRepository.save(utilisateur);
+    } catch (error) {
+      throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404);
     }
+  }
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>
   {

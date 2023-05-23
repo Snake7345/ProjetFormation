@@ -23,6 +23,10 @@ export class UtilisateursService {
     return this.httpClient.get<Utilisateurs[]>(`${this.utilisateursUrl}`);
   }
 
+  public listeByID(id:number): Observable<Utilisateurs[]> {
+    return this.httpClient.get<Utilisateurs[]>(`${this.utilisateursUrl}/role/${id}`);
+  }
+
   public detail(id: number): Observable<Utilisateurs> {
     return this.httpClient.get<Utilisateurs>(`${this.utilisateursUrl}/readutilisateur/${id}`);
   }
