@@ -38,7 +38,7 @@ export class RolesService {
     })
         .catch((error) => {
           console.log("Le role n'existe pas")
-          throw new HttpException("Le role n'existe pas", 404)
+          throw new HttpException("Le role n'existe pas", ErrorStatus.ERROR_404)
         })
   }
 
@@ -49,20 +49,20 @@ export class RolesService {
     })
         .catch((error) => {
           console.log("Le role n'existe pas")
-          throw new HttpException("Le role n'existe pas", 404)
+          throw new HttpException("Le role n'existe pas", ErrorStatus.ERROR_404)
         })
   }
 
   async create(dto: RolesDto): Promise<RolesDto> {
     if (await this.findByNom(dto.denomination)) {
-      throw new HttpException("Le role existe déjà",500
+      throw new HttpException("Le role existe déjà",ErrorStatus.ERROR_500
       );
     }
     let role : RolesEntity = this.rolesRepository.create(dto)
 
     return this.rolesRepository.save(role)
         .catch(_ => {
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
+          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
         })
   }
 
@@ -70,16 +70,16 @@ export class RolesService {
     const role = await this.findById(dto.idRoles);
     const exists = await this.findByNom(dto.denomination);
     if (!role) {
-      throw new HttpException("le role n'existe pas",404
+      throw new HttpException("le role n'existe pas",ErrorStatus.ERROR_404
       );
     }
     if (exists && exists.idRoles !== dto.idRoles) {
-      throw new HttpException("Le role existe déjà",500
+      throw new HttpException("Le role existe déjà",ErrorStatus.ERROR_500
       );
     }
     return await this.rolesRepository.save(dto)
         .catch(_ => {
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
+          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
         })
     console.log("Le role est modifié")
   }

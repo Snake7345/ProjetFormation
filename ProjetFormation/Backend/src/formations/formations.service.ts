@@ -9,6 +9,7 @@ import {CategoriesEntity} from "../shared/entities/categories.entity";
 import {CategoriesService} from "../categories/categories.service";
 import {UtilisateursService} from "../utilisateurs/utilisateurs.service";
 import {UpdateformationsDto} from "../shared/dto/formations/updateformations.dto";
+import { ErrorStatus } from "../shared/utilities/error.enum";
 
 @Injectable()
 export class FormationsService {
@@ -52,7 +53,7 @@ export class FormationsService {
         }
         catch(error) {
             console.log("l'utilisateur n'existe pas")
-            throw new HttpException("l'utilisateur n'existe pas", 404)
+            throw new HttpException("l'utilisateur n'existe pas", ErrorStatus.ERROR_404)
         }
     }
 
@@ -68,7 +69,7 @@ export class FormationsService {
         return await this.formationsRepository.update(form.idFormations, form)
             .catch((error) => {
                 console.log("Problème concernant la désactivation/activation de la formation'")
-                throw new HttpException("Problème concernant la désactivation/activation de la formation", 404)
+                throw new HttpException("Problème concernant la désactivation/activation de la formation", ErrorStatus.ERROR_404)
             })
     }
 
@@ -77,7 +78,7 @@ export class FormationsService {
         console.log(formationToCreate.dateheureLimiteInscription + " comparer " + formationToCreate.dateheureQuestionnaire)
         if(formationToCreate.dateheureQuestionnaire < formationToCreate.dateheureLimiteInscription)
         {
-            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", 500)
+            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", ErrorStatus.ERROR_500)
         }
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToCreate.categories.idCategories}
@@ -90,7 +91,7 @@ export class FormationsService {
         return this.formationsRepository.save(formation)
             .catch((error) => {
                 console.log("problème avec la création de la formation")
-                throw new HttpException("problème avec la création de la formation", 404)
+                throw new HttpException("problème avec la création de la formation", ErrorStatus.ERROR_404)
             })
     }
 
@@ -100,7 +101,7 @@ export class FormationsService {
         console.log(typeof(formationToUpdate.dateheureLimiteInscription))
         if(formationToUpdate.dateheureQuestionnaire < formationToUpdate.dateheureLimiteInscription)
         {
-            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", 500)
+            throw new HttpException("La date limite d'inscription ne doit pas être ultérieure à la date du questionnaire", ErrorStatus.ERROR_500)
         }
         const categorie = await this.categorieRepository.findOneBy(
             {idCategories : formationToUpdate.categories}
@@ -126,7 +127,7 @@ export class FormationsService {
         return await this.formationsRepository.update(formation.idFormations, formation)
             .catch((error) => {
                 console.log("Problème concernant la mise a jour de la formation")
-                throw new HttpException("Problème concernant la mise a jour de la formation", 404)
+                throw new HttpException("Problème concernant la mise a jour de la formation", ErrorStatus.ERROR_404)
             })
     }
 }

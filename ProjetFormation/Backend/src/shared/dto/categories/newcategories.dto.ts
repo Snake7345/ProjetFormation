@@ -6,9 +6,9 @@ export class NewcategoriesDto {
     idCategories : number
 
     @IsDefined()
-    @IsNotBlank({message : 'DTO : ' + ErrorTypeCategories.EMPTY_NOM_ERROR})
-    @IsString({message : 'DTO : '+ ErrorTypeCategories.NOM_ERROR})
-    @Length(2,100, {message : 'DTO : '+ ErrorTypeCategories.NOM_LENGTH})
+    @IsNotBlank({message : 'DTO : ' + ErrorTypeCategories.CATEGORIE_EMPTY_NOM_ERROR})
+    @IsString({message : 'DTO : '+ ErrorTypeCategories.CATEGORIE_NOM_ERROR})
+    @Length(2,100, {message : 'DTO : '+ ErrorTypeCategories.CATEGORIE_NOM_LENGTH})
     nom: string;
 
     @IsDefined()

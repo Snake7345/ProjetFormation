@@ -5,6 +5,7 @@ import { DiplomesEntity } from "../shared/entities/diplomes.entity";
 import {FormationsEntity} from "../shared/entities/formations.entity";
 import {FormationsService} from "../formations/formations.service";
 import {DiplomesDto} from "../shared/dto/diplomes/diplomes.dto";
+import { ErrorStatus } from "../shared/utilities/error.enum";
 
 @Injectable()
 export class DiplomesService {
@@ -40,8 +41,7 @@ export class DiplomesService {
       return {...diplome, formation: diplome.formation}
     }
     catch(error) {
-      console.log("le diplome n'existe pas")
-      throw new HttpException("le diplome n'existe pas", 404)
+      throw new HttpException("le diplome n'existe pas", ErrorStatus.ERROR_404)
     }
   }
 

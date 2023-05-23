@@ -13,7 +13,7 @@ export class NewquestionsDto{
     question: string;
 
     @IsDefined()
-    @IsNotBlank({message :'DTO :' + ErrorTypePermissions.EMPTY_ACTION_ERROR})
+    @IsNotBlank({message :'DTO :' + "La cote maximale de la question doit être mise"})
     @IsNumber()
     cote: number;
 

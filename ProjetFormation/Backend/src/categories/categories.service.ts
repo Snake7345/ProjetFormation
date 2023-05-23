@@ -35,7 +35,7 @@ export class CategoriesService {
     })
       .catch((error) => {
         console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
-        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.ERROR_500)
       })
   }
 
@@ -48,21 +48,21 @@ export class CategoriesService {
     })
       .catch((error) => {
         console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
-        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+        throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.ERROR_500)
       })
   }
   /*Demandez la différence entre findone,findoneby et findoneorfail*/
 
   async create(dto: NewcategoriesDto): Promise<NewcategoriesDto> {
     if (await this.findByNom(dto.nom)) {
-      throw new HttpException(ErrorTypeCategories.NOM_EXIST,ErrorStatus.NOM_EXIST
+      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOM_EXIST,ErrorStatus.ERROR_500
       );
     }
     let categorie : CategoriesEntity = this.categoriesRepository.create(dto)
 
     return this.categoriesRepository.save(categorie)
         .catch(_ => {
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
+          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
         })
   }
 
@@ -70,18 +70,17 @@ export class CategoriesService {
     const categorie = await this.findById(dto.idCategories);
     const exists = await this.findByNom(dto.nom);
     if (!categorie) {
-      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST,ErrorStatus.CATEGORIE_NOT_EXIST
+      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST,ErrorStatus.ERROR_404
       );
     }
     if (exists && exists.idCategories !== dto.idCategories) {
-      throw new HttpException(ErrorTypeCategories.CATEGORIE_EXIST,ErrorStatus.CATEGORIE_EXIST
+      throw new HttpException(ErrorTypeCategories.CATEGORIE_EXIST,ErrorStatus.ERROR_500
       );
     }
     return await this.categoriesRepository.save(dto)
       .catch(_ => {
-        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
+        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
       })
-    console.log("La catégorie est modifié")
   }
 
   async activDesactivCategories(updateCategorie : ActivdesactivcategoriesDto) : Promise<any>
@@ -92,29 +91,26 @@ export class CategoriesService {
       },
     })
     cat.actif = updateCategorie.actif
-    console.log("je suis une categorie :", cat)
     return await this.categoriesRepository.update(cat.idCategories, cat)
       .catch((error) => {
-        console.log("Problème concernant la désactivation/activation de la catégorie'")
-        throw new HttpException("Problème concernant la désactivation/activation de la catégorie", 404)
+        throw new HttpException(ErrorTypeCategories.CATEGORIE_PROBLEM, ErrorStatus.ERROR_500)
       })
   }
 
   async delete(dtoId: CategorieIdDto): Promise<UpdatecategoriesDto> {
     if(!await this.findById(dtoId.idCategories))
     {
-      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST,ErrorStatus.CATEGORIE_NOT_EXIST
+      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST,ErrorStatus.ERROR_404
       );
     }
     let categorieToDelete = this.categoriesRepository.create({idCategories : dtoId.idCategories})
     return this.categoriesRepository.softRemove(categorieToDelete)
         .then((res) => {
           return res
-          console.log(res)
         })
         .catch((error) => {
           console.log(error)
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_UNKNOW)
+          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
         })
   }
 }

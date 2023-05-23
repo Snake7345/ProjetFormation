@@ -6,9 +6,9 @@ import {FormationsDto} from "../formations/formations.dto";
 export class NewdiplomesDto {
 
     idDiplomes: number
-    @IsNotBlank({message: 'DTO : ' + ErrorTypeDiplomes.EMPTY_NOM_ERROR})
-    @IsString({message: 'DTO : ' + ErrorTypeDiplomes.NOM_ERROR})
-    @Length(2, 150, {message: 'DTO : ' + ErrorTypeDiplomes.NOM_LENGTH})
+    @IsNotBlank({message: 'DTO : ' + ErrorTypeDiplomes.DIPLOME_EMPTY_NOM_ERROR})
+    @IsString({message: 'DTO : ' + ErrorTypeDiplomes.DIPLOME_NOM_ERROR})
+    @Length(2, 150, {message: 'DTO : ' + ErrorTypeDiplomes.DIPLOME_NOM_LENGTH})
     nom: string;
 
     @IsDefined()

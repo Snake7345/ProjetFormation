@@ -8,22 +8,22 @@ export class UpdateformationsDto{
   @IsNumber()
   idFormations : number
 
-  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_NOM_ERROR})
-  @IsString({message : 'DTO : '+ ErrorTypeFormations.NOM_ERROR})
-  @Length(2,150, {message : 'DTO : '+ ErrorTypeFormations.NOM_LENGTH})
+  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations. FORMATION_EMPTY_NOM_ERROR})
+  @IsString({message : 'DTO : '+ ErrorTypeFormations. FORMATION_NOM_ERROR})
+  @Length(2,150, {message : 'DTO : '+ ErrorTypeFormations. FORMATION_NOM_LENGTH})
   nom: string;
 
-  @MaxLength(1000, {message : 'DTO : '+ ErrorTypeFormations.INFOS_LENGTH})
+  @MaxLength(1000, {message : 'DTO : '+ ErrorTypeFormations. FORMATION_INFOS_LENGTH})
   infos: string;
 
   @IsNumber()
   actif: number
 
-  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_DATE_INSCRIPTION_LIMIT_ERROR})
+  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations. FORMATION_EMPTY_DATE_INSCRIPTION_LIMIT_ERROR})
   //@IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_INSCRIPTION_LIMIT_ERROR})
   dateheureLimiteInscription : Date
 
-  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations.EMPTY_DATE_QUESTIONNAIRE_ERROR})
+  @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations. FORMATION_EMPTY_DATE_QUESTIONNAIRE_ERROR})
   //@IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_QUESTIONNAIRE_ERROR})
   dateheureQuestionnaire : Date
 

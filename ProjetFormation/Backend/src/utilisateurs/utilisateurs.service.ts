@@ -82,7 +82,7 @@ export class UtilisateursService {
       });
 
       if (!await bcrypt.compare(invite.password, utilisateur.password))
-        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404);
+        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", ErrorStatus.ERROR_404);
 
       const rolePermissions = await this.rolesPermissionsRepository.find({
         where: { roles: { idRoles: utilisateur.role.idRoles } },
@@ -96,7 +96,7 @@ export class UtilisateursService {
         permissions,
       };
     } catch (error) {
-      throw new HttpException("Un problème a été rencontré", 404);
+      throw new HttpException("Un problème a été rencontré", ErrorStatus.ERROR_404);
     }
   }
 
@@ -110,7 +110,7 @@ export class UtilisateursService {
     }
     catch(error) {
       console.log("l'utilisateur n'existe pas")
-      throw new HttpException("l'utilisateur n'existe pas", 404)
+      throw new HttpException("l'utilisateur n'existe pas", ErrorStatus.ERROR_404)
     }
   }
 
@@ -122,7 +122,7 @@ export class UtilisateursService {
     })
         .catch((error) => {
           console.log(ErrorTypeCategories.CATEGORIE_NOT_EXIST)
-          throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.CATEGORIE_EXIST)
+          throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.ERROR_404)
         })
   }
 
@@ -134,7 +134,7 @@ export class UtilisateursService {
     })
       .catch((error) => {
         console.log("le mail n'existe pas")
-        throw new HttpException("Le mail n'existe pas", 500)
+        throw new HttpException("Le mail n'existe pas", ErrorStatus.ERROR_500)
       })
   }
 
@@ -145,7 +145,7 @@ export class UtilisateursService {
     })
       .catch((error) => {
         console.log("Probleme avec le comptage des adresse mail")
-        throw new HttpException("Probleme avec le comptage des adresse mail", 500)
+        throw new HttpException("Probleme avec le comptage des adresse mail", ErrorStatus.ERROR_500)
       })
 
 }
@@ -154,11 +154,11 @@ export class UtilisateursService {
     {
       userToCreate.password = await this.cryptPassword(userToCreate.password)
       if (await this.findByNRN(userToCreate.NRN)) {
-        throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", 500
+        throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", ErrorStatus.ERROR_500
         );
       }
       if (await this.findByMail(userToCreate.mail)) {
-        throw new HttpException("Cette adresse mail existe déjà, veuillez en choisir une autre", 500
+        throw new HttpException("Cette adresse mail existe déjà, veuillez en choisir une autre", ErrorStatus.ERROR_500
         );
       }
       const role = await this.rolesRepository.findOneBy(
@@ -170,7 +170,7 @@ export class UtilisateursService {
       return this.utilisateursRepository.save(utilisateur)
         .catch((error) => {
           console.log("problème avec la création de l'utilisateur")
-          throw new HttpException("problème avec la création de l'utilisateur", 404)
+          throw new HttpException("problème avec la création de l'utilisateur", ErrorStatus.ERROR_404)
         })
     }
 
@@ -192,7 +192,7 @@ export class UtilisateursService {
     const count = await this.findCountMail(utilisateurToUpdate.mail, utilisateurToUpdate.idUtilisateur)
     if(count>0)
     {
-      throw new HttpException("Le mail existe déjà, veuillez en choisir un autre", 500
+      throw new HttpException("Le mail existe déjà, veuillez en choisir un autre", ErrorStatus.ERROR_500
       );
     }
     user.nom = utilisateurToUpdate.nom
@@ -208,7 +208,7 @@ export class UtilisateursService {
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
         console.log("Problème concernant la mise a jour de l'utilisateur")
-        throw new HttpException("Problème concernant la mise a jour de l'utilisateur", 404)
+        throw new HttpException("Problème concernant la mise a jour de l'utilisateur", ErrorStatus.ERROR_404)
       })
   }
 
@@ -224,7 +224,7 @@ export class UtilisateursService {
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
         console.log("Problème concernant la désactivation/activation de l\'utilisateur'")
-        throw new HttpException("Problème concernant la désactivation/activation de l\'utilisateur", 404)
+        throw new HttpException("Problème concernant la désactivation/activation de l\'utilisateur", ErrorStatus.ERROR_404)
       })
   }
 

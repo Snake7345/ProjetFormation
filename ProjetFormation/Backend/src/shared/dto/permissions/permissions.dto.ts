@@ -8,14 +8,14 @@ export class PermissionsDto
   idPermissions : number
 
   @IsDefined()
-  @IsNotBlank({message :'DTO :' + ErrorTypePermissions.EMPTY_ACTION_ERROR})
-  @IsString({message : 'DTO :' + ErrorTypePermissions.ACTION_ERROR})
-  @Length(2,150,{message : 'DTO :' + ErrorTypePermissions.ACTION_LENGTH})
+  @IsNotBlank({message :'DTO :' + ErrorTypePermissions.PERMISSION_EMPTY_ACTION_ERROR})
+  @IsString({message : 'DTO :' + ErrorTypePermissions.PERMISSION_ACTION_ERROR})
+  @Length(2,150,{message : 'DTO :' + ErrorTypePermissions.PERMISSION_ACTION_LENGTH})
   action: string;
 
   @IsDefined()
-  @IsNotBlank({message :'DTO :' + ErrorTypePermissions.EMPTY_TYPE_ERROR})
-  @IsString({message : 'DTO :' + ErrorTypePermissions.TYPE_ERROR})
-  @Length(2,150,{message : 'DTO :' + ErrorTypePermissions.TYPE_LENGTH})
+  @IsNotBlank({message :'DTO :' + ErrorTypePermissions.PERMISSION_EMPTY_TYPE_ERROR})
+  @IsString({message : 'DTO :' + ErrorTypePermissions.PERMISSION_TYPE_ERROR})
+  @Length(2,150,{message : 'DTO :' + ErrorTypePermissions.PERMISSION_TYPE_LENGTH})
   type: string;
 }
