@@ -1,8 +1,8 @@
-import {Controller, Get, Param, ParseIntPipe} from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 
 import { DiplomesService } from "./diplomes.service";
 import { ApiTags } from "@nestjs/swagger";
-import {DiplomesDto} from "../shared/dto/diplomes/diplomes.dto";
+import { DiplomesDto } from "../shared/dto/diplomes/diplomes.dto";
 
 @ApiTags("Diplomes")
 @Controller('diplomes')

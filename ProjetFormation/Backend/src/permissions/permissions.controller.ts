@@ -1,7 +1,7 @@
-import {Controller, Get, Param, ParseIntPipe} from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { PermissionsService } from "./permissions.service";
 import { ApiTags } from "@nestjs/swagger";
-import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
+import { PermissionsDto } from "../shared/dto/permissions/permissions.dto";
 
 @ApiTags("Permissions")
 @Controller('permissions')

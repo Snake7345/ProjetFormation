@@ -1,9 +1,8 @@
-import { IsDate, IsDefined, IsNumber, IsString, Length, MaxLength, IsDateString } from "class-validator";
+import { IsDefined, IsNumber, IsString, Length, MaxLength } from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
-import {CategoriesDto} from "../categories/categories.dto";
-import {UtilisateursDto} from "../utilisateurs/utilisateurs.dto";
-import {format} from "mysql2";
+import { CategoriesDto } from "../categories/categories.dto";
+import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
 
 export class FormationsDto{
   @IsNumber()

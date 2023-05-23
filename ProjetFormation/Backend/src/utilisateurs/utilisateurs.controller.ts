@@ -1,21 +1,12 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  UsePipes,
-  ValidationPipe
-} from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UtilisateursService } from "./utilisateurs.service";
 import { ApiTags } from "@nestjs/swagger";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
-import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
+
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
 export class UtilisateursController {

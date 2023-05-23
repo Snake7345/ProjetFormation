@@ -1,9 +1,8 @@
-import {HttpException, Injectable} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
-import {RolespermissionsDto} from "../shared/dto/rolespermissions/rolespermissions.dto";
-import {RolesDto} from "../shared/dto/roles/roles.dto";
+import { RolespermissionsDto } from "../shared/dto/rolespermissions/rolespermissions.dto";
 
 @Injectable()
 export class RolespermissionsService {

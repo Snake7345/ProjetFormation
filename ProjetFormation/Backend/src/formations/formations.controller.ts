@@ -1,11 +1,10 @@
-import {Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe} from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { FormationsService } from "./formations.service";
 import { ApiTags } from "@nestjs/swagger";
-import {FormationsDto} from "../shared/dto/formations/formations.dto";
-import {ActivdesactivformationsDto} from "../shared/dto/formations/activdesactivformations.dto";
-import {NewformationsDto} from "../shared/dto/formations/newformations.dto";
-import {UpdateformationsDto} from "../shared/dto/formations/updateformations.dto";
-import {UtilisateursDto} from "../shared/dto/utilisateurs/utilisateurs.dto";
+import { FormationsDto } from "../shared/dto/formations/formations.dto";
+import { ActivdesactivformationsDto } from "../shared/dto/formations/activdesactivformations.dto";
+import { NewformationsDto } from "../shared/dto/formations/newformations.dto";
+import { UpdateformationsDto } from "../shared/dto/formations/updateformations.dto";
 
 @ApiTags("Formations")
 @Controller('formations')

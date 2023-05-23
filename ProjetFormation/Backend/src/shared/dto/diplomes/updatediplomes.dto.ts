@@ -1,7 +1,7 @@
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeDiplomes } from "../../utilities/error.enum";
 import { IsDefined, IsNumber, IsString, Length } from "class-validator";
-import {FormationsDto} from "../formations/formations.dto";
+import { FormationsDto } from "../formations/formations.dto";
 
 export class UpdatediplomesDto {
   @IsNumber()

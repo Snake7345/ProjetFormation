@@ -1,7 +1,7 @@
-import {Controller, Get} from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { RolespermissionsService } from "./rolespermissions.service";
 import { ApiTags } from "@nestjs/swagger";
-import {RolespermissionsDto} from "../shared/dto/rolespermissions/rolespermissions.dto";
+import { RolespermissionsDto } from "../shared/dto/rolespermissions/rolespermissions.dto";
 
 @ApiTags("RolesPermissions")
 @Controller('rolespermissions')

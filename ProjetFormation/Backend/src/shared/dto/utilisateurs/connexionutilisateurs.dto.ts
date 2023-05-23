@@ -1,4 +1,4 @@
-import { IsDefined, IsString, Length } from "class-validator";
+import { IsDefined, IsString } from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 
 export class ConnexionutilisateursDto

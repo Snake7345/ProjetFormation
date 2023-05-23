@@ -1,11 +1,11 @@
-import {HttpException, Injectable} from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { DiplomesEntity } from "../shared/entities/diplomes.entity";
-import {FormationsEntity} from "../shared/entities/formations.entity";
-import {FormationsService} from "../formations/formations.service";
-import {DiplomesDto} from "../shared/dto/diplomes/diplomes.dto";
-import { ErrorStatus } from "../shared/utilities/error.enum";
+import { FormationsEntity } from "../shared/entities/formations.entity";
+import { FormationsService } from "../formations/formations.service";
+import { DiplomesDto } from "../shared/dto/diplomes/diplomes.dto";
+import { ErrorStatus, ErrorTypeDiplomes } from "../shared/utilities/error.enum";
 
 @Injectable()
 export class DiplomesService {
@@ -41,7 +41,7 @@ export class DiplomesService {
       return {...diplome, formation: diplome.formation}
     }
     catch(error) {
-      throw new HttpException("le diplome n'existe pas", ErrorStatus.ERROR_404)
+      throw new HttpException(ErrorTypeDiplomes.DIPLOME_NOT_EXIST, ErrorStatus.ERROR_404)
     }
   }
 

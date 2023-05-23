@@ -1,12 +1,11 @@
-import {HttpException, Injectable} from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { RolesEntity } from "../shared/entities/roles.entity";
-import {RolesDto} from "../shared/dto/roles/roles.dto";
-import {ErrorGeneral, ErrorStatus} from "../shared/utilities/error.enum";
-import {UpdaterolesDto} from "../shared/dto/roles/updateroles.dto";
-import {RolespermissionsEntity} from "../shared/entities/rolespermissions.entity";
-import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
+import { RolesDto } from "../shared/dto/roles/roles.dto";
+import { ErrorGeneral, ErrorStatus, ErrorTypeRoles } from "../shared/utilities/error.enum";
+import { UpdaterolesDto } from "../shared/dto/roles/updateroles.dto";
+import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
 
 @Injectable()
 export class RolesService {
@@ -37,8 +36,7 @@ export class RolesService {
 
     })
         .catch((error) => {
-          console.log("Le role n'existe pas")
-          throw new HttpException("Le role n'existe pas", ErrorStatus.ERROR_404)
+          throw new HttpException(ErrorTypeRoles.ROLE_NOT_EXIST, ErrorStatus.ERROR_404)
         })
   }
 
@@ -48,14 +46,13 @@ export class RolesService {
       where : {denomination : nom},
     })
         .catch((error) => {
-          console.log("Le role n'existe pas")
-          throw new HttpException("Le role n'existe pas", ErrorStatus.ERROR_404)
+          throw new HttpException(ErrorTypeRoles.ROLE_NOT_EXIST, ErrorStatus.ERROR_404)
         })
   }
 
   async create(dto: RolesDto): Promise<RolesDto> {
     if (await this.findByNom(dto.denomination)) {
-      throw new HttpException("Le role existe déjà",ErrorStatus.ERROR_500
+      throw new HttpException(ErrorTypeRoles.ROLE_EXIST,ErrorStatus.ERROR_500
       );
     }
     let role : RolesEntity = this.rolesRepository.create(dto)
@@ -70,18 +67,17 @@ export class RolesService {
     const role = await this.findById(dto.idRoles);
     const exists = await this.findByNom(dto.denomination);
     if (!role) {
-      throw new HttpException("le role n'existe pas",ErrorStatus.ERROR_404
+      throw new HttpException(ErrorTypeRoles.ROLE_NOT_EXIST,ErrorStatus.ERROR_404
       );
     }
     if (exists && exists.idRoles !== dto.idRoles) {
-      throw new HttpException("Le role existe déjà",ErrorStatus.ERROR_500
+      throw new HttpException(ErrorTypeRoles.ROLE_EXIST,ErrorStatus.ERROR_500
       );
     }
     return await this.rolesRepository.save(dto)
         .catch(_ => {
           throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
         })
-    console.log("Le role est modifié")
   }
 
 }

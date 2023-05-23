@@ -1,7 +1,7 @@
-import {IsDefined, IsNumber, IsString, Length} from "class-validator";
-import {IsNotBlank} from "../../../decorators/is-not-blank.decorator";
-import {ErrorTypePermissions} from "../../utilities/error.enum";
+import { IsDefined, IsNumber, IsString, Length } from "class-validator";
+import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { FormationsDto } from "../formations/formations.dto";
+import { ErrorTypeQuestions } from "../../utilities/error.enum";
 
 export class NewquestionsDto{
     idQuestions: number
@@ -13,7 +13,7 @@ export class NewquestionsDto{
     question: string;
 
     @IsDefined()
-    @IsNotBlank({message :'DTO :' + "La cote maximale de la question doit être mise"})
+    @IsNotBlank({message :'DTO :' + ErrorTypeQuestions.QUESTION_COTE_EMPTY_ERROR})
     @IsNumber()
     cote: number;
 

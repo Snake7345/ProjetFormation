@@ -1,9 +1,9 @@
-import {HttpException, Injectable} from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { PermissionsEntity } from "../shared/entities/permissions.entity";
-import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
-import { ErrorStatus } from "../shared/utilities/error.enum";
+import { PermissionsDto } from "../shared/dto/permissions/permissions.dto";
+import { ErrorStatus, ErrorTypePermissions } from "../shared/utilities/error.enum";
 
 @Injectable()
 export class PermissionsService {
@@ -30,8 +30,7 @@ export class PermissionsService {
             where : {idPermissions : id},
         })
             .catch((error) => {
-                console.log("la permission n\'existe pas")
-                throw new HttpException("la permission n\'existe pas", ErrorStatus.ERROR_404)
+                throw new HttpException(ErrorTypePermissions.PERMISSION_NOT_EXIST, ErrorStatus.ERROR_404)
             })
     }
 

@@ -4,15 +4,14 @@ import { Not, Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
-import { ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum";
+import { ErrorGeneral, ErrorStatus, ErrorTypeCategories, ErrorTypeUtilisateurs } from "../shared/utilities/error.enum";
 import { UtilisateursDto } from "../shared/dto/utilisateurs/utilisateurs.dto";
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
-import {ActivdesactivutilisateursDto} from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
+import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-import * as bcrypt from 'bcrypt';
-import {SigninoutDto} from "../shared/dto/utilisateurs/signinout.dto";
-import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
-import {RolespermissionsEntity} from "../shared/entities/rolespermissions.entity";
+import * as bcrypt from "bcrypt";
+import { PermissionsDto } from "../shared/dto/permissions/permissions.dto";
+import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
 
 @Injectable()
 export class UtilisateursService {
@@ -82,7 +81,7 @@ export class UtilisateursService {
       });
 
       if (!await bcrypt.compare(invite.password, utilisateur.password))
-        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", ErrorStatus.ERROR_404);
+        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR, ErrorStatus.ERROR_500);
 
       const rolePermissions = await this.rolesPermissionsRepository.find({
         where: { roles: { idRoles: utilisateur.role.idRoles } },
@@ -96,7 +95,7 @@ export class UtilisateursService {
         permissions,
       };
     } catch (error) {
-      throw new HttpException("Un problème a été rencontré", ErrorStatus.ERROR_404);
+      throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404);
     }
   }
 
@@ -109,8 +108,7 @@ export class UtilisateursService {
       return {...user, role: user.role}
     }
     catch(error) {
-      console.log("l'utilisateur n'existe pas")
-      throw new HttpException("l'utilisateur n'existe pas", ErrorStatus.ERROR_404)
+      throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.ERROR_404)
     }
   }
 
@@ -133,8 +131,7 @@ export class UtilisateursService {
       where : {mail : mail}
     })
       .catch((error) => {
-        console.log("le mail n'existe pas")
-        throw new HttpException("Le mail n'existe pas", ErrorStatus.ERROR_500)
+        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_MAIL_NOT_EXIST, ErrorStatus.ERROR_500)
       })
   }
 
@@ -144,7 +141,6 @@ export class UtilisateursService {
         idUtilisateur: Not(id) }
     })
       .catch((error) => {
-        console.log("Probleme avec le comptage des adresse mail")
         throw new HttpException("Probleme avec le comptage des adresse mail", ErrorStatus.ERROR_500)
       })
 
@@ -154,11 +150,11 @@ export class UtilisateursService {
     {
       userToCreate.password = await this.cryptPassword(userToCreate.password)
       if (await this.findByNRN(userToCreate.NRN)) {
-        throw new HttpException("Le NRN existe déjà, veuillez en choisir un autre", ErrorStatus.ERROR_500
+        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NRN_EXIST, ErrorStatus.ERROR_500
         );
       }
       if (await this.findByMail(userToCreate.mail)) {
-        throw new HttpException("Cette adresse mail existe déjà, veuillez en choisir une autre", ErrorStatus.ERROR_500
+        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_MAIL_EXIST, ErrorStatus.ERROR_500
         );
       }
       const role = await this.rolesRepository.findOneBy(
@@ -166,11 +162,9 @@ export class UtilisateursService {
       )
 
       let utilisateur : UtilisateursEntity = this.utilisateursRepository.create({...userToCreate, role})
-      console.log("utilisateur reçu : ", utilisateur)
       return this.utilisateursRepository.save(utilisateur)
         .catch((error) => {
-          console.log("problème avec la création de l'utilisateur")
-          throw new HttpException("problème avec la création de l'utilisateur", ErrorStatus.ERROR_404)
+          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
         })
     }
 
@@ -192,7 +186,7 @@ export class UtilisateursService {
     const count = await this.findCountMail(utilisateurToUpdate.mail, utilisateurToUpdate.idUtilisateur)
     if(count>0)
     {
-      throw new HttpException("Le mail existe déjà, veuillez en choisir un autre", ErrorStatus.ERROR_500
+      throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_MAIL_EXIST, ErrorStatus.ERROR_500
       );
     }
     user.nom = utilisateurToUpdate.nom
@@ -207,8 +201,7 @@ export class UtilisateursService {
 
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
-        console.log("Problème concernant la mise a jour de l'utilisateur")
-        throw new HttpException("Problème concernant la mise a jour de l'utilisateur", ErrorStatus.ERROR_404)
+        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
       })
   }
 
@@ -220,13 +213,10 @@ export class UtilisateursService {
       },
     })
     user.actif = updateUtilisateur.actif
-    console.log("je suis un user :", user)
     return await this.utilisateursRepository.update(user.idUtilisateur, user)
       .catch((error) => {
-        console.log("Problème concernant la désactivation/activation de l\'utilisateur'")
-        throw new HttpException("Problème concernant la désactivation/activation de l\'utilisateur", ErrorStatus.ERROR_404)
+        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
       })
   }
-
 
 }

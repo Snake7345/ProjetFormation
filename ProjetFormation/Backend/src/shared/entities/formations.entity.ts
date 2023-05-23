@@ -1,4 +1,4 @@
-import {Check, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CategoriesEntity } from "./categories.entity";
 import { UtilisateursEntity } from "./utilisateurs.entity";
 import { SyllabusEntity } from "./syllabus.entity";
