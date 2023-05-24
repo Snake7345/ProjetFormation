@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {CategoriesService} from "../../services/categories/categories.service";
 import {ToastrService} from "ngx-toastr";
 import {Categories} from "../../models/categories";
+import {ErrorTypeCategorie} from "../../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-add-categories',
@@ -31,9 +32,9 @@ export class AddCategoriesComponent implements OnInit {
   }
   errorMessageNom()
   {
-    return this.categorieFormGroup.controls['nom'].hasError('required') ? ' La dénomination de la catégorie est requise.' :
-      this.categorieFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
-        this.categorieFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+    return this.categorieFormGroup.controls['nom'].hasError('required') ? ErrorTypeCategorie.CATEGORIE_DENOMINATION_EMPTY :
+      this.categorieFormGroup.controls['nom'].hasError('minlength') ? ErrorTypeCategorie.CATEGORIE_LENGTH :
+        this.categorieFormGroup.controls['nom'].hasError('maxlength') ? ErrorTypeCategorie.CATEGORIE_LENGTH :
           '';
   }
 
@@ -60,15 +61,4 @@ export class AddCategoriesComponent implements OnInit {
     this._router.navigate(["tableCategories"])
   }
 
-
-  /* 2eme solution
-  get errorMessage(): string {
-    const form: FormControl = (this.denominationFormGroup.get('nom') as FormControl);
-    return form.hasError('required') ?
-      'La dénomination de la catégorie est requise' :
-      form.hasError('maxlength') ?
-        'La longueur doit être entre 2 et 100 caractères' :
-        form.hasError('minlength') ?
-          'La longueur doit être entre 2 et 100 caractères' : '';
-  }*/
 }

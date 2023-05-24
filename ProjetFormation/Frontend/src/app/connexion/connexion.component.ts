@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Invite} from "../models/otherModels/Invite";
 import {UtilisateursService} from "../services/utilisateurs/utilisateurs.service";
+import {ErrorTypeUtilisateur} from "../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-connexion',
@@ -36,14 +37,14 @@ export class ConnexionComponent implements OnInit
 
   getErrorMessageMail()
   {
-    return this.connexionFormGroup.controls['mail'].hasError('required') ? 'Le mail est requis.' :
-          this.connexionFormGroup.controls['mail'].hasError('pattern') ? 'Le format du mail ne correspond pas.' :
+    return this.connexionFormGroup.controls['mail'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_EMPTY :
+          this.connexionFormGroup.controls['mail'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_FORMAT :
             '';
   }
 
   getErrorMessagePassword()
   {
-    return this.connexionFormGroup.controls['password'].hasError('required') ? 'Le password est requis' :
+    return this.connexionFormGroup.controls['password'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_PASSWORD_EMPTY :
           '';
   }
 

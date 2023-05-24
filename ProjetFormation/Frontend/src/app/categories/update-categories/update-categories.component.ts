@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Categories} from "../../models/categories";
 import {CategoriesService} from "../../services/categories/categories.service";
+import {ErrorTypeCategorie} from "../../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-update-categories',
@@ -54,9 +55,9 @@ export class UpdateCategoriesComponent implements OnInit {
 
   errorMessageNom()
   {
-    return this.categorieFormGroup.controls['nom'].hasError('required') ? ' La dénomination de la catégorie est requise.' :
-      this.categorieFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
-        this.categorieFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+    return this.categorieFormGroup.controls['nom'].hasError('required') ? ErrorTypeCategorie.CATEGORIE_DENOMINATION_EMPTY :
+      this.categorieFormGroup.controls['nom'].hasError('minlength') ? ErrorTypeCategorie.CATEGORIE_LENGTH :
+        this.categorieFormGroup.controls['nom'].hasError('maxlength') ? ErrorTypeCategorie.CATEGORIE_LENGTH :
           '';
   }
   public checkError = (controlName: string, errorName: string) => {

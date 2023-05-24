@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {Formations} from "../../models/formations";
@@ -8,6 +8,7 @@ import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.serv
 import {Utilisateurs} from "../../models/utilisateurs";
 import {FormationsService} from "../../services/formations/formations.service";
 import {ToastrService} from "ngx-toastr";
+import {ErrorTypeFormation} from "../../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-add-formations',
@@ -105,37 +106,37 @@ export class AddFormationsComponent implements OnInit {
 
   getErrorMessageCategorie()
   {
-    return this.formationFormGroup.controls['categorie'].hasError('required') ? ' La categorie de la formation est requise' :
+    return this.formationFormGroup.controls['categorie'].hasError('required') ? ErrorTypeFormation.FORMATION_CATEGORIE_EMPTY :
       '';
   }
 
   getErrorMessageUtilisateur()
   {
-    return this.formationFormGroup.controls['utilisateur'].hasError('required') ? ' Le responsable de la formation est requis' :
+    return this.formationFormGroup.controls['utilisateur'].hasError('required') ? ErrorTypeFormation.FORMATION_UTILISATEUR_EMPTY :
       '';
   }
 
   getErrorMessageDateHeureQuestionnaire()
   {
-    return this.formationFormGroup.controls['dateheureQuestionnaire'].hasError('required') ? ' La date et l\' heure du questionnaire est requise' :
+    return this.formationFormGroup.controls['dateheureQuestionnaire'].hasError('required') ? ErrorTypeFormation.FORMATION_DATEHEUREQUESTIONNAIRE_EMPTY :
       '';
   }
   getErrorMessageDateHeureLimiteInscription()
   {
-    return this.formationFormGroup.controls['dateheureLimiteInscription'].hasError('required') ? ' La date et l\'heure de l\'inscription est requise' :
+    return this.formationFormGroup.controls['dateheureLimiteInscription'].hasError('required') ? ErrorTypeFormation.FORMATION_DATEHEUREINSCRIPTION_EMPTY :
       '';
   }
 
   getErrorMessageNom()
   {
-    return this.formationFormGroup.controls['nom'].hasError('required') ? ' Le nom de la formation est requis' :
-      this.formationFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 150 caractères.' :
-        this.formationFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+    return this.formationFormGroup.controls['nom'].hasError('required') ? ErrorTypeFormation.FORMATION_NOM_EMPTY :
+      this.formationFormGroup.controls['nom'].hasError('minlength') ? ErrorTypeFormation.FORMATION_NOM_LENGTH :
+        this.formationFormGroup.controls['nom'].hasError('maxlength') ? ErrorTypeFormation.FORMATION_NOM_LENGTH :
           '';
   }
   getErrorMessageInfos()
   {
-    return this.formationFormGroup.controls['infos'].hasError('maxlength') ? ' Les infos sont limités à 1000 caractères' :
+    return this.formationFormGroup.controls['infos'].hasError('maxlength') ? ErrorTypeFormation.FORMATION_INFOS_LENGTH :
           '';
   }
 }

@@ -72,7 +72,6 @@ export class FormationsService {
 
     async createFormations(formationToCreate : FormationsDto) : Promise<any>
     {
-        console.log(formationToCreate.dateheureLimiteInscription + " comparer " + formationToCreate.dateheureQuestionnaire)
         if(formationToCreate.dateheureQuestionnaire < formationToCreate.dateheureLimiteInscription)
         {
             throw new HttpException(ErrorTypeFormations.FORMATION_DATE_INSCRIPTION_AFTER_QUESTIONNAIRE_ERROR, ErrorStatus.ERROR_500)
@@ -92,8 +91,6 @@ export class FormationsService {
 
     async updateFormations(formationToUpdate : UpdateformationsDto) : Promise<any>
     {
-        console.log(formationToUpdate.dateheureLimiteInscription + " comparer " + formationToUpdate.dateheureQuestionnaire)
-        console.log(typeof(formationToUpdate.dateheureLimiteInscription))
         if(formationToUpdate.dateheureQuestionnaire < formationToUpdate.dateheureLimiteInscription)
         {
             throw new HttpException(ErrorTypeFormations.FORMATION_DATE_INSCRIPTION_AFTER_QUESTIONNAIRE_ERROR, ErrorStatus.ERROR_500)

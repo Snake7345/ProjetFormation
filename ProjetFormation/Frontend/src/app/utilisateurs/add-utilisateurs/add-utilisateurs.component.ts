@@ -7,6 +7,7 @@ import {Utilisateurs} from "../../models/utilisateurs";
 import {ISexe} from "../../shared/interfaces/ISexe";
 import {RolesService} from "../../services/roles/roles.service";
 import {Roles} from "../../models/role";
+import {ErrorTypeUtilisateur} from "../../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-add-utilisateurs',
@@ -102,56 +103,56 @@ export class AddUtilisateursComponent implements OnInit{
 
   getErrorMessageNom()
   {
-    return this.utilisateurFormGroup.controls['nom'].hasError('required') ? ' Le nom de l\'utilisateur est requis' :
-      this.utilisateurFormGroup.controls['nom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
-        this.utilisateurFormGroup.controls['nom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
-          this.utilisateurFormGroup.controls['nom'].hasError('pattern') ? 'Pas de caractères spéciaux (sauf le -) ni chiffres.' :
+    return this.utilisateurFormGroup.controls['nom'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_NOM_EMPTY :
+      this.utilisateurFormGroup.controls['nom'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_NOM_LENGTH :
+        this.utilisateurFormGroup.controls['nom'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_NOM_LENGTH :
+          this.utilisateurFormGroup.controls['nom'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_NOM_FORMAT :
           '';
   }
 
   getErrorMessagePrenom()
   {
-    return this.utilisateurFormGroup.controls['prenom'].hasError('required') ? ' Le prénom de l\'utilisateur est requis.' :
-      this.utilisateurFormGroup.controls['prenom'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
-        this.utilisateurFormGroup.controls['prenom'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caracteres.' :
-          this.utilisateurFormGroup.controls['prenom'].hasError('pattern') ? 'Pas de caractères spéciaux (sauf le -) ni chiffres.' :
+    return this.utilisateurFormGroup.controls['prenom'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_PRENOM_EMPTY :
+      this.utilisateurFormGroup.controls['prenom'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_PRENOM_LENGTH :
+        this.utilisateurFormGroup.controls['prenom'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_PRENOM_LENGTH :
+          this.utilisateurFormGroup.controls['prenom'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_PRENOM_FORMAT :
           '';
   }
 
   getErrorMessageMail()
   {
-    return this.utilisateurFormGroup.controls['mail'].hasError('required') ? 'Le mail est requis.' :
-      this.utilisateurFormGroup.controls['mail'].hasError('minlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
-        this.utilisateurFormGroup.controls['mail'].hasError('maxlength') ? 'La longueur doit être entre 4 et 100 caracteres.' :
-          this.utilisateurFormGroup.controls['mail'].hasError('pattern') ? 'Le format du mail ne correspond pas.' :
+    return this.utilisateurFormGroup.controls['mail'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_EMPTY :
+      this.utilisateurFormGroup.controls['mail'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_LENGTH :
+        this.utilisateurFormGroup.controls['mail'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_LENGTH :
+          this.utilisateurFormGroup.controls['mail'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_MAIL_FORMAT :
           '';
   }
 
   getErrorMessageSexe()
   {
-    return this.utilisateurFormGroup.controls['sexe'].hasError('required') ? 'Le sexe est requis.' :
+    return this.utilisateurFormGroup.controls['sexe'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_SEXE_EMPTY :
           '';
   }
 
   getErrorMessageRole()
   {
-    return this.utilisateurFormGroup.controls['role'].hasError('required') ? 'Le role est requis.' :
+    return this.utilisateurFormGroup.controls['role'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_ROLE_EMPTY :
       '';
   }
 
   getErrorMessagePassword()
   {
-    return this.utilisateurFormGroup.controls['password'].hasError('required') ? 'Le password est requis' :
-      this.utilisateurFormGroup.controls['password'].hasError('minlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
-        this.utilisateurFormGroup.controls['password'].hasError('maxlength') ? 'La longueur doit être entre 2 et 100 caractères.' :
+    return this.utilisateurFormGroup.controls['password'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_PASSWORD_EMPTY :
+      this.utilisateurFormGroup.controls['password'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_PASSWORD_LENGTH :
+        this.utilisateurFormGroup.controls['password'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_PASSWORD_LENGTH :
           '';
   }
 
   getErrorMessageNRN() {
-    return this.utilisateurFormGroup.controls['NRN'].hasError('required') ? 'Le registre national est requis' :
-      this.utilisateurFormGroup.controls['NRN'].hasError('pattern') ? 'Le registre national doit contenir que des chiffres.' :
-        this.utilisateurFormGroup.controls['NRN'].hasError('minlength') ? 'La longueur doit être de 11 caractères.' :
-          this.utilisateurFormGroup.controls['NRN'].hasError('maxlength') ? 'La longueur doit être de 11 caractères.' :
+    return this.utilisateurFormGroup.controls['NRN'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_EMPTY :
+      this.utilisateurFormGroup.controls['NRN'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_FORMAT :
+        this.utilisateurFormGroup.controls['NRN'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_LENGTH :
+          this.utilisateurFormGroup.controls['NRN'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_LENGTH :
             '';
   }
 }

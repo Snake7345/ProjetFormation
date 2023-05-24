@@ -18,7 +18,6 @@ export class FormationsController {
 
     @Patch('activdesactiv/:id')
     async activdesactiv(@Body(ValidationPipe) updateFormations : ActivdesactivformationsDto) : Promise<any> {
-        console.log("je suis un id et un actif : ", updateFormations.idFormations, " ", updateFormations.actif)
         return await this.formationsService.activDesactivFormations(updateFormations);
     }
 
