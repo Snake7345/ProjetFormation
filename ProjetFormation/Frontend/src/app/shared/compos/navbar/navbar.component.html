@@ -7,7 +7,7 @@
 
 <button mat-button routerLink="/homepage"><mat-icon>home</mat-icon>Accueil</button>
 
-<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Categories')">
+<!--<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Categories')">-->
 
 <button mat-button [matMenuTriggerFor]="belowMenu">
   <mat-icon> category</mat-icon>Catégories
@@ -16,16 +16,16 @@
   <button routerLink="tableCategories" mat-menu-item>
     <mat-icon > table_chart</mat-icon>Table des catégories
   </button>
-  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Categories')">
+  <!--<ng-container *ngIf="utilisateur && hasPermissions('Add', 'Categories')">-->
   <button routerLink="addCategories" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter une catégorie
   </button>
-  </ng-container>
+  <!--</ng-container>-->
 </mat-menu>
 
-</ng-container>
+<!--</ng-container>-->
 
-<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Formations')">
+<!--<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Formations')">-->
 
 <button mat-button [matMenuTriggerFor]="beforeMenu">
   <mat-icon>school</mat-icon>Formations
@@ -34,14 +34,14 @@
   <button routerLink="tableFormations" mat-menu-item>
     <mat-icon> table_chart</mat-icon>Table de l'ensemble des formations
   </button>
-  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Formations')">
+  <!--<ng-container *ngIf="utilisateur && hasPermissions('Add', 'Formations')">-->
   <button routerLink="addFormations" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter une formation
   </button>
-  </ng-container>
+  <!--</ng-container>-->
 </mat-menu>
 
-</ng-container>
+<!--</ng-container>-->
 
 <button mat-button [matMenuTriggerFor]="afterMenu">
   <mat-icon>person</mat-icon>Mon profil
@@ -58,7 +58,7 @@
   </button>
 </mat-menu>
 
-<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Utilisateurs')">
+<!--<ng-container *ngIf="utilisateur && hasPermissions('Read', 'Utilisateurs')">-->
 
 <button mat-button [matMenuTriggerFor]="after2Menu">
   <mat-icon>people</mat-icon>Utilisateurs
@@ -67,14 +67,14 @@
   <button routerLink="tableUtilisateurs" mat-menu-item>
     <mat-icon> table_chart</mat-icon>Table des utilisateurs
   </button>
-  <ng-container *ngIf="utilisateur && hasPermissions('Add', 'Utilisateurs')">
+  <!--<ng-container *ngIf="utilisateur && hasPermissions('Add', 'Utilisateurs')">-->
   <button routerLink="addUtilisateurs" mat-menu-item>
     <mat-icon>playlist_add</mat-icon>Ajouter un utilisateur
   </button>
-  </ng-container>
+  <!--</ng-container>-->
 </mat-menu>
 
-</ng-container>
+<!--</ng-container>-->
 
 <button mat-button [matMenuTriggerFor]="after3Menu"><mat-icon> bar_chart</mat-icon>ONG</button>
 <mat-menu #after3Menu="matMenu" xPosition="after">

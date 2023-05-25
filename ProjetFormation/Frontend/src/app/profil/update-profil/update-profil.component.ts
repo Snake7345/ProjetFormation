@@ -162,7 +162,7 @@ export class UpdateProfilComponent
 
   getErrorMessageNRN() {
     return this.utilisateurFormGroup.controls['NRN'].hasError('required') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_EMPTY :
-      this.utilisateurFormGroup.controls['NRN'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_NUMBER :
+      this.utilisateurFormGroup.controls['NRN'].hasError('pattern') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_FORMAT :
         this.utilisateurFormGroup.controls['NRN'].hasError('minlength') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_LENGTH :
           this.utilisateurFormGroup.controls['NRN'].hasError('maxlength') ? ErrorTypeUtilisateur.UTILISATEUR_NRN_LENGTH :
             '';

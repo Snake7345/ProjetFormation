@@ -74,7 +74,25 @@ export class AddFormationsComponent implements OnInit {
       categorie:new FormControl('', [Validators.required,]),
       utilisateur:new FormControl('', [Validators.required,])
     })
+    // Définir les validateurs lors du changement de valeur des champs dateheureQuestionnaire et dateheureLimiteInscription
+    this.formationFormGroup.get('dateheureLimiteInscription')?.valueChanges.subscribe(() => {
+      this.updateDateLimiteInscriptionValidator();
+    });
+    this.formationFormGroup.get('dateheureQuestionnaire')?.valueChanges.subscribe(() => {
+      this.updateDateLimiteInscriptionValidator();
+    });
   }
+
+  updateDateLimiteInscriptionValidator() {
+    const dateLimite = this.formationFormGroup.get('dateheureLimiteInscription');
+    const dateQuestionnaire = this.formationFormGroup.get('dateheureQuestionnaire')?.value;
+
+    if (dateLimite && dateQuestionnaire && dateLimite.value !== '' && dateQuestionnaire !== '' && dateLimite.value > dateQuestionnaire) {
+      dateLimite.setErrors({ dateInvalid: true });
+    }
+  }
+
+
 
   onCreate() : void
   {
@@ -85,6 +103,7 @@ export class AddFormationsComponent implements OnInit {
       this.formationFormGroup.value.dateheureLimiteInscription,
       this.formationFormGroup.value.dateheureQuestionnaire,this.formationFormGroup.value.categorie,
       this.formationFormGroup.value.utilisateur,);
+    console.log(formation)
     this.formationservice.save(formation).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
@@ -121,10 +140,20 @@ export class AddFormationsComponent implements OnInit {
     return this.formationFormGroup.controls['dateheureQuestionnaire'].hasError('required') ? ErrorTypeFormation.FORMATION_DATEHEUREQUESTIONNAIRE_EMPTY :
       '';
   }
-  getErrorMessageDateHeureLimiteInscription()
-  {
-    return this.formationFormGroup.controls['dateheureLimiteInscription'].hasError('required') ? ErrorTypeFormation.FORMATION_DATEHEUREINSCRIPTION_EMPTY :
-      '';
+  getErrorMessageDateLimiteInscription() {
+    const dateLimiteControl = this.formationFormGroup.get('dateheureLimiteInscription');
+    const dateQuestionnaireControl = this.formationFormGroup.get('dateheureQuestionnaire');
+
+    if (dateLimiteControl && dateQuestionnaireControl) {
+      if (dateLimiteControl.hasError('dateInvalid')) {
+        return ErrorTypeFormation.FORMATION_QUESTIONNAIRE_BEFORE_INSCRIPTION;
+      }
+      if (dateLimiteControl.hasError('required')) {
+        return ErrorTypeFormation.FORMATION_DATEHEUREINSCRIPTION_EMPTY;
+      }
+    }
+
+    return '';
   }
 
   getErrorMessageNom()

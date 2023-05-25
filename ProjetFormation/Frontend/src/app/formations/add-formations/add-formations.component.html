@@ -31,9 +31,10 @@
         <span>OK</span>
       </ng-template>
     </ngx-mat-datetime-picker>
-    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid">
-      {{ getErrorMessageDateHeureLimiteInscription() }}
+    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid || formationFormGroup.get('dateheureLimiteInscription')?.hasError('dateInvalid')">
+      {{ getErrorMessageDateLimiteInscription() }}
     </mat-error>
+
   </mat-form-field>
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
@@ -53,6 +54,7 @@
     <mat-error *ngIf="formationFormGroup.controls['dateheureQuestionnaire'].invalid">
       {{ getErrorMessageDateHeureQuestionnaire() }}
     </mat-error>
+
   </mat-form-field>
   <br/>
   <mat-form-field appearance="fill">

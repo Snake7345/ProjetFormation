@@ -29,5 +29,6 @@ export enum ErrorTypeFormation
   FORMATION_DATEHEUREINSCRIPTION_EMPTY = "La date et l\'heure de l'inscription est requis",
   FORMATION_NOM_EMPTY = "Le nom de la formation est requis",
   FORMATION_NOM_LENGTH = "La longueur doit être entre 2 et 150 caractères",
-  FORMATION_INFOS_LENGTH ="les infos sont limités à 1000 caractères"
+  FORMATION_INFOS_LENGTH ="les infos sont limités à 1000 caractères",
+  FORMATION_QUESTIONNAIRE_BEFORE_INSCRIPTION = "La date du questionnaire est antérieure à la date d\'inscription"
 }
