@@ -198,7 +198,6 @@ export class UtilisateursService {
 }
 
   async createUtilisateurs(userToCreate: UtilisateursDto): Promise<any> {
-    try {
       userToCreate.password = await this.cryptPassword(userToCreate.password);
 
       if (await this.findByNRN(userToCreate.NRN)) {
@@ -222,10 +221,10 @@ export class UtilisateursService {
         role
       });
 
-      return await this.utilisateursRepository.save(utilisateur);
-    } catch (error) {
-      throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404);
-    }
+      return await this.utilisateursRepository.save(utilisateur)
+      .catch((error) => {
+        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
+      })
   }
 
   async updateUtilisateurs(utilisateurToUpdate : UpdateutilisateursDto) : Promise<any>

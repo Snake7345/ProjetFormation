@@ -74,21 +74,23 @@ export class AddUtilisateursComponent implements OnInit{
 
   onCreate() : void
   {
+    const roleRecup = this.roles.find(x=>x.idRoles== this.utilisateurFormGroup.value.role)!
     if(this.utilisateurFormGroup.invalid) return
     const utilisateur = new Utilisateurs(this.utilisateurFormGroup.value.nom,
       this.utilisateurFormGroup.value.prenom,this.utilisateurFormGroup.value.password,
       this.utilisateurFormGroup.value.mail,this.utilisateurFormGroup.value.NRN,
-      this.utilisateurFormGroup.value.sexe,this.actif, this.utilisateurFormGroup.value.role);
-    console.log(utilisateur)
+      this.utilisateurFormGroup.value.sexe,this.actif, roleRecup);
+    console.log("Voici mon utilisateur", utilisateur)
+
     this.utilisateurService.save(utilisateur).subscribe(
       data => {
-        this.toastr.success(data.message, 'OK', {
+        this.toastr.success(data.message, 'Ok', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
         this._router.navigate(['tableUtilisateurs']);
       },
       err => {
-        this.toastr.error(err.error.message, 'Fail', {
+        this.toastr.error(err.error.message, "Fail", {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
       }

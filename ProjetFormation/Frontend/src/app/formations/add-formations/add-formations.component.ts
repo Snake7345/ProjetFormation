@@ -96,13 +96,15 @@ export class AddFormationsComponent implements OnInit {
 
   onCreate() : void
   {
+    const categorieRecup = this.categories.find(x=>x.idCategories== this.formationFormGroup.value.categorie)!
+    const utilisateurRecup = this.utilisateurs.find(x=>x.idUtilisateur== this.formationFormGroup.value.utilisateur)!
     if(this.formationFormGroup.invalid) return
     const formation = new Formations(this.formationFormGroup.value.nom,
       this.formationFormGroup.value.infos,
       this.actif,
       this.formationFormGroup.value.dateheureLimiteInscription,
-      this.formationFormGroup.value.dateheureQuestionnaire,this.formationFormGroup.value.categorie,
-      this.formationFormGroup.value.utilisateur,);
+      this.formationFormGroup.value.dateheureQuestionnaire,categorieRecup,
+      utilisateurRecup,);
     console.log(formation)
     this.formationservice.save(formation).subscribe(
       data => {
