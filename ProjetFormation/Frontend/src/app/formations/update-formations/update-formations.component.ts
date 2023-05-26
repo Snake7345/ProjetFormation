@@ -65,7 +65,7 @@ export class UpdateFormationsComponent {
     this.formationservice.detail(id).subscribe(
       data => {
         this.selectedCat = data.categories.idCategories
-        this.selectedUser = data.utilisateurs.idUtilisateur
+        this.selectedUser = data.utilisateurs.idUtilisateurs
         this.formation = {
           idFormations:data.idFormations,
           nom:data.nom,

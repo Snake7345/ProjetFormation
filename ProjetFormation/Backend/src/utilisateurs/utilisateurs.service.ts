@@ -31,7 +31,7 @@ export class UtilisateursService {
       {
         relations : {role : true, utilisateurcategories:true},
       select : {
-        idUtilisateur : true,
+        idUtilisateurs : true,
         nom : true,
         prenom : true,
         mail : true,
@@ -48,7 +48,7 @@ export class UtilisateursService {
         {
           relations : {role : true, utilisateurcategories:true},
           select : {
-            idUtilisateur : true,
+            idUtilisateurs : true,
             nom : true,
             prenom : true,
             mail : true,
@@ -154,7 +154,7 @@ export class UtilisateursService {
     try {
       const user = await this.utilisateursRepository.findOneOrFail({
         relations : {role : true, utilisateurcategories:true},
-        where : {idUtilisateur : id}
+        where : {idUtilisateurs : id}
       });
       return {...user, role: user.role}
     }
@@ -189,7 +189,7 @@ export class UtilisateursService {
   async findCountMail(mail: string, id : number): Promise<number> {
 
     return await this.utilisateursRepository.count({where:{mail:mail,
-        idUtilisateur: Not(id) }
+        idUtilisateurs: Not(id) }
     })
       .catch((error) => {
         throw new HttpException("Probleme avec le comptage des adresse mail", ErrorStatus.ERROR_500)
@@ -236,13 +236,13 @@ export class UtilisateursService {
     )
     const user = await  this.utilisateursRepository.findOneOrFail({
       where: {
-        idUtilisateur: utilisateurToUpdate.idUtilisateur
+        idUtilisateurs: utilisateurToUpdate.idUtilisateurs
       },
     })
 
     /*const count :number = await this.utilisateursRepository.count({where:{mail:utilisateurToUpdate.mail,
         idUtilisateur: Not(utilisateurToUpdate.idUtilisateur) }})*/
-    const count = await this.findCountMail(utilisateurToUpdate.mail, utilisateurToUpdate.idUtilisateur)
+    const count = await this.findCountMail(utilisateurToUpdate.mail, utilisateurToUpdate.idUtilisateurs)
     if(count>0)
     {
       throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_MAIL_EXIST, ErrorStatus.ERROR_500
@@ -258,7 +258,7 @@ export class UtilisateursService {
     user.role = role
 
 
-    return await this.utilisateursRepository.update(user.idUtilisateur, user)
+    return await this.utilisateursRepository.update(user.idUtilisateurs, user)
       .catch((error) => {
         throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
       })
@@ -268,11 +268,11 @@ export class UtilisateursService {
   {
     const user = await  this.utilisateursRepository.findOneOrFail({
       where: {
-        idUtilisateur: updateUtilisateur.idUtilisateur
+        idUtilisateurs: updateUtilisateur.idUtilisateurs
       },
     })
     user.actif = updateUtilisateur.actif
-    return await this.utilisateursRepository.update(user.idUtilisateur, user)
+    return await this.utilisateursRepository.update(user.idUtilisateurs, user)
       .catch((error) => {
         throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
       })

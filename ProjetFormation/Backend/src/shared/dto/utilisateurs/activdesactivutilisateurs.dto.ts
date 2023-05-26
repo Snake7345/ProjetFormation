@@ -2,7 +2,7 @@ import { IsDefined, IsNumber } from "class-validator";
 
 export class ActivdesactivutilisateursDto{
     @IsNumber()
-    idUtilisateur: number
+    idUtilisateurs: number
 
     @IsDefined()
     @IsNumber()

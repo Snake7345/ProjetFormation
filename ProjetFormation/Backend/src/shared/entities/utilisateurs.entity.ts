@@ -10,7 +10,7 @@ import { EnumUtilisateur } from "../../utilisateurs/enumUtilisateur";
 @Entity({ name: 'utilisateurs' })
 export class UtilisateursEntity {
   @PrimaryGeneratedColumn()
-  idUtilisateur : number
+  idUtilisateurs : number
 
   @Column({ type: 'varchar', length: 100, nullable: false })
   nom: string;

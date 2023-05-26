@@ -2,7 +2,7 @@ import {Roles} from "./role";
 import {Sexe} from "./enum/enumSexe";
 
 export class Utilisateurs{
-  idUtilisateur? : number
+  idUtilisateurs? : number
   nom : string
 
   prenom : string

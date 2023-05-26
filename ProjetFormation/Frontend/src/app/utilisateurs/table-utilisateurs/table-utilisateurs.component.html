@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let utilisateur of utilisateurs">
-      <td>{{ utilisateur.idUtilisateur }}</td>
+      <td>{{ utilisateur.idUtilisateurs }}</td>
       <td>{{ utilisateur.nom }}</td>
       <td>{{ utilisateur.prenom }}</td>
       <td>{{ utilisateur.mail }}</td>
@@ -30,16 +30,16 @@
       <td>
         <!--Utiliser un resolver pour que ça soit plus propre-->
         <button class="btn btn-outline-warning"
-                routerLink="/updateUtilisateurs/{{ utilisateur.idUtilisateur }}"><mat-icon>update</mat-icon>Modifier
+                routerLink="/updateUtilisateurs/{{ utilisateur.idUtilisateurs }}"><mat-icon>update</mat-icon>Modifier
         </button>
       </td>
       <td>
-        <button *ngIf="utilisateur.actif !=0; else active" (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)"
+        <button *ngIf="utilisateur.actif !=0; else active" (click)="onUpdate(utilisateur.idUtilisateurs, utilisateur.actif)"
           class="btn btn-outline-danger">
           <mat-icon>power_off</mat-icon> Désactiver
         </button>
         <ng-template #active>
-          <button (click)="onUpdate(utilisateur.idUtilisateur, utilisateur.actif)" class="btn btn-outline-danger">
+          <button (click)="onUpdate(utilisateur.idUtilisateurs, utilisateur.actif)" class="btn btn-outline-danger">
           <mat-icon>power_on</mat-icon>Activé
         </button></ng-template>
       </td>

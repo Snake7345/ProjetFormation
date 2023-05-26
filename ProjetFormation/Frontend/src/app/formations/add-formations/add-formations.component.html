@@ -72,7 +72,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Choissiez le responsable</mat-label>
     <mat-select formControlName="utilisateur" (ngModelChange)="afficherUtilisateurProf()">
-      <mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.idUtilisateur">
+      <mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.idUtilisateurs">
         {{utilisateur.nom + " " + utilisateur.prenom}}
       </mat-option>
     </mat-select>

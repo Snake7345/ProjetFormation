@@ -4,7 +4,7 @@ import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
 import { RolesDto } from "../roles/roles.dto";
 
 export class NewutilisateursDto{
-    idUtilisateur: number
+    idUtilisateurs: number
 
     @IsDefined()
     @IsString()

@@ -62,7 +62,7 @@ export class UpdateProfilComponent
       data => {
         this.selectedRole = data.role.idRoles
         this.utilisateur = {
-          idUtilisateur:data.idUtilisateur,
+          idUtilisateurs:data.idUtilisateurs,
           nom:data.nom,
           prenom: data.prenom,
           NRN: data.NRN,

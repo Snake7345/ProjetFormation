@@ -55,7 +55,6 @@ export class UtilisateursController {
 
   @Patch('activdesactiv/:id')
   async activdesactiv(@Body(ValidationPipe) updateUtilisateurs : ActivdesactivutilisateursDto) : Promise<any> {
-    console.log("je suis un id et un actif : ", updateUtilisateurs.idUtilisateur, " ", updateUtilisateurs.actif)
     return await this.utilisateursService.activDesactivUtilisateurs(updateUtilisateurs);
   }
 

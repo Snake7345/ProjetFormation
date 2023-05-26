@@ -1,10 +1,10 @@
 export class UtilisateursActivDesactiv{
-  idUtilisateur? : number
+  idUtilisateurs? : number
   actif : number
 
-  constructor(idUtilisateur: number | undefined, actif: number)
+  constructor(idUtilisateurs: number | undefined, actif: number)
   {
-    this.idUtilisateur = idUtilisateur;
+    this.idUtilisateurs = idUtilisateurs;
     this.actif = actif;
   }
 }

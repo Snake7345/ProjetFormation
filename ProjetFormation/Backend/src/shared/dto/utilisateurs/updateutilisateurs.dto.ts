@@ -4,7 +4,7 @@ import { EnumUtilisateur } from "../../../utilisateurs/enumUtilisateur";
 
 export class UpdateutilisateursDto{
     @IsNumber()
-    idUtilisateur: number
+    idUtilisateurs: number
 
     @IsDefined()
     @IsString()

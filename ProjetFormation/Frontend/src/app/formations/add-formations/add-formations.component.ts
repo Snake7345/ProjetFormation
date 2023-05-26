@@ -97,7 +97,7 @@ export class AddFormationsComponent implements OnInit {
   onCreate() : void
   {
     const categorieRecup = this.categories.find(x=>x.idCategories== this.formationFormGroup.value.categorie)!
-    const utilisateurRecup = this.utilisateurs.find(x=>x.idUtilisateur== this.formationFormGroup.value.utilisateur)!
+    const utilisateurRecup = this.utilisateurs.find(x=>x.idUtilisateurs== this.formationFormGroup.value.utilisateur)!
     if(this.formationFormGroup.invalid) return
     const formation = new Formations(this.formationFormGroup.value.nom,
       this.formationFormGroup.value.infos,

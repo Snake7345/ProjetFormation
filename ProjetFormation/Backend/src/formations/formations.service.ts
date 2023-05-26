@@ -80,7 +80,7 @@ export class FormationsService {
             {idCategories : formationToCreate.categories.idCategories}
         )
         const utilisateur = await this.utilisateurRepository.findOneBy(
-            {idUtilisateur : formationToCreate.utilisateurs.idUtilisateur}
+            {idUtilisateurs : formationToCreate.utilisateurs.idUtilisateurs}
         )
         let formation : FormationsEntity = this.formationsRepository.create({...formationToCreate, categories:categorie, utilisateurs:utilisateur});
         return this.formationsRepository.save(formation)
@@ -99,7 +99,7 @@ export class FormationsService {
             {idCategories : formationToUpdate.categories}
         )
         const utilisateur = await this.utilisateurRepository.findOneBy(
-            {idUtilisateur : formationToUpdate.utilisateurs}
+            {idUtilisateurs : formationToUpdate.utilisateurs}
         )
         const formation = await  this.formationsRepository.findOneOrFail({
             where: {

@@ -5,7 +5,7 @@ import { RolesDto } from "../roles/roles.dto";
 
 export class UtilisateursDto{
     @IsNumber()
-    idUtilisateur: number
+    idUtilisateurs: number
 
     @IsDefined()
     @IsString()
