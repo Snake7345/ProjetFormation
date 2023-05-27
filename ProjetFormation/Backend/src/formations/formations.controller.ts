@@ -31,7 +31,6 @@ export class FormationsController {
         @Body(ValidationPipe) newFormations : NewformationsDto
     ) : Promise<any>
     {
-        console.log("new formaaaaatttttiooooonnnsssssss : ", newFormations)
         return this.formationsService.createFormations(newFormations)
     }
 

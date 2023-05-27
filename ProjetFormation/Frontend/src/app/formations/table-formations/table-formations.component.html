@@ -12,7 +12,7 @@
       <th scope="col">Prof référent</th>
       <th scope="col">Catégorie du cours</th>
       <th scope="col">Actif</th>
-      <td scope="col" colspan="2" style="text-align: center;">Options</td>
+      <td scope="col" colspan="4" style="text-align: center;">Options</td>
 
     </tr>
     </thead>
@@ -40,6 +40,16 @@
           <button (click)="onUpdate(formation.idFormations, formation.actif)" class="btn btn-outline-danger">
             <mat-icon>power_on</mat-icon>Activé
           </button></ng-template>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary"
+                routerLink="/tableSyllabus/"><mat-icon>library_books</mat-icon>Syllabus
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary"
+                routerLink="/addSyllabus/"><mat-icon>library_add</mat-icon>Ajouter un Syllabus
+        </button>
       </td>
     </tr>
     </tbody>

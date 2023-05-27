@@ -14,7 +14,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('ProjetFormation')
     .setDescription('API fournissant les informations sur ProjetFormation NestJS API')
-    .setVersion('0.8.12beta')
+    .setVersion('V0.8.20.1')
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
