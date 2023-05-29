@@ -49,6 +49,8 @@ import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-mater
 import { UpdateProfilComponent } from './profil/update-profil/update-profil.component';
 import { MesFormationsComponent } from './formations/mes-formations/mes-formations.component';
 import { MesDiplomesComponent } from './diplomes/mes-diplomes/mes-diplomes.component';
+import {NgxMatFileInputModule} from "@angular-material-components/file-input";
+import {MatToolbarModule} from "@angular/material/toolbar";
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,20 +99,22 @@ import { MesDiplomesComponent } from './diplomes/mes-diplomes/mes-diplomes.compo
     MatOptionModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     /*Autres modules*/
     ToastrModule.forRoot(),
     RouterModule,
     HttpClientModule,
     NgxChartsModule,
     NgxMatTimepickerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
+    NgxMatFileInputModule,
 
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

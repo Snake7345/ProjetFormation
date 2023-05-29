@@ -85,10 +85,26 @@ export class AddFormationsComponent implements OnInit {
 
   updateDateLimiteInscriptionValidator() {
     const dateLimite = this.formationFormGroup.get('dateheureLimiteInscription');
-    const dateQuestionnaire = this.formationFormGroup.get('dateheureQuestionnaire')?.value;
+    const dateQuestionnaire = this.formationFormGroup.get('dateheureQuestionnaire');
 
-    if (dateLimite && dateQuestionnaire && dateLimite.value !== '' && dateQuestionnaire !== '' && dateLimite.value > dateQuestionnaire) {
-      dateLimite.setErrors({ dateInvalid: true });
+    if (dateLimite && dateQuestionnaire) {
+      const dateLimiteValue = dateLimite.value;
+      const dateQuestionnaireValue = dateQuestionnaire.value;
+
+      if (dateLimiteValue !== '' && dateQuestionnaireValue !== '') {
+        if (dateLimiteValue > dateQuestionnaireValue) {
+          dateLimite.setErrors({ dateInvalid: true });
+          dateQuestionnaire.setErrors({ dateInvalid: true });
+        } else {
+          // Si les dates sont valides, supprimez les erreurs
+          if (dateLimite.hasError('dateInvalid')) {
+            dateLimite.setErrors(null);
+          }
+          if (dateQuestionnaire.hasError('dateInvalid')) {
+            dateQuestionnaire.setErrors(null);
+          }
+        }
+      }
     }
   }
 
