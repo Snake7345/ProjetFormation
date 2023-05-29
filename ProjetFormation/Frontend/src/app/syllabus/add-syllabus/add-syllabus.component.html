@@ -1,3 +1,16 @@
-<p>add-syllabus works!</p>
-<!--TODO: Questionnaire à faire
-  !-->
+<p>Veuillez remplir le questionnaire suivant pour rajouter un syllabus à la formation selectionné</p>
+
+<form [formGroup]="syllabusFormGroup" class="example-form" (ngSubmit)="onCreate()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Titre du syllabus</mat-label>
+    <input type="text" matInput formControlName="nom" />
+  </mat-form-field>
+  <br/>
+  <input class="ng-hide" id="input-file-id" multiple type="file" />
+  <label style="color: white" for="input-file-id" class="md-button md-raised md-primary">Choisir un fichier</label>
+  <br/>
+  <button style="margin-right: 10px" class="btn btn-outline-primary btn-block" (click)="retour()">
+    <i class="fas fa-arrow-alt-circle-left"></i>Retour</button>
+  <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!syllabusFormGroup.valid ">
+    <i class="far fa-plus-square"></i>Ajouter</button>
+</form>

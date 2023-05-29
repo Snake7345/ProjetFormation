@@ -19,11 +19,11 @@ export class AddFormationsComponent implements OnInit {
   constructor(
     private _formBuilder : FormBuilder,
     private _router : Router,
-
+    private toastr : ToastrService,
     private categorieservice : CategoriesService,
 
     private utilisateurservice : UtilisateursService,
-    private toastr : ToastrService,
+
 
     private formationservice : FormationsService,
   ) { }
