@@ -1,10 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import {HttpException, Injectable} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { SyllabusEntity } from "../shared/entities/syllabus.entity";
 import { FormationsEntity } from "../shared/entities/formations.entity";
 import { FormationsService } from "../formations/formations.service";
 import { SyllabusDto } from "../shared/dto/syllabus/syllabus.dto";
+import {ErrorStatus, ErrorTypeSyllabus,} from "../shared/utilities/error.enum";
+import {ActivdesactivsyllabusDto} from "../shared/dto/syllabus/activdesactivsyllabus.dto";
 
 @Injectable()
 export class SyllabusService {
@@ -23,9 +25,36 @@ export class SyllabusService {
               select : {
                   idSyllabus : true,
                   nom:true,
-                  actif:true,
                   chemin:true,
+                  actif:true,
               }
-          })).map(s => ({ ...s, formations: s.formations}))
+          })).map(s => ({ ...s, formation: s.formations}))
+    }
+
+    async findById(id: number): Promise<SyllabusDto> {
+        try {
+            const syllabus = await this.syllabusRepository.findOneOrFail({
+                relations : {formations:true},
+                where : {idSyllabus : id}
+            });
+            return {...syllabus, formation: syllabus.formations}
+        }
+        catch(error) {
+            throw new HttpException(ErrorTypeSyllabus.SYLLABUS_NOT_EXIST, ErrorStatus.ERROR_404)
+        }
+    }
+
+    async activDesactivSyllabus(updateSyllabus : ActivdesactivsyllabusDto) : Promise<any>
+    {
+        const syl = await  this.syllabusRepository.findOneOrFail({
+            where: {
+                idSyllabus: updateSyllabus.idSyllabus
+            },
+        })
+        syl.actif = updateSyllabus.actif
+        return await this.syllabusRepository.update(syl.idSyllabus, syl)
+            .catch((error) => {
+                throw new HttpException(ErrorTypeSyllabus.SYLLABUS_PROBLEM, ErrorStatus.ERROR_500)
+            })
     }
 }

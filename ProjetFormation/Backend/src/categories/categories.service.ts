@@ -5,7 +5,6 @@ import { CategoriesDto } from "../shared/dto/categories/categories.dto";
 import { Repository } from "typeorm";
 import { ErrorGeneral, ErrorStatus, ErrorTypeCategories } from "../shared/utilities/error.enum";
 import { UpdatecategoriesDto } from "../shared/dto/categories/updatecategories.dto";
-import { CategorieIdDto } from "../shared/dto/categories/categorieId.dto";
 import { NewcategoriesDto } from "../shared/dto/categories/newcategories.dto";
 import { ActivdesactivcategoriesDto } from "../shared/dto/categories/activdesactivcategories.dto";
 
@@ -51,7 +50,6 @@ export class CategoriesService {
         throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST, ErrorStatus.ERROR_500)
       })
   }
-  /*Demandez la différence entre findone,findoneby et findoneorfail*/
 
   async create(dto: NewcategoriesDto): Promise<NewcategoriesDto> {
     if (await this.findByNom(dto.nom)) {
@@ -95,22 +93,5 @@ export class CategoriesService {
       .catch((error) => {
         throw new HttpException(ErrorTypeCategories.CATEGORIE_PROBLEM, ErrorStatus.ERROR_500)
       })
-  }
-
-  async delete(dtoId: CategorieIdDto): Promise<UpdatecategoriesDto> {
-    if(!await this.findById(dtoId.idCategories))
-    {
-      throw new HttpException(ErrorTypeCategories.CATEGORIE_NOT_EXIST,ErrorStatus.ERROR_404
-      );
-    }
-    let categorieToDelete = this.categoriesRepository.create({idCategories : dtoId.idCategories})
-    return this.categoriesRepository.softRemove(categorieToDelete)
-        .then((res) => {
-          return res
-        })
-        .catch((error) => {
-          console.log(error)
-          throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500)
-        })
   }
 }

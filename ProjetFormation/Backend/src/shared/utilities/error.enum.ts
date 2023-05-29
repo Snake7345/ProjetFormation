@@ -63,7 +63,8 @@ export enum ErrorTypeRoles
 }
 export enum ErrorTypeSyllabus
 {
-
+    SYLLABUS_NOT_EXIST = "Le syllabus n'existe pas",
+    SYLLABUS_PROBLEM = "Problème concernant la désactivation/activation du syllabus"
 }
 
 export enum ErrorTypeUtilisateurs
