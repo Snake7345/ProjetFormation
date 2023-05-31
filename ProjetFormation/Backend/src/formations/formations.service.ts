@@ -35,8 +35,9 @@ export class FormationsService {
                 select : {
                     idFormations : true,
                     nom : true,
+                    statut:true,
                     infos : true,
-                    actif : true,
+                    disponibilite : true,
                     dateheureLimiteInscription : true,
                     dateheureQuestionnaire : true,
                 }
@@ -63,7 +64,7 @@ export class FormationsService {
                 idFormations: updateFormations.idFormations
             },
         })
-        form.actif = updateFormations.actif
+        form.disponibilite = updateFormations.disponibilite
         return await this.formationsRepository.update(form.idFormations, form)
             .catch((error) => {
                 throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_404)
@@ -107,8 +108,9 @@ export class FormationsService {
             },
         })
         formation.nom = formationToUpdate.nom
+        formation.statut = formationToUpdate.statut
         formation.infos = formationToUpdate.infos
-        formation.actif = formationToUpdate.actif
+        formation.disponibilite = formationToUpdate.disponibilite
         formation.dateheureLimiteInscription = formationToUpdate.dateheureLimiteInscription
         formation.dateheureQuestionnaire = formationToUpdate.dateheureQuestionnaire
         formation.categories = categorie

@@ -1,8 +1,9 @@
-import { IsDefined, IsNumber, IsString, Length, MaxLength } from "class-validator";
+import {IsDefined, IsEnum, IsNotEmpty, IsNumber, IsString, Length, MaxLength} from "class-validator";
 import { IsNotBlank } from "../../../decorators/is-not-blank.decorator";
 import { ErrorTypeFormations } from "../../utilities/error.enum";
 import { CategoriesDto } from "../categories/categories.dto";
 import { UtilisateursDto } from "../utilisateurs/utilisateurs.dto";
+import {EnumFormation} from "../../../formations/enumFormation";
 
 export class NewformationsDto{
 
@@ -17,7 +18,11 @@ export class NewformationsDto{
     infos: string;
 
     @IsNumber()
-    actif: number
+    disponibilite: number
+
+    @IsNotEmpty()
+    @IsEnum(EnumFormation)
+    statut: EnumFormation;
 
     @IsNotBlank({message : 'DTO : ' + ErrorTypeFormations. FORMATION_EMPTY_DATE_INSCRIPTION_LIMIT_ERROR})
     //@IsDate({message : 'DTO : ' + ErrorTypeFormations.DATE_INSCRIPTION_LIMIT_ERROR})

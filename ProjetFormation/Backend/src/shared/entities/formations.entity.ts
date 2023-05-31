@@ -3,6 +3,7 @@ import { CategoriesEntity } from "./categories.entity";
 import { UtilisateursEntity } from "./utilisateurs.entity";
 import { SyllabusEntity } from "./syllabus.entity";
 import { QuestionsEntity } from "./questions.entity";
+import {EnumFormation} from "../../formations/enumFormation";
 
 @Entity({ name: 'formations' })
 export class FormationsEntity {
@@ -17,7 +18,14 @@ export class FormationsEntity {
     infos: string;
 
     @Column({ type: 'tinyint', width: 1, default: 1 })
-    actif: number;
+    disponibilite: number;
+
+    @Column({
+        type: "enum",
+        enum: EnumFormation,
+        default: EnumFormation.encours,
+    })
+    statut: EnumFormation
 
     @Column({ type: 'timestamp' })
     dateheureLimiteInscription : Date

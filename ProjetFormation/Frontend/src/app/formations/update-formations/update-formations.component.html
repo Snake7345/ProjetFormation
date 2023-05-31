@@ -19,7 +19,6 @@
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date limite de l'inscription</mat-label>
-    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
     <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choisir une date" formControlName="dateheureLimiteInscription" readonly>
     <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
@@ -31,14 +30,15 @@
         <span>OK</span>
       </ng-template>
     </ngx-mat-datetime-picker>
-    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid">
-      {{ getErrorMessageDateHeureLimiteInscription() }}
+    <mat-error *ngIf="formationFormGroup.controls['dateheureLimiteInscription'].invalid ||
+    formationFormGroup.get('dateheureLimiteInscription')?.hasError('dateInvalid')">
+      {{ getErrorMessageDateLimiteInscription() }}
     </mat-error>
   </mat-form-field>
   <br/>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Date du questionnaire</mat-label>
-    <!--TODO : La date accepte n'importe quel caractère et n'est pas désactivable-->
+    <!--TODO : La date questionnaire quand on la modifie en premier lieu et qu'on la met antérieur à la dateinscription n'affiche pas d'erreur-->
     <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choisir une date" formControlName="dateheureQuestionnaire" readonly>
     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="1"
@@ -69,7 +69,7 @@
   <br/>
   <mat-form-field appearance="fill">
     <mat-label>Choissiez le responsable</mat-label>
-    <mat-select formControlName="utilisateur" (ngModelChange)="afficherUtilisateur()" [(value)]="selectedUser">
+    <mat-select formControlName="utilisateur" (ngModelChange)="afficherUtilisateurProf()" [(value)]="selectedUser">
       <mat-option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.idUtilisateurs">
         {{utilisateur.nom + " " + utilisateur.prenom}}
       </mat-option>

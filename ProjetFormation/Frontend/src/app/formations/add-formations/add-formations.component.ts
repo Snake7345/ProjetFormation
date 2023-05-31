@@ -9,6 +9,7 @@ import {Utilisateurs} from "../../models/utilisateurs";
 import {FormationsService} from "../../services/formations/formations.service";
 import {ToastrService} from "ngx-toastr";
 import {ErrorTypeFormation} from "../../shared/utilities/error.enum";
+import {EnumFormation} from "../../models/enum/enumFormation";
 
 @Component({
   selector: 'app-add-formations',
@@ -27,9 +28,9 @@ export class AddFormationsComponent implements OnInit {
 
     private formationservice : FormationsService,
   ) { }
-  actif : number = 1;
+  statut: string = EnumFormation.encours
   public formationFormGroup! : FormGroup
-
+  disponibilite : number = 1;
   listeVide = undefined;
 
   formations: Formations[] = []
@@ -117,7 +118,8 @@ export class AddFormationsComponent implements OnInit {
     if(this.formationFormGroup.invalid) return
     const formation = new Formations(this.formationFormGroup.value.nom,
       this.formationFormGroup.value.infos,
-      this.actif,
+      this.statut,
+      this.disponibilite,
       this.formationFormGroup.value.dateheureLimiteInscription,
       this.formationFormGroup.value.dateheureQuestionnaire,categorieRecup,
       utilisateurRecup,);

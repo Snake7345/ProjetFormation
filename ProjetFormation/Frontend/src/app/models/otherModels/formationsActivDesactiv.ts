@@ -1,9 +1,9 @@
 export class FormationsActivDesactiv {
   idFormations?: number
-  actif: number
+  disponibilite: number
 
-  constructor(idFormations: number | undefined, actif: number) {
+  constructor(idFormations: number | undefined, disponibilite: number) {
     this.idFormations = idFormations;
-    this.actif = actif;
+    this.disponibilite = disponibilite;
   }
 }

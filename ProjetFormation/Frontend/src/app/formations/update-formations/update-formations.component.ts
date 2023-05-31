@@ -8,7 +8,6 @@ import {FormationsService} from "../../services/formations/formations.service";
 import {Formations} from "../../models/formations";
 import {Categories} from "../../models/categories";
 import {Utilisateurs} from "../../models/utilisateurs";
-import {Time} from "@angular/common";
 import {ErrorTypeFormation} from "../../shared/utilities/error.enum";
 
 @Component({
@@ -45,13 +44,11 @@ export class UpdateFormationsComponent {
 
   formation! : Formations;
 
-  str1! : string;
-
   date! : Date;
 
   ngOnInit(): void {
     this.afficherCategorie()
-    this.afficherUtilisateur()
+    this.afficherUtilisateurProf()
     this.formationFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),
@@ -61,6 +58,13 @@ export class UpdateFormationsComponent {
       categorie:new FormControl('', [Validators.required,]),
       utilisateur:new FormControl('', [Validators.required,])
     })
+    // Définir les validateurs lors du changement de valeur des champs dateheureQuestionnaire et dateheureLimiteInscription
+    this.formationFormGroup.get('dateheureLimiteInscription')?.valueChanges.subscribe(() => {
+      this.updateDateLimiteInscriptionValidator();
+    });
+    this.formationFormGroup.get('dateheureQuestionnaire')?.valueChanges.subscribe(() => {
+      this.updateDateLimiteInscriptionValidator();
+    });
     const id = this.activatedRoute.snapshot.params['id'];
     this.formationservice.detail(id).subscribe(
       data => {
@@ -70,11 +74,12 @@ export class UpdateFormationsComponent {
           idFormations:data.idFormations,
           nom:data.nom,
           infos: data.infos,
+          statut:data.statut,
           dateheureLimiteInscription  : data.dateheureLimiteInscription,
           dateheureQuestionnaire: data.dateheureQuestionnaire,
           categories : data.categories,
           utilisateurs : data.utilisateurs,
-          actif : data.actif,
+          disponibilite : data.disponibilite,
 
         }
         console.log(this.formation);
@@ -89,6 +94,29 @@ export class UpdateFormationsComponent {
         this._router.navigate(['/']);
       }
     );
+  }
+
+  updateDateLimiteInscriptionValidator() {
+    const dateLimiteInscription = this.formationFormGroup.get('dateheureLimiteInscription');
+    const dateQuestionnaire = this.formationFormGroup.get('dateheureQuestionnaire');
+
+    if (dateLimiteInscription && dateQuestionnaire) {
+      const dateLimiteValue = dateLimiteInscription.value;
+      const dateQuestionnaireValue = dateQuestionnaire.value;
+
+      if (dateLimiteValue > dateQuestionnaireValue) {
+        dateLimiteInscription.setErrors({ dateInvalid: true });
+        dateQuestionnaire.setErrors({ dateInvalid: true });
+      } else {
+        // Si les dates sont valides, supprimez les erreurs
+        if (dateLimiteInscription.hasError('dateInvalid')) {
+          dateLimiteInscription.setErrors(null);
+        }
+        if (dateQuestionnaire.hasError('dateInvalid')) {
+          dateQuestionnaire.setErrors(null);
+        }
+      }
+    }
   }
 
   public updateData(): void
@@ -119,6 +147,22 @@ export class UpdateFormationsComponent {
     );
   }
 
+  getErrorMessageDateLimiteInscription() {
+    const dateLimiteControl = this.formationFormGroup.get('dateheureLimiteInscription');
+    const dateQuestionnaireControl = this.formationFormGroup.get('dateheureQuestionnaire');
+
+    if (dateLimiteControl && dateQuestionnaireControl) {
+      if (dateLimiteControl.hasError('dateInvalid')) {
+        return ErrorTypeFormation.FORMATION_QUESTIONNAIRE_BEFORE_INSCRIPTION;
+      }
+      if (dateLimiteControl.hasError('required')) {
+        return ErrorTypeFormation.FORMATION_DATEHEUREINSCRIPTION_EMPTY;
+      }
+    }
+
+    return '';
+  }
+
   afficherCategorie(): void {
     this.categorieservice.liste().subscribe(
       (data) => {
@@ -131,8 +175,8 @@ export class UpdateFormationsComponent {
     );
   }
 
-  afficherUtilisateur(): void {
-    this.utilisateurservice.liste().subscribe(
+  afficherUtilisateurProf(): void {
+    this.utilisateurservice.listeByID(1).subscribe(
       (data) => {
         this.utilisateurs = data;
         this.listeVide = undefined;

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Formations} from "../../models/formations";
 import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 import {Utilisateurs} from "../../models/utilisateurs";
+import {FormationsActivDesactiv} from "../../models/otherModels/formationsActivDesactiv";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class FormationsService {
     return this.httpClient.get<Formations[]>(`${this.formationsUrl}`);
   }
 
-  public activdesactiv(id: number | undefined, formation : UtilisateursActivDesactiv): Observable<any>
+  public activdesactiv(id: number | undefined, formation : FormationsActivDesactiv): Observable<any>
   {
     return this.httpClient.patch<any>(`${this.formationsUrl}/activdesactiv/${id}`, formation);
   }

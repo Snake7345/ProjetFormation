@@ -7,11 +7,12 @@
       <th scope="col">IdFormations</th>
       <th scope="col">Nom</th>
       <th scope="col">Infos</th>
+      <th scope="col">statut</th>
       <th scope="col">Date limite pour les inscriptions</th>
       <th scope="col">Date disponible du questionnaire</th>
       <th scope="col">Prof référent</th>
       <th scope="col">Catégorie du cours</th>
-      <th scope="col">Actif</th>
+      <th scope="col">disponibilité</th>
       <td scope="col" colspan="4" style="text-align: center;">Options</td>
 
     </tr>
@@ -21,25 +22,16 @@
       <td>{{ formation.idFormations }}</td>
       <td>{{ formation.nom }}</td>
       <td>{{ formation.infos }}</td>
+      <td>{{ formation.statut }}</td>
       <td>{{ formation.dateheureLimiteInscription  | date: 'dd/MM/yy à HH:mm' }}</td>
       <td>{{ formation.dateheureQuestionnaire | date: 'dd/MM/yy à HH:mm' }}</td>
       <td>{{ formation.utilisateurs.nom + " " + formation.utilisateurs.prenom }}</td>
       <td>{{ formation.categories.nom }}</td>
-      <td>{{ formation.actif }}</td>
+      <td>{{ formation.disponibilite }}</td>
       <td>
         <button class="btn btn-outline-warning"
                 routerLink="/updateFormations/{{ formation.idFormations }}"><mat-icon>update</mat-icon>Modifier
         </button>
-      </td>
-      <td>
-        <button *ngIf="formation.actif !=0; else active" class="btn btn-outline-danger"
-                (click)="onUpdate(formation.idFormations, formation.actif)">
-          <mat-icon>power_off</mat-icon> Désactiver
-        </button>
-        <ng-template #active>
-          <button (click)="onUpdate(formation.idFormations, formation.actif)" class="btn btn-outline-danger">
-            <mat-icon>power_on</mat-icon>Activé
-          </button></ng-template>
       </td>
       <td>
         <button class="btn btn-outline-primary"
@@ -51,6 +43,11 @@
                 routerLink="/addSyllabus/"><mat-icon>library_add</mat-icon>Ajouter un Syllabus
         </button>
       </td>
+      <td>
+        <button *ngIf="formation.disponibilite !=0;" class="btn btn-outline-danger"
+                (click)="onUpdate(formation.idFormations, formation.disponibilite)">
+          <mat-icon>power_off</mat-icon> Désactiver
+        </button>
     </tr>
     </tbody>
   </table>

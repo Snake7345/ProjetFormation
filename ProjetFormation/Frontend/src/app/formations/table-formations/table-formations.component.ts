@@ -36,26 +36,26 @@ export class TableFormationsComponent implements OnInit{
     );
   }
 
-  onUpdate(id: number | undefined, actif : number): void
+  onUpdate(id: number | undefined, disponibilite : number): void
   {
     Swal.fire({
       title: 'Confirmation ?',
-      text: 'êtes vous sur de vouloir désactiver/réactiver la formation ?',
+      text: 'êtes vous sur de vouloir désactiver la disponibilité de cette formation ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Oui',
       cancelButtonText: 'Non'
     }).then((result) => {
       if (result.value) {
-        if(actif == 1)
+        if(disponibilite == 1)
         {
-          actif = 0;
+          disponibilite = 0;
         }
         else
         {
-          actif = 1;
+          disponibilite = 1;
         }
-        const formation = new FormationsActivDesactiv(id,actif)
+        const formation = new FormationsActivDesactiv(id,disponibilite)
         this.formationService.activdesactiv(id, formation).subscribe(
           data => {
             this.toastr.success(data.message, 'OK', {
@@ -65,7 +65,7 @@ export class TableFormationsComponent implements OnInit{
             this.afficherFormations();
             Swal.fire(
               'OK',
-              'Formation activé/désactivé',
+              'Formation désactivé',
               'success'
             );
           },

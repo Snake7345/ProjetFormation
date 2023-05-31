@@ -6,5 +6,5 @@ export class ActivdesactivformationsDto{
     idFormations : number
 
     @IsNumber()
-    actif: number
+    disponibilite: number
 }
