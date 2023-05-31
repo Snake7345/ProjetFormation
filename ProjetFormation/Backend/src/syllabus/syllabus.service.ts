@@ -1,4 +1,4 @@
-import {HttpException, Injectable} from "@nestjs/common";
+import {HttpException, Injectable, NotFoundException} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { SyllabusEntity } from "../shared/entities/syllabus.entity";
@@ -14,7 +14,7 @@ export class SyllabusService {
         @InjectRepository(SyllabusEntity)
         private syllabusRepository: Repository<SyllabusEntity>,
         @InjectRepository(FormationsEntity)
-        private rolesRepository: Repository<FormationsEntity>,
+        private formationRepository: Repository<FormationsEntity>,
         private readonly formationService : FormationsService
     )
     {}
@@ -57,4 +57,24 @@ export class SyllabusService {
                 throw new HttpException(ErrorTypeSyllabus.SYLLABUS_PROBLEM, ErrorStatus.ERROR_500)
             })
     }
+
+    async getSyllabusByFormationId(formationId: number): Promise<SyllabusDto[]> {
+        const formation = await this.formationRepository.findOne({
+            relations: ['syllabus'],
+            where: { idFormations: formationId },
+        });
+
+        if (!formation) {
+            throw new Error(`Formation with ID ${formationId} not found.`);
+        }
+
+        return formation.syllabus.map(syllabus => ({
+            idSyllabus: syllabus.idSyllabus,
+            nom: syllabus.nom,
+            chemin: syllabus.chemin,
+            formation: formation,
+            actif : syllabus.actif,
+        }));
+    }
+
 }

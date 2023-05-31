@@ -13,12 +13,6 @@ export class NavbarComponent implements OnInit
 
   utilisateur?: UtilisateurCo;
 
-
-  public hasPermissions(action : string, type : string)
-  {
-    return this.utilisateur?.permissions.find(p => p.action === action && p.type === type)
-  }
-
   constructor(
     private _router : Router,
     private utilisateursService: UtilisateursService

@@ -10,3 +10,15 @@ p
 {
   color: white
 }
+.file-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.file-input-container .ngx-mat-file-input {
+  flex: 1;
+}
+
+.file-input-container button {
+  margin-left: 10px;
+}

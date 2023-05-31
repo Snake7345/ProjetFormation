@@ -25,7 +25,6 @@ export class UtilisateursController {
 
   @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
-    console.log(this.utilisateursService.findById(id))
     return await this.utilisateursService.findById(id);
   }
   @Post('connexion')

@@ -7,8 +7,13 @@
   </mat-form-field>
   <br/>
   <mat-form-field>
-    <ngx-mat-file-input formControlName="fichier" [multiple]="multiple" [color]="color">
-    </ngx-mat-file-input>
+    <div class="file-input-container">
+      <ngx-mat-file-input formControlName="fichier" [multiple]="multiple" [color]="color">
+      </ngx-mat-file-input>
+      <button class="btn btn-outline-danger" (click)="effacerFichier()">
+        <mat-icon>remove_circle</mat-icon> Effacer le fichier
+      </button>
+    </div>
     <mat-error *ngIf="syllabusFormGroup.controls['fichier'].invalid">
       {{ getErrorMessageFichier() }}
     </mat-error>

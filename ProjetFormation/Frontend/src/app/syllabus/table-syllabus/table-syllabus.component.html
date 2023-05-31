@@ -1,1 +1,27 @@
-<h1>Table des syllabus</h1>
+<h1 style=" color: white"> Table des syllabus</h1>
+
+
+<div class="container">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">IdSyllabus</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Chemin</th>
+      <th scope="col">Actif</th>
+      <th scope="col">Formation</th>
+      <!--<th scope="col">Password</th>-->
+      <td scope="col" colspan="2" style="text-align: center;">Options</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let syllabu of syllabus">
+      <td>{{ syllabu.idSyllabus }}</td>
+      <td>{{ syllabu.nom }}</td>
+      <td>{{ syllabu.chemin }}</td>
+      <td>{{ syllabu.actif }}</td>
+      <td>{{ syllabu.formation.nom }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -53,7 +53,7 @@ export class FormationsService {
             return {...formation, categories: formation.categories, utilisateurs : formation.utilisateurs}
         }
         catch(error) {
-            throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_NOT_FOUND, ErrorStatus.ERROR_404)
+            throw new HttpException(ErrorTypeFormations.FORMATION_NOT_EXIST, ErrorStatus.ERROR_404)
         }
     }
 

@@ -12,7 +12,8 @@ export const environment = {
   anneesUrl : 'http://localhost:8080/anneeslabo',
   paysUrl : 'http://localhost:8080/payslabo',
   utilisateursUrl:'http://localhost:8080/utilisateurs',
-  rolesUrl:'http://localhost:8080/roles'
+  rolesUrl:'http://localhost:8080/roles',
+  syllabusUrl:'http://localhost:8080/syllabus'
 
 };
 

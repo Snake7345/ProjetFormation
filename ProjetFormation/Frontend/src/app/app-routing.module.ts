@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'tableCategories', component: TableCategoriesComponent},
   { path: 'tableFormations', component: TableFormationsComponent},
   { path: 'tableQuestions', component: TableQuestionsComponent},
-  { path: 'tableSyllabus', component: TableSyllabusComponent},
+  { path: 'tableSyllabus/:id', component: TableSyllabusComponent},
   { path: 'tableUtilisateurs', component: TableUtilisateursComponent},
   /*Route updates*/
   { path: 'updateCategories/:id', component: UpdateCategoriesComponent},

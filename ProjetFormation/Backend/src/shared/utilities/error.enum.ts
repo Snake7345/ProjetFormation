@@ -18,6 +18,7 @@ export enum ErrorTypeDiplomes
 
 export enum ErrorTypeFormations
 {
+    FORMATION_NOT_EXIST = "La formation n'existe pas",
     FORMATION_NOM_ERROR = "Le nom de la formation doit être une chaine de caractère",
     FORMATION_NOM_LENGTH = "Le nom de la formation doit être compris entre 2 et 150 caractères",
     FORMATION_INFOS_ERROR = "Les infos de la formation doit être une chaine de caractère",

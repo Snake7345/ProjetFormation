@@ -10,10 +10,10 @@
       this.permissions = permissions
     }
 
-    /*public hasPermissions(action : string, type : string)
+    public hasPermissions(action : string, type : string)
     {
       return this.permissions.find(p => p.action === action && p.type === type)
-    }*/
+    }
 
   }
 

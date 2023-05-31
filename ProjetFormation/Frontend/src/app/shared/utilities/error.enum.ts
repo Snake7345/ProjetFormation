@@ -35,5 +35,6 @@ export enum ErrorTypeFormation
 
 export enum ErrorTypeSyllabus
 {
-  SYLLABUS_FICHIER_EMPTY = "La pièce jointe ne peut pas être vide"
+  SYLLABUS_FICHIER_EMPTY = "La pièce jointe ne peut pas être vide",
+  SYLLABUS_FICHIER_TAILLE ="Le poids maximum du fichier ne doit pas dépasser 10M",
 }
