@@ -32,3 +32,8 @@ export enum ErrorTypeFormation
   FORMATION_INFOS_LENGTH ="les infos sont limités à 1000 caractères",
   FORMATION_QUESTIONNAIRE_BEFORE_INSCRIPTION = "La date du questionnaire est antérieure à la date d\'inscription"
 }
+
+export enum ErrorTypeSyllabus
+{
+  SYLLABUS_FICHIER_EMPTY = "La pièce jointe ne peut pas être vide"
+}

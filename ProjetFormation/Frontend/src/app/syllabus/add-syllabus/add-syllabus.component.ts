@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Formations} from "../../models/formations";
+import {ThemePalette} from "@angular/material/core";
+import {ErrorTypeFormation, ErrorTypeSyllabus} from "../../shared/utilities/error.enum";
 
 @Component({
   selector: 'app-add-syllabus',
@@ -17,6 +19,11 @@ export class AddSyllabusComponent implements OnInit {
   ) { }
   public syllabusFormGroup! : FormGroup
 
+  color: ThemePalette = 'primary';
+  disabled: boolean = false;
+  multiple: boolean = false;
+
+
   onCreate() : void
   {
     console.log("Miaou")
@@ -30,7 +37,13 @@ export class AddSyllabusComponent implements OnInit {
     this.syllabusFormGroup = new FormGroup({
       nom:new FormControl('', [Validators.required,
         Validators.minLength(2), Validators.maxLength(150)]),
-      fichier: new FormControl('')
+      fichier: new FormControl('',[Validators.required])
     })
+  }
+
+  getErrorMessageFichier()
+  {
+    return this.syllabusFormGroup.controls['fichier'].hasError('required') ? ErrorTypeSyllabus.SYLLABUS_FICHIER_EMPTY :
+      '';
   }
 }

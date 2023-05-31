@@ -6,8 +6,14 @@
     <input type="text" matInput formControlName="nom" />
   </mat-form-field>
   <br/>
-  <input class="ng-hide" id="input-file-id" multiple type="file" />
-  <label style="color: white" for="input-file-id" class="md-button md-raised md-primary">Choisir un fichier</label>
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="fichier" [multiple]="multiple" [color]="color">
+    </ngx-mat-file-input>
+    <mat-error *ngIf="syllabusFormGroup.controls['fichier'].invalid">
+      {{ getErrorMessageFichier() }}
+    </mat-error>
+  </mat-form-field>
+  <br/>
   <br/>
   <button style="margin-right: 10px" class="btn btn-outline-primary btn-block" (click)="retour()">
     <i class="fas fa-arrow-alt-circle-left"></i>Retour</button>
