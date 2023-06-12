@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Formations} from "../../models/formations";
 import {ThemePalette} from "@angular/material/core";
-import {ErrorTypeFormation, ErrorTypeSyllabus} from "../../shared/utilities/error.enum";
+import {ErrorTypeFormation, ErrorTypeSyllabus, ErrorTypeUtilisateur} from "../../shared/utilities/error.enum";
 import {MaxSizeValidator} from "@angular-material-components/file-input";
 
 @Component({
@@ -45,14 +45,19 @@ export class AddSyllabusComponent implements OnInit {
     this.syllabusFormGroup.controls['fichier'].setValue(null);
   }
 
-  getErrorMessageFichier() {
-    if (this.syllabusFormGroup.controls['fichier'].hasError('required')) {
-      return ErrorTypeSyllabus.SYLLABUS_FICHIER_EMPTY;
-    } else if (this.syllabusFormGroup.controls['fichier'].hasError('maxSize')) {
-      return ErrorTypeSyllabus.SYLLABUS_FICHIER_TAILLE;
-    } else {
-      return '';
-    }
+  getErrorTitre()
+  {
+    return this.syllabusFormGroup.controls['nom'].hasError('required') ? ErrorTypeSyllabus.SYLLABUS_TITRE_EMPTY :
+      this.syllabusFormGroup.controls['nom'].hasError('minlength') ? ErrorTypeSyllabus.SYLLABUS_TITRE_LENGTH :
+        this.syllabusFormGroup.controls['nom'].hasError('maxlength') ? ErrorTypeSyllabus.SYLLABUS_TITRE_LENGTH :
+            '';
+  }
+
+  getErrorMessageFichier()
+  {
+    return this.syllabusFormGroup.controls['fichier'].hasError('required') ? ErrorTypeSyllabus.SYLLABUS_FICHIER_EMPTY :
+      this.syllabusFormGroup.controls['fichier'].hasError('minlength') ? ErrorTypeSyllabus.SYLLABUS_FICHIER_TAILLE :
+            '';
   }
 
 }
