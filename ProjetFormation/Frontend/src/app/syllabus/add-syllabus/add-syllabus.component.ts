@@ -21,7 +21,6 @@ export class AddSyllabusComponent implements OnInit {
   public syllabusFormGroup! : FormGroup
 
   color: ThemePalette = 'primary';
-  disabled: boolean = false;
   multiple: boolean = false;
   maxSize= 10000;
 

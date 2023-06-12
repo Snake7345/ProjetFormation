@@ -10,7 +10,7 @@
     <div class="file-input-container">
       <ngx-mat-file-input formControlName="fichier" [multiple]="multiple" [color]="color">
       </ngx-mat-file-input>
-      <button class="btn btn-outline-danger" (click)="effacerFichier()">
+      <button class="btn btn-outline-danger" (click)="effacerFichier()" [disabled]="!syllabusFormGroup.controls['fichier'].value">
         <mat-icon>remove_circle</mat-icon> Effacer le fichier
       </button>
     </div>
