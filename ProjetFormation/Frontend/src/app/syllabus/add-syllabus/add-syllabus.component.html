@@ -3,7 +3,7 @@
 <form [formGroup]="syllabusFormGroup" class="example-form" (ngSubmit)="onCreate()">
   <mat-form-field class="example-full-width">
     <mat-label>Titre du syllabus</mat-label>
-    <input type="text" matInput formControlName="nom" />
+    <input type="text" matInput formControlName="nom" maxlength="150" />
     <mat-error *ngIf="syllabusFormGroup.controls['nom'].invalid">
       {{ getErrorTitre() }}
     </mat-error>

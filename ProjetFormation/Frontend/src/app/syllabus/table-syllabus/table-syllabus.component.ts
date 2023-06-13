@@ -5,6 +5,8 @@ import {SyllabusService} from "../../services/syllabus/syllabus.service";
 import {Formations} from "../../models/formations";
 import {Syllabus} from "../../models/syllabus";
 import {ToastrService} from "ngx-toastr";
+import Swal from "sweetalert2";
+import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 
 @Component({
   selector: 'app-table-syllabus',
@@ -17,7 +19,7 @@ export class TableSyllabusComponent implements OnInit{
     private _formBuilder : FormBuilder,
     private _router : Router,
     private activatedRoute: ActivatedRoute,
-    private syllabusservice : SyllabusService,
+    private syllabusService : SyllabusService,
     private toastr : ToastrService,
   ) { }
 
@@ -25,7 +27,7 @@ export class TableSyllabusComponent implements OnInit{
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.syllabusservice.getAllSyllabusByFormation(id).subscribe(
+    this.syllabusService.getAllSyllabusByFormation(id).subscribe(
       data => {
         if (data && data.length > 0) {
           data.forEach(item => {
