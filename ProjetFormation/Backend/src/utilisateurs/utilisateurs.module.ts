@@ -7,11 +7,12 @@ import { RolesService } from "../roles/roles.service";
 import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
 import { RolespermissionsService } from "../rolesPermissions/rolespermissions.service";
+import {CustomJwtService} from "../jwt/customjwt.service";
 
 @Module({
   /*Remplir toutes les entités dans les imports*/
-  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesEntity, RolespermissionsEntity]),],
-  providers: [UtilisateursService, RolesService, RolespermissionsService],
+  imports: [TypeOrmModule.forFeature([UtilisateursEntity, RolesEntity, RolespermissionsEntity,]),],
+  providers: [UtilisateursService, RolesService, RolespermissionsService, CustomJwtService],
   controllers: [UtilisateursController],
 })
 export class UtilisateursModule {}

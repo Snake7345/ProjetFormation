@@ -12,6 +12,7 @@ import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionut
 import * as bcrypt from "bcrypt";
 import { PermissionsDto } from "../shared/dto/permissions/permissions.dto";
 import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
+import {CustomJwtService} from "../jwt/customjwt.service";
 
 @Injectable()
 export class UtilisateursService {
@@ -24,6 +25,7 @@ export class UtilisateursService {
     @InjectRepository(RolespermissionsEntity)
     private rolesPermissionsRepository: Repository<RolespermissionsEntity>,
     private readonly rolesService : RolesService,
+    private readonly customJwtService: CustomJwtService
   ) {}
 
   async getAll(): Promise<UtilisateursDto[]> {
@@ -71,62 +73,7 @@ export class UtilisateursService {
     return password
   }
 
-  /*async connexionvalid(invite: ConnexionutilisateursDto):Promise<UtilisateursDto>//Promise<SigninoutDto>
-    {
-
-      try {
-        const user = await this.utilisateursRepository.findOneOrFail({
-          relations : {role : true, utilisateurcategories:true},
-          where: {mail: invite.mail}
-        });
-        if(!await bcrypt.compare(invite.password, user.password))//TODO : Optimisation à faire sur le throw
-          throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
-
-        return {...user, role: user.role, idUtilisateur:user.idUtilisateur}
-
-        const payload = {sub: user.idUtilisateur, role:user.role.denomination };
-        return {
-          access_token: this.jwtService.sign(payload, {secret: "miaou", expiresIn:60*60})
-        };
-
-      }
-      catch(error) {
-        throw new HttpException("l'adresse mail et/ou le mot de passe est incorrecte", 404)
-      }
-    }*/
-
-  /*async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
-    try {
-      const utilisateur = await this.utilisateursRepository.findOne({
-        relations: { role: true, utilisateurcategories: true },
-        where: { mail: invite.mail },
-      });
-
-      if (!utilisateur || !(await bcrypt.compare(invite.password, utilisateur.password))) {
-        throw new HttpException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR, ErrorStatus.ERROR_500);
-      }
-
-      const rolePermissions = await this.rolesPermissionsRepository.find({
-        where: { roles: { idRoles: utilisateur.role.idRoles } },
-        relations: ['permissions'],
-      });
-
-      const permissions = rolePermissions.map(rp => rp.permissions);
-
-      return {
-        utilisateur,
-        permissions,
-      };
-    } catch (error) {
-      if (error instanceof HttpException) {
-        throw error;
-      } else {
-        throw new HttpException(ErrorGeneral.ERROR_UNKNOW, ErrorStatus.ERROR_500);
-      }
-    }
-  }*/
-
-  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[] }> {
+  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; token: string }> {
     const utilisateur = await this.utilisateursRepository.findOne({
       relations: { role: true, utilisateurcategories: true },
       where: { mail: invite.mail },
@@ -142,12 +89,14 @@ export class UtilisateursService {
     });
 
     const permissions = rolePermissions.map(rp => rp.permissions);
-
+    const token = this.customJwtService.generateToken(utilisateur, permissions); // Générer le token JWT
+    console.log("JE SUIS UN TOKEN  : ", token)
     return {
       utilisateur,
-      permissions,
+      token,
     };
   }
+
 
 
   async findById(id: number): Promise<UtilisateursDto> {

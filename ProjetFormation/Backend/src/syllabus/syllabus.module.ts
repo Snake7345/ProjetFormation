@@ -13,12 +13,13 @@ import { RolesEntity } from "../shared/entities/roles.entity";
 import { RolesService } from "../roles/roles.service";
 import { RolespermissionsEntity } from "../shared/entities/rolespermissions.entity";
 import { RolespermissionsService } from "../rolesPermissions/rolespermissions.service";
+import {CustomJwtService} from "../jwt/customjwt.service";
 
 @Module({
     /*Remplir toutes les entités dans les imports*/
     imports: [TypeOrmModule.forFeature(
       [SyllabusEntity, FormationsEntity, CategoriesEntity, UtilisateursEntity,RolesEntity, RolespermissionsEntity])],
-    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService, RolespermissionsService],
+    providers: [SyllabusService, FormationsService, CategoriesService, UtilisateursService, RolesService, RolespermissionsService, CustomJwtService],
     controllers: [SyllabusController],
 })
 export class SyllabusModule {}

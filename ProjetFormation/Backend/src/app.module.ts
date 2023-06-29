@@ -20,6 +20,8 @@ import { SyllabusModule } from "./syllabus/syllabus.module";
 import { UtilisateursModule } from "./utilisateurs/utilisateurs.module";
 import { UtilisateurscategoriesModule } from "./utilisateursCategories/utilisateurscategories.module";
 import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
+import { JwtModule } from '@nestjs/jwt';
+import {jwtConfig} from "./jwt/jwt.config";
 
 /*Au démarrage du programme, celui-ci démarrera toujours en lisant le fichier constants dans le dossier config*/
 @Module({
@@ -28,6 +30,8 @@ import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
       envFilePath: '.env',
       isGlobal: true,
     }),
+    jwtConfig,
+    JwtModule.register({}),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -48,7 +52,7 @@ import { ValeurslaboModule } from "./valeursLabo/valeurslabo.module";
     }),
     AnneeslaboModule, CategoriesModule, DiplomesModule, DiplomesutilisateursModule, FormationsModule,
     PayslaboModule, PermissionsModule, ProjetslaboModule, QuestionsModule, ReponsesModule, RolesModule,
-    RolespermissionsModule, SyllabusModule, UtilisateursModule, UtilisateurscategoriesModule, ValeurslaboModule
+    RolespermissionsModule, SyllabusModule, UtilisateursModule, UtilisateurscategoriesModule, ValeurslaboModule, JwtModule
   ],
   controllers: [AppController],
   providers: [AppService],
