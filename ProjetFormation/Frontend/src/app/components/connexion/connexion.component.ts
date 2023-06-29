@@ -5,6 +5,8 @@ import {ToastrService} from "ngx-toastr";
 import {Invite} from "../../models/otherModels/Invite";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {ErrorTypeUtilisateur} from "../../shared/utilities/error.enum";
+import * as jwt from 'jsonwebtoken';
+
 
 @Component({
   selector: 'app-connexion',
@@ -25,6 +27,7 @@ export class ConnexionComponent implements OnInit
     private toastr : ToastrService,
     private _router : Router)
   {}
+
   ngOnInit(): void {
     this.connexionFormGroup = new FormGroup({
       mail:new FormControl('', [Validators.required,
@@ -48,24 +51,40 @@ export class ConnexionComponent implements OnInit
           '';
   }
 
-  connexion()
-  {
-      if(this.connexionFormGroup.invalid) return
-      const invite = new Invite(this.connexionFormGroup.value.mail,
-        this.connexionFormGroup.value.password);
-      this.utilisateurService.connexion(invite).subscribe(
-        data => {
-          this.utilisateurService.utilisateurSubject$.next(data)
+  connexion() {
+    if (this.connexionFormGroup.invalid) return;
 
-          /*sessionStorage.setItem("id", data.idUtilisateur)
-          sessionStorage.setItem("role", data.role.denomination)*/
-          this._router.navigate(['homepage']);
-        },
-        err => {
-          this.toastr.error(err.error.message, 'Fail', {
-            timeOut: 3000,  positionClass: 'toast-top-center',
-          });
-        }
-      );
+    const invite = new Invite(
+      this.connexionFormGroup.value.mail,
+      this.connexionFormGroup.value.password
+    );
+
+    this.utilisateurService.connexion(invite).subscribe(
+      data => {
+        console.log("je suis de la data  :", data);
+
+        const token = data.token;
+        const decodedToken = jwt.decode(token) as jwt.JwtPayload;
+        console.log("je suis le token décodé :", decodedToken);
+        const id = decodedToken['id'];
+        const email = decodedToken['email'];
+        const permissions = decodedToken['permissions'];
+
+        sessionStorage.setItem("id", id.toString());
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("permissions", JSON.stringify(permissions));
+
+        console.log("Id:", sessionStorage.getItem("id"));
+        console.log("Email:", sessionStorage.getItem("email"));
+        console.log("Permissions:", sessionStorage.getItem("permissions"));
+
+        this._router.navigate(['homepage']);
+      },
+      err => {
+        this.toastr.error(err.error.message, 'Echec de la connexion', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
+      }
+    );
   }
 }

@@ -73,6 +73,12 @@ export class UtilisateursService {
     return password
   }
 
+  private generateToken(user: UtilisateursDto, permissions: PermissionsDto[]): string {
+    const token = this.customJwtService.generateToken(user, permissions);
+    console.log("JE SUIS UN TOKEN  : ", token)
+    return token;
+  }
+
   async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; token: string }> {
     const utilisateur = await this.utilisateursRepository.findOne({
       relations: { role: true, utilisateurcategories: true },
@@ -89,8 +95,7 @@ export class UtilisateursService {
     });
 
     const permissions = rolePermissions.map(rp => rp.permissions);
-    const token = this.customJwtService.generateToken(utilisateur, permissions); // Générer le token JWT
-    console.log("JE SUIS UN TOKEN  : ", token)
+    const token = this.generateToken(utilisateur, permissions);
     return {
       utilisateur,
       token,

@@ -2,6 +2,7 @@ import {Injectable, UnauthorizedException} from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import {UtilisateursEntity} from "../shared/entities/utilisateurs.entity";
 import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
+import {UtilisateursDto} from "../shared/dto/utilisateurs/utilisateurs.dto";
 /*
 * Ce fichier contient le service CustomJwtService qui est responsable de la génération et de la vérification des tokens JWT personnalisés.
 * Il utilise la bibliothèque jsonwebtoken pour ces opérations. Le service contient une clé secrète utilisée pour signer et vérifier les tokens.
@@ -16,7 +17,7 @@ import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
 export class CustomJwtService {
     private readonly secretKey = 'your-secret-key'; // Remplacez par votre clé secrète
 
-    generateToken(user: UtilisateursEntity, permissions: PermissionsDto[]): string {
+    generateToken(user: UtilisateursDto, permissions: PermissionsDto[]): string {
         const payload = { id: user.idUtilisateurs, email: user.mail, permissions };
         return jwt.sign(payload, this.secretKey, { expiresIn: '24h' });
     }
