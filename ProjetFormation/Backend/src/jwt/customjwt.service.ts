@@ -17,12 +17,12 @@ import {UtilisateursDto} from "../shared/dto/utilisateurs/utilisateurs.dto";
 export class CustomJwtService {
     private readonly secretKey = 'your-secret-key'; // Remplacez par votre clé secrète
 
-    generateToken(user: UtilisateursDto, permissions: PermissionsDto[]): string {
-        const payload = { id: user.idUtilisateurs, email: user.mail, permissions };
+    generateToken(user: UtilisateursDto): string {
+        const payload = { id: user.idUtilisateurs, email: user.mail};
         return jwt.sign(payload, this.secretKey, { expiresIn: '24h' });
     }
 
-    verifyToken(token: string): { id: number; email: string; permissions: PermissionsDto[] } {
-        return jwt.verify(token, this.secretKey) as { id: number; email: string; permissions: PermissionsDto[] };
+    verifyToken(token: string): { id: number; email: string; } {
+        return jwt.verify(token, this.secretKey) as { id: number; email: string };
     }
 }

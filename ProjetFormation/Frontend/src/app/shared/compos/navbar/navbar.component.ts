@@ -25,8 +25,12 @@ export class NavbarComponent implements OnInit
   }
 
   ngOnInit(): void {
-    /*this.utilisateursService.utilisateurSubject$.subscribe({
-      next: (data: UtilisateurCo) => this.utilisateur = data as UtilisateurCo
-    })*/
+
+    this.utilisateursService.utilisateurSubject$.subscribe({
+      next: (data: UtilisateurCo) => {
+        this.utilisateur = data as UtilisateurCo;
+        console.log('Données utilisateur:', data);
+      }
+    });
   }
 }

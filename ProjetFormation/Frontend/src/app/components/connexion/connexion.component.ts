@@ -63,26 +63,14 @@ export class ConnexionComponent implements OnInit
 
     this.utilisateurService.connexion(invite).subscribe(
       data => {
-        console.log("je suis de la data  :", data);
+        const tokenonly = data.token;
+        const { token, ...utilisateurData } = data; // Exclure le champ "token"
+        this.utilisateurService.utilisateurSubject$.next(utilisateurData);
 
-        const token = data.token;
-        const decodedToken = this.utilisateurService.decodeToken(token);
-        /*console.log("je suis le token décodé :", decodedToken);
-        const id = decodedToken && 'id' in decodedToken ? decodedToken['id'] : undefined;
-        const email = decodedToken && 'email' in decodedToken ? decodedToken['email'] : undefined;
-        const permissions = decodedToken && 'permissions' in decodedToken ? decodedToken['permissions'] : undefined;
+        console.log("tokenonly:", tokenonly);
+        console.log("utilisateurSubject$:", this.utilisateurService.utilisateurSubject$.value);
 
-        if (typeof id === 'number') {
-          sessionStorage.setItem('id', id.toString());
-        }
-
-        if (typeof email === 'string') {
-          sessionStorage.setItem('email', email);
-        }
-
-        if (Array.isArray(permissions)) {
-          sessionStorage.setItem('permissions', JSON.stringify(permissions));
-        }*/
+        sessionStorage.setItem("token", tokenonly);
 
         this._router.navigate(['homepage']);
       },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
@@ -7,6 +7,7 @@ import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursAc
 import {Invite} from "../../models/otherModels/Invite";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {JwtPayload} from "jwt-decode";
+import {UtilisateurCo} from "../../models/otherModels/utilisateurCo";
 @Injectable({
   providedIn: 'root'
 })
@@ -15,9 +16,12 @@ export class UtilisateursService {
   constructor(private httpClient: HttpClient) { }
 
   utilisateursUrl = environment.utilisateursUrl;
-
+  utilisateurSubject$: BehaviorSubject<UtilisateurCo> = new BehaviorSubject<any>(undefined);
   public liste(): Observable<Utilisateurs[]> {
-    return this.httpClient.get<Utilisateurs[]>(`${this.utilisateursUrl}`);
+    const token = sessionStorage.getItem('token'); // Récupérer le token du sessionStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<Utilisateurs[]>(this.utilisateursUrl, { headers });
   }
 
   public listeByID(id:number): Observable<Utilisateurs[]> {
@@ -43,17 +47,6 @@ export class UtilisateursService {
 
   public connexion(invite : Invite): Observable<any>{
     return this.httpClient.post<any>(`${this.utilisateursUrl}/connexion`, invite);
-  }
-
-  decodeToken(token: string): JwtPayload | null {
-    const helper = new JwtHelperService();
-    try {
-      const decodedToken = helper.decodeToken(token) as JwtPayload;
-      return decodedToken;
-    } catch (error) {
-      console.error("Erreur lors du décryptage du token :", error);
-      return null;
-    }
   }
 
 }

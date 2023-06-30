@@ -73,13 +73,13 @@ export class UtilisateursService {
     return password
   }
 
-  private generateToken(user: UtilisateursDto, permissions: PermissionsDto[]): string {
-    const token = this.customJwtService.generateToken(user, permissions);
+  private generateToken(user: UtilisateursDto): string {
+    const token = this.customJwtService.generateToken(user);
     console.log("JE SUIS UN TOKEN  : ", token)
     return token;
   }
 
-  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; token: string }> {
+  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions:PermissionsDto[]; token: string }> {
     const utilisateur = await this.utilisateursRepository.findOne({
       relations: { role: true, utilisateurcategories: true },
       where: { mail: invite.mail },
@@ -95,9 +95,10 @@ export class UtilisateursService {
     });
 
     const permissions = rolePermissions.map(rp => rp.permissions);
-    const token = this.generateToken(utilisateur, permissions);
+    const token = this.generateToken(utilisateur);
     return {
       utilisateur,
+      permissions,
       token,
     };
   }

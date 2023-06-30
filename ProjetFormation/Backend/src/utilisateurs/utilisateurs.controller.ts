@@ -17,11 +17,11 @@ import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.d
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-import {PermissionsDto} from "../shared/dto/permissions/permissions.dto";
 import {JwtAuthGuard} from "../jwt/guard/jwt-auth.guard";
 
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
+
 export class UtilisateursController {
   constructor(private readonly utilisateursService: UtilisateursService,) {
   }
@@ -36,7 +36,7 @@ export class UtilisateursController {
   async GetAllByID(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto[]> {
     return await this.utilisateursService.getAllByID(id);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
     return await this.utilisateursService.findById(id);
