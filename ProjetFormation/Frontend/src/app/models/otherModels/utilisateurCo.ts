@@ -2,17 +2,25 @@
   import {IPermission} from "../../shared/interfaces/IPermission";
 
   export class UtilisateurCo {
-    utilisateur: Utilisateurs
+    utilisateur: number
+    mail : string
     permissions : IPermission[]
 
-    constructor(utilisateur: Utilisateurs, permissions : IPermission[]) {
+    constructor(utilisateur: number, mail:string, permissions: IPermission[]) {
       this.utilisateur = utilisateur
+      this.mail = mail;
       this.permissions = permissions
     }
 
-    public hasPermissions(action : string, type : string)
-    {
-      return this.permissions.find(p => p.action === action && p.type === type)
+    public hasPermissions(action: string, type: string): boolean {
+      const permissions = sessionStorage.getItem('permissions');
+
+      if (permissions) {
+        const parsedPermissions = JSON.parse(permissions);
+        return parsedPermissions.some((p: any) => p.action === action && p.type === type);
+      }
+
+      return false;
     }
 
   }

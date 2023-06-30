@@ -5,7 +5,8 @@ import {ToastrService} from "ngx-toastr";
 import {Invite} from "../../models/otherModels/Invite";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {ErrorTypeUtilisateur} from "../../shared/utilities/error.enum";
-import * as jwt from 'jsonwebtoken';
+import jwt_decode, {JwtPayload} from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class ConnexionComponent implements OnInit
     private utilisateurService: UtilisateursService,
     private activatedRoute: ActivatedRoute,
     private toastr : ToastrService,
-    private _router : Router)
+    private _router : Router,
+    )
   {}
 
   ngOnInit(): void {
@@ -51,6 +53,8 @@ export class ConnexionComponent implements OnInit
           '';
   }
 
+
+
   connexion() {
     if (this.connexionFormGroup.invalid) return;
 
@@ -64,19 +68,23 @@ export class ConnexionComponent implements OnInit
         console.log("je suis de la data  :", data);
 
         const token = data.token;
-        const decodedToken = jwt.decode(token) as jwt.JwtPayload;
+        /*const decodedToken = this.decodeToken(token);
         console.log("je suis le token décodé :", decodedToken);
-        const id = decodedToken['id'];
-        const email = decodedToken['email'];
-        const permissions = decodedToken['permissions'];
+        const id = decodedToken && 'id' in decodedToken ? decodedToken['id'] : undefined;
+        const email = decodedToken && 'email' in decodedToken ? decodedToken['email'] : undefined;
+        const permissions = decodedToken && 'permissions' in decodedToken ? decodedToken['permissions'] : undefined;
 
-        sessionStorage.setItem("id", id.toString());
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("permissions", JSON.stringify(permissions));
+        if (typeof id === 'number') {
+          sessionStorage.setItem('id', id.toString());
+        }
 
-        console.log("Id:", sessionStorage.getItem("id"));
-        console.log("Email:", sessionStorage.getItem("email"));
-        console.log("Permissions:", sessionStorage.getItem("permissions"));
+        if (typeof email === 'string') {
+          sessionStorage.setItem('email', email);
+        }
+
+        if (Array.isArray(permissions)) {
+          sessionStorage.setItem('permissions', JSON.stringify(permissions));
+        }*/
 
         this._router.navigate(['homepage']);
       },

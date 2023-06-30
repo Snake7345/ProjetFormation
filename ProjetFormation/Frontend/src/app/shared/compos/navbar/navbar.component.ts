@@ -28,7 +28,5 @@ export class NavbarComponent implements OnInit
     /*this.utilisateursService.utilisateurSubject$.subscribe({
       next: (data: UtilisateurCo) => this.utilisateur = data as UtilisateurCo
     })*/
-    console.log("je récupère", this.utilisateur)
-
   }
 }
