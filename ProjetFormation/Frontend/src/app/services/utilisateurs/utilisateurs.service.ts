@@ -5,8 +5,8 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Utilisateurs} from "../../models/utilisateurs";
 import {UtilisateursActivDesactiv} from "../../models/otherModels/utilisateursActivDesactiv";
 import {Invite} from "../../models/otherModels/Invite";
-import jwt_decode, { JwtPayload } from 'jwt-decode';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import {JwtPayload} from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -46,8 +46,9 @@ export class UtilisateursService {
   }
 
   decodeToken(token: string): JwtPayload | null {
+    const helper = new JwtHelperService();
     try {
-      const decodedToken = jwt_decode(token) as JwtPayload;
+      const decodedToken = helper.decodeToken(token) as JwtPayload;
       return decodedToken;
     } catch (error) {
       console.error("Erreur lors du décryptage du token :", error);

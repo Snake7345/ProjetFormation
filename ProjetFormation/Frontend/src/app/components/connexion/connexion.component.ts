@@ -5,8 +5,6 @@ import {ToastrService} from "ngx-toastr";
 import {Invite} from "../../models/otherModels/Invite";
 import {UtilisateursService} from "../../services/utilisateurs/utilisateurs.service";
 import {ErrorTypeUtilisateur} from "../../shared/utilities/error.enum";
-import jwt_decode, {JwtPayload} from 'jwt-decode';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -68,8 +66,8 @@ export class ConnexionComponent implements OnInit
         console.log("je suis de la data  :", data);
 
         const token = data.token;
-        /*const decodedToken = this.decodeToken(token);
-        console.log("je suis le token décodé :", decodedToken);
+        const decodedToken = this.utilisateurService.decodeToken(token);
+        /*console.log("je suis le token décodé :", decodedToken);
         const id = decodedToken && 'id' in decodedToken ? decodedToken['id'] : undefined;
         const email = decodedToken && 'email' in decodedToken ? decodedToken['email'] : undefined;
         const permissions = decodedToken && 'permissions' in decodedToken ? decodedToken['permissions'] : undefined;
