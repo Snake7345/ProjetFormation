@@ -26,7 +26,7 @@ export class UtilisateursController {
   constructor(private readonly utilisateursService: UtilisateursService,) {
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
   async GetAll() : Promise<UtilisateursDto[]> {
     return await this.utilisateursService.getAll();
