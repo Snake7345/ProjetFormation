@@ -1,4 +1,4 @@
-import {HttpException, Injectable, NotFoundException} from "@nestjs/common";
+import {HttpException, Injectable, NotFoundException, UnauthorizedException} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Not, Repository } from "typeorm";
 import { UtilisateursEntity } from "../shared/entities/utilisateurs.entity";
@@ -79,14 +79,15 @@ export class UtilisateursService {
     return token;
   }
 
-  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions:PermissionsDto[]; token: string }> {
+  async connexionGetAll(invite: ConnexionutilisateursDto): Promise<{ utilisateur: UtilisateursDto; permissions: PermissionsDto[]; token: string }> {
+    const { mail, password } = invite;
     const utilisateur = await this.utilisateursRepository.findOne({
       relations: { role: true, utilisateurcategories: true },
-      where: { mail: invite.mail },
+      where: { mail },
     });
 
-    if (!utilisateur || !(await bcrypt.compare(invite.password, utilisateur.password))) {
-      throw new NotFoundException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR);
+    if (!utilisateur || !(await bcrypt.compare(password, utilisateur.password))) {
+      throw new UnauthorizedException(ErrorTypeUtilisateurs.UTILISATEUR_PASS_AND_MAIL_ERROR);
     }
 
     const rolePermissions = await this.rolesPermissionsRepository.find({

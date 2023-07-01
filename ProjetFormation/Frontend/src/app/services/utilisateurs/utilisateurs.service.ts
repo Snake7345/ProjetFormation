@@ -18,10 +18,10 @@ export class UtilisateursService {
   utilisateursUrl = environment.utilisateursUrl;
   utilisateurSubject$: BehaviorSubject<UtilisateurCo> = new BehaviorSubject<any>(undefined);
   public liste(): Observable<Utilisateurs[]> {
-    /*const token = sessionStorage.getItem('token'); // Récupérer le token du sessionStorage
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);*/
+    const token = sessionStorage.getItem('token'); // Récupérer le token du sessionStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.httpClient.get<Utilisateurs[]>(this.utilisateursUrl/*, { headers }*/);
+    return this.httpClient.get<Utilisateurs[]>(this.utilisateursUrl, { headers });
   }
 
   public listeByID(id:number): Observable<Utilisateurs[]> {

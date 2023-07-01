@@ -5,7 +5,7 @@ import {
   Param,
   ParseIntPipe,
   Patch,
-  Post,
+  Post, Req, UnauthorizedException,
   UseGuards,
   UsePipes,
   ValidationPipe
@@ -17,26 +17,51 @@ import { NewutilisateursDto } from "../shared/dto/utilisateurs/newutilisateurs.d
 import { UpdateutilisateursDto } from "../shared/dto/utilisateurs/updateutilisateurs.dto";
 import { ActivdesactivutilisateursDto } from "../shared/dto/utilisateurs/activdesactivutilisateurs.dto";
 import { ConnexionutilisateursDto } from "../shared/dto/utilisateurs/connexionutilisateurs.dto";
-import {JwtAuthGuard} from "../jwt/guard/jwt-auth.guard";
+import {CustomJwtService} from "../jwt/customjwt.service";
 
 @ApiTags("Utilisateurs")
 @Controller('utilisateurs')
 
 export class UtilisateursController {
-  constructor(private readonly utilisateursService: UtilisateursService,) {
+  constructor(private readonly utilisateursService: UtilisateursService, private readonly customJwtService: CustomJwtService) {
   }
 
   //@UseGuards(JwtAuthGuard)
   @Get()
-  async GetAll() : Promise<UtilisateursDto[]> {
+  async GetAll(@Req() request: Request): Promise<UtilisateursDto[]> {
+    const authorizationHeader = request.headers['authorization'];
+    const token = this.extractTokenFromHeader(authorizationHeader);
+
+    try {
+      const decodedToken = this.customJwtService.verifyToken(token);
+      const userId = decodedToken.id;
+      const userEmail = decodedToken.email;
+
+      console.log('Token is valid');
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
+
     return await this.utilisateursService.getAll();
+  }
+
+  private extractTokenFromHeader(authorizationHeader: string | string[]): string {
+    if (typeof authorizationHeader === 'string') {
+      const tokenRegex = /Bearer\s+(.*)/;
+      const match = authorizationHeader.match(tokenRegex);
+      if (match && match.length > 1) {
+        return match[1];
+      }
+    }
+
+    throw new UnauthorizedException('Invalid authorization header');
   }
 
   @Get('role/:id')
   async GetAllByID(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto[]> {
     return await this.utilisateursService.getAllByID(id);
   }
-  @UseGuards(JwtAuthGuard)
+
   @Get('readutilisateur/:id')
   async GetOne(@Param('id', ParseIntPipe) id: number) : Promise<UtilisateursDto> {
     return await this.utilisateursService.findById(id);

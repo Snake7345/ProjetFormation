@@ -24,7 +24,6 @@ import { TableQuestionsComponent } from './components/questions/table-questions/
 import { TableSyllabusComponent } from './components/syllabus/table-syllabus/table-syllabus.component';
 import { TableUtilisateursComponent } from './components/utilisateurs/table-utilisateurs/table-utilisateurs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JwtHelperService } from '@auth0/angular-jwt';
 /*-------------------------------------Module Angular Material------------------------------------------*/
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
